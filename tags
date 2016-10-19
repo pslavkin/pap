@@ -8,6 +8,8 @@ ABI_VERSION	cdk/Makefile	/^ABI_VERSION	= 6.0.4$/;"	m
 ALL_OBJECTS	cdk/cdkscreen.c	/^ALL_OBJECTS;$/;"	t	typeref:struct:_all_objects	file:
 ALL_SCREENS	cdk/cdkscreen.c	/^ALL_SCREENS;$/;"	t	typeref:struct:_all_screens	file:
 ALL_TARGET	cdk/package/freebsd/Makefile	/^ALL_TARGET=	default examples demos cli cdkshlib$/;"	m
+ANALOG_CLK	h/analog_clk.h	2;"	d
+ANALOG_CLK_PROP_INDEX	h/sheets.h	54;"	d
 AR	cdk/Makefile	/^AR		= ar$/;"	m
 ARRAY_SIZE	ncurses_programs/menus/menu_attrib.c	3;"	d	file:
 ARRAY_SIZE	ncurses_programs/menus/menu_item_data.c	4;"	d	file:
@@ -23,12 +25,13 @@ AUTO_SRC	cdk/Makefile	/^AUTO_SRC	= \\$/;"	m
 AcceptsFocusObj	cdk/include/cdk_objs.h	134;"	d
 AcceptsFocusObj	include/cdk_objs.h	134;"	d
 Add_Status_Bar_Data	c/status_bar.c	/^void Add_Status_Bar_Data(char *Data,unsigned int Length)$/;"	f
+Analog_Clk	c/analog_clk.cpp	/^Sheet *Analog_Clk;$/;"	v
 AppointmentInfo	cdk/demos/appointment.c	/^struct AppointmentInfo$/;"	s	file:
 AppointmentMarker	cdk/demos/appointment.c	/^struct AppointmentMarker$/;"	s	file:
 AvailableWidth	cdk/radio.c	20;"	d	file:
 AvailableWidth	cdk/scroll.c	25;"	d	file:
 AvailableWidth	cdk/selection.c	20;"	d	file:
-BACKSPACE_KEY_FUNC_INDEX	h/sheets.h	29;"	d
+BACKSPACE_KEY_FUNC_INDEX	h/sheets.h	32;"	d
 BAR	cdk/examples/histogram_ex.c	96;"	d	file:
 BDraw_Line	c/histograms.c	/^void BDraw_Line 	(WINDOW* Win, unsigned short int Y0,unsigned short int X0,unsigned short int Y1,unsigned short int X1,unsigned char Color)$/;"	f
 BDraw_Line1	c/histograms.c	/^void BDraw_Line1 	(WINDOW* Win, unsigned short int Y0,unsigned short int X0,unsigned short int Y1,unsigned short int X1, unsigned char Color)\/*{{{*\/$/;"	f
@@ -61,7 +64,6 @@ BorderOf	cdk/include/cdk_objs.h	185;"	d
 BorderOf	include/cdk_objs.h	185;"	d
 Bottom_Menu	c/menu.c	/^void Bottom_Menu 	(void) {Pt_Bottom_Panel(Panel);}$/;"	f
 Bottom_Panel_Method_Index	c/ncurses_pthread.c	/^void Bottom_Panel_Method_Index(unsigned char Index)$/;"	f
-Bottom_Player	c/player.c	/^void Bottom_Player 	(void) {Pt_Bottom_Panel (Panel);}$/;"	f
 Bottom_Sheets	c/sheets.c	/^void Bottom_Sheets 	(void) {Pt_Bottom_Panel(Panel);}$/;"	f
 Bottom_Status_Bar	c/status_bar.c	/^void Bottom_Status_Bar 		(void) {Pt_Bottom_Panel (Panel); 	Pt_Bottom_Panel(Sub_Panel);}$/;"	f
 Bottom_Stretcher	c/stretcher.c	/^void Bottom_Stretcher 		(void) {bottom_panel(Panel);}$/;"	f
@@ -581,13 +583,9 @@ CTRLD	ncurses_programs/menus/menu_win.c	4;"	d	file:
 CUIPET	h/cuipet.h	2;"	d
 CURDEF_H	cdk/include/curdefs.h	3;"	d
 CURDEF_H	include/curdefs.h	3;"	d
-Calc_Crc	c/player.c	/^unsigned short int Calc_Crc(struct Struct_Raw_Frame* Raw_Frame)$/;"	f
-Calculate_File_Size	c/player.c	/^void Calculate_File_Size(void)$/;"	f
-Change_Player_File	c/player.c	/^void Change_Player_File(char * File_Name)$/;"	f
 Change_Sheets_File	c/sheets.c	/^void Change_Sheets_File(char* File_Name)$/;"	f
 CharOf	cdk/include/cdk_int.h	60;"	d
 CharOf	include/cdk_int.h	60;"	d
-Close_Player_File	c/player.c	/^void 	Close_Player_File 	(void)$/;"	f
 CurMatrixCell	cdk/matrix.c	27;"	d	file:
 CurMatrixInfo	cdk/matrix.c	30;"	d	file:
 DEB_BUILD_GNU_TYPE	cdk/package/debian-mingw/rules	/^DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)$/;"	m
@@ -626,6 +624,7 @@ DataTypeUnsigned	cdk/include/cdk_objs.h	/^   , DataTypeUnsigned$/;"	e	enum:__ano
 DataTypeUnsigned	include/cdk_objs.h	/^   , DataTypeUnsigned$/;"	e	enum:__anon8
 DayName	cdk/include/calendar.h	/^   char *	DayName;$/;"	m	struct:SCalendar
 DayName	include/calendar.h	/^   char *	DayName;$/;"	m	struct:SCalendar
+Debug_Analog_Clk	c/analog_clk.cpp	/^void Debug_Analog_Clk(void)$/;"	f
 Dec_Height_Sheet	c/sheets.c	/^void Dec_Height_Sheet(WINDOW* Win)$/;"	f
 Dec_Width_Sheet	c/sheets.c	/^void Dec_Width_Sheet(WINDOW* Win)$/;"	f
 DeclareCDKObjects	cdk/include/cdk_objs.h	251;"	d
@@ -643,20 +642,17 @@ Decrement	cdk/uscale.c	379;"	d	file:
 Decrement	cdk/uslider.c	400;"	d	file:
 Deselect_Menu	c/menu.c	/^void Deselect_Menu 	(void) {Deselect_Panel(Panel);}$/;"	f
 Deselect_Panel	c/sheets.c	/^void Deselect_Panel		(PANEL* Panel)$/;"	f
-Deselect_Player	c/player.c	/^void Deselect_Player 	(void) {Deselect_Panel 	(Panel);}$/;"	f
 Deselect_Sheets	c/sheets.c	/^void Deselect_Sheets 	(void) {Deselect_Panel(Panel);}$/;"	f
 Deselect_Status_Bar	c/status_bar.c	/^void Deselect_Status_Bar 	(void) {Deselect_Panel 	(Panel); 	;}$/;"	f
 Deselect_Stretcher	c/stretcher.c	/^void Deselect_Stretcher 	(void) {Deselect_Panel(Panel);}$/;"	f
 DestroyObj	cdk/include/cdk_objs.h	125;"	d
 DestroyObj	include/cdk_objs.h	125;"	d
 Destroy_Histograms	c/histograms.c	/^void Destroy_Histograms(void)$/;"	f
-Destroy_Player	c/player.c	/^void Destroy_Player(void)$/;"	f
 Destroy_Screen_Update	c/screen_update.c	/^void Destroy_Screen_Update(void)$/;"	f
 Destroy_Sheets	c/sheets.c	/^void Destroy_Sheets(void)$/;"	f
 Destroy_Status_Bar	c/status_bar.c	/^void Destroy_Status_Bar(void)$/;"	f
 Destroy_Stretcher	c/stretcher.c	/^void Destroy_Stretcher(void)$/;"	f
 Destruct_Menu	c/menu.c	/^void Destruct_Menu (void)$/;"	f
-Diff_Time	c/player.c	/^static unsigned int 		Diff_Time=1;$/;"	v	file:
 DigitOf	cdk/cdk.c	306;"	d	file:
 DrawObj	cdk/include/cdk_objs.h	123;"	d
 DrawObj	include/cdk_objs.h	123;"	d
@@ -727,16 +723,10 @@ FPUsage	cdk/cli/cdkviewer.c	/^static const char *FPUsage = "-f filename [-i Inte
 FPUsage	cdk/demos/vinstall.c	/^static const char *FPUsage = "-f filename [-s source directory] [-d destination directory] [-t title] [-o Output file] [-q]";$/;"	v	file:
 FULL	cdk/include/cdk.h	245;"	d
 FULL	include/cdk.h	244;"	d
-FULL_SCREEN_FUNC_INDEX	h/sheets.h	32;"	d
-File	c/player.c	/^static FILE 			*File = NULL;$/;"	v	file:
+FULL_SCREEN_FUNC_INDEX	h/sheets.h	35;"	d
 File	c/sheets.c	/^static FILE 			*File 			= NULL;$/;"	v	file:
-File_Name	c/player.c	/^char 				File_Name[64];$/;"	v
-File_Pos	c/player.c	/^unsigned int 			File_Pos,File_Size,File_Rest;$/;"	v
-File_Rest	c/player.c	/^unsigned int 			File_Pos,File_Size,File_Rest;$/;"	v
-File_Size	c/player.c	/^unsigned int 			File_Pos,File_Size,File_Rest;$/;"	v
 FocusObj	cdk/include/cdk_objs.h	128;"	d
 FocusObj	include/cdk_objs.h	128;"	d
-Frame	c/player.c	/^static struct Struct_Frame 	Frame;$/;"	v	typeref:struct:Struct_Frame	file:
 Full_Screen_Status_Bar	c/status_bar.c	/^void Full_Screen_Status_Bar(void)$/;"	f
 GCC_UNUSED	cdk/include/cdk.h	133;"	d
 GCC_UNUSED	include/cdk.h	132;"	d
@@ -837,23 +827,16 @@ HAVE_UNISTD_H	cdk/include/cdk_config.h	46;"	d
 HAVE_UNISTD_H	include/cdk_config.h	46;"	d
 HDR_ROOTNAME	cdk/Makefile	/^HDR_ROOTNAME	= cdk$/;"	m
 HDR_SUBDIR	cdk/Makefile	/^HDR_SUBDIR =  -h cdk.h$/;"	m
-HEAD1_PROP_INDEX	h/sheets.h	57;"	d
-HEAD2_PROP_INDEX	h/sheets.h	58;"	d
-HEAD3_PROP_INDEX	h/sheets.h	59;"	d
-HEAD4_PROP_INDEX	h/sheets.h	60;"	d
-HEAD5_PROP_INDEX	h/sheets.h	61;"	d
-HEAD6_PROP_INDEX	h/sheets.h	62;"	d
 HEADERS_SH	cdk/Makefile	/^HEADERS_SH = $(SHELL) $(srcdir)\/headers.sh $(HDR_SUBDIR) -x "$(INSTALL_DATA)" -d $(INCLUDE_SUBDIR) -s $(srcdir)$/;"	m
-HEADS_PROP_INDEX	h/sheets.h	53;"	d
 HEIGHT	c/menu.c	16;"	d	file:
-HEIGHT	c/player.c	23;"	d	file:
-HEIGHT	c/sheets.c	21;"	d	file:
+HEIGHT	c/sheets.c	20;"	d	file:
 HEIGHT	c/status_bar.c	17;"	d	file:
+HEIGHT	h/analog_clk.h	/^	static const int HEIGHT=20;$/;"	m	class:Sheet
 HEIGHT	ncurses_programs/JustForFun/magic.c	7;"	d	file:
 HEIGHT	ncurses_programs/JustForFun/shuffle.c	6;"	d	file:
 HEIGHT	ncurses_programs/basics/mouse_menu.c	4;"	d	file:
 HEIGHT	ncurses_programs/basics/simple_key.c	5;"	d	file:
-HIDE_FUNC_INDEX	h/sheets.h	19;"	d
+HIDE_FUNC_INDEX	h/sheets.h	22;"	d
 HISTOGRAMS	h/histograms.h	2;"	d
 HORIZONTAL	cdk/include/cdk.h	243;"	d
 HORIZONTAL	include/cdk.h	242;"	d
@@ -865,18 +848,16 @@ HZCharOf	include/cdk_objs.h	202;"	d
 HasFocusObj	cdk/include/cdk_objs.h	135;"	d
 HasFocusObj	include/cdk_objs.h	135;"	d
 Height	h/sheets.h	/^	unsigned short int 	Height;$/;"	m	struct:Struct_Sheets_Prop
-Hide	c/player.c	/^static unsigned short int	Hide 		= 1;$/;"	v	file:
 Hide	c/sheets.c	/^static unsigned short int	Hide 			= 1;$/;"	v	file:
 Hide	c/status_bar.c	/^static unsigned short int	Hide 			= 1;$/;"	v	file:
 Hide	c/stretcher.c	/^static unsigned short int	Hide 			= 1;$/;"	v	file:
+Hide	h/analog_clk.h	/^	unsigned short int	Hide;$/;"	m	class:Sheet
 Hide	h/sheets.h	/^	unsigned char 		Hide;$/;"	m	struct:Struct_Sheets_Prop
 Hide_All_Panels	c/ncurses_pthread.c	/^void Hide_All_Panels(void)$/;"	f
 Hide_Menu	c/menu.c	/^void Hide_Menu 		(void) {Pt_Hide_Panel(Panel);}$/;"	f
-Hide_Player	c/player.c	/^void Hide_Player 	(void) {Pt_Hide_Panel 	(Panel); 	Hide=1;}$/;"	f
 Hide_Sheet	c/sheets.c	/^void Hide_Sheet 	(void) {Pt_Hide_Panel(Panel); Hide=1;}$/;"	f
 Hide_Status_Bar	c/status_bar.c	/^void Hide_Status_Bar 		(void) {Pt_Hide_Panel 	(Panel); 	Pt_Hide_Panel(Sub_Panel); 	Hide=1;}$/;"	f
 Hide_Stretcher	c/stretcher.c	/^void Hide_Stretcher 		(void) {hide_panel(Panel); 	Hide=1;}$/;"	f
-Histo	c/player.c	/^static struct Struct_Histo 	Histo;$/;"	v	typeref:struct:Struct_Histo	file:
 Histo	c/stretcher.c	/^static struct Struct_Histo 	Histo;$/;"	v	typeref:struct:Struct_Histo	file:
 Histo_Mutex	c/histograms.c	/^pthread_mutex_t Histo_Mutex = PTHREAD_MUTEX_INITIALIZER;$/;"	v
 Histogram_Rti	c/histograms.c	/^void* Histogram_Rti(void* Arg1)$/;"	f
@@ -895,7 +876,6 @@ INT_MIN	include/cdk.h	124;"	d
 IO_FILES_RTI	h/ncurses_pthread.h	11;"	d
 IceConnectionNumber	cdk/configure	/^IceConnectionNumber ();$/;"	f
 Inc_Height_Sheet	c/sheets.c	/^void Inc_Height_Sheet(WINDOW* Win)$/;"	f
-Inc_Time	c/player.c	/^void Inc_Time(unsigned short int Time)$/;"	f
 Inc_Width_Sheet	c/sheets.c	/^void Inc_Width_Sheet(WINDOW* Win)$/;"	f
 Increment	cdk/dscale.c	382;"	d	file:
 Increment	cdk/fscale.c	382;"	d	file:
@@ -907,18 +887,16 @@ Increment	cdk/slider.c	401;"	d	file:
 Increment	cdk/uscale.c	380;"	d	file:
 Increment	cdk/uslider.c	401;"	d	file:
 Index	h/sheets.h	/^	unsigned char 	 	Index;$/;"	m	struct:Struct_Sheets_Prop
-Init_Date_Format_File	c/player.c	/^void 	Init_Date_Format_File(void)$/;"	f
+Init_Analog_Clk	c/analog_clk.cpp	/^void Init_Analog_Clk(void)$/;"	f
 Init_Histogram	c/histograms.c	/^void Init_Histogram(struct Struct_Histo *Histo,WINDOW *Win,unsigned short int Y,unsigned short int X,const char* Tittle, \\$/;"	f
 Init_Histograms	c/histograms.c	/^void Init_Histograms(void)$/;"	f
 Init_Menu	c/menu.c	/^void Init_Menu (void)$/;"	f
 Init_Ncurses_Pthread	c/ncurses_pthread.c	/^void Init_Ncurses_Pthread(void)$/;"	f
-Init_Player	c/player.c	/^void Init_Player(void)$/;"	f
 Init_Screen_Update	c/screen_update.c	/^void Init_Screen_Update(void)$/;"	f
 Init_Sheets	c/sheets.c	/^void Init_Sheets(void)$/;"	f
 Init_Status_Bar	c/status_bar.c	/^void Init_Status_Bar(void)$/;"	f
 Init_Stretcher	c/stretcher.c	/^void Init_Stretcher(void)$/;"	f
 Init_Super_Colours	c/sheets.c	/^void Init_Super_Colours(unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count)$/;"	f
-Init_Time	c/player.c	/^void Init_Time(void)$/;"	f
 InjectObj	cdk/include/cdk_objs.h	126;"	d
 InjectObj	include/cdk_objs.h	126;"	d
 InputWindowObj	cdk/include/cdk_objs.h	127;"	d
@@ -1001,7 +979,7 @@ LEFT	include/cdk.h	237;"	d
 LEFT	ncurses_programs/JustForFun/shuffle.c	/^enum { LEFT, RIGHT, UP, DOWN };$/;"	e	enum:__anon1	file:
 LENGTH	ncurses_programs/JustForFun/tt.c	7;"	d	file:
 LFD	cdk/demos/serial.c	/^int LFD;$/;"	v
-LIBS	Makefile	/^LIBS= -lncurses -lpthread  -lpanel -L lib\/ -lcdk_ps -lX11 -lGL -lGLU -lglut$/;"	m
+LIBS	Makefile	/^LIBS= -lncurses -lpthread  -lpanel -lrt -L lib\/ -lcdk_ps -lX11 -lGL -lGLU -lglut$/;"	m
 LIBS	cdk/Makefile	/^LIBS		= -lncurses  -lpanel$/;"	m
 LIBS	cdk/cli/Makefile	/^LIBS		= -lcdk -lncurses $/;"	m
 LIBS	cdk/demos/Makefile	/^LIBS		= -lcdk -lncurses $/;"	m
@@ -1063,19 +1041,12 @@ LOCAL_LIBDIR	cdk/cli/Makefile	/^LOCAL_LIBDIR	= .$/;"	m
 LOCAL_LIBDIR	cdk/demos/Makefile	/^LOCAL_LIBDIR	= .$/;"	m
 LOCAL_LIBDIR	cdk/examples/Makefile	/^LOCAL_LIBDIR	= .$/;"	m
 LOG	cdk/package/debian/rules	/^LOG = @echo "**"$/;"	m
-LORS_PROP_INDEX	h/sheets.h	55;"	d
 LORS_RTI	h/ncurses_pthread.h	13;"	d
 LRChar	cdk/include/cdk_objs.h	/^   chtype       LRChar;		\/* lines: lower-right *\/$/;"	m	struct:CDKOBJS
 LRChar	include/cdk_objs.h	/^   chtype       LRChar;		\/* lines: lower-right *\/$/;"	m	struct:CDKOBJS
 LRCharOf	cdk/include/cdk_objs.h	200;"	d
 LRCharOf	include/cdk_objs.h	200;"	d
 L_MARKER	cdk/cdk.c	9;"	d	file:
-Last_Time	c/player.c	/^static unsigned short int 	Last_Time=0;$/;"	v	file:
-Log_Frame_Info	c/player.c	/^void Log_Frame_Info(struct Struct_Frame* Frame)$/;"	f
-Log_Hex_Raw_Frame_Info	c/player.c	/^void Log_Hex_Raw_Frame_Info(struct Struct_Frame* Frame)$/;"	f
-Log_Info	c/player.c	/^static unsigned char 		Log_Info=0;$/;"	v	file:
-Log_Raw_Frame_Info	c/player.c	/^void Log_Raw_Frame_Info(struct Struct_Frame* Frame)$/;"	f
-Lor_Count	c/player.c	/^static long 			Lor_Count=0;$/;"	v	file:
 MAINTAINER	cdk/package/freebsd/Makefile	/^MAINTAINER=	bapt@FreeBSD.org$/;"	m
 MAKE_JOBS_UNSAFE	cdk/package/freebsd/Makefile	/^MAKE_JOBS_UNSAFE=	yes$/;"	m
 MAKE_RECUR	cdk/Makefile	/^MAKE_RECUR	=  prefix=$(prefix)$/;"	m
@@ -1102,6 +1073,7 @@ MAX_CDK_PARAMS	cdk/include/cdk_params.h	52;"	d
 MAX_CDK_PARAMS	include/cdk_params.h	52;"	d
 MAX_CHOICES	cdk/include/selection.h	60;"	d
 MAX_CHOICES	include/selection.h	60;"	d
+MAX_COLOUR_PAIR	h/sheets.h	7;"	d
 MAX_DAYS	cdk/include/calendar.h	60;"	d
 MAX_DAYS	include/calendar.h	60;"	d
 MAX_DIALOG_BUTTONS	cdk/include/dialog.h	61;"	d
@@ -1125,8 +1097,8 @@ MAX_MONTHS	cdk/include/calendar.h	61;"	d
 MAX_MONTHS	include/calendar.h	61;"	d
 MAX_OBJECTS	cdk/include/cdkscreen.h	57;"	d
 MAX_OBJECTS	include/cdkscreen.h	57;"	d
-MAX_PANELS	h/sheets.h	6;"	d
-MAX_PROP_PANELS	h/sheets.h	47;"	d
+MAX_PANELS	h/sheets.h	9;"	d
+MAX_PROP_PANELS	h/sheets.h	50;"	d
 MAX_SUB_ITEMS	cdk/include/menu.h	61;"	d
 MAX_SUB_ITEMS	include/menu.h	61;"	d
 MAX_VISIBLE_CH_NUM	h/multichannel.h	4;"	d
@@ -1143,10 +1115,11 @@ MINGW_TOP	cdk/package/debian-mingw/rules	/^MINGW_TOP = \/usr\/$(TARGET)$/;"	m
 MINGW_TOP	cdk/package/debian-mingw64/rules	/^MINGW_TOP = \/usr\/$(TARGET)$/;"	m
 MINIMUM	cdk/include/cdk.h	256;"	d
 MINIMUM	include/cdk.h	255;"	d
+MIN_COLOUR_PAIR	h/sheets.h	6;"	d
 MIN_DIALOG_WIDTH	cdk/include/dialog.h	62;"	d
 MIN_DIALOG_WIDTH	include/dialog.h	62;"	d
-MIN_HEIGHT	h/sheets.h	8;"	d
-MIN_WIDTH	h/sheets.h	7;"	d
+MIN_HEIGHT	h/sheets.h	11;"	d
+MIN_WIDTH	h/sheets.h	10;"	d
 MIXED	cdk/gen-scale.c	/^CDK<UPPER> *newCDK<MIXED> (CDKSCREEN *cdkscreen,$/;"	f
 MIXED	cdk/gen-scale.c	/^static int _injectCDK<MIXED> (CDKOBJS *object, chtype input)$/;"	f	file:
 MIXED	cdk/gen-scale.c	/^static void _destroyCDK<MIXED> (CDKOBJS *object)$/;"	f	file:
@@ -1169,12 +1142,11 @@ MIXEDCASE_FILENAMES	cdk/include/cdk_config.h	47;"	d
 MIXEDCASE_FILENAMES	include/cdk_config.h	47;"	d
 MKDIR_MAN	cdk/Makefile	/^MKDIR_MAN	= test -d man || mkdir man$/;"	m
 MONTHS	cdk/examples/itemlist_ex.c	9;"	d	file:
-MOVE2D_FUNC_INDEX	h/sheets.h	11;"	d
-MOVE2L_FUNC_INDEX	h/sheets.h	13;"	d
-MOVE2R_FUNC_INDEX	h/sheets.h	12;"	d
-MOVE2U_FUNC_INDEX	h/sheets.h	10;"	d
+MOVE2D_FUNC_INDEX	h/sheets.h	14;"	d
+MOVE2L_FUNC_INDEX	h/sheets.h	16;"	d
+MOVE2R_FUNC_INDEX	h/sheets.h	15;"	d
+MOVE2U_FUNC_INDEX	h/sheets.h	13;"	d
 MULTICHANNEL	h/multichannel.h	2;"	d
-MULTICHANNEL_PROP_INDEX	h/sheets.h	52;"	d
 MYSIZE	cdk/demos/rolodex.c	8;"	d	file:
 MY_COLS	cdk/examples/matrix_ex.c	9;"	d	file:
 MY_HDR	cdk/Makefile	/^MY_HDR		= \\$/;"	m
@@ -1188,7 +1160,6 @@ MethodOf	include/cdk_objs.h	182;"	d
 MethodPtr	cdk/include/cdk_objs.h	118;"	d
 MethodPtr	include/cdk_objs.h	118;"	d
 Methods	c/menu.c	/^static void (*Methods[10]) (void) =$/;"	v	file:
-Methods	c/player.c	/^static void (*Methods[]) (void) =$/;"	v	file:
 Methods	c/sheets.c	/^static void (*Methods[]) (void) =$/;"	v	file:
 Methods	c/status_bar.c	/^static void (*Methods[]) (void) =$/;"	v	file:
 Methods	c/stretcher.c	/^static void (*Methods[]) (void) =$/;"	v	file:
@@ -1239,7 +1210,6 @@ ObjPtr	cdk/include/cdk_objs.h	116;"	d
 ObjPtr	include/cdk_objs.h	116;"	d
 ObjTypeOf	cdk/include/cdk_objs.h	121;"	d
 ObjTypeOf	include/cdk_objs.h	121;"	d
-Open_File_Selection	c/player.c	/^static void Open_File_Selection(void)$/;"	f	file:
 PACKAGE	cdk/Makefile	/^PACKAGE		= cdk$/;"	m
 PACKAGE	cdk/include/cdk_config.h	49;"	d
 PACKAGE	include/cdk_config.h	49;"	d
@@ -1248,11 +1218,8 @@ PACKAGES.indep	cdk/package/debian/rules	/^PACKAGES.indep = libcdk5-doc$/;"	m
 PANEL	cdk/include/panel.h	/^} PANEL;$/;"	t	typeref:struct:panel
 PANEL_DATA	ncurses_programs/panels/panel_hide.c	/^}PANEL_DATA;$/;"	t	typeref:struct:_PANEL_DATA	file:
 PANEL_DATA	ncurses_programs/panels/panel_resize.c	/^}PANEL_DATA;$/;"	t	typeref:struct:_PANEL_DATA	file:
-PARSE_MENU_OPTIONS_FUNC_INDEX	h/sheets.h	17;"	d
+PARSE_MENU_OPTIONS_FUNC_INDEX	h/sheets.h	20;"	d
 PEG_CHAR	ncurses_programs/JustForFun/hanoi.c	6;"	d	file:
-PLAYER_HISTO_WIDTH	c/player.c	24;"	d	file:
-PLAYER_POS_MAX	c/player.c	25;"	d	file:
-PLAYER_PROP_INDEX	h/sheets.h	51;"	d
 PORTDOCS	cdk/package/freebsd/Makefile	/^PORTDOCS=	COPYING EXPANDING INSTALL NOTES README TODO$/;"	m
 PORTEPOCH	cdk/package/freebsd/Makefile	/^PORTEPOCH=	1$/;"	m
 PORTNAME	cdk/package/freebsd/Makefile	/^PORTNAME=	cdk$/;"	m
@@ -1264,7 +1231,6 @@ PROCESSFN	cdk/include/binding.h	/^typedef int (*PROCESSFN) ($/;"	t
 PROCESSFN	include/binding.h	/^typedef int (*PROCESSFN) ($/;"	t
 PT_Histograms_Rti	c/histograms.c	/^pthread_t 		PT_Histograms_Rti;$/;"	v
 PT_Menu_Rti	c/menu.c	/^pthread_t 		PT_Menu_Rti;$/;"	v
-PT_Player_Rti	c/player.c	/^static pthread_t 		PT_Player_Rti;$/;"	v	file:
 PT_Scr_Rti	c/sheets.c	/^static pthread_t 		PT_Sheets_Rti,PT_Scr_Rti;$/;"	v	file:
 PT_Screen_Update_Rti	c/screen_update.c	/^pthread_t 	PT_Screen_Update_Rti;$/;"	v
 PT_Sheets_Rti	c/sheets.c	/^static pthread_t 		PT_Sheets_Rti,PT_Scr_Rti;$/;"	v	file:
@@ -1273,11 +1239,11 @@ PT_Stretcher_Rti	c/stretcher.c	/^static pthread_t 		PT_Stretcher_Rti;$/;"	v	file
 P_SHARED	cdk/package/debian/rules	/^P_SHARED = $(CURDIR)\/t\/shared$/;"	m
 P_STATIC	cdk/package/debian/rules	/^P_STATIC = $(CURDIR)\/t\/static$/;"	m
 Panel	c/menu.c	/^static PANEL 		*Panel;$/;"	v	file:
-Panel	c/player.c	/^static PANEL 			*Panel;$/;"	v	file:
 Panel	c/sheets.c	/^static PANEL 			*Panel,*Scr_Panel;$/;"	v	file:
 Panel	c/status_bar.c	/^static PANEL 			*Panel,*Sub_Panel;$/;"	v	file:
 Panel	c/stretcher.c	/^static PANEL 			*Panel; $/;"	v	file:
 Panel	cdk/include/histogram.h	/^   PANEL  *			Panel;$/;"	m	struct:SHistogram
+Panel	h/analog_clk.h	/^	PANEL 			*Panel; $/;"	m	class:Sheet
 Panel2D	c/sheets.c	/^void Panel2D	(PANEL* Panel)$/;"	f
 Panel2L	c/sheets.c	/^void Panel2L	(PANEL* Panel)$/;"	f
 Panel2R	c/sheets.c	/^void Panel2R	(PANEL* Panel)$/;"	f
@@ -1289,17 +1255,12 @@ Panel_Prop_Read_Method_Exec	c/sheets.c	/^void Panel_Prop_Read_Method_Exec(struct
 Panel_Prop_Set_Method_Exec	c/sheets.c	/^void Panel_Prop_Set_Method_Exec(struct Struct_Sheets_Prop *S)$/;"	f
 Params_Parser	c/cuipet.c	/^void Params_Parser(int argc, char **argv)$/;"	f
 Parse_Menu_Menu	c/menu.c	/^void Parse_Menu_Menu 	(int Selection)$/;"	f
-Parse_Next_File_Frame	c/player.c	/^unsigned char Parse_Next_File_Frame(struct Struct_Frame *Frame)$/;"	f
-Parse_Player_Menu	c/player.c	/^void Parse_Player_Menu 	(int Selection)$/;"	f
 Parse_Scr_Menu	c/sheets.c	/^void Parse_Scr_Menu 	(int Selection)$/;"	f
 Parse_Sheet_Menu	c/sheets.c	/^void Parse_Sheet_Menu 	(int Selection)$/;"	f
 Parse_Status_Bar_Menu	c/status_bar.c	/^void Parse_Status_Bar_Menu 	(int Selection)$/;"	f
 Parse_Stretcher_Menu	c/stretcher.c	/^void Parse_Stretcher_Menu 	(int Selection)$/;"	f
+Parser	c/analog_clk.cpp	/^void 	Sheet::Parser(void)$/;"	f	class:Sheet
 PatternNotFound	cdk/viewer.c	/^static void PatternNotFound (CDKVIEWER *viewer, char *pattern)$/;"	f	file:
-Player_Mutex	c/player.c	/^pthread_mutex_t 		Player_Mutex 	= PTHREAD_MUTEX_INITIALIZER;$/;"	v
-Player_Rti	c/player.c	/^void* Player_Rti(void* Arg1)$/;"	f
-Player_State	c/player.c	/^static unsigned	char 		Player_State;$/;"	v	file:
-Pos	c/player.c	/^static float 			Pos;$/;"	v	file:
 Pos	c/stretcher.c	/^static float 			Pos;$/;"	v	file:
 PostProcessDataOf	cdk/include/cdk_objs.h	218;"	d
 PostProcessDataOf	include/cdk_objs.h	218;"	d
@@ -1323,11 +1284,11 @@ Pt_waddnstr	c/ncurses_pthread.c	/^void Pt_waddnstr (WINDOW *A,char* B,int C)$/;"
 Pt_wprintw	c/ncurses_pthread.c	/^void Pt_wprintw (WINDOW *A,const char *D,va_list Varg)$/;"	f
 QUEEN_CHAR	ncurses_programs/JustForFun/queens.c	4;"	d	file:
 RANLIB	cdk/Makefile	/^RANLIB		= ranlib$/;"	m
-READ_PROPERTIES_FUNC_INDEX	h/sheets.h	34;"	d
-REDRAW_BOX_FUNC_INDEX	h/sheets.h	16;"	d
+READ_PROPERTIES_FUNC_INDEX	h/sheets.h	37;"	d
+REDRAW_BOX_FUNC_INDEX	h/sheets.h	19;"	d
 REL_VERSION	cdk/Makefile	/^REL_VERSION	= 5.0$/;"	m
 RESULTING_SYMS	cdk/Makefile	/^RESULTING_SYMS	= $/;"	m
-RE_INIT_FUNC_INDEX	h/sheets.h	28;"	d
+RE_INIT_FUNC_INDEX	h/sheets.h	31;"	d
 RIGHT	cdk/include/cdk.h	239;"	d
 RIGHT	include/cdk.h	238;"	d
 RIGHT	ncurses_programs/JustForFun/shuffle.c	/^enum { LEFT, RIGHT, UP, DOWN };$/;"	e	enum:__anon1	file:
@@ -1340,26 +1301,17 @@ ROW	cdk/include/cdk.h	248;"	d
 ROW	include/cdk.h	247;"	d
 RPATH_LIST	cdk/Makefile	/^RPATH_LIST	= $/;"	m
 R_MARKER	cdk/cdk.c	10;"	d	file:
-Raw2Frame	c/player.c	/^void Raw2Frame(struct Struct_Frame* Frame)$/;"	f
-Raw_Frame	c/player.c	/^static struct Struct_Raw_Frame 	Raw_Frame;$/;"	v	typeref:struct:Struct_Raw_Frame	file:
-Re_Calculate_Histo	c/player.c	/^void Re_Calculate_Histo(const char * State)$/;"	f
-Re_Init_Player	c/player.c	/^void Re_Init_Player(void)$/;"	f
 Re_Init_Sheets	c/sheets.c	/^void Re_Init_Sheets(void)$/;"	f
 Re_Init_Status_Bar	c/status_bar.c	/^void 	Re_Init_Status_Bar(void)$/;"	f
 Re_Init_Stretcher	c/stretcher.c	/^void Re_Init_Stretcher(void)$/;"	f
-Read_Date_Format_File	c/player.c	/^char* 	Read_Date_Format_File(void) {return File_Name;}$/;"	f
-Read_Diff_Time	c/player.c	/^long Read_Diff_Time(void)$/;"	f
-Read_Lor_Count	c/player.c	/^unsigned long Read_Lor_Count(void)$/;"	f
 Read_Panel_Prop	c/sheets.c	/^void Read_Panel_Prop	(PANEL* Panel, struct Struct_Sheets_Prop *S)$/;"	f
-Read_Player_File	c/player.c	/^FILE* 	Read_Player_File  	(void) 	{return File;}$/;"	f
-Read_Player_Props	c/player.c	/^void Read_Player_Props(struct Struct_Sheets_Prop *S)$/;"	f
 Read_Properties_From_File	c/sheets.c	/^void Read_Properties_From_File(void)$/;"	f
 Read_Screen_Update_Rti_Delay	c/screen_update.c	/^long Read_Screen_Update_Rti_Delay 	(void) 		{return Rti_Delay.tv_nsec;}$/;"	f
 Read_Sheets_Props	c/sheets.c	/^void Read_Sheets_Props(struct Struct_Sheets_Prop *S)$/;"	f
 Read_Status_Bar_Props	c/status_bar.c	/^void Read_Status_Bar_Props(struct Struct_Sheets_Prop *S)$/;"	f
 Read_Stretcher_Props	c/stretcher.c	/^void Read_Stretcher_Props(struct Struct_Sheets_Prop *S)$/;"	f
+Redraw_Box	c/analog_clk.cpp	/^void 	Sheet::Redraw_Box(void)$/;"	f	class:Sheet
 Redraw_Menu_Box	c/menu.c	/^void 	Redraw_Menu_Box(void)$/;"	f
-Redraw_Player_Box	c/player.c	/^void 	Redraw_Player_Box(void)$/;"	f
 Redraw_Scr_Box	c/sheets.c	/^void 	Redraw_Scr_Box(void)$/;"	f
 Redraw_Sheets_Box	c/sheets.c	/^void 	Redraw_Sheets_Box(void)$/;"	f
 Redraw_Status_Bar_Box	c/status_bar.c	/^void 	Redraw_Status_Bar_Box(void)$/;"	f
@@ -1368,18 +1320,14 @@ RefreshDataObj	cdk/include/cdk_objs.h	131;"	d
 RefreshDataObj	include/cdk_objs.h	131;"	d
 Register_Panel	c/sheets.c	/^void Register_Panel(PANEL* Panel,unsigned short Index)$/;"	f
 Reposition_Status_Bar_Log_Panel	c/status_bar.c	/^void Reposition_Status_Bar_Log_Panel(void)$/;"	f
-Reset_Diff_Time	c/player.c	/^static unsigned char 		Reset_Diff_Time=1;$/;"	v	file:
 RestoreFocus	cdk/alphalist.c	280;"	d	file:
 RestoreFocus	cdk/fselect.c	314;"	d	file:
 ResultOf	cdk/include/cdk_objs.h	186;"	d
 ResultOf	include/cdk_objs.h	186;"	d
 ReturnOf	cdk/include/cdk_objs.h	221;"	d
 ReturnOf	include/cdk_objs.h	221;"	d
-Rewind_Player_File	c/player.c	/^void 	Rewind_Player_File 	(void)$/;"	f
 Rien	c/ncurses_pthread.c	/^void Rien(void)$/;"	f
-Rti_Delay	c/player.c	/^static struct timespec 		Rti_Delay={0,10000}; \/\/10 micros$/;"	v	typeref:struct:timespec	file:
 Rti_Delay	c/screen_update.c	/^static struct timespec 		Rti_Delay={0,100000000}; \/\/100 milis$/;"	v	typeref:struct:timespec	file:
-Run_Parser	c/player.c	/^void Run_Parser(void)$/;"	f
 S	cdk/include/gen-scale.h	/^struct S<MIXED> {$/;"	s
 S	cdk/include/gen-slider.h	/^struct S<MIXED> {$/;"	s
 S	include/gen-scale.h	/^struct S<MIXED> {$/;"	s
@@ -1434,8 +1382,8 @@ SDScale	cdk/include/dscale.h	/^struct SDScale {$/;"	s
 SDScale	include/dscale.h	/^struct SDScale {$/;"	s
 SDialogBox	cdk/include/dialog.h	/^struct SDialogBox {$/;"	s
 SDialogBox	include/dialog.h	/^struct SDialogBox {$/;"	s
-SELECT_FUNC_INDEX	h/sheets.h	14;"	d
-SET_PROPERTIES_FUNC_INDEX	h/sheets.h	33;"	d
+SELECT_FUNC_INDEX	h/sheets.h	17;"	d
+SET_PROPERTIES_FUNC_INDEX	h/sheets.h	36;"	d
 SEntry	cdk/include/entry.h	/^struct SEntry {$/;"	s
 SEntry	include/entry.h	/^struct SEntry {$/;"	s
 SFScale	cdk/include/fscale.h	/^struct SFScale {$/;"	s
@@ -1447,7 +1395,7 @@ SFileSelector	include/fselect.h	/^struct SFileSelector {$/;"	s
 SGraph	cdk/include/graph.h	/^struct SGraph {$/;"	s
 SGraph	include/graph.h	/^struct SGraph {$/;"	s
 SHEETS	h/sheets.h	2;"	d
-SHEETS_PROP_INDEX	h/sheets.h	54;"	d
+SHEETS_PROP_INDEX	h/sheets.h	53;"	d
 SHEETS_RTI	h/ncurses_pthread.h	9;"	d
 SHELL	cdk/Makefile	/^SHELL		= \/bin\/sh$/;"	m
 SHELL	cdk/cli/Makefile	/^SHELL		= \/bin\/sh$/;"	m
@@ -1514,19 +1462,19 @@ STARTY	ncurses_programs/JustForFun/tt.c	10;"	d	file:
 STARTY	ncurses_programs/forms/form_options.c	4;"	d	file:
 START_DEBUG	cdk/include/cdk.h	273;"	d
 START_DEBUG	include/cdk.h	272;"	d
-START_MENU_FUNC_INDEX	h/sheets.h	18;"	d
+START_MENU_FUNC_INDEX	h/sheets.h	21;"	d
 STATUSX	ncurses_programs/JustForFun/tt.c	11;"	d	file:
 STATUSY	ncurses_programs/JustForFun/tt.c	12;"	d	file:
 STATUS_BAR	h/status_bar.h	2;"	d
-STATUS_BAR_PROP_INDEX	h/sheets.h	50;"	d
+STATUS_BAR_PROP_INDEX	h/sheets.h	52;"	d
 STATUS_BAR_RTI	h/ncurses_pthread.h	8;"	d
 STDC_HEADERS	cdk/include/cdk_config.h	50;"	d
 STDC_HEADERS	include/cdk_config.h	50;"	d
 STRETCHER	h/stretcher.h	2;"	d
-STRETCHER_POS_MAX	c/stretcher.c	14;"	d	file:
-STRETCHER_PROP_INDEX	h/sheets.h	49;"	d
+STRETCHER_POS_MAX	c/stretcher.c	15;"	d	file:
+STRETCHER_PROP_INDEX	h/sheets.h	51;"	d
 STRETCHER_RTI	h/ncurses_pthread.h	12;"	d
-STRETCHER_WIDTH	c/stretcher.c	13;"	d	file:
+STRETCHER_WIDTH	c/stretcher.c	14;"	d	file:
 STemplate	cdk/include/template.h	/^struct STemplate {$/;"	s
 STemplate	include/template.h	/^struct STemplate {$/;"	s
 SUScale	cdk/include/uscale.h	/^struct SUScale {$/;"	s
@@ -1560,12 +1508,14 @@ Screen_Update_Mutex	c/screen_update.c	/^pthread_mutex_t	Screen_Update_Mutex = PT
 Screen_Update_Rti	c/screen_update.c	/^void* Screen_Update_Rti(void* Arg1)$/;"	f
 SearchDirection	cdk/viewer.c	/^static int SearchDirection = DOWN;$/;"	v	file:
 SearchPattern	cdk/viewer.c	/^static char *SearchPattern = 0;$/;"	v	file:
+Select	c/analog_clk.cpp	/^void 	Sheet::Select(void)$/;"	f	class:Sheet
+Select_Analog_Clk	c/analog_clk.cpp	/^void Select_Analog_Clk(void) {Analog_Clk->Select();}$/;"	f
 Select_Menu	c/menu.c	/^void Select_Menu   	(void) {Select_Panel(Panel);}$/;"	f
 Select_Panel	c/sheets.c	/^void Select_Panel		(PANEL* Panel)$/;"	f
-Select_Player	c/player.c	/^void Select_Player   	(void) {Select_Panel 	(Panel); 	Re_Init_Player();}$/;"	f
 Select_Sheets	c/sheets.c	/^void Select_Sheets   	(void) {Select_Panel(Panel);}$/;"	f
 Select_Status_Bar	c/status_bar.c	/^void Select_Status_Bar   	(void) {Select_Panel 	(Panel); 	Re_Init_Status_Bar();}$/;"	f
 Select_Stretcher	c/stretcher.c	/^void Select_Stretcher   	(void) {Select_Panel(Panel);Re_Init_Stretcher();}$/;"	f
+Select_Window	c/sheets.c	/^void Select_Window		(WINDOW* Win)$/;"	f
 SetBackAttrObj	cdk/include/cdk_objs.h	132;"	d
 SetBackAttrObj	include/cdk_objs.h	132;"	d
 Set_Entry	c/menu.c	/^unsigned char Set_Entry (PANEL* Panel,const char* Title,char* Actual_Data,char* Data,unsigned short int Length)$/;"	f
@@ -1573,8 +1523,6 @@ Set_File_Select	c/menu.c	/^char* Set_File_Select (PANEL* Panel)$/;"	f
 Set_Histogram_Value	c/histograms.c	/^void Set_Histogram_Value(struct Struct_Histo *Histo, unsigned int Value) 	\/\/histograma$/;"	f
 Set_Menu	c/menu.c	/^void Set_Menu (PANEL* Panel,const char* Menu_List[][MAX_SUB_ITEMS],unsigned char Items,int* Submenu_Size,int *Menu_Loc)$/;"	f
 Set_Panel_Prop	c/sheets.c	/^void Set_Panel_Prop	(PANEL* Panel, struct Struct_Sheets_Prop *S)$/;"	f
-Set_Player_Props	c/player.c	/^void Set_Player_Props(struct Struct_Sheets_Prop *S)$/;"	f
-Set_Player_State_Playing	c/player.c	/^void Set_Player_State_Playing 	(void) $/;"	f
 Set_Rule_Value	c/histograms.c	/^void Set_Rule_Value(struct Struct_Histo *Histo, unsigned int Value) 		\/\/detector de picos$/;"	f
 Set_Screen_Update_Rti_Delay	c/screen_update.c	/^void Set_Screen_Update_Rti_Delay	(long Value) 	{Rti_Delay.tv_nsec=Value;}$/;"	f
 Set_Sheets_Props	c/sheets.c	/^void Set_Sheets_Props(struct Struct_Sheets_Prop *S)$/;"	f
@@ -1588,14 +1536,13 @@ Set_V_Rule_Value	c/histograms.c	/^void Set_V_Rule_Value(struct Struct_Histo *His
 Set_V_Y_Scale	c/histograms.c	/^void Set_V_Y_Scale(struct Struct_Histo *Histo)$/;"	f
 Shadow	cdk/include/cdk_params.h	/^   bool		Shadow;$/;"	m	struct:CDK_PARAMS
 Shadow	include/cdk_params.h	/^   bool		Shadow;$/;"	m	struct:CDK_PARAMS
+Sheet	c/analog_clk.cpp	/^	Sheet::Sheet(Sheet* Sheet_Instance)$/;"	f	class:Sheet
+Sheet	h/analog_clk.h	/^class Sheet{$/;"	c
+Sheet4Panel	c/ncurses_pthread.c	/^Sheet* Sheet4Panel(PANEL* Panel)$/;"	f
 Sheet_List	c/sheets.c	/^static PANEL 			*Sheet_List[MAX_PANELS]={NULL};$/;"	v	file:
 Sheets_Mutex	c/sheets.c	/^pthread_mutex_t 		Sheets_Mutex = PTHREAD_MUTEX_INITIALIZER;$/;"	v
 Sheets_Rti	c/sheets.c	/^void* Sheets_Rti(void* Arg1)$/;"	f
-Show_Frame_On_Heads	c/player.c	/^void Show_Frame_On_Heads(struct Struct_Frame* Frame)$/;"	f
-Show_Frame_On_Multichannel	c/player.c	/^void Show_Frame_On_Multichannel(struct Struct_Frame* Frame)$/;"	f
-Skip_Frames	c/player.c	/^unsigned short int 		Skip_Frames=5;$/;"	v
 Start_Menu_Menu	c/menu.c	/^void Start_Menu_Menu 	(void)\/*{{{*\/$/;"	f
-Start_Player_Menu	c/player.c	/^void Start_Player_Menu 	(void)\/*{{{*\/$/;"	f
 Start_Scr_Menu	c/sheets.c	/^void Start_Scr_Menu 	(void)$/;"	f
 Start_Sheet_Menu	c/sheets.c	/^void Start_Sheet_Menu 	(void)\/*{{{*\/$/;"	f
 Start_Status_Bar_Menu	c/status_bar.c	/^void Start_Status_Bar_Menu 	(void)\/*{{{*\/$/;"	f
@@ -1640,6 +1587,8 @@ TitleOf	include/cdk_objs.h	191;"	d
 TitlePosOf	cdk/include/cdk_objs.h	192;"	d
 TitlePosOf	include/cdk_objs.h	192;"	d
 Tittle	h/histograms.h	/^	         char 		Tittle[100];$/;"	m	struct:Struct_Histo
+Top	c/analog_clk.cpp	/^void 	Sheet::Top(void)$/;"	f	class:Sheet
+Top_Analog_Clk	c/analog_clk.cpp	/^void Top_Analog_Clk(void) {Analog_Clk->Top();}$/;"	f
 Top_Dec_Height_Sheet	c/sheets.c	/^void Top_Dec_Height_Sheet(void)$/;"	f
 Top_Dec_Width_Sheet	c/sheets.c	/^void Top_Dec_Width_Sheet(void) $/;"	f
 Top_Inc_Height_Sheet	c/sheets.c	/^void Top_Inc_Height_Sheet(void)$/;"	f
@@ -1651,7 +1600,6 @@ Top_Panel2R	c/sheets.c	/^void Top_Panel2R	(void)$/;"	f
 Top_Panel2U	c/sheets.c	/^void Top_Panel2U	(void)$/;"	f
 Top_Panel_Full_Screen	c/sheets.c	/^void Top_Panel_Full_Screen	(void)$/;"	f
 Top_Panel_Method_Exec	c/ncurses_pthread.c	/^void Top_Panel_Method_Exec(unsigned char Index)$/;"	f
-Top_Player	c/player.c	/^void Top_Player    	(void) {Pt_Top_Panel   	(Panel);}$/;"	f
 Top_Sheets	c/sheets.c	/^void Top_Sheets 	(void) {Pt_Top_Panel   (Panel);}$/;"	f
 Top_Status_Bar	c/status_bar.c	/^void Top_Status_Bar 		(void) {Pt_Top_Panel 	(Panel); 	Pt_Top_Panel(Sub_Panel);}$/;"	f
 Top_Stretcher	c/stretcher.c	/^void Top_Stretcher 		(void) {top_panel   (Panel);}$/;"	f
@@ -1662,14 +1610,13 @@ ULCharOf	include/cdk_objs.h	197;"	d
 UNDO	cdk/examples/alphalist_ex.c	/^} UNDO;$/;"	t	typeref:struct:__anon12	file:
 UNDO	cdk/examples/fselect_ex.c	/^} UNDO;$/;"	t	typeref:struct:__anon13	file:
 UNINSTALL_LIB	cdk/Makefile	/^UNINSTALL_LIB	= $(LIBTOOL_UNINSTALL) $(RM)$/;"	m
-UNSELECT_FUNC_INDEX	h/sheets.h	15;"	d
+UNSELECT_FUNC_INDEX	h/sheets.h	18;"	d
 UP	cdk/viewer.c	13;"	d	file:
 UP	ncurses_programs/JustForFun/shuffle.c	/^enum { LEFT, RIGHT, UP, DOWN };$/;"	e	enum:__anon1	file:
 URChar	cdk/include/cdk_objs.h	/^   chtype       URChar;		\/* lines: upper-right *\/$/;"	m	struct:CDKOBJS
 URChar	include/cdk_objs.h	/^   chtype       URChar;		\/* lines: upper-right *\/$/;"	m	struct:CDKOBJS
 URCharOf	cdk/include/cdk_objs.h	198;"	d
 URCharOf	include/cdk_objs.h	198;"	d
-USB_PROP_INDEX	h/sheets.h	48;"	d
 USB_READER_RTI	h/ncurses_pthread.h	6;"	d
 USB_RTI	h/ncurses_pthread.h	5;"	d
 USB_WRITER_RTI	h/ncurses_pthread.h	7;"	d
@@ -1690,9 +1637,9 @@ VTCharOf	cdk/include/cdk_objs.h	201;"	d
 VTCharOf	include/cdk_objs.h	201;"	d
 Value	h/histograms.h	/^	unsigned int 		Value;$/;"	m	struct:Struct_Histo
 WIDTH	c/menu.c	15;"	d	file:
-WIDTH	c/player.c	22;"	d	file:
-WIDTH	c/sheets.c	20;"	d	file:
+WIDTH	c/sheets.c	19;"	d	file:
 WIDTH	c/status_bar.c	16;"	d	file:
+WIDTH	h/analog_clk.h	/^	static const int WIDTH =20;$/;"	m	class:Sheet
 WIDTH	ncurses_programs/JustForFun/magic.c	6;"	d	file:
 WIDTH	ncurses_programs/JustForFun/shuffle.c	5;"	d	file:
 WIDTH	ncurses_programs/JustForFun/tt.c	8;"	d	file:
@@ -1701,22 +1648,22 @@ WIDTH	ncurses_programs/basics/simple_key.c	4;"	d	file:
 WIDTH	ncurses_programs/forms/form_options.c	5;"	d	file:
 WIN	ncurses_programs/basics/other_border.c	/^}WIN;$/;"	t	typeref:struct:_WIN_struct	file:
 WIN_BORDER	ncurses_programs/basics/other_border.c	/^}WIN_BORDER;$/;"	t	typeref:struct:_win_border_struct	file:
-WIN_HEIGHT	c/stretcher.c	11;"	d	file:
+WIN_HEIGHT	c/stretcher.c	12;"	d	file:
 WIN_HEIGHT	cdk/include/cdk_compat.h	74;"	d
 WIN_HEIGHT	include/cdk_compat.h	74;"	d
-WIN_WIDTH	c/stretcher.c	10;"	d	file:
+WIN_WIDTH	c/stretcher.c	11;"	d	file:
 WIN_WIDTH	cdk/include/cdk_compat.h	73;"	d
 WIN_WIDTH	include/cdk_compat.h	73;"	d
 WIN_X	c/menu.c	17;"	d	file:
-WIN_X	c/sheets.c	22;"	d	file:
+WIN_X	c/sheets.c	21;"	d	file:
 WIN_X	c/status_bar.c	18;"	d	file:
-WIN_X	c/stretcher.c	16;"	d	file:
+WIN_X	c/stretcher.c	17;"	d	file:
 WIN_XPOS	cdk/include/cdk_compat.h	75;"	d
 WIN_XPOS	include/cdk_compat.h	75;"	d
 WIN_Y	c/menu.c	18;"	d	file:
-WIN_Y	c/sheets.c	23;"	d	file:
+WIN_Y	c/sheets.c	22;"	d	file:
 WIN_Y	c/status_bar.c	19;"	d	file:
-WIN_Y	c/stretcher.c	17;"	d	file:
+WIN_Y	c/stretcher.c	18;"	d	file:
 WIN_YPOS	cdk/include/cdk_compat.h	76;"	d
 WIN_YPOS	include/cdk_compat.h	76;"	d
 WRITE_DEBUGMESG	cdk/include/cdk.h	274;"	d
@@ -1727,10 +1674,10 @@ WidestItem	cdk/selection.c	25;"	d	file:
 Width	h/histograms.h	/^	unsigned short int 	Width;$/;"	m	struct:Struct_Histo
 Width	h/sheets.h	/^	unsigned short int 	Width;$/;"	m	struct:Struct_Sheets_Prop
 Win	c/menu.c	/^static WINDOW 		*Win;$/;"	v	file:
-Win	c/player.c	/^static WINDOW 			*Win;$/;"	v	file:
 Win	c/sheets.c	/^static WINDOW 			*Win,*Scr_Win;$/;"	v	file:
 Win	c/status_bar.c	/^static WINDOW 			*Win,*Sub_Win;$/;"	v	file:
 Win	c/stretcher.c	/^static WINDOW 			*Win;$/;"	v	file:
+Win	h/analog_clk.h	/^	WINDOW 			*Win;$/;"	m	class:Sheet
 Win	h/histograms.h	/^	WINDOW 			*Win;$/;"	m	struct:Struct_Histo
 WindowOf	cdk/include/cdk_objs.h	184;"	d
 WindowOf	include/cdk_objs.h	184;"	d
@@ -1805,9 +1752,9 @@ XtAppInitialize	cdk/configure	/^XtAppInitialize ();$/;"	f
 Y	h/histograms.h	/^	unsigned short int 	Y;$/;"	m	struct:Struct_Histo
 Y	h/sheets.h	/^	unsigned short int 	Y;$/;"	m	struct:Struct_Sheets_Prop
 YEAR2INDEX	cdk/calendar.c	9;"	d	file:
-_1_KEY_FUNC_INDEX	h/sheets.h	35;"	d
-_DEP	Makefile	/^_DEP = status_bar.h stretcher.h screen_update.h menu.h ncurses_pthread.h sheets.h histograms.h$/;"	m
-_OBJ	Makefile	/^_OBJ= cuipet.o status_bar.o stretcher.o screen_update.o menu.o ncurses_pthread.o sheets.o histograms.o$/;"	m
+_1_KEY_FUNC_INDEX	h/sheets.h	38;"	d
+_DEP	Makefile	/^_DEP = status_bar.h stretcher.h screen_update.h menu.h ncurses_pthread.h sheets.h histograms.h analog_clk.h$/;"	m
+_OBJ	Makefile	/^_OBJ= cuipet.o status_bar.o stretcher.o screen_update.o menu.o ncurses_pthread.o sheets.o histograms.o analog_clk.o$/;"	m
 _PANEL_DATA	ncurses_programs/panels/panel_hide.c	/^typedef struct _PANEL_DATA {$/;"	s	file:
 _PANEL_DATA	ncurses_programs/panels/panel_resize.c	/^typedef struct _PANEL_DATA {$/;"	s	file:
 _WIN_struct	ncurses_programs/basics/other_border.c	/^typedef struct _WIN_struct {$/;"	s	file:
@@ -2045,8 +1992,7 @@ _unfocusCDKUScale	cdk/uscale.c	/^static void _unfocusCDKUScale (CDKOBJS *object)
 _unfocusCDKUSlider	cdk/uslider.c	/^static void _unfocusCDKUSlider (CDKOBJS *object)$/;"	f	file:
 _win_border_struct	ncurses_programs/basics/other_border.c	/^typedef struct _win_border_struct {$/;"	s	file:
 a	cdk/Makefile	/^a		= $(LIB_SUFFIX)$/;"	m
-a_KEY_FUNC_INDEX	h/sheets.h	24;"	d
-a_Key_Player	c/player.c	/^void a_Key_Player(void) { }$/;"	f
+a_KEY_FUNC_INDEX	h/sheets.h	27;"	d
 a_Key_Sheets	c/sheets.c	/^void a_Key_Sheets(void) { }$/;"	f
 a_Key_Status_Bar	c/status_bar.c	/^void a_Key_Status_Bar(void) { }$/;"	f
 a_Key_Stretcher	c/stretcher.c	/^void a_Key_Stretcher(void) { }$/;"	f
@@ -2459,8 +2405,7 @@ curx	cdk/include/histogram.h	/^   int				curx;$/;"	m	struct:SHistogram
 curx	include/histogram.h	/^   int				curx;$/;"	m	struct:SHistogram
 cury	cdk/include/histogram.h	/^   int				cury;$/;"	m	struct:SHistogram
 cury	include/histogram.h	/^   int				cury;$/;"	m	struct:SHistogram
-d_KEY_FUNC_INDEX	h/sheets.h	26;"	d
-d_Key_Player	c/player.c	/^void d_Key_Player(void) { }$/;"	f
+d_KEY_FUNC_INDEX	h/sheets.h	29;"	d
 d_Key_Sheets	c/sheets.c	/^void d_Key_Sheets(void) { }$/;"	f
 d_Key_Status_Bar	c/status_bar.c	/^void d_Key_Status_Bar(void) { }$/;"	f
 d_Key_Stretcher	c/stretcher.c	/^void d_Key_Stretcher(void) { }$/;"	f
@@ -2877,8 +2822,7 @@ exitType	include/uscale.h	/^   EExitType	exitType;$/;"	m	struct:SUScale
 exitType	include/uslider.h	/^   EExitType	exitType;$/;"	m	struct:SUSlider
 exitType	include/viewer.h	/^   EExitType	exitType;$/;"	m	struct:SViewer
 expandTilde	cdk/fselect.c	/^static char *expandTilde (const char *filename)$/;"	f	file:
-f_KEY_FUNC_INDEX	h/sheets.h	27;"	d
-f_Key_Player	c/player.c	/^void f_Key_Player(void) { }$/;"	f
+f_KEY_FUNC_INDEX	h/sheets.h	30;"	d
 f_Key_Sheets	c/sheets.c	/^void f_Key_Sheets(void) { }$/;"	f
 f_Key_Status_Bar	c/status_bar.c	/^void f_Key_Status_Bar(void) { }$/;"	f
 f_Key_Stretcher	c/stretcher.c	/^void f_Key_Stretcher(void) { }$/;"	f
@@ -3269,8 +3213,7 @@ groups	ncurses_programs/JustForFun/tt.c	/^char *groups[] = {  "`123456" ,$/;"	v
 h	ncurses_programs/panels/panel_resize.c	/^	int x, y, w, h;$/;"	m	struct:_PANEL_DATA	file:
 hValue	cdk/include/cdk_params.h	/^   int		hValue;$/;"	m	struct:CDK_PARAMS
 hValue	include/cdk_params.h	/^   int		hValue;$/;"	m	struct:CDK_PARAMS
-h_KEY_FUNC_INDEX	h/sheets.h	21;"	d
-h_Key_Player	c/player.c	/^void h_Key_Player(void)$/;"	f
+h_KEY_FUNC_INDEX	h/sheets.h	24;"	d
 h_Key_Sheets	c/sheets.c	/^void h_Key_Sheets(void)$/;"	f
 h_Key_Status_Bar	c/status_bar.c	/^void h_Key_Status_Bar(void)$/;"	f
 h_Key_Stretcher	c/stretcher.c	/^void h_Key_Stretcher(void)$/;"	f
@@ -3340,7 +3283,7 @@ historyUpCB	cdk/demos/syb.c	/^BINDFN_PROTO(historyUpCB);$/;"	v
 historyUpCB	cdk/demos/syb.c	/^int historyUpCB (EObjectType cdktype, void *object, void *clientData, chtype key)$/;"	f
 history_st	cdk/demos/command.c	/^struct history_st$/;"	s	file:
 history_st	cdk/demos/syb.c	/^struct history_st {$/;"	s	file:
-i_KEY_FUNC_INDEX	h/sheets.h	30;"	d
+i_KEY_FUNC_INDEX	h/sheets.h	33;"	d
 inProgress	cdk/include/viewer.h	/^   boolean	inProgress;$/;"	m	struct:SViewer
 inProgress	include/viewer.h	/^   boolean	inProgress;$/;"	m	struct:SViewer
 inc	cdk/include/dscale.h	/^   double	inc;$/;"	m	struct:SDScale
@@ -3508,8 +3451,7 @@ itemLen	cdk/include/itemlist.h	/^   int *	itemLen;$/;"	m	struct:SItemList
 itemLen	include/itemlist.h	/^   int *	itemLen;$/;"	m	struct:SItemList
 itemPos	cdk/include/itemlist.h	/^   int *	itemPos;$/;"	m	struct:SItemList
 itemPos	include/itemlist.h	/^   int *	itemPos;$/;"	m	struct:SItemList
-j_KEY_FUNC_INDEX	h/sheets.h	22;"	d
-j_Key_Player	c/player.c	/^void j_Key_Player(void)$/;"	f
+j_KEY_FUNC_INDEX	h/sheets.h	25;"	d
 j_Key_Sheets	c/sheets.c	/^void j_Key_Sheets(void)$/;"	f
 j_Key_Status_Bar	c/status_bar.c	/^void j_Key_Status_Bar(void)$/;"	f
 j_Key_Stretcher	c/stretcher.c	/^void j_Key_Stretcher(void)$/;"	f
@@ -3518,13 +3460,11 @@ jumpToLine	cdk/viewer.c	/^static int jumpToLine (CDKVIEWER *viewer)$/;"	f	file:
 jumpToLineCDKSwindow	cdk/swindow.c	/^void jumpToLineCDKSwindow (CDKSWINDOW *swindow, int line)$/;"	f
 jumpWindowCB	cdk/demos/command.c	/^static int jumpWindowCB (EObjectType cdktype GCC_UNUSED, void *object,$/;"	f	file:
 justifyString	cdk/cdk.c	/^int justifyString (int boxWidth, int mesgLength, int justify)$/;"	f
-k_KEY_FUNC_INDEX	h/sheets.h	23;"	d
-k_Key_Player	c/player.c	/^void k_Key_Player(void)$/;"	f
+k_KEY_FUNC_INDEX	h/sheets.h	26;"	d
 k_Key_Sheets	c/sheets.c	/^void k_Key_Sheets(void)$/;"	f
 k_Key_Status_Bar	c/status_bar.c	/^void k_Key_Status_Bar(void)$/;"	f
 k_Key_Stretcher	c/stretcher.c	/^void k_Key_Stretcher(void)$/;"	f
-l_KEY_FUNC_INDEX	h/sheets.h	20;"	d
-l_Key_Player	c/player.c	/^void l_Key_Player(void)$/;"	f
+l_KEY_FUNC_INDEX	h/sheets.h	23;"	d
 l_Key_Sheets	c/sheets.c	/^void l_Key_Sheets(void)$/;"	f
 l_Key_Status_Bar	c/status_bar.c	/^void l_Key_Status_Bar(void)$/;"	f
 l_Key_Stretcher	c/stretcher.c	/^void l_Key_Stretcher(void)$/;"	f
@@ -4035,7 +3975,7 @@ o	cdk/Makefile	/^o		= .o$/;"	m
 o	cdk/cli/Makefile	/^o		= .o$/;"	m
 o	cdk/demos/Makefile	/^o		= .o$/;"	m
 o	cdk/examples/Makefile	/^o		= .o$/;"	m
-o_KEY_FUNC_INDEX	h/sheets.h	31;"	d
+o_KEY_FUNC_INDEX	h/sheets.h	34;"	d
 obj	cdk/include/alphalist.h	/^   CDKOBJS	obj;$/;"	m	struct:SAlphalist
 obj	cdk/include/button.h	/^   CDKOBJS	obj;$/;"	m	struct:SButton
 obj	cdk/include/buttonbox.h	/^   CDKOBJS	obj;$/;"	m	struct:SButtonBox
@@ -4372,8 +4312,7 @@ rowtitlePos	cdk/include/matrix.h	/^   int *	rowtitlePos;$/;"	m	struct:SMatrix
 rowtitlePos	include/matrix.h	/^   int *	rowtitlePos;$/;"	m	struct:SMatrix
 rs	ncurses_programs/basics/other_border.c	/^	chtype 	ls, rs, ts, bs, $/;"	m	struct:_win_border_struct	file:
 runIsqlCommand	cdk/demos/syb.c	/^void runIsqlCommand (CDKSCREEN *screen, CDKSWINDOW *swindow, DBPROCESS *dbProcess)$/;"	f
-s_KEY_FUNC_INDEX	h/sheets.h	25;"	d
-s_Key_Player	c/player.c	/^void s_Key_Player(void) { }$/;"	f
+s_KEY_FUNC_INDEX	h/sheets.h	28;"	d
 s_Key_Sheets	c/sheets.c	/^void s_Key_Sheets(void) { }$/;"	f
 s_Key_Status_Bar	c/status_bar.c	/^void s_Key_Status_Bar(void) { }$/;"	f
 s_Key_Stretcher	c/stretcher.c	/^void s_Key_Stretcher(void) { }$/;"	f

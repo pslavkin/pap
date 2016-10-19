@@ -34,6 +34,14 @@ void Top_Panel_Method_Exec(unsigned char Index)
 {
 	Panel_Method_Exec(panel_below(0),Index);
 }
+Sheet* Sheet4Top_Panel(void)
+{
+	return Sheet4Panel(panel_below(0));	
+}
+Sheet* Sheet4Panel(PANEL* Panel)
+{
+	return (Sheet*)(panel_userptr(Panel));
+}
 
 void Pt_wprintw (WINDOW *A,const char *D,va_list Varg)
 {

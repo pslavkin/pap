@@ -51,6 +51,7 @@ struct Struct_Sheets_Prop
 #define STRETCHER_PROP_INDEX		0
 #define STATUS_BAR_PROP_INDEX		1
 #define SHEETS_PROP_INDEX		2
+#define ANALOG_CLK_PROP_INDEX		3
 
 extern void 		Init_Sheets 			(void);
 extern void 		Init_Super_Colours 		(unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count);
@@ -72,6 +73,7 @@ extern void 		Redraw_Sheets_Box 		(void);
 extern void 		Move_Panel			(PANEL* Panel,unsigned short int Y,unsigned short int X);
 extern void 		Deselect_Panel			(PANEL* Panel);
 extern void 		Select_Panel			(PANEL* Panel);
+extern void 		Select_Window			(WINDOW* Win);
 extern void 		Pt_Top_Panel			(PANEL* Panel);
 extern void 		Pt_Bottom_Panel			(PANEL* Panel);
 extern void 		Pt_Hide_Panel			(PANEL* Panel);

@@ -13,6 +13,7 @@
 #include "sheets.h"
 #include "ncurses_pthread.h"
 #include "cuipet.h"
+#include "analog_clk.h"
 
 
 
@@ -23,6 +24,7 @@ int main(int argc, char **argv)
 	Init_Screen_Update();
 	Init_Stretcher();
 	Init_Menu();
+	Init_Analog_Clk();
 	Params_Parser(argc,argv);
 	
 	Read_Properties_From_File();
@@ -60,8 +62,8 @@ void Params_Parser(int argc, char **argv)
 				 // Print_Usage(stdout, 0);
 				  break;
 			case 'v': 
-//				  printf("Cuipet v1.4\n");
-//				  printf("Copyright (C) AR-PET\n");
+				  printf("cdk v1.0\n");
+				  printf("Copyright (C) disenioconingenio\n");
 				  break;
 			case 'c': 
 				  Change_Sheets_File(optarg);

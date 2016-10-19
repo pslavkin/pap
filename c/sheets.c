@@ -171,6 +171,12 @@ void Select_Sheets   	(void) {Select_Panel(Panel);}
 void Deselect_Sheets 	(void) {Deselect_Panel(Panel);}
 void Hide_Sheet 	(void) {Pt_Hide_Panel(Panel); Hide=1;}
 //----------------------------------------------------------------------------------------------------
+void Select_Window		(WINDOW* Win)
+{
+	pthread_mutex_lock(&Screen_Update_Mutex);	
+			mvwaddch(Win,1,1,'*'|A_BOLD);
+	pthread_mutex_unlock(&Screen_Update_Mutex);	
+}
 void Select_Panel		(PANEL* Panel)
 {
 	pthread_mutex_lock(&Screen_Update_Mutex);	

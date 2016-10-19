@@ -9,7 +9,7 @@
 
 #include "sheets.h"
 #include "screen_update.h"
-#include "multichannel.h"
+#include "analog_clk.h"
 
 //----------------------------------------------------------------------------------------------------
 #define WIDTH  	49
@@ -133,7 +133,8 @@ void* Menu_Rti(void* Arg1)
 				Top_Panel_Method_Exec(UNSELECT_FUNC_INDEX);
 				break;
 			case KEY_F3:
-				Top_Panel_Method_Exec(UNSELECT_FUNC_INDEX);
+				Top_Analog_Clk();
+				Select_Analog_Clk();
 				break;
 			case KEY_F4:
 				Top_Panel_Method_Exec(UNSELECT_FUNC_INDEX);
@@ -145,8 +146,8 @@ void* Menu_Rti(void* Arg1)
 				Top_Status_Bar();
 				Select_Status_Bar();
 				break;
-			case KEY_F6:
-				Top_Panel_Method_Exec(UNSELECT_FUNC_INDEX);
+			case KEY_F6:	
+				Sheet4Top_Panel()->Select();
 				break;
 			case KEY_F7:
 				Top_Panel_Method_Exec(UNSELECT_FUNC_INDEX);
@@ -236,6 +237,8 @@ void* Menu_Rti(void* Arg1)
 			case KEY_HOME:
 				Read_Properties_From_File();
 				break;
+			default: 
+				Panel_Method_Exec(panel_below(0),0);
 		}
 	}
 }

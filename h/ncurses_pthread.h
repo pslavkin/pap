@@ -16,6 +16,7 @@
 
 #include <ncurses.h>
 #include <panel.h>
+#include <analog_clk.h>
 
 extern pthread_mutex_t 		Print_Mutex;
 extern void 			Rien 				(void);
@@ -27,6 +28,8 @@ extern void 			Pt_mvwaddch 			(WINDOW *A,int B,int C,const chtype D);
 extern void 			Pt_waddch_hex 			(WINDOW *A,unsigned char D);
 extern void 			Top_Panel_Method_Exec 		(unsigned char Index);
 extern void 			Panel_Method_Exec 		(PANEL* Panel,unsigned char Index);
+extern Sheet* 			Sheet4Panel			(PANEL* Panel);
+extern Sheet* 			Sheet4Top_Panel			(void);
 extern void 			Bottom_Panel_Method_Index 	(unsigned char Index);
 extern void 			Hide_All_Panels 		(void);
 extern unsigned short int 	Get_Actual_Time 		(void);
