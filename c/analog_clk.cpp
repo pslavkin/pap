@@ -10,49 +10,16 @@
 #include "status_bar.h"
 
 
-	Sheet::Sheet()
-{
-	Win= 			newwin(HEIGHT, WIDTH, 0,0);
-	Panel= 			new_panel(Win);
-	char Buf[100];
-	Redraw_Box();
-	Hide=0;
-	//top_panel(Panel);
-	//hide_panel(Panel);
-	Register_Panel(Panel,ANALOG_CLK_PROP_INDEX);	
-}
-void 	Sheet::Redraw_Box(void)
-{
-	box   	  	(Win,0,0);
-	Pt_mvwprintw 	(Win,0,5,"Sheet ");
-	Pt_mvwprintw 	(Win,3,getmaxx(Win)/2,"|");
-}
-void 	Sheet::Parser(void)
-{
-	unsigned char i;
-	i++;
-	Pt_mvwprintw 	(panel_window(panel_below(0)),3,i%WIDTH,"A");
-}
-
-void 	Sheet::Top(void)
-{
-	top_panel(Panel);
-}
-void 	Sheet::Select(void)
-{
-	Select_Window(Win);
-}
-void Sheet::Set_Panel_User_Pointer(Sheet* Ptr)
-{
-	set_panel_userptr 	(Panel,(void*)Ptr);
-}
-
 
 Sheet *Analog_Clk;
 void Init_Analog_Clk(void)
 {
  Analog_Clk=new Sheet();	
  Analog_Clk->Set_Panel_User_Pointer(Analog_Clk);
+ Analog_Clk->Set_Name("Analog Clk");
+ Analog_Clk->Set_Size(10,40);
+ Analog_Clk->Set_Pos(0,80);
+ Analog_Clk->Redraw_Box();
 }
 void Top_Analog_Clk(void) {Analog_Clk->Top();}
 void Select_Analog_Clk(void) {Analog_Clk->Select();}

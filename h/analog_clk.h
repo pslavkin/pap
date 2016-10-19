@@ -6,22 +6,6 @@ extern	void Top_Analog_Clk	(void);
 extern	void Select_Analog_Clk	(void);
 extern	void Debug_Analog_Clk	(void);
 
-class Sheet{
-public:
-	static const int HEIGHT=20;
-	static const int WIDTH =20;
-
-	WINDOW 			*Win;
-	PANEL 			*Panel; 
-	unsigned short int	Hide;
-
-			Sheet				();
-	void 		Redraw_Box			(void);
-	static void 	Parser				(void);
-	void 		Top				(void);
-	void 		Select				(void);
-	void 		Set_Panel_User_Pointer		(Sheet* Ptr);
-};
 
 //extern void 	Init_Stretcher     	(void);
 //extern void 	Re_Init_Stretcher     	(void);

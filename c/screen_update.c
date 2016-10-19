@@ -7,7 +7,7 @@
 //----------------------------------------------------------------------------------------------------
 pthread_t 	PT_Screen_Update_Rti;
 pthread_mutex_t	Screen_Update_Mutex = PTHREAD_MUTEX_INITIALIZER;
-static struct timespec 		Rti_Delay={0,100000000}; //100 milis
+static struct timespec 		Rti_Delay={1,0}; //100 milis
 //----------------------------------------------------------------------------------------------------
 long Read_Screen_Update_Rti_Delay 	(void) 		{return Rti_Delay.tv_nsec;}
 void Set_Screen_Update_Rti_Delay	(long Value) 	{Rti_Delay.tv_nsec=Value;}

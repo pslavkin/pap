@@ -89,7 +89,7 @@ void 	Redraw_Scr_Box(void)
 	pthread_mutex_lock(&Screen_Update_Mutex);	
 		wclear 		(Scr_Win);
 		box   	  	(Scr_Win,0,0);
-		mvwprintw 	(Scr_Win,0,5,"Cuipet ");
+		mvwprintw 	(Scr_Win,0,5,"DCI ");
 	pthread_mutex_unlock(&Screen_Update_Mutex);	
 }
 void 	Redraw_Sheets_Box(void)
@@ -190,6 +190,12 @@ void Deselect_Panel		(PANEL* Panel)
 	pthread_mutex_unlock(&Screen_Update_Mutex);	
 }
 //----------------------------------------------------------------------------------------------------
+void Pt_Resize_Window		(WINDOW* Win,unsigned short int Height,unsigned short int Width)
+{
+	pthread_mutex_lock(&Screen_Update_Mutex);	
+		wresize(Win,Height,Width);
+	pthread_mutex_unlock(&Screen_Update_Mutex);	
+}
 void Move_Panel		(PANEL* Panel,unsigned short int Y,unsigned short int X)
 {
 	pthread_mutex_lock(&Screen_Update_Mutex);	
@@ -251,9 +257,19 @@ void Read_Panel_Prop	(PANEL* Panel, struct Struct_Sheets_Prop *S)
 }
 void Panel_Full_Screen	(PANEL* Panel)
 {
-	Move_Panel(Panel,getbegy(Scr_Win),getbegx(Scr_Win));
-	wclear(panel_window(Panel));
-	wresize(panel_window(Panel),getmaxy(Scr_Win),getmaxx(Scr_Win));
+	pthread_mutex_lock(&Screen_Update_Mutex);	
+		wclear(panel_window(Panel));
+		move_panel(Panel,getbegy(Scr_Win),getbegx(Scr_Win));
+		wresize(panel_window(Panel),getmaxy(Scr_Win),getmaxx(Scr_Win));
+	pthread_mutex_unlock(&Screen_Update_Mutex);	
+}
+void Pt_Panel_Full_Screen	(PANEL* Panel)
+{
+	pthread_mutex_lock(&Screen_Update_Mutex);	
+		wclear(panel_window(Panel));
+		move_panel(Panel,getbegy(Scr_Win),getbegx(Scr_Win));
+		wresize(panel_window(Panel),getmaxy(Scr_Win),getmaxx(Scr_Win));
+	pthread_mutex_unlock(&Screen_Update_Mutex);	
 }
 void Pt_Top_Panel		(PANEL* Panel)
 {
@@ -297,32 +313,41 @@ void j_Key_Sheets(void)
 void Inc_Width_Sheet(WINDOW* Win)
 {
 	if((getmaxx(Win)+getbegx(Win))<getmaxx(stdscr)) {
-		wclear(Win);
-		wresize(Win,getmaxy(Win),getmaxx(Win)+1);
+		pthread_mutex_lock(&Screen_Update_Mutex);	
+			wclear(Win);
+			wresize(Win,getmaxy(Win),getmaxx(Win)+1);
+		pthread_mutex_unlock(&Screen_Update_Mutex);	
 		Top_Panel_Method_Exec(RE_INIT_FUNC_INDEX);
 	}
 }
 void Dec_Width_Sheet(WINDOW* Win)
 {
 	if(getmaxx(Win)>MIN_WIDTH) {
-		wclear(Win);
-		wresize(Win,getmaxy(Win),getmaxx(Win)-1);
+		
+		pthread_mutex_lock(&Screen_Update_Mutex);	
+			wclear(Win);
+			wresize(Win,getmaxy(Win),getmaxx(Win)-1);
+		pthread_mutex_unlock(&Screen_Update_Mutex);	
 		Top_Panel_Method_Exec(RE_INIT_FUNC_INDEX);
 	}
 }
 void Inc_Height_Sheet(WINDOW* Win)
 {
 	if((getmaxy(Win)+getbegy(Win))<getmaxy(stdscr)) {
-		wclear(Win);
-		wresize(Win,getmaxy(Win)+1,getmaxx(Win));
+		pthread_mutex_lock(&Screen_Update_Mutex);	
+			wclear(Win);
+			wresize(Win,getmaxy(Win)+1,getmaxx(Win));
+		pthread_mutex_unlock(&Screen_Update_Mutex);	
 		Top_Panel_Method_Exec(RE_INIT_FUNC_INDEX);
 	}
 }
 void Dec_Height_Sheet(WINDOW* Win)
 {
 	if(getmaxy(Win)>MIN_HEIGHT) {
-		wresize(Win,getmaxy(Win)-1,getmaxx(Win));
-		wclear(Win);
+		pthread_mutex_lock(&Screen_Update_Mutex);	
+			wclear(Win);
+			wresize(Win,getmaxy(Win)-1,getmaxx(Win));
+		pthread_mutex_unlock(&Screen_Update_Mutex);	
 		Top_Panel_Method_Exec(RE_INIT_FUNC_INDEX);
 	}
 }
@@ -536,3 +561,117 @@ void Parse_Scr_Menu 	(int Selection)
 			break;
 		}
 }/*}}}*/
+
+
+
+
+
+
+
+
+	Sheet::Sheet()
+{
+	Win= 			newwin(1, 1, 0,0);
+	Panel= 			new_panel(Win);
+}
+void 	Sheet::Redraw_Box(void)
+{
+	box   	  	(Win,0,0);
+	Pt_mvwprintw 	(Win,0,5,Name);
+}
+void 	Sheet::Set_Name(char* Sheet_Name)
+{
+	strcpy(Name,Sheet_Name);	
+}
+void 	Sheet::Set_Size(unsigned short int Height,unsigned short int Width)
+{
+	Pt_Resize_Window(Win,Height,Width);
+}
+void 	Sheet::To_Up(void)
+{
+	Move_Panel(Panel,getbegy(Win)-1,getbegx(Win));
+}
+void 	Sheet::To_Down(void)
+{
+	Move_Panel(Panel,getbegy(Win)+1,getbegx(Win));
+}
+void 	Sheet::To_Right(void)
+{
+	Move_Panel(Panel,getbegy(Win),getbegx(Win)+1);
+}
+void 	Sheet::To_Left(void)
+{
+	Move_Panel(Panel,getbegy(Win),getbegx(Win)-1);
+}
+void 	Sheet::Inc_Width(void)
+{
+	pthread_mutex_lock(&Screen_Update_Mutex);	
+		if((getmaxx(Win)+getbegx(Win))<getmaxx(stdscr)) {
+				wclear(Win);
+				wresize(Win,getmaxy(Win),getmaxx(Win)+1);
+		}
+	pthread_mutex_unlock(&Screen_Update_Mutex);	
+	Redraw_Box();
+}
+void 	Sheet::Dec_Width(void)
+{
+	pthread_mutex_lock(&Screen_Update_Mutex);	
+		if(getmaxx(Win)>MIN_WIDTH) {
+			wclear(Win);
+			wresize(Win,getmaxy(Win),getmaxx(Win)-1);
+		}
+	pthread_mutex_unlock(&Screen_Update_Mutex);	
+	Redraw_Box();
+}
+void 	Sheet::Inc_Height(void)
+{
+	pthread_mutex_lock(&Screen_Update_Mutex);	
+		if((getmaxy(Win)+getbegy(Win))<getmaxy(stdscr)) {
+				wclear(Win);
+				wresize(Win,getmaxy(Win)+1,getmaxx(Win));
+		}
+	pthread_mutex_unlock(&Screen_Update_Mutex);	
+	Redraw_Box();
+}
+void 	Sheet::Dec_Height(void)
+{
+	pthread_mutex_lock(&Screen_Update_Mutex);	
+		if(getmaxy(Win)>MIN_HEIGHT) {
+				wclear(Win);
+				wresize(Win,getmaxy(Win)-1,getmaxx(Win));
+		}
+	pthread_mutex_unlock(&Screen_Update_Mutex);	
+	Redraw_Box();
+}
+void 	Sheet::Set_Pos(unsigned short int Y,unsigned short int X)
+{
+	Move_Panel(Panel,Y,X);
+}
+void 	Sheet::Hide(void)
+{
+	hide_panel(Panel);
+}
+void 	Sheet::Unhide(void)
+{
+	show_panel(Panel);
+}
+void 	Sheet::Top(void)
+{
+	top_panel(Panel);
+	Select_Window(Win);
+}
+void 	Sheet::Select(void)
+{
+	Select_Window(Win);
+}
+void 	Sheet::Full_Screen(void)
+{
+	Pt_Panel_Full_Screen(Panel);
+	Sheet::Redraw_Box();
+}
+void Sheet::Set_Panel_User_Pointer(Sheet* Ptr)
+{
+	set_panel_userptr 	(Panel,(void*)Ptr);
+}
+
+

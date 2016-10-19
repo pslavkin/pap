@@ -16,7 +16,7 @@
 
 #include <ncurses.h>
 #include <panel.h>
-#include <analog_clk.h>
+#include <sheets.h>
 
 extern pthread_mutex_t 		Print_Mutex;
 extern void 			Rien 				(void);

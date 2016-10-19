@@ -134,7 +134,6 @@ void* Menu_Rti(void* Arg1)
 				break;
 			case KEY_F3:
 				Top_Analog_Clk();
-				Select_Analog_Clk();
 				break;
 			case KEY_F4:
 				Top_Panel_Method_Exec(UNSELECT_FUNC_INDEX);
@@ -155,44 +154,39 @@ void* Menu_Rti(void* Arg1)
 				Select_Sheets();
 				break;
 			case KEY_F8:
-				Top_Panel_Method_Exec(UNSELECT_FUNC_INDEX);
-				break;
-			case 't':
-				Top_Panel_Method_Exec(UNSELECT_FUNC_INDEX);
 				break;
 			case KEY_F9:
-				Top_Panel_Method_Exec(HIDE_FUNC_INDEX);
+				Sheet4Top_Panel()->Hide();
 				break;
 			case KEY_F10:
-				Top_Panel_Method_Exec(UNSELECT_FUNC_INDEX);
 				break;
 			case KEY_F11:
-				Top_Panel_Method_Exec(FULL_SCREEN_FUNC_INDEX);
+				Sheet4Top_Panel()->Full_Screen();
 				break;
 
 			case KEY_UP:
-				Top_Panel_Method_Exec(MOVE2U_FUNC_INDEX);
+				Sheet4Top_Panel()->To_Up();
 				break;
 			case KEY_DOWN:
-				Top_Panel_Method_Exec(MOVE2D_FUNC_INDEX);
+				Sheet4Top_Panel()->To_Down();
 				break;
 			case KEY_RIGHT:
-				Top_Panel_Method_Exec(MOVE2R_FUNC_INDEX);
+				Sheet4Top_Panel()->To_Right();
 				break;
 			case KEY_LEFT:
-				Top_Panel_Method_Exec(MOVE2L_FUNC_INDEX);
+				Sheet4Top_Panel()->To_Left();
 				break;
 			case 'l':
-				Top_Panel_Method_Exec(l_KEY_FUNC_INDEX);
+				Sheet4Top_Panel()->Inc_Width();
 				break;
 			case 'h':
-				Top_Panel_Method_Exec(h_KEY_FUNC_INDEX);
+				Sheet4Top_Panel()->Dec_Width();
 				break;
 			case 'j':
-				Top_Panel_Method_Exec(j_KEY_FUNC_INDEX);
+				Sheet4Top_Panel()->Inc_Height();
 				break;
 			case 'k':
-				Top_Panel_Method_Exec(k_KEY_FUNC_INDEX);
+				Sheet4Top_Panel()->Dec_Height();
 				break;
 			case 'a':
 				Top_Panel_Method_Exec(a_KEY_FUNC_INDEX);

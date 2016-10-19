@@ -71,6 +71,7 @@ extern void 		Deselect_Sheets 		(void);
 extern void 		Hide_Sheet 			(void); 
 extern void 		Redraw_Sheets_Box 		(void);
 extern void 		Move_Panel			(PANEL* Panel,unsigned short int Y,unsigned short int X);
+extern void 		Pt_Resize_Window		(WINDOW* Win,unsigned short int Height,unsigned short int Width);
 extern void 		Deselect_Panel			(PANEL* Panel);
 extern void 		Select_Panel			(PANEL* Panel);
 extern void 		Select_Window			(WINDOW* Win);
@@ -80,6 +81,7 @@ extern void 		Pt_Hide_Panel			(PANEL* Panel);
 extern void 		Set_Panel_Prop			(PANEL* Panel, struct Struct_Sheets_Prop *S);
 extern void 		Read_Panel_Prop			(PANEL* Panel, struct Struct_Sheets_Prop *S);
 extern void 		Panel_Full_Screen		(PANEL* Panel);
+extern void 		Pt_Panel_Full_Screen		(PANEL* Panel);
 extern void 		Panel_Prop_Method_Exec 		(struct Struct_Sheets_Prop *S,unsigned char Func_Index);
 extern void 		Panel_Prop_Set_Method_Exec 	(struct Struct_Sheets_Prop *S);
 extern void 		Panel_Prop_Read_Method_Exec 	(struct Struct_Sheets_Prop *S);
@@ -114,5 +116,34 @@ extern void 		f_Key_Sheets 			(void);
 extern void 		Start_Scr_Menu 			(void);
 extern void 		Parse_Scr_Menu 			(int Selection);
 extern void 		Redraw_Scr_Box 			(void);
+
+//---------------------------------------------------------------------------------------------------
+
+class Sheet{
+public:
+	WINDOW 			*Win;
+	PANEL 			*Panel; 
+	char Name[100];
+
+			Sheet				();
+	void 		Redraw_Box			(void);
+	void 		Set_Name			(char* Sheet_Name);
+	void 		Set_Size			(unsigned short int Height,unsigned short int Width);
+	void 		Set_Pos				(unsigned short int Y,unsigned short int X);
+	void 		To_Up				(void);
+	void 		To_Down				(void);
+	void 		To_Right			(void);
+	void 		To_Left				(void);
+	void 		Inc_Width			(void);
+	void 		Dec_Width			(void);
+	void 		Inc_Height			(void);
+	void 		Dec_Height			(void);
+	void 		Full_Screen			(void);
+	void 		Hide				(void);
+	void 		Unhide				(void);
+	void 		Top				(void);
+	void 		Select				(void);
+	void 		Set_Panel_User_Pointer		(Sheet* Ptr);
+};
 
 #endif
