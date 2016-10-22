@@ -2,10 +2,11 @@
 #define MENU
 
 #include <panel.h>
-
-
+#include <sheets.h>
 
 extern void 		Init_Menu 		(void);
+extern void 		Init_Super_Colours 		(unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count);
+extern WINDOW* 		Scr_Window		(void);
 extern void 		Start_Menu_Menu		(void);
 extern void 		Parse_Menu_Menu		(int Selection);
 extern void 		Destruct_Menu 		(void);
@@ -20,5 +21,8 @@ extern void 		Top_Menu 		(void);
 extern void 		Select_Menu   		(void); 
 extern void 		Deselect_Menu 		(void); 
 extern void 		Hide_Menu 		(void); 
+extern void 		Touch_Scr_Window	(void);
+extern Sheet* 		Sheet4Panel		(PANEL* Panel);
+extern Sheet* 		Sheet4Top_Panel		(void);
 #endif
 

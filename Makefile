@@ -5,11 +5,11 @@ SRC_DIR=./c
 EXE_DIR=./exe
 
 
-_OBJ= cuipet.o status_bar.o stretcher.o screen_update.o menu.o ncurses_pthread.o sheets.o histograms.o analog_clk.o
+_OBJ= cuipet.o screen_update.o menu.o ncurses_pthread.o sheets.o analog_clk.o
 OBJ_DIR=./obj
 OBJ = $(patsubst %,$(OBJ_DIR)/%,$(_OBJ))
 
-_DEP = status_bar.h stretcher.h screen_update.h menu.h ncurses_pthread.h sheets.h histograms.h analog_clk.h
+_DEP = screen_update.h menu.h ncurses_pthread.h sheets.h analog_clk.h
 DEP_DIR=./h
 DEP = $(patsubst %,$(DEP_DIR)/%,$(_DEP))
 

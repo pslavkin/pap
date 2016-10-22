@@ -3,31 +3,22 @@
 #include <string.h>
 #include <pthread.h>
 
-#include "status_bar.h"
-
-#include "stretcher.h"
 #include "screen_update.h"
 #include "menu.h"
-
-
 #include "sheets.h"
 #include "ncurses_pthread.h"
 #include "cuipet.h"
 #include "analog_clk.h"
 
-
-
 int main(int argc, char **argv)
 {
-	Init_Sheets();
-	Init_Status_Bar();
-	Init_Screen_Update();
-	Init_Stretcher();
 	Init_Menu();
+	Init_Screen_Update();
+	Init_Ncurses_Pthread();
 	Init_Analog_Clk();
+	Init_Analog_Clk1();
 	Params_Parser(argc,argv);
 	
-	Read_Properties_From_File();
 	for(;;)
 		;
 	return 0;
@@ -66,15 +57,12 @@ void Params_Parser(int argc, char **argv)
 				  printf("Copyright (C) disenioconingenio\n");
 				  break;
 			case 'c': 
-				  Change_Sheets_File(optarg);
 				  break;
 			case 'o': 
 				  break;
 			case '?': 
 				//  Print_Usage(stdout, 1);
 				  break;
-			default : 
-				Destroy_Sheets();
 		}
 	} 
 }
