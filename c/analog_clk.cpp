@@ -1,32 +1,22 @@
 #include <cdk/cdk.h>
 #include <panel.h>
 #include <pthread.h>
-#include "ncurses_pthread.h"
 
-#include "sheets.h"
+#include "sheet.h"
 #include "menu.h"
+#include <time.h>
 
-Sheet *Analog_Clk;
 void Init_Analog_Clk(void)
 {
- Analog_Clk=new Sheet();	
- Analog_Clk->Set_Panel_User_Pointer(Analog_Clk);
- Analog_Clk->Set_Name("Analog Clk");
- Analog_Clk->Set_Size(10,40);
- Analog_Clk->Set_Pos(0,80);
- Analog_Clk->Redraw_Box();
+	Sheet::Create_New_Sheet_Inst(NULL,"Analog Clk 1");
+	Sheet::Create_New_Sheet_Inst(NULL,"Analog Clk 2");
 }
-void Top_Analog_Clk(void) {Analog_Clk->Top();}
 
-Sheet *Analog_Clk1;
-void Init_Analog_Clk1(void)
+unsigned short int Get_Actual_Time(void)
 {
- Analog_Clk1=new Sheet();	
- Analog_Clk1->Set_Panel_User_Pointer(Analog_Clk1);
- Analog_Clk1->Set_Name("Analog Clk1");
- Analog_Clk1->Set_Size(10,40);
- Analog_Clk1->Set_Pos(0,80);
- Analog_Clk1->Redraw_Box();
+	timespec Time;
+ 	clock_gettime(CLOCK_MONOTONIC_RAW,&Time);
+	return (Time.tv_sec*10)+(Time.tv_nsec/100000000);
+//	return (Time.tv_sec&0x0FFF)<<4 | (Time.tv_nsec/100000000)&0x000F;
 }
-void Top_Analog_Clk1(void) {Analog_Clk1->Top();}
  

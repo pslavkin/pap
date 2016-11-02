@@ -2,28 +2,31 @@
 #include <menu.h>
 #include <pthread.h>
 #include <panel.h>
-#include "ncurses_pthread.h"
 
-#include "sheets.h"
+#include "sheet.h"
 #include "screen_update.h"
 #include "analog_clk.h"
 
 //----------------------------------------------------------------------------------------------------
 pthread_t 		PT_Menu_Rti;
-static WINDOW 		*Scr_Win;
-static PANEL 		*Scr_Panel;
+Sheet *Main_Sheet;	//global porque lo usan el resto de las ventanitas para saber el maximo de tamanio y demas..
 //----------------------------------------------------------------------------------------------------
 void Init_Menu (void)
 {
-	Scr_Win=initscr();
+	Main_Sheet=new Sheet(initscr());	
 	cbreak();
 	noecho();
 	keypad(stdscr, TRUE);
 	//initCDKColor ();
 	Init_Super_Colours(1,1,0,  0,192);
 	curs_set(0);
-	pthread_create 		(&PT_Menu_Rti, NULL, Menu_Rti, NULL);
+	pthread_create(&PT_Menu_Rti, NULL, Menu_Rti, NULL);
+	Main_Sheet->Set_Panel_User_Pointer(Main_Sheet);
+	Main_Sheet->Set_Name((char*)"Main");
+	Main_Sheet->Full_Screen();
+	Main_Sheet->Redraw_Box();
 }
+//----------------------------------------------------------------------------------------------------
 void Init_Super_Colours(unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count)
 {
 	unsigned short int i,Bg,Pair;
@@ -44,10 +47,11 @@ void Set_Menu (PANEL* Panel,const char* Menu_List[][MAX_SUB_ITEMS],unsigned char
 	CDKMENU *Menu		=newCDKMenu 		(Cdk, Menu_List, Items, Submenu_Size, Menu_Loc, TOP, A_UNDERLINE, A_REVERSE); 
  	Selection 	=activateCDKMenu 	(Menu,0); 
 	if (Menu->exitType == vNORMAL) 
-		Rien();//		((void (**)(int))panel_userptr(panel_below(0)))[PARSE_MENU_OPTIONS_FUNC_INDEX](Selection);
+		Parse_Menu_Menu(Selection);
 	destroyCDKMenu 		(Menu);
 	destroyCDKScreen 	(Cdk);
-	//((void (**)())panel_userptr(panel_below(0)))[REDRAW_BOX_FUNC_INDEX]();
+	Main_Sheet->Redraw_Box();
+	Main_Sheet->Touch_Win();
 }
 char* Set_File_Select (PANEL* Panel)
 {
@@ -65,7 +69,7 @@ char* Set_File_Select (PANEL* Panel)
 	return New_File_Name;
 }
 
-unsigned char Set_Entry (PANEL* Panel,const char* Title,char* Actual_Data,char* Data,unsigned short int Length)
+unsigned char Set_Entry (PANEL* Panel,const char* Title,const char* Actual_Data,char* Data,unsigned short int Length)
 {
 	char 	*Info,Ans=1;
 	CDKSCREEN 	*Cdk 	=initCDKScreen 		(panel_window(Panel));
@@ -89,8 +93,6 @@ Sheet* Sheet4Panel(PANEL* Panel)
 {
 	return (Sheet*)(panel_userptr(Panel));
 }
-WINDOW* Scr_Window(void)	{return Scr_Win;}
-void Touch_Scr_Window(void)	{touchwin(Scr_Win);}
 //-------------------------------------------------------------------
 void* Menu_Rti(void* Arg1)
 {
@@ -102,18 +104,19 @@ void* Menu_Rti(void* Arg1)
 		switch(Key) {	
 			case KEY_F1:
 			case ' ':
+				Start_Menu_Menu();
 				break;
 			case KEY_F2:
 				break;
 			case KEY_F3:
-				Sheet4Top_Panel()->Deselect();
-				Top_Analog_Clk();
-				Sheet4Top_Panel()->Select();
+//				Sheet4Top_Panel()->Deselect();
+//				Top_Analog_Clk();
+//				Sheet4Top_Panel()->Select();
 				break;
 			case KEY_F4:
-				Sheet4Top_Panel()->Deselect();
-				Top_Analog_Clk1();
-				Sheet4Top_Panel()->Select();
+//				Sheet4Top_Panel()->Deselect();
+//				Top_Analog_Clk1();
+//				Sheet4Top_Panel()->Select();
 				break;
 			case KEY_F5:
 				break;
@@ -165,14 +168,10 @@ void* Menu_Rti(void* Arg1)
 		}
 	}
 }
-void Destruct_Menu (void)
-{
-	endCDK ();
-}
 //----------------------------------------------------------------------------------------------------
 void Start_Menu_Menu 	(void)/*{{{*/
 {
-	int 			Submenu_Size[]={3,4},Menu_Loc[2]={LEFT,RIGHT};
+	int 			Submenu_Size[]={3,2,4},Menu_Loc[]={LEFT,LEFT,RIGHT};
 	const char 		*Menu_List[][MAX_SUB_ITEMS]= { 
 					{
 						"</B>File<!B>",
@@ -180,20 +179,30 @@ void Start_Menu_Menu 	(void)/*{{{*/
 						"</B>Exit<!B>",
 					},
 					{
+						"</B>Sheets<!B>",
+						"</B>New<!B>",
+					},
+{
 						"</B>Help<!B>",
 						"</B>On Edit <!B>",
 						"</B>On File <!B>",
 						"</B>About...<!B>",
 					},
 				};
-//	Set_Menu (Panel,Menu_List,2,Submenu_Size,Menu_Loc);
+	Set_Menu (Main_Sheet->Panel,Menu_List,3,Submenu_Size,Menu_Loc);
 }
 void Parse_Menu_Menu 	(int Selection)
 {
 	switch(Selection) {	
 		case 000:
+			Set_File_Select(Main_Sheet->Panel);
 			break;
 		case 001:
+			endCDK();
+			exit(0);
+			break;
+		case 100:
+			Sheet::Create_New_Sheet_Inst(NULL,NULL);
 			break;
 		}
 }/*}}}*/

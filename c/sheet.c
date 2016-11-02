@@ -6,15 +6,35 @@
 #include <pthread.h>
 #include <string.h>
 #include "screen_update.h"
-#include "ncurses_pthread.h"
-#include "sheets.h"
+#include "sheet.h"
 #include "menu.h"
 #include "analog_clk.h"
 
 ////----------------------------------------------------------------------------------------------------
-	Sheet::Sheet()
+	unsigned short int 	Sheet::Inst_Count=0;
+	Sheet* 			Sheet::Inst_Buf[10]={NULL};
+
+	unsigned short int Sheet::Create_New_Sheet_Inst(WINDOW* Win,const char* Name)
 {
-	Win= 			newwin(1, 1, 0,0);
+	unsigned short int i;
+	for(i=0;i<(sizeof(Inst_Buf)/sizeof(Sheet*));i++) 
+		if(Inst_Buf[i]==NULL) {
+			char Name_Def[100];
+			sprintf(Name_Def,"Instancia %d",i);
+			Inst_Buf[i]=new Sheet(Win);
+ 			Inst_Buf[i]->Set_Panel_User_Pointer(Inst_Buf[i]);
+ 			Inst_Buf[i]->Set_Name(Name==NULL?Name_Def:(char*)Name);
+ 			Inst_Buf[i]->Set_Size(10,40);
+ 			Inst_Buf[i]->Set_Pos(0,80);
+ 			Inst_Buf[i]->Redraw_Box();
+			break;
+		}
+	return i;
+}
+
+	Sheet::Sheet(WINDOW *Ext_Win)
+{
+	Win= 			Ext_Win!=NULL?Ext_Win:newwin(1, 1, 0,0);
 	Panel= 			new_panel(Win);
 }
 void 	Sheet::Redraw_Box(void)
@@ -37,25 +57,37 @@ void 	Sheet::Set_Size(unsigned short int Height,unsigned short int Width)
 	wresize(Win,Height,Width);
 	update_panels();
 }
+unsigned short int Sheet::Get_Height(void)
+{
+	return getbegy(Win);
+}
+unsigned short int Sheet::Get_Width(void)
+{
+	return getbegx(Win);
+}
 void 	Sheet::To_Up(void)
 {
-	Sheet::Move_Panel(Panel,getbegy(Win)-1,getbegx(Win));
+	if((getbegy(Win)-1)>Main_Sheet->Beg_Y())
+		Sheet::Move_Panel(Panel,getbegy(Win)-1,getbegx(Win));
 }
 void 	Sheet::To_Down(void)
 {
-	Sheet::Move_Panel(Panel,getbegy(Win)+1,getbegx(Win));
+	if((getbegy(Win)+getmaxy(Win)+1)<(Main_Sheet->Beg_Y()+Main_Sheet->Max_Y()))
+		Sheet::Move_Panel(Panel,getbegy(Win)+1,getbegx(Win));
 }
 void 	Sheet::To_Right(void)
 {
-	Sheet::Move_Panel(Panel,getbegy(Win),getbegx(Win)+1);
+	if((getbegx(Win)+getmaxx(Win)+1)<(Main_Sheet->Beg_X()+Main_Sheet->Max_X()))
+		Sheet::Move_Panel(Panel,getbegy(Win),getbegx(Win)+1);
 }
 void 	Sheet::To_Left(void)
 {
-	Sheet::Move_Panel(Panel,getbegy(Win),getbegx(Win)-1);
+	if((getbegx(Win)-1)>Main_Sheet->Beg_X())
+		Sheet::Move_Panel(Panel,getbegy(Win),getbegx(Win)-1);
 }
 void 	Sheet::Inc_Width(void)
 {
-	if((getmaxx(Win)+getbegx(Win))<getmaxx(stdscr)) {
+	if((getmaxx(Win)+getbegx(Win)+1)<Main_Sheet->Max_X()) {
 			wclear(Win);
 			wresize(Win,getmaxy(Win),getmaxx(Win)+1);
 	}
@@ -69,12 +101,12 @@ void 	Sheet::Dec_Width(void)
 		wresize(Win,getmaxy(Win),getmaxx(Win)-1);
 	}
 	Redraw_Box();
-	Touch_Scr_Window();	//sino quedan residuos del box
+	Main_Sheet->Touch_Win();	//sino quedan residuos del box
 	update_panels();
 }
 void 	Sheet::Inc_Height(void)
 {
-	if((getmaxy(Win)+getbegy(Win))<getmaxy(stdscr)) {
+	if((getmaxy(Win)+getbegy(Win)+1)<Main_Sheet->Max_Y()) {
 			wclear(Win);
 			wresize(Win,getmaxy(Win)+1,getmaxx(Win));
 	}
@@ -88,7 +120,7 @@ void 	Sheet::Dec_Height(void)
 			wresize(Win,getmaxy(Win)-1,getmaxx(Win));
 	}
 	Redraw_Box();
-	Touch_Scr_Window();	//sino quedan residuos del box
+	Main_Sheet->Touch_Win();	//sino quedan residuos del box
 	update_panels();
 }
 void 	Sheet::Set_Pos(unsigned short int Y,unsigned short int X)
@@ -128,8 +160,8 @@ void 	Sheet::Deselect(void)
 void 	Sheet::Full_Screen(void)
 {
 	wclear(panel_window(Panel));
-	move_panel(Panel,getbegy(Scr_Window()),getbegx(Scr_Window()));
-	wresize(panel_window(Panel),getmaxy(Scr_Window()),getmaxx(Scr_Window()));
+	move_panel(Panel,Main_Sheet->Beg_Y(),Main_Sheet->Beg_X());
+	wresize(panel_window(Panel),Main_Sheet->Max_Y(),Main_Sheet->Max_X());
 	Sheet::Redraw_Box();
 	update_panels();
 }
@@ -151,5 +183,21 @@ void 	Sheet::Touch_Win(void)
 {
 	touchwin(Win);
 	update_panels();
+}
+unsigned short int  	Sheet::Max_Y(void)
+{
+	return getmaxy(Win);
+}
+unsigned short int  	Sheet::Max_X(void)
+{
+	return getmaxx(Win);
+}
+unsigned short int  	Sheet::Beg_Y(void)
+{
+	return getbegy(Win);
+}
+unsigned short int  	Sheet::Beg_X(void)
+{
+	return getbegx(Win);
 }
 
