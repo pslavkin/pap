@@ -18,7 +18,8 @@ void Init_Menu (void)
 	noecho();
 	keypad(stdscr, TRUE);
 	//initCDKColor ();
-	Init_Super_Colours(1,1,0,  0,192);
+	start_color();
+	Init_Super_Colours(0,0,1,  0,192);
 	curs_set(0);
 	pthread_create(&PT_Menu_Rti, NULL, Menu_Rti, NULL);
 	Main_Sheet->Set_Panel_User_Pointer(Main_Sheet);

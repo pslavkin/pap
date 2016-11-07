@@ -6,8 +6,8 @@
 #define MIN_COLOUR_PAIR         65
 #define MAX_COLOUR_PAIR         255
 
-#define MIN_WIDTH         	10
-#define MIN_HEIGHT		10
+#define MIN_WIDTH         	2
+#define MIN_HEIGHT		2 
 
 extern void 		Init_Sheets 			(void);
 extern void 		Init_Super_Colours 		(unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count);
@@ -25,7 +25,7 @@ public:
 	static unsigned short int 	Inst_Count;
 	static unsigned short int 	Create_New_Sheet_Inst(WINDOW* Win,const char* Name);
 
-				Sheet(WINDOW *Ext_Win);
+				Sheet				(WINDOW *Ext_Win);
 	void 			Redraw_Box			(void);
 	void 			Hide_Box			(void);
 	void 			Set_Name			(char* Sheet_Name);
@@ -33,10 +33,10 @@ public:
 	unsigned short int 	Get_Height			(void);
 	unsigned short int 	Get_Width			(void);
 	void 			Set_Pos				(unsigned short int Y,unsigned short int X);
-	void 			To_Up				(void);
-	void 			To_Down				(void);
-	void 			To_Right			(void);
-	void 			To_Left				(void);
+	char			To_Up				(void);
+	char			To_Down				(void);
+	char			To_Right			(void);
+	char			To_Left				(void);
 	void 			Inc_Width			(void);
 	void 			Dec_Width			(void);
 	void 			Inc_Height			(void);

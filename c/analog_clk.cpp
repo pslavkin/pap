@@ -5,11 +5,12 @@
 #include "sheet.h"
 #include "menu.h"
 #include <time.h>
+#include <ball.h>
 
 void Init_Analog_Clk(void)
 {
-	Sheet::Create_New_Sheet_Inst(NULL,"Analog Clk 1");
-	Sheet::Create_New_Sheet_Inst(NULL,"Analog Clk 2");
+//	Sheet::Create_New_Sheet_Inst(NULL,"Analog Clk 1");
+//	Sheet::Create_New_Sheet_Inst(NULL,"Analog Clk 2");
 }
 
 unsigned short int Get_Actual_Time(void)

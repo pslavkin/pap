@@ -7,6 +7,7 @@
 #include "menu.h"
 #include "sheet.h"
 #include "main.h"
+#include "ball.h"
 #include "analog_clk.h"
 
 int main(int argc, char **argv)
@@ -15,7 +16,7 @@ int main(int argc, char **argv)
 	Init_Screen_Update();
 	Init_Analog_Clk();
 	Params_Parser(argc,argv);
-	
+	Ball::Init();	
 	for(;;)
 		;
 	return 0;

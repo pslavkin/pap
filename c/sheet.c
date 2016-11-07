@@ -39,8 +39,12 @@
 }
 void 	Sheet::Redraw_Box(void)
 {
+	wattron(Win,COLOR_PAIR(100));
 	box   	  	(Win,0,0);
+	wattroff(Win,COLOR_PAIR(100));
+	wattron(Win,COLOR_PAIR(180));
 	mvwprintw 	(Win,0,5,Name);
+	wattroff(Win,COLOR_PAIR(180));
 	update_panels();
 }
 void 	Sheet::Hide_Box(void)
@@ -65,25 +69,37 @@ unsigned short int Sheet::Get_Width(void)
 {
 	return getbegx(Win);
 }
-void 	Sheet::To_Up(void)
+char  	Sheet::To_Up(void)
 {
-	if((getbegy(Win)-1)>Main_Sheet->Beg_Y())
+	if((getbegy(Win)-1)>Main_Sheet->Beg_Y()) {
 		Sheet::Move_Panel(Panel,getbegy(Win)-1,getbegx(Win));
+		return 0;
+	}
+	else return -1;
 }
-void 	Sheet::To_Down(void)
+char 	Sheet::To_Down(void)
 {
-	if((getbegy(Win)+getmaxy(Win)+1)<(Main_Sheet->Beg_Y()+Main_Sheet->Max_Y()))
+	if((getbegy(Win)+getmaxy(Win)+1)<(Main_Sheet->Beg_Y()+Main_Sheet->Max_Y())) {
 		Sheet::Move_Panel(Panel,getbegy(Win)+1,getbegx(Win));
+		return 0;
+	}
+	else return -1;
 }
-void 	Sheet::To_Right(void)
+char 	Sheet::To_Right(void)
 {
-	if((getbegx(Win)+getmaxx(Win)+1)<(Main_Sheet->Beg_X()+Main_Sheet->Max_X()))
+	if((getbegx(Win)+getmaxx(Win)+1)<(Main_Sheet->Beg_X()+Main_Sheet->Max_X())) {
 		Sheet::Move_Panel(Panel,getbegy(Win),getbegx(Win)+1);
+		return 0;
+	}
+	else return -1;
 }
-void 	Sheet::To_Left(void)
+char 	Sheet::To_Left(void)
 {
-	if((getbegx(Win)-1)>Main_Sheet->Beg_X())
+	if((getbegx(Win)-1)>Main_Sheet->Beg_X()) {
 		Sheet::Move_Panel(Panel,getbegy(Win),getbegx(Win)-1);
+		return 0;
+	}
+	else return -1;
 }
 void 	Sheet::Inc_Width(void)
 {
