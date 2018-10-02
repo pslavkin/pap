@@ -350,8 +350,8 @@ void drawCDKScreen (CDKSCREEN *cdkscreen)
 void refreshCDKWindow (WINDOW *win)
 {
    touchwin (win);
-//   wnoutrefresh (win);
-   wrefresh (win);
+   wnoutrefresh (win);
+//   wrefresh (win);
   // doupdate();
 }
 
