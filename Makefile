@@ -1,15 +1,16 @@
 CC=g++
 #LIBS= -lncurses -lpthread  -lpanel -lrt -L lib/ -lcdk_ps_64 -lX11 -lGL -lGLU -lglut
 LIBS= -lGL -lGLU -lglut -lncurses -lpthread  -lpanel -lrt -L lib/ -lcdk_ps_64 
+#LIBS= -lGL -lGLU -lglut -lncurses -lpthread  -lpanel -lrt -L lib/ -lcdk_new 
 SRC_DIR=./c
 EXE_DIR=./exe
 
 
-_OBJ= main.o screen_update.o menu.o sheet.o ball.o bed.o serialmanager.o rs232.o
+_OBJ= main.o screen_update.o menu.o sheet.o ball.o bed.o serialmanager.o rs232.o histograms.o
 OBJ_DIR=./obj
 OBJ = $(patsubst %,$(OBJ_DIR)/%,$(_OBJ))
 
-_DEP = screen_update.h menu.h sheet.h  ball.h bed.hpp serialmanager.hpp rs232.h
+_DEP = screen_update.h menu.h sheet.h  ball.h bed.hpp serialmanager.hpp rs232.h histograms.h
 DEP_DIR=./h
 DEP = $(patsubst %,$(DEP_DIR)/%,$(_DEP))
 

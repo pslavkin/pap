@@ -30,7 +30,7 @@ LOCAL_LIBDIR	= .
 
 CFLAGS		= -g -O2 
 CPPFLAGS	= -DHAVE_CONFIG_H -I../include -I$(srcdir)/../include -I.  -D_GNU_SOURCE
-LDFLAGS		= -L.. -L/lib  
+LDFLAGS		= -L.. -L/lib64  
 
 BINS	= \
 	cdkalphalist$x \

@@ -106,12 +106,12 @@ ETAGS		= etags
 LINT		= 
 LINT_OPTS	= 
 
-LIBS		= -lncurses  -lpanel
+LIBS		= -lncurses 
 
-CFLAGS		= -g -O2  -static
-CPPFLAGS	= -DHAVE_CONFIG_H -I./include -I$(srcdir)/include  -D_GNU_SOURCE -static 
+CFLAGS		= -g -O2 
+CPPFLAGS	= -DHAVE_CONFIG_H -I./include -I$(srcdir)/include  -D_GNU_SOURCE
 
-LDFLAGS		= -L/lib 
+LDFLAGS		= -L/lib64 
 RPATH_LIST	= 
 
 LIBTOOL		=  

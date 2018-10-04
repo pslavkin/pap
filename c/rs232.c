@@ -17,7 +17,7 @@ static int Cport[ 1],
 static struct termios   new_port_settings,
                         old_port_settings[1];
 
-static char comports[][13]={"/dev/ttyACM0"};
+static char comports[][13]={"/dev/ttyUSB1"};
 
 
 int OpenComport(int comport_number, int baudrate)

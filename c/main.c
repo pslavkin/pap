@@ -10,6 +10,7 @@
 #include "ball.h"
 #include "bed.hpp"
 #include "serialmanager.hpp"
+#include "histograms.h"
 
 
 int main(int argc, char **argv)
@@ -18,8 +19,10 @@ int main(int argc, char **argv)
    Init_Screen_Update   (           );
    Params_Parser        ( argc,argv );
    Ball::Init           (           );
-   Serial_Manager::Init (           );
-//   Bed(&argc,argv);
+   //Serial_Manager::Init (           );
+   Init_Histograms      (           );
+   Init_Graph();
+      Bed(&argc,argv);
    for(;;)
       ;
    return 0;

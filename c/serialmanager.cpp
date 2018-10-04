@@ -57,11 +57,7 @@ void* Serial_Manager::Rti(void* Arg1)
 {
    while ( 1 ) {
       nanosleep ( &Serial_Manager_Delay,&Serial_Manager_Delay );
-      if(Serial_Manager_Inst->Port_Status==0) {
-         waddstr(Serial_Manager_Inst->Win,"abierto!");
       }
-      
-   }
 }
 
 Serial_Manager::Serial_Manager():Sheet(NULL)

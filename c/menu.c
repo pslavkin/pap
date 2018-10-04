@@ -17,8 +17,8 @@ void Init_Menu (void)
    cbreak (              );
    noecho (              );
    keypad ( stdscr, TRUE );
-   //initCDKColor ();
-   start_color        (                                    );
+   initCDKColor ();
+   //start_color        (                                    );
    Init_Super_Colours ( 0,0,1,  0,192                      );
    curs_set           ( 0                                  );
    pthread_create     ( &PT_Menu_Rti, NULL, Menu_Rti, NULL );
@@ -158,7 +158,8 @@ void* Menu_Rti(void* Arg1)
          case KEY_HOME:
             break;
          case KEY_ESC:
-            exit(0);
+            endCDK (   );
+            exit   ( 0 );
             break;
       }
    }
@@ -210,4 +211,51 @@ void Parse_Menu_Menu    (int Selection)
       }
 }
 //----------------------------------------------------------------------------------------------------
+
+void* Graph_Rti(void* Arg1);
+
+pthread_t      PT_Graph_Rti;
+#define FADE 100
+int Fade=5;
+static unsigned short int  Last_X[FADE]={0},Last_Y[FADE]={0};
+Sheet* Inst;
+
+void Fade_Pixels(unsigned char Times)
+{
+   unsigned short int Pos,Color;
+      for ( Pos=0;Pos<Times;Pos++ )
+         if(Last_Y[Pos]) mvwaddch (Inst->Win, Last_Y[Pos], Last_X[Pos], ('.' | COLOR_PAIR(0))); //borra la mas viejaa
+
+      for(Pos=0;Pos<(Fade-Times);Pos++) {
+               Last_X      [Pos]    =Last_X  [Pos+Times];
+               Last_Y      [Pos]    =Last_Y  [Pos+Times];
+         Color=MIN_COLOUR_PAIR+((unsigned int)Pos*(MAX_COLOUR_PAIR-MIN_COLOUR_PAIR))/Fade;
+         if(Color>MAX_COLOUR_PAIR || Color<MIN_COLOUR_PAIR) 1;
+         if(Last_Y[Pos]) mvwaddch (Inst->Win, Last_Y[Pos], Last_X[Pos], ' ' | COLOR_PAIR(MIN_COLOUR_PAIR+((unsigned int)Pos*(MAX_COLOUR_PAIR-MIN_COLOUR_PAIR-1))/Fade));
+         }
+}
+void Toogle_Pixel(unsigned char Y, unsigned char X)
+{
+      Fade_Pixels(1);
+      mvwaddch (Inst->Win, Last_Y[Fade-1]=Y,Last_X[Fade-1]=X, 'O' | COLOR_PAIR(2));
+}
+
+void Init_Graph(void)
+{
+   Inst = new Sheet(NULL);
+   Inst->Set_Panel_User_Pointer ( Inst );
+   Inst->Set_Size   ( 20,20  )        ;
+   Inst->Set_Pos    ( 5,10  )        ;
+   Inst->Set_Name   ( (char* )"graph");
+   Inst->Redraw_Box (        )        ;
+   pthread_create(&PT_Graph_Rti, NULL, Graph_Rti, NULL);
+}
+void* Graph_Rti(void* Arg1)
+{
+   struct timespec req={0,5000000};
+   while(1) {
+      Toogle_Pixel(rand()%(getmaxy(Inst->Win)-2)+1,rand()%(getmaxx(Inst->Win)-2)+1);
+      nanosleep(&req,&req);
+   }
+}
 

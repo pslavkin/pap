@@ -20,5 +20,8 @@ extern void             Set_Menu           ( PANEL* Panel,const char* Menu_List[
 extern Sheet*           Sheet4Panel        ( PANEL* Panel                                                                                            );
 extern Sheet*           Sheet4Top_Panel    ( void                                                                                                    );
 
+
+void Init_Graph(void);
+
 #endif
 
