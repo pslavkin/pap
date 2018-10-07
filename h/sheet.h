@@ -10,8 +10,8 @@
 //---------------------------------------------------------------------------------------------------
 class Sheet{
    public:
-   static Sheet* Sheet4Top_Panel(void);
-   static Sheet* Sheet4Panel(PANEL* Panel);
+ static  Sheet* Sheet4Top_Panel ( void         );
+ static  Sheet* Sheet4Panel     ( PANEL* Panel );
 protected:
 public:
    Sheet                ( WINDOW *Ext_Win ); //con arfs

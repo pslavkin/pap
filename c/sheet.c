@@ -60,7 +60,7 @@ unsigned short int Sheet::Get_Width(void)
 }
 char     Sheet::To_Up(void)
 {
-   if ( (getbegy(Win )-1)>Main_Sheet->Beg_Y()) {
+   if ( (getbegy(Win )-1)>=Main_Sheet->Beg_Y()) {
       Sheet::Move_Panel ( Panel,getbegy(Win )-1,getbegx(Win));
       return 0;
    }
@@ -69,7 +69,7 @@ char     Sheet::To_Up(void)
 }
 char  Sheet::To_Down(void)
 {
-   if ( (getbegy(Win )+getmaxy(Win)+1)<(Main_Sheet->Beg_Y()+Main_Sheet->Max_Y())) {
+   if ( (getbegy(Win )+getmaxy(Win)+1)<=(Main_Sheet->Beg_Y()+Main_Sheet->Max_Y())) {
       Sheet::Move_Panel ( Panel,getbegy(Win )+1,getbegx(Win));
       return 0;
    }
@@ -78,7 +78,7 @@ char  Sheet::To_Down(void)
 }
 char  Sheet::To_Right(void)
 {
-   if ( (getbegx(Win )+getmaxx(Win)+1)<(Main_Sheet->Beg_X()+Main_Sheet->Max_X())) {
+   if ( (getbegx(Win )+getmaxx(Win)+1)<=(Main_Sheet->Beg_X()+Main_Sheet->Max_X())) {
       Sheet::Move_Panel ( Panel,getbegy(Win ),getbegx(Win)+1);
       return 0;
    }
@@ -87,7 +87,7 @@ char  Sheet::To_Right(void)
 }
 char  Sheet::To_Left(void)
 {
-   if ( (getbegx(Win )-1)>Main_Sheet->Beg_X()) {
+   if ( (getbegx(Win )-1)>=Main_Sheet->Beg_X()) {
       Sheet::Move_Panel ( Panel,getbegy(Win ),getbegx(Win)-1);
       return 0;
    }
@@ -96,7 +96,7 @@ char  Sheet::To_Left(void)
 }
 void  Sheet::Inc_Width(void)
 {
-   if ( (getmaxx(Win )+getbegx(Win)+1)<Main_Sheet->Max_X()) {
+   if ( (getmaxx(Win )+getbegx(Win)+1)<=Main_Sheet->Max_X()) {
          wclear  ( Win             )                ;
          wresize ( Win,getmaxy(Win ),getmaxx(Win)+1);
    }
@@ -104,7 +104,7 @@ void  Sheet::Inc_Width(void)
 }
 void  Sheet::Dec_Width(void)
 {
-   if ( getmaxx(Win )>MIN_WIDTH) {
+   if ( getmaxx(Win )>=MIN_WIDTH) {
       wclear  ( Win             )                ;
       wresize ( Win,getmaxy(Win ),getmaxx(Win)-1);
    }
@@ -113,7 +113,7 @@ void  Sheet::Dec_Width(void)
 }
 void  Sheet::Inc_Height(void)
 {
-   if ( (getmaxy(Win )+getbegy(Win)+1)<Main_Sheet->Max_Y()) {
+   if ( (getmaxy(Win )+getbegy(Win)+1)<=Main_Sheet->Max_Y()) {
          wclear  ( Win             )                ;
          wresize ( Win,getmaxy(Win )+1,getmaxx(Win));
    }
@@ -121,7 +121,7 @@ void  Sheet::Inc_Height(void)
 }
 void  Sheet::Dec_Height(void)
 {
-   if ( getmaxy(Win )>MIN_HEIGHT) {
+   if ( getmaxy(Win )>=MIN_HEIGHT) {
          wclear  ( Win             )                ;
          wresize ( Win,getmaxy(Win )-1,getmaxx(Win));
    }
@@ -158,9 +158,9 @@ void  Sheet::Deselect(void)
 }
 void  Sheet::Full_Screen(void)
 {
-   wclear ( panel_window(Panel ));
-   move_panel(Panel,Main_Sheet->Beg_Y(),Main_Sheet->Beg_X());
-   wresize(panel_window(Panel),Main_Sheet->Max_Y(),Main_Sheet->Max_X());
+   wclear     ( panel_window(Panel       ))                                        ;
+   move_panel ( Panel,Main_Sheet->Beg_Y( ),Main_Sheet->Beg_X())                    ;
+   wresize    ( panel_window(Panel       ),Main_Sheet->Max_Y(),Main_Sheet->Max_X());
    Sheet::Redraw_Box ( );
 }
 void Sheet::Set_Panel_User_Pointer()

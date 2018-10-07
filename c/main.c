@@ -22,7 +22,7 @@ Histo_Class* H3;
 int main(int argc, char **argv)
 {
    Init_Curses        (            );
-//   Init_Menu          (            );
+   Init_Menu          (            );
    Init_Screen_Update (            );
    Params_Parser      ( argc,argv  );
 //   Ball::Init         (            );

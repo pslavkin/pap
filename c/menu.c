@@ -14,13 +14,8 @@ Sheet*         Main_Sheet; // global porque lo usan el resto de las ventanitas p
 //----------------------------------------------------------------------------------------------------
 void Init_Menu (void)
 {
-//   Main_Sheet=new Sheet(stdscr);
-   Main_Sheet=new Sheet(5,5,20,20,"menu");
-   pthread_create     ( &PT_Menu_Rti, NULL, Menu_Rti, NULL );
-//   Main_Sheet->Set_Panel_User_Pointer ( Main_Sheet );
-//   Main_Sheet->Set_Name               ( "Main"     );
- //  Main_Sheet->Full_Screen            (            );
-  // Main_Sheet->Redraw_Box             (            );
+   Main_Sheet=new Sheet ( 0,0,40,80,"menu"                   );
+   pthread_create       ( &PT_Menu_Rti, NULL, Menu_Rti, NULL );
 }
 //----------------------------------------------------------------------------------------------------
 void Set_Menu (PANEL* Panel,const char* Menu_List[][MAX_SUB_ITEMS],unsigned char Items,int* Submenu_Size,int *Menu_Loc)

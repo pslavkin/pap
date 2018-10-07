@@ -6,7 +6,7 @@
 #include "sheet.h"
 //----------------------------------------------------------------------------------------------------
 pthread_t                  PT_Screen_Update_Rti    ;
-static struct timespec     Rti_Delay= { 0,10000000}; // 100 milis
+static struct timespec     Rti_Delay= { 0, 5000000}; // 100 milis
 //----------------------------------------------------------------------------------------------------
 void Init_Screen_Update(void)
 {
@@ -54,6 +54,7 @@ void* Screen_Update_Rti(void* Arg1)
             Sheet::Sheet4Top_Panel()->To_Down();
             break;
          case KEY_RIGHT:
+            ((Sheet*)panel_userptr(panel_below(0)))->To_Right();
             Sheet::Sheet4Top_Panel()->To_Right();
             break;
          case KEY_LEFT:
