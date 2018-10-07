@@ -4,6 +4,7 @@
 #include <panel.h>
 
 #include "sheet.h"
+#include "ball.h"
 #include "screen_update.h"
 #include "serialmanager.hpp"
 
@@ -13,32 +14,13 @@ Sheet*         Main_Sheet; // global porque lo usan el resto de las ventanitas p
 //----------------------------------------------------------------------------------------------------
 void Init_Menu (void)
 {
-   Main_Sheet=new Sheet(initscr());
-   cbreak (              );
-   noecho (              );
-   keypad ( stdscr, TRUE );
-   initCDKColor ();
-   //start_color        (                                    );
-   Init_Super_Colours ( 0,0,1,  0,192                      );
-   curs_set           ( 0                                  );
+//   Main_Sheet=new Sheet(stdscr);
+   Main_Sheet=new Sheet(5,5,20,20,"menu");
    pthread_create     ( &PT_Menu_Rti, NULL, Menu_Rti, NULL );
-   Main_Sheet->Set_Panel_User_Pointer ( Main_Sheet )       ;
-   Main_Sheet->Set_Name               ( (char*     )"Main");
-   Main_Sheet->Full_Screen            (            )       ;
-   Main_Sheet->Redraw_Box             (            )       ;
-}
-//----------------------------------------------------------------------------------------------------
-void Init_Super_Colours(unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count)
-{
-   unsigned short int i,Bg,Pair;
-   Pair=MIN_COLOUR_PAIR+From; // los primeros 64 se los regalo a CDK en su llamada a initCDKColor
-   Bg=16+From;                // cdk usa solo 8 colores... me agarro el resto (parece que tambien usa el 15...raaaro)
-   for(i=1;i<Count;i++)    {  // no me puedo pasar de 255 pares... no da mas la funcion PAIR_NUMBER.. si no fuera por eso podria seguir...
-      init_pair (Pair,255,Bg);
-      init_color(Bg,(i*1000/Count)*R,(i*1000/Count)*G,(i*1000/Count)*B);
-      Bg++;
-      Pair++;
-   }
+//   Main_Sheet->Set_Panel_User_Pointer ( Main_Sheet );
+//   Main_Sheet->Set_Name               ( "Main"     );
+ //  Main_Sheet->Full_Screen            (            );
+  // Main_Sheet->Redraw_Box             (            );
 }
 //----------------------------------------------------------------------------------------------------
 void Set_Menu (PANEL* Panel,const char* Menu_List[][MAX_SUB_ITEMS],unsigned char Items,int* Submenu_Size,int *Menu_Loc)
@@ -84,85 +66,12 @@ unsigned char Set_Entry (PANEL* Panel,const char* Title,const char* Actual_Data,
    destroyCDKScreen ( Cdk   );
    return Ans;
 }
-
-//-------------------------------------------------------------------
-Sheet* Sheet4Top_Panel(void)
-{
-   return Sheet4Panel ( panel_below(0 ));
-}
-Sheet* Sheet4Panel(PANEL* Panel)
-{
-   return ( Sheet* )(panel_userptr(Panel));
-}
 //-------------------------------------------------------------------
 void* Menu_Rti(void* Arg1)
 {
-   struct timespec req={0,1000000};
-   int Selection,Key;
-   while(1) {
-      nanosleep(&req,&req);
-      Key=getch();
-      switch(Key) {
-         case KEY_F1:
-         case ' ':
-            Start_Menu_Menu();
-            break;
-         case KEY_F2:
-            break;
-         case KEY_F3:
-            break;
-         case KEY_F4:
-            break;
-         case KEY_F5:
-            break;
-         case KEY_F6:
-            break;
-         case KEY_F7:
-            break;
-         case KEY_F8:
-            break;
-         case KEY_F9:
-            Sheet4Top_Panel()->Hide();
-            break;
-         case KEY_F10:
-            break;
-         case KEY_F11:
-            Sheet4Top_Panel()->Full_Screen();
-            break;
-         case KEY_UP:
-            Sheet4Top_Panel()->To_Up();
-            break;
-         case KEY_DOWN:
-            Sheet4Top_Panel()->To_Down();
-            break;
-         case KEY_RIGHT:
-            Sheet4Top_Panel()->To_Right();
-            break;
-         case KEY_LEFT:
-            Sheet4Top_Panel()->To_Left();
-            break;
-         case 'l':
-            Sheet4Top_Panel()->Inc_Width();
-            break;
-         case 'h':
-            Sheet4Top_Panel()->Dec_Width();
-            break;
-         case 'j':
-            Sheet4Top_Panel()->Inc_Height();
-            break;
-         case 'k':
-            Sheet4Top_Panel()->Dec_Height();
-            break;
-         case KEY_BACKSPACE:
-            break;
-         case KEY_HOME:
-            break;
-         case KEY_ESC:
-            endCDK (   );
-            exit   ( 0 );
-            break;
-      }
-   }
+   struct timespec req={0, 50000000};
+   while(1) 
+      nanosleep     ( &req,&req );
 }
 //----------------------------------------------------------------------------------------------------
 void Start_Menu_Menu    (void)
@@ -175,8 +84,8 @@ void Start_Menu_Menu    (void)
                   "</B>Exit<!B>",
                },
                {
-                  "</B>Sheets<!B>",
-                  "</B>New<!B>",
+                  "</B>Empty<!B>",
+                  "</B>Nada<!B>",
                },
                {
                   "</B>RS232<!B>",
@@ -203,7 +112,6 @@ void Parse_Menu_Menu    (int Selection)
          exit   ( 0 );
          break;
       case 100:
-         Sheet::Create_New_Sheet_Inst ( NULL,NULL );
          break;
       case 200:
          Serial_Manager::Serial_Manager_Inst->Open(0,115200);
@@ -242,7 +150,7 @@ void Toogle_Pixel(unsigned char Y, unsigned char X)
 
 void Init_Graph(void)
 {
-   Inst = new Sheet(NULL);
+   Inst = new Sheet();
    Inst->Set_Panel_User_Pointer ( Inst );
    Inst->Set_Size   ( 20,20  )        ;
    Inst->Set_Pos    ( 5,10  )        ;

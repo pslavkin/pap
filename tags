@@ -75,8 +75,8 @@ BXAttr	include/cdk_objs.h	/^   chtype       BXAttr;$/;"	m	struct:CDKOBJS
 BXAttrOf	cdk-5.0-20180306/include/cdk_objs.h	203;"	d
 BXAttrOf	cdk/include/cdk_objs.h	203;"	d
 BXAttrOf	include/cdk_objs.h	203;"	d
-Ball	c/ball.cpp	/^Ball::Ball():Sheet(NULL)$/;"	f	class:Ball
-Ball	h/ball.h	/^class    Ball:Sheet$/;"	c
+Ball	c/ball.cpp	/^Ball::Ball():Sheet()$/;"	f	class:Ball
+Ball	h/ball.h	/^class    Ball:public Sheet$/;"	c
 Ball_Delay	c/ball.cpp	/^struct timespec Ball::Ball_Delay={0,50000000}; \/\/100 milis$/;"	m	class:Ball	typeref:struct:Ball::	file:
 Ball_Delay	h/ball.h	/^   static struct timespec        Ball_Delay ;$/;"	m	class:Ball	typeref:struct:Ball::timespec
 Ball_Inst	c/ball.cpp	/^Ball*           Ball::Ball_Inst;$/;"	m	class:Ball	file:
@@ -893,7 +893,6 @@ CharOf	cdk/include/cdk_int.h	60;"	d
 CharOf	include/cdk_int.h	60;"	d
 CloseComport	c/rs232.c	/^void CloseComport(int comport_number)$/;"	f
 Cport	c/rs232.c	/^static int Cport[ 1],$/;"	v	file:
-Create_New_Sheet_Inst	c/sheet.c	/^unsigned short int Sheet::Create_New_Sheet_Inst(WINDOW* Win,const char* Name)$/;"	f	class:Sheet
 Cube	c/bed.cpp	/^void Cube (void)$/;"	f
 CurMatrixCell	cdk-5.0-20180306/matrix.c	27;"	d	file:
 CurMatrixCell	cdk/matrix.c	27;"	d	file:
@@ -987,6 +986,7 @@ Deselect	c/sheet.c	/^void  Sheet::Deselect(void)$/;"	f	class:Sheet
 DestroyObj	cdk-5.0-20180306/include/cdk_objs.h	125;"	d
 DestroyObj	cdk/include/cdk_objs.h	125;"	d
 DestroyObj	include/cdk_objs.h	125;"	d
+Destroy_Histograms	c/histograms.c	/^void Destroy_Histograms(void)$/;"	f
 Destroy_Screen_Update	c/screen_update.c	/^void Destroy_Screen_Update(void)$/;"	f
 DigitOf	cdk-5.0-20180306/cdk.c	307;"	d	file:
 DigitOf	cdk/cdk.c	306;"	d	file:
@@ -1066,6 +1066,7 @@ ExitProgram	include/cdk_test.h	81;"	d
 ExitTypeOf	cdk-5.0-20180306/include/cdk_objs.h	187;"	d
 ExitTypeOf	cdk/include/cdk_objs.h	187;"	d
 ExitTypeOf	include/cdk_objs.h	187;"	d
+FADE	c/menu.c	200;"	d	file:
 FOPEN_FMT	cdk-5.0-20180306/viewer.c	361;"	d	file:
 FOPEN_FMT	cdk/viewer.c	360;"	d	file:
 FPUsage	cdk-5.0-20180306/cli/cdkalphalist.c	/^static const char *FPUsage = "-l List | -f filename [-F Field Character] [-T Title] [-L Label] [-B Buttons] [-O Output File] [-X X Position] [-Y Y Position] [-H Height] [-W Width] [-N] [-S]";$/;"	v	file:
@@ -1101,6 +1102,8 @@ FPUsage	cdk/demos/vinstall.c	/^static const char *FPUsage = "-f filename [-s sou
 FULL	cdk-5.0-20180306/include/cdk.h	244;"	d
 FULL	cdk/include/cdk.h	245;"	d
 FULL	include/cdk.h	244;"	d
+Fade	c/menu.c	/^int Fade=5;$/;"	v
+Fade_Pixels	c/menu.c	/^void Fade_Pixels(unsigned char Times)$/;"	f
 FocusObj	cdk-5.0-20180306/include/cdk_objs.h	128;"	d
 FocusObj	cdk/include/cdk_objs.h	128;"	d
 FocusObj	include/cdk_objs.h	128;"	d
@@ -1138,6 +1141,7 @@ Get_Height	c/sheet.c	/^unsigned short int Sheet::Get_Height(void)$/;"	f	class:Sh
 Get_Width	c/sheet.c	/^unsigned short int Sheet::Get_Width(void)$/;"	f	class:Sheet
 Gpm_Open	cdk-5.0-20180306/configure	/^Gpm_Open ();$/;"	f
 Gpm_Open	cdk/configure	/^Gpm_Open ();$/;"	f
+Graph_Rti	c/menu.c	/^void* Graph_Rti(void* Arg1)$/;"	f
 HALF	cdk-5.0-20180306/include/cdk.h	256;"	d
 HALF	cdk/include/cdk.h	257;"	d
 HALF	include/cdk.h	256;"	d
@@ -1268,6 +1272,7 @@ HEIGHT	ncurses_programs/JustForFun/magic.c	7;"	d	file:
 HEIGHT	ncurses_programs/JustForFun/shuffle.c	6;"	d	file:
 HEIGHT	ncurses_programs/basics/mouse_menu.c	4;"	d	file:
 HEIGHT	ncurses_programs/basics/simple_key.c	5;"	d	file:
+HISTOGRAMS	h/histograms.h	2;"	d
 HORIZONTAL	cdk-5.0-20180306/include/cdk.h	242;"	d
 HORIZONTAL	cdk/include/cdk.h	243;"	d
 HORIZONTAL	include/cdk.h	242;"	d
@@ -1283,6 +1288,10 @@ HasFocusObj	cdk/include/cdk_objs.h	135;"	d
 HasFocusObj	include/cdk_objs.h	135;"	d
 Hide	c/sheet.c	/^void  Sheet::Hide(void)$/;"	f	class:Sheet
 Hide_Box	c/sheet.c	/^void  Sheet::Hide_Box(void)$/;"	f	class:Sheet
+Histo	c/histograms.c	/^static struct Struct_Histo    Histo;$/;"	v	typeref:struct:Struct_Histo	file:
+Histo_Class	c/histograms.c	/^Histo_Class::Histo_Class(uint16_t YY,uint16_t XX,uint16_t HHeight, uint16_t WWidth,char* Tittle,\\$/;"	f	class:Histo_Class
+Histo_Class	h/histograms.h	/^class Histo_Class:public Sheet {$/;"	c
+Histogram_Rti	c/histograms.c	/^void* Histogram_Rti(void* Arg1)$/;"	f
 IMPORT_LIB	cdk-5.0-20180306/Makefile	/^IMPORT_LIB	= lib$(LIB_ROOTNAME).dll.a$/;"	m
 IMPORT_LIB	cdk/Makefile	/^IMPORT_LIB	= lib$(LIB_ROOTNAME).dll.a$/;"	m
 INCLUDE_DIR	cdk-5.0-20180306/Makefile	/^INCLUDE_DIR	= $(DESTDIR)$(includedir)$/;"	m
@@ -1329,9 +1338,13 @@ Increment	cdk/uscale.c	380;"	d	file:
 Increment	cdk/uslider.c	401;"	d	file:
 Init	c/ball.cpp	/^void Ball::Init(void)$/;"	f	class:Ball
 Init	c/serialmanager.cpp	/^void Serial_Manager::Init(void)$/;"	f	class:Serial_Manager
+Init_Curses	c/main.c	/^void Init_Curses (void)$/;"	f
+Init_Graph	c/menu.c	/^void Init_Graph(void)$/;"	f
+Init_Histogram	c/histograms.c	/^void Init_Histogram(struct Struct_Histo *Histo,WINDOW *Win,unsigned short int$/;"	f
+Init_Histograms	c/histograms.c	/^void Init_Histograms(void)$/;"	f
 Init_Menu	c/menu.c	/^void Init_Menu (void)$/;"	f
 Init_Screen_Update	c/screen_update.c	/^void Init_Screen_Update(void)$/;"	f
-Init_Super_Colours	c/menu.c	/^void Init_Super_Colours(unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count)$/;"	f
+Init_Super_Colours	c/main.c	/^void Init_Super_Colours(unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count)$/;"	f
 InjectObj	cdk-5.0-20180306/include/cdk_objs.h	126;"	d
 InjectObj	cdk/include/cdk_objs.h	126;"	d
 InjectObj	include/cdk_objs.h	126;"	d
@@ -1341,10 +1354,7 @@ InputWindowObj	include/cdk_objs.h	127;"	d
 InputWindowOf	cdk-5.0-20180306/include/cdk_objs.h	137;"	d
 InputWindowOf	cdk/include/cdk_objs.h	137;"	d
 InputWindowOf	include/cdk_objs.h	137;"	d
-Inst_Buf	c/sheet.c	/^Sheet*               Sheet::Inst_Buf[10]={NULL};$/;"	m	class:Sheet	file:
-Inst_Buf	h/sheet.h	/^   static Sheet*              Inst_Buf[ 10  ];$/;"	m	class:Sheet
-Inst_Count	c/sheet.c	/^unsigned short int   Sheet::Inst_Count=0;$/;"	m	class:Sheet	file:
-Inst_Count	h/sheet.h	/^   static unsigned short int  Inst_Count;$/;"	m	class:Sheet
+Inst	c/menu.c	/^Sheet* Inst;$/;"	v
 IsCTSEnabled	c/rs232.c	/^int IsCTSEnabled(int comport_number)$/;"	f
 IsVisibleObj	cdk-5.0-20180306/include/cdk_objs.h	136;"	d
 IsVisibleObj	cdk/include/cdk_objs.h	136;"	d
@@ -1467,7 +1477,7 @@ LFT_B_BOX	cdk-5.0-20180306/matrix.c	55;"	d	file:
 LFT_M_BOX	cdk-5.0-20180306/matrix.c	51;"	d	file:
 LFT_R_BOX	cdk-5.0-20180306/matrix.c	43;"	d	file:
 LFT_T_BOX	cdk-5.0-20180306/matrix.c	47;"	d	file:
-LIBS	Makefile	/^LIBS= -lGL -lGLU -lglut -lncurses -lpthread  -lpanel -lrt -L lib\/ -lcdk_new $/;"	m
+LIBS	Makefile	/^LIBS= -lGL -lGLU -lglut -lncurses -lpthread  -lpanel -lrt -L lib\/ -lcdk_ps_64 $/;"	m
 LIBS	cdk-5.0-20180306/Makefile	/^LIBS		= -lncurses $/;"	m
 LIBS	cdk-5.0-20180306/cli/Makefile	/^LIBS		= -lcdk -lncurses $/;"	m
 LIBS	cdk-5.0-20180306/demos/Makefile	/^LIBS		= -lcdk -lncurses $/;"	m
@@ -1591,6 +1601,8 @@ LRCharOf	cdk/include/cdk_objs.h	200;"	d
 LRCharOf	include/cdk_objs.h	200;"	d
 L_MARKER	cdk-5.0-20180306/cdk.c	9;"	d	file:
 L_MARKER	cdk/cdk.c	9;"	d	file:
+Last_X	c/menu.c	/^static unsigned short int  Last_X[FADE]={0},Last_Y[FADE]={0};$/;"	v	file:
+Last_Y	c/menu.c	/^static unsigned short int  Last_X[FADE]={0},Last_Y[FADE]={0};$/;"	v	file:
 MAINTAINER	cdk-5.0-20180306/package/freebsd/Makefile	/^MAINTAINER=	bapt@FreeBSD.org$/;"	m
 MAINTAINER	cdk/package/freebsd/Makefile	/^MAINTAINER=	bapt@FreeBSD.org$/;"	m
 MAKE_JOBS_UNSAFE	cdk-5.0-20180306/package/freebsd/Makefile	/^MAKE_JOBS_UNSAFE=	yes$/;"	m
@@ -1765,8 +1777,11 @@ MY_LABEL	cdk/examples/raiseCDKObject_ex.c	9;"	d	file:
 MY_MAX	cdk-5.0-20180306/examples/traverse_ex.c	11;"	d	file:
 MY_MAX	cdk/examples/traverse_ex.c	11;"	d	file:
 Main_Sheet	c/menu.c	/^Sheet*         Main_Sheet; \/\/ global porque lo usan el resto de las ventanitas para saber el maximo de tamanio y demas..$/;"	v
+Max_Value	h/histograms.h	/^   uint32_t Max_Value;$/;"	m	class:Histo_Class
+Max_Value	h/histograms.h	/^   unsigned int         Max_Value;$/;"	m	struct:Struct_Histo
 Max_X	c/sheet.c	/^unsigned short int   Sheet::Max_X(void)$/;"	f	class:Sheet
 Max_Y	c/sheet.c	/^unsigned short int   Sheet::Max_Y(void)$/;"	f	class:Sheet
+Menu_Class	h/menu.h	/^class Menu_Class:Sheet {$/;"	c
 Menu_Rti	c/menu.c	/^void* Menu_Rti(void* Arg1)$/;"	f
 MethodOf	cdk-5.0-20180306/include/cdk_objs.h	182;"	d
 MethodOf	cdk/include/cdk_objs.h	182;"	d
@@ -1878,6 +1893,8 @@ POSY	ncurses_programs/JustForFun/hanoi.c	4;"	d	file:
 PROCESSFN	cdk-5.0-20180306/include/binding.h	/^typedef int (*PROCESSFN) ($/;"	t
 PROCESSFN	cdk/include/binding.h	/^typedef int (*PROCESSFN) ($/;"	t
 PROCESSFN	include/binding.h	/^typedef int (*PROCESSFN) ($/;"	t
+PT_Graph_Rti	c/menu.c	/^pthread_t      PT_Graph_Rti;$/;"	v
+PT_Histograms_Rti	c/histograms.c	/^pthread_t      PT_Histograms_Rti;$/;"	v
 PT_Menu_Rti	c/menu.c	/^pthread_t      PT_Menu_Rti;$/;"	v
 PT_Screen_Update_Rti	c/screen_update.c	/^pthread_t                  PT_Screen_Update_Rti    ;$/;"	v
 P_SHARED	cdk-5.0-20180306/package/debian/rules	/^P_SHARED = $(CURDIR)\/t\/shared$/;"	m
@@ -2207,7 +2224,7 @@ SearchPattern	cdk/viewer.c	/^static char *SearchPattern = 0;$/;"	v	file:
 Select	c/sheet.c	/^void  Sheet::Select(void)$/;"	f	class:Sheet
 SendBuf	c/rs232.c	/^int SendBuf(int comport_number, unsigned char *buf, int size)$/;"	f
 SendByte	c/rs232.c	/^int SendByte(int comport_number, unsigned char byte)$/;"	f
-Serial_Manager	c/serialmanager.cpp	/^Serial_Manager::Serial_Manager():Sheet(NULL)$/;"	f	class:Serial_Manager
+Serial_Manager	c/serialmanager.cpp	/^Serial_Manager::Serial_Manager():Sheet()$/;"	f	class:Serial_Manager
 Serial_Manager	h/serialmanager.hpp	/^class    Serial_Manager:public Sheet$/;"	c
 Serial_Manager_Delay	c/serialmanager.cpp	/^struct timespec      Serial_Manager::Serial_Manager_Delay={0,50000000}; \/\/100 milis$/;"	m	class:Serial_Manager	typeref:struct:Serial_Manager::	file:
 Serial_Manager_Delay	h/serialmanager.hpp	/^   static struct timespec        Serial_Manager_Delay ;$/;"	m	class:Serial_Manager	typeref:struct:Serial_Manager::timespec
@@ -2220,17 +2237,23 @@ Set_Entry	c/menu.c	/^unsigned char Set_Entry (PANEL* Panel,const char* Title,con
 Set_File_Select	c/menu.c	/^char* Set_File_Select (PANEL* Panel)$/;"	f
 Set_Menu	c/menu.c	/^void Set_Menu (PANEL* Panel,const char* Menu_List[][MAX_SUB_ITEMS],unsigned char Items,int* Submenu_Size,int *Menu_Loc)$/;"	f
 Set_Name	c/sheet.c	/^void  Sheet::Set_Name(char* Sheet_Name)$/;"	f	class:Sheet
+Set_Panel_User_Pointer	c/sheet.c	/^void Sheet::Set_Panel_User_Pointer()$/;"	f	class:Sheet
 Set_Panel_User_Pointer	c/sheet.c	/^void Sheet::Set_Panel_User_Pointer(Sheet* Ptr)$/;"	f	class:Sheet
 Set_Pos	c/sheet.c	/^void  Sheet::Set_Pos(unsigned short int Y,unsigned short int X)$/;"	f	class:Sheet
 Set_Size	c/sheet.c	/^void  Sheet::Set_Size(unsigned short int Height,unsigned short int Width)$/;"	f	class:Sheet
+Set_V_Inverted_Rule_Value	c/histograms.c	/^void Histo_Class::Set_V_Inverted_Rule_Value(uint16_t Value)$/;"	f	class:Histo_Class
+Set_V_Inverted_Rule_Value	c/histograms.c	/^void Set_V_Inverted_Rule_Value(struct Struct_Histo *Histo, unsigned int Value)$/;"	f
 Shadow	cdk-5.0-20180306/include/cdk_params.h	/^   bool		Shadow;$/;"	m	struct:CDK_PARAMS
 Shadow	cdk/include/cdk_params.h	/^   bool		Shadow;$/;"	m	struct:CDK_PARAMS
 Shadow	include/cdk_params.h	/^   bool		Shadow;$/;"	m	struct:CDK_PARAMS
+Sheet	c/sheet.c	/^Sheet::Sheet()$/;"	f	class:Sheet
 Sheet	c/sheet.c	/^Sheet::Sheet(WINDOW *Ext_Win)$/;"	f	class:Sheet
+Sheet	c/sheet.c	/^Sheet::Sheet(uint16_t X, uint16_t Y, uint16_t Height, uint16_t Width,char* Tittle)$/;"	f	class:Sheet
 Sheet	h/sheet.h	/^class Sheet{$/;"	c
 Sheet4Panel	c/menu.c	/^Sheet* Sheet4Panel(PANEL* Panel)$/;"	f
 Sheet4Top_Panel	c/menu.c	/^Sheet* Sheet4Top_Panel(void)$/;"	f
 Start_Menu_Menu	c/menu.c	/^void Start_Menu_Menu    (void)$/;"	f
+Struct_Histo	h/histograms.h	/^struct Struct_Histo {$/;"	s
 TAB	cdk-5.0-20180306/include/curdefs.h	82;"	d
 TAB	cdk-5.0-20180306/include/curdefs.h	83;"	d
 TAB	cdk/include/curdefs.h	82;"	d
@@ -2274,10 +2297,12 @@ TitleOf	include/cdk_objs.h	191;"	d
 TitlePosOf	cdk-5.0-20180306/include/cdk_objs.h	192;"	d
 TitlePosOf	cdk/include/cdk_objs.h	192;"	d
 TitlePosOf	include/cdk_objs.h	192;"	d
+Tittle	h/histograms.h	/^            char        Tittle[100];$/;"	m	struct:Struct_Histo
 To_Down	c/sheet.c	/^char  Sheet::To_Down(void)$/;"	f	class:Sheet
 To_Left	c/sheet.c	/^char  Sheet::To_Left(void)$/;"	f	class:Sheet
 To_Right	c/sheet.c	/^char  Sheet::To_Right(void)$/;"	f	class:Sheet
 To_Up	c/sheet.c	/^char     Sheet::To_Up(void)$/;"	f	class:Sheet
+Toogle_Pixel	c/menu.c	/^void Toogle_Pixel(unsigned char Y, unsigned char X)$/;"	f
 Top	c/sheet.c	/^void  Sheet::Top(void)$/;"	f	class:Sheet
 Touch_Win	c/sheet.c	/^void  Sheet::Touch_Win(void)$/;"	f	class:Sheet
 ULChar	cdk-5.0-20180306/include/cdk_objs.h	/^   chtype       ULChar;		\/* lines: upper-left *\/$/;"	m	struct:CDKOBJS
@@ -2328,6 +2353,8 @@ VTChar	include/cdk_objs.h	/^   chtype       VTChar;		\/* lines: vertical *\/$/;"
 VTCharOf	cdk-5.0-20180306/include/cdk_objs.h	201;"	d
 VTCharOf	cdk/include/cdk_objs.h	201;"	d
 VTCharOf	include/cdk_objs.h	201;"	d
+Value	h/histograms.h	/^   uint32_t Value;$/;"	m	class:Histo_Class
+Value	h/histograms.h	/^   unsigned int         Value;$/;"	m	struct:Struct_Histo
 Vel	h/ball.h	/^   signed short int              Vel        ;$/;"	m	class:Ball
 Vertices	c/bed.cpp	/^static float Vertices[][3] = {$/;"	v	file:
 WHOLE_BOX	cdk-5.0-20180306/matrix.c	37;"	d	file:
@@ -2360,10 +2387,15 @@ WidestItem	cdk-5.0-20180306/selection.c	25;"	d	file:
 WidestItem	cdk/radio.c	25;"	d	file:
 WidestItem	cdk/scroll.c	30;"	d	file:
 WidestItem	cdk/selection.c	25;"	d	file:
+Width	h/histograms.h	/^   uint16_t Width;$/;"	m	class:Histo_Class
+Width	h/histograms.h	/^   unsigned short int   Width;$/;"	m	struct:Struct_Histo
+Win	h/histograms.h	/^   WINDOW*              Win;$/;"	m	struct:Struct_Histo
 Win	h/sheet.h	/^   WINDOW*                    Win;$/;"	m	class:Sheet
 WindowOf	cdk-5.0-20180306/include/cdk_objs.h	184;"	d
 WindowOf	cdk/include/cdk_objs.h	184;"	d
 WindowOf	include/cdk_objs.h	184;"	d
+X	h/histograms.h	/^   uint16_t X;$/;"	m	class:Histo_Class
+X	h/histograms.h	/^   unsigned short int   X;$/;"	m	struct:Struct_Histo
 XCursesExit	cdk-5.0-20180306/configure	/^XCursesExit();$/;"	f
 XCursesExit	cdk/configure	/^XCursesExit();$/;"	f
 XCursesProgramName	cdk-5.0-20180306/cli/cdkalphalist.c	/^char *XCursesProgramName = "cdkalphalist";$/;"	v
@@ -2496,10 +2528,12 @@ XextCreateExtension	cdk-5.0-20180306/configure	/^XextCreateExtension ();$/;"	f
 XextCreateExtension	cdk/configure	/^XextCreateExtension ();$/;"	f
 XtAppInitialize	cdk-5.0-20180306/configure	/^XtAppInitialize ();$/;"	f
 XtAppInitialize	cdk/configure	/^XtAppInitialize ();$/;"	f
+Y	h/histograms.h	/^   uint16_t Y;$/;"	m	class:Histo_Class
+Y	h/histograms.h	/^   unsigned short int   Y;$/;"	m	struct:Struct_Histo
 YEAR2INDEX	cdk-5.0-20180306/calendar.c	9;"	d	file:
 YEAR2INDEX	cdk/calendar.c	9;"	d	file:
-_DEP	Makefile	/^_DEP = screen_update.h menu.h sheet.h  ball.h bed.hpp serialmanager.hpp rs232.h$/;"	m
-_OBJ	Makefile	/^_OBJ= main.o screen_update.o menu.o sheet.o ball.o bed.o serialmanager.o rs232.o$/;"	m
+_DEP	Makefile	/^_DEP = screen_update.h menu.h sheet.h  ball.h bed.hpp serialmanager.hpp rs232.h histograms.h$/;"	m
+_OBJ	Makefile	/^_OBJ= main.o screen_update.o menu.o sheet.o ball.o bed.o serialmanager.o rs232.o histograms.o$/;"	m
 _PANEL_DATA	ncurses_programs/panels/panel_hide.c	/^typedef struct _PANEL_DATA {$/;"	s	file:
 _PANEL_DATA	ncurses_programs/panels/panel_resize.c	/^typedef struct _PANEL_DATA {$/;"	s	file:
 _WIN_struct	ncurses_programs/basics/other_border.c	/^typedef struct _WIN_struct {$/;"	s	file:

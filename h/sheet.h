@@ -4,24 +4,26 @@
 #include <panel.h>
 
 
-#define MIN_WIDTH  2
-#define MIN_HEIGHT 2
+#define MIN_WIDTH  4
+#define MIN_HEIGHT 4
 
 //---------------------------------------------------------------------------------------------------
 class Sheet{
+   public:
+   static Sheet* Sheet4Top_Panel(void);
+   static Sheet* Sheet4Panel(PANEL* Panel);
+protected:
 public:
-   static Sheet*              Inst_Buf[ 10  ];
-   static unsigned short int  Inst_Count;
-   static unsigned short int  Create_New_Sheet_Inst(WINDOW* Win,const char* Name);
-
+   Sheet                ( WINDOW *Ext_Win ); //con arfs
+   Sheet(uint16_t X, uint16_t Y, uint16_t Height, uint16_t Width,const char* Tittle);
+   Sheet                (                 ); //sin args
    WINDOW*                    Win;
    PANEL*                     Panel;
    char                       Name    [ 100 ];
 
-   Sheet          (WINDOW *Ext_Win);
    void                 Redraw_Box             ( void                                               );
    void                 Hide_Box               ( void                                               );
-   void                 Set_Name               ( char* Sheet_Name                                   );
+   void                 Set_Name               ( const char* Sheet_Name                                   );
    void                 Set_Size               ( unsigned short int Height,unsigned short int Width );
    unsigned short int   Get_Height             ( void                                               );
    unsigned short int   Get_Width              ( void                                               );
@@ -41,6 +43,7 @@ public:
    void                 Bottom                 ( void                                               );
    void                 Select                 ( void                                               );
    void                 Deselect               ( void                                               );
+   void Set_Panel_User_Pointer();
    void                 Set_Panel_User_Pointer ( Sheet* Ptr                                         );
    void                 Touch_Win              ( void                                               );
    unsigned short int   Max_Y                  ( void                                               );

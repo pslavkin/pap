@@ -39,7 +39,7 @@ void* Ball::Move(void* Arg1)
    }
 
 }
-Ball::Ball():Sheet(NULL)
+Ball::Ball():Sheet()
 {
    Vel=0;
    pthread_create ( &Pt_Ball_Rti, NULL, Move, NULL );

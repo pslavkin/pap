@@ -12,22 +12,54 @@
 #include "serialmanager.hpp"
 #include "histograms.h"
 
+void Init_Curses (void);
+
+Histo_Class* H0;
+Histo_Class* H1;
+Histo_Class* H2;
+Histo_Class* H3;
 
 int main(int argc, char **argv)
 {
-   Init_Menu            (           );
-   Init_Screen_Update   (           );
-   Params_Parser        ( argc,argv );
-   Ball::Init           (           );
-   //Serial_Manager::Init (           );
-   Init_Histograms      (           );
-   Init_Graph();
-      Bed(&argc,argv);
+   Init_Curses        (            );
+//   Init_Menu          (            );
+   Init_Screen_Update (            );
+   Params_Parser      ( argc,argv  );
+//   Ball::Init         (            );
+//   // Serial_Manager::Init (           );
+   Init_Graph         (            );
+//   H0=new Histo_Class(10,20,getmaxy(stdscr)-10-2,1,(char*)"Z",10,5);
+   //Bed                ( &argc,argv );
    for(;;)
+      sleep(10);
       ;
    return 0;
 }
 
+void Init_Super_Colours(unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count)
+{
+   unsigned short int i,Bg,Pair;
+   Pair=MIN_COLOUR_PAIR+From; // los primeros 64 se los regalo a CDK en su llamada a initCDKColor
+   Bg=16+From;                // cdk usa solo 8 colores... me agarro el resto (parece que tambien usa el 15...raaaro)
+   for(i=1;i<Count;i++)    {  // no me puedo pasar de 255 pares... no da mas la funcion PAIR_NUMBER.. si no fuera por eso podria seguir...
+      init_pair (Pair,255,Bg);
+      init_color(Bg,(i*1000/Count)*R,(i*1000/Count)*G,(i*1000/Count)*B);
+      Bg++;
+      Pair++;
+   }
+}
+void Init_Curses (void)
+{
+   initscr      (              );
+   cbreak       (              );
+   noecho       (              );
+   keypad       ( stdscr, TRUE );
+   nodelay      ( stdscr,true  );
+   initCDKColor (              );
+   //start_color        (                                    );
+   Init_Super_Colours ( 0,0,1,  0,192                      );
+   curs_set           ( 0                                  );
+}
 //----------------------------------------------------------------------------------------------------
 void Print_Usage(FILE *stream, int exit_code)
 {

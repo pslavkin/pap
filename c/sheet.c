@@ -10,31 +10,23 @@
 #include "menu.h"
 
 ////----------------------------------------------------------------------------------------------------
-unsigned short int   Sheet::Inst_Count=0;
-Sheet*               Sheet::Inst_Buf[10]={NULL};
-
-unsigned short int Sheet::Create_New_Sheet_Inst(WINDOW* Win,const char* Name)
-{
-   unsigned short int i;
-   for(i=0;i<(sizeof(Inst_Buf)/sizeof(Sheet*));i++)
-      if(Inst_Buf[i]==NULL) {
-         char Name_Def[100];
-         sprintf(Name_Def,"Instancia %d",i);
-         Inst_Buf[i]=new Sheet(Win);
-         Inst_Buf[i]->Set_Panel_User_Pointer(Inst_Buf[i]);
-         Inst_Buf[i]->Set_Name(Name==NULL?Name_Def:(char*)Name);
-         Inst_Buf[i]->Set_Size   ( 10,40 );
-         Inst_Buf[i]->Set_Pos    ( 0,80  );
-         Inst_Buf[i]->Redraw_Box (       );
-         break;
-      }
-   return i;
-}
-
 Sheet::Sheet(WINDOW *Ext_Win)
 {
-   Win   = Ext_Win != NULL?Ext_Win:newwin ( 1, 1, 0,0 );
-   Panel = new_panel                      ( Win       );
+   Win   = Ext_Win;
+   Panel = new_panel ( Win );
+}
+Sheet::Sheet(uint16_t Y, uint16_t X, uint16_t Height, uint16_t Width,const char* Tittle)
+{
+   Win   = newwin         ( Height ,Width ,Y ,X );
+   Panel = new_panel      ( Win        );
+   Set_Panel_User_Pointer (            );
+   Set_Name               ( Tittle     );
+   Redraw_Box             (            );
+}
+Sheet::Sheet()
+{
+   Win   = newwin    ( 1 ,1 ,0 ,0 );
+   Panel = new_panel ( Win       );
 }
 void  Sheet::Redraw_Box(void)
 {
@@ -42,23 +34,21 @@ void  Sheet::Redraw_Box(void)
    box           ( Win ,0 ,0           ) ;
    wattroff      ( Win ,COLOR_PAIR(100 ));
    wattron       ( Win ,COLOR_PAIR(180 ));
-   mvwprintw     ( Win ,0 ,5 ,Name     ) ;
+   if(strlen(Name)+2 <= getmaxx(Win))
+      mvwprintw ( Win ,0 ,1 ,Name );
    wattroff      ( Win ,COLOR_PAIR(180 ));
-   update_panels (                     ) ;
 }
 void  Sheet::Hide_Box(void)
 {
    wborder       ( Win ,' ' ,' ' ,' ' ,' ' ,' ' ,' ' ,' ' ,' ' );
-   update_panels (                                             );
 }
-void  Sheet::Set_Name(char* Sheet_Name)
+void  Sheet::Set_Name(const char* Sheet_Name)
 {
    strcpy ( Name,Sheet_Name );
 }
 void  Sheet::Set_Size(unsigned short int Height,unsigned short int Width)
 {
    wresize       ( Win,Height,Width );
-   update_panels (                  );
 }
 unsigned short int Sheet::Get_Height(void)
 {
@@ -111,7 +101,6 @@ void  Sheet::Inc_Width(void)
          wresize ( Win,getmaxy(Win ),getmaxx(Win)+1);
    }
    Redraw_Box    ( );
-   update_panels ( );
 }
 void  Sheet::Dec_Width(void)
 {
@@ -121,7 +110,6 @@ void  Sheet::Dec_Width(void)
    }
    Redraw_Box            ( );
    Main_Sheet->Touch_Win ( ); // sino quedan residuos del box
-   update_panels         ( );
 }
 void  Sheet::Inc_Height(void)
 {
@@ -130,7 +118,6 @@ void  Sheet::Inc_Height(void)
          wresize ( Win,getmaxy(Win )+1,getmaxx(Win));
    }
    Redraw_Box    ( );
-   update_panels ( );
 }
 void  Sheet::Dec_Height(void)
 {
@@ -140,7 +127,6 @@ void  Sheet::Dec_Height(void)
    }
    Redraw_Box            ( );
    Main_Sheet->Touch_Win ( ); // sino quedan residuos del box
-   update_panels         ( );
 }
 void  Sheet::Set_Pos(unsigned short int Y,unsigned short int X)
 {
@@ -149,32 +135,26 @@ void  Sheet::Set_Pos(unsigned short int Y,unsigned short int X)
 void  Sheet::Hide(void)
 {
    hide_panel    ( Panel );
-   update_panels (       );
 }
 void  Sheet::Unhide(void)
 {
    show_panel    ( Panel );
-   update_panels (       );
 }
 void  Sheet::Top(void)
 {
    top_panel     ( Panel );
-   update_panels (       );
 }
 void  Sheet::Bottom(void)
 {
    bottom_panel  ( Panel );
-   update_panels (       );
 }
 void  Sheet::Select(void)
 {
    mvwaddch      ( Win,1,1,'*'|A_BOLD );
-   update_panels (                    );
 }
 void  Sheet::Deselect(void)
 {
    mvwaddch      ( Win,1,1,' '|A_NORMAL );
-   update_panels (                      );
 }
 void  Sheet::Full_Screen(void)
 {
@@ -182,7 +162,10 @@ void  Sheet::Full_Screen(void)
    move_panel(Panel,Main_Sheet->Beg_Y(),Main_Sheet->Beg_X());
    wresize(panel_window(Panel),Main_Sheet->Max_Y(),Main_Sheet->Max_X());
    Sheet::Redraw_Box ( );
-   update_panels     ( );
+}
+void Sheet::Set_Panel_User_Pointer()
+{
+   set_panel_userptr ( Panel,this);
 }
 void Sheet::Set_Panel_User_Pointer(Sheet* Ptr)
 {
@@ -196,12 +179,10 @@ Sheet::~Sheet(void)
 void  Sheet::Move_Panel(PANEL* Panel,unsigned short int Y,unsigned short int X)
 {
    move_panel    ( Panel,Y,X );
-   update_panels (           );
 }
 void  Sheet::Touch_Win(void)
 {
    touchwin      ( Win );
-   update_panels (     );
 }
 unsigned short int   Sheet::Max_Y(void)
 {
@@ -218,5 +199,14 @@ unsigned short int   Sheet::Beg_Y(void)
 unsigned short int   Sheet::Beg_X(void)
 {
    return getbegx ( Win );
+}
+
+Sheet* Sheet::Sheet4Top_Panel(void)
+{
+   return Sheet::Sheet4Panel ( panel_below(0 ));
+}
+Sheet* Sheet::Sheet4Panel(PANEL* Panel)
+{
+   return ( Sheet* )(panel_userptr(Panel));
 }
 

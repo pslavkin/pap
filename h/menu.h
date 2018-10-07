@@ -7,6 +7,15 @@
 #define MIN_COLOUR_PAIR 65
 #define MAX_COLOUR_PAIR 255
 
+
+class Menu_Class:Sheet {
+
+   public:
+   protected:
+   private:
+};
+
+
 extern Sheet*           Main_Sheet                                                                                                                    ; // global
 extern void             Init_Menu          ( void                                                                                                    );
 extern void             Init_Super_Colours ( unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count                 );
@@ -17,8 +26,6 @@ extern unsigned char    Set_Entry          ( PANEL* Panel,const char* Title,cons
 extern char*            Set_File_Select    ( PANEL* Panel                                                                                            );
 extern void             Set_Slider         ( PANEL* Panel,unsigned int* Sel,unsigned int Min,unsigned int Max,unsigned int Fine_Step                 );
 extern void             Set_Menu           ( PANEL* Panel,const char* Menu_List[][MAX_SUB_ITEMS],unsigned char Items,int* Submenu_Size,int *Menu_Loc );
-extern Sheet*           Sheet4Panel        ( PANEL* Panel                                                                                            );
-extern Sheet*           Sheet4Top_Panel    ( void                                                                                                    );
 
 
 void Init_Graph(void);

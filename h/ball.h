@@ -1,7 +1,7 @@
 #ifndef BALL
 #define BALL
 
-class    Ball:Sheet
+class    Ball:public Sheet
 {
    Ball  (      );
    ~Ball ( void );

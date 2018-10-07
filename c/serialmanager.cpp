@@ -60,7 +60,7 @@ void* Serial_Manager::Rti(void* Arg1)
       }
 }
 
-Serial_Manager::Serial_Manager():Sheet(NULL)
+Serial_Manager::Serial_Manager():Sheet()
 {
    pthread_create ( &Pt_Serial_Manager_Rti, NULL, Rti, NULL );
 }
