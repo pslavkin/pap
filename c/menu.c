@@ -14,7 +14,7 @@ Sheet*         Main_Sheet; // global porque lo usan el resto de las ventanitas p
 //----------------------------------------------------------------------------------------------------
 void Init_Menu (void)
 {
-   Main_Sheet=new Sheet ( 0,10,20,80,"menuu" );
+   Main_Sheet=new Sheet ( 1, 5,30,80,"menuu" );
    pthread_create       ( &PT_Menu_Rti, NULL, Menu_Rti, NULL );
 }
 //----------------------------------------------------------------------------------------------------

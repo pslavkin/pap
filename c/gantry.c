@@ -1,5 +1,5 @@
 #include <cdk/cdk.h>
-#include <pthread.h>
+#include <thread>
 #include <panel.h>
 #include "menu.h"
 #include "sheet.h"
@@ -27,14 +27,23 @@ void Gantry_Class::Toogle_Pixel(unsigned char Y, unsigned char X)
    mvwaddch ( Win, Last_Y[Fade-1]=Y,Last_X[Fade-1]=X, 'O' | COLOR_PAIR(2 ));
 }
 
-Gantry_Class::Gantry_Class(Sheet* Parent,uint16_t Y,uint16_t X,uint16_t Height, uint16_t Width,const char* Tittle)
-             :Sheet(Parent,Y,X,Height+2,Width+2,Tittle)
+Gantry_Class::Gantry_Class(Sheet* Parent,uint16_t Y,uint16_t X,uint16_t Height, uint16_t Width,const char* Tittle)\
+                        :Sheet(Parent,Y,X,Height+2,Width+2,Tittle)
 {
    Fade=5;
    Histo_Class* H=new Histo_Class(this,0,0,10-2,3,(char*)"Z",10,5);
+   TRti = std::thread();
+}
+void Gantry_Class::Start_Rti(void)
+{
+   TRti = std::thread(&Gantry_Class::Rti,this);
 }
 void Gantry_Class::Rti(void)
 {
-   Toogle_Pixel(rand()%(getmaxy(Win)-2)+1,rand()%(getmaxx(Win)-2)+1);
+   struct timespec req={0, 50000000};
+   while(1)  {
+      nanosleep ( &req,&req );
+      Toogle_Pixel(rand()%(getmaxy(Win)-2)+1,rand()%(getmaxx(Win)-2)+1);
+  }
 }
 

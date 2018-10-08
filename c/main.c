@@ -15,11 +15,7 @@
 
 void Init_Curses (void);
 
-Histo_Class* H0;
-Histo_Class* H1;
-Histo_Class* H2;
-Histo_Class* H3;
-Gantry_Class* G;
+Gantry_Class* G,*H;
 
 int main(int argc, char **argv)
 {
@@ -27,11 +23,17 @@ int main(int argc, char **argv)
    Init_Menu          (            );
    Init_Screen_Update (            );
    Params_Parser      ( argc,argv  );
-   G=new Gantry_Class(Main_Sheet,10,10,10,10,"gantry");
+//   G=new Gantry_Class();
+   G=new Gantry_Class(Main_Sheet,10,10,10,10,"gantry1");
+   H=new Gantry_Class(Main_Sheet,20,20,10,10,"gantry2");
 //   Ball::Init         (            );
 //   // Serial_Manager::Init (           );
 //   H0=new Histo_Class(10,20,getmaxy(stdscr)-10-2,1,(char*)"Z",10,5);
    //Bed                ( &argc,argv );
+      sleep(2);
+      G->Start_Rti();
+      sleep(2);
+      H->Start_Rti();
    for(;;)
       sleep(10);
       ;
