@@ -6,6 +6,7 @@
 #include "screen_update.h"
 #include "menu.h"
 #include "sheet.h"
+#include "gantry.h"
 #include "main.h"
 #include "ball.h"
 #include "bed.hpp"
@@ -18,6 +19,7 @@ Histo_Class* H0;
 Histo_Class* H1;
 Histo_Class* H2;
 Histo_Class* H3;
+Gantry_Class* G;
 
 int main(int argc, char **argv)
 {
@@ -25,9 +27,9 @@ int main(int argc, char **argv)
    Init_Menu          (            );
    Init_Screen_Update (            );
    Params_Parser      ( argc,argv  );
+   G=new Gantry_Class(Main_Sheet,10,10,10,10,"gantry");
 //   Ball::Init         (            );
 //   // Serial_Manager::Init (           );
-   Init_Graph         (            );
 //   H0=new Histo_Class(10,20,getmaxy(stdscr)-10-2,1,(char*)"Z",10,5);
    //Bed                ( &argc,argv );
    for(;;)
@@ -50,7 +52,7 @@ void Init_Super_Colours(unsigned char R,unsigned char G,unsigned char B,unsigned
 }
 void Init_Curses (void)
 {
-   initscr      (              );
+   initscr ( );
    cbreak       (              );
    noecho       (              );
    keypad       ( stdscr, TRUE );

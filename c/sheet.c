@@ -9,24 +9,52 @@
 #include "sheet.h"
 #include "menu.h"
 
-////----------------------------------------------------------------------------------------------------
 Sheet::Sheet(WINDOW *Ext_Win)
 {
-   Win   = Ext_Win;
-   Panel = new_panel ( Win );
+   Win          = Ext_Win;
+   Panel        = new_panel ( Win );
+   Parent_Sheet = Main_Sheet;
 }
 Sheet::Sheet(uint16_t Y, uint16_t X, uint16_t Height, uint16_t Width,const char* Tittle)
 {
-   Win   = newwin         ( Height ,Width ,Y ,X );
-   Panel = new_panel      ( Win        );
-   Set_Panel_User_Pointer (            );
-   Set_Name               ( Tittle     );
-   Redraw_Box             (            );
+   Win          = newwin    ( Height ,Width ,Y ,X );
+   Panel        = new_panel ( Win                 );
+   Parent_Sheet = Main_Sheet                       ;
+   Set_Panel_User_Pointer (        );
+   Set_Name               ( Tittle );
+   Redraw_Box             (        );
+}
+Sheet::Sheet(WINDOW* W,uint16_t Y, uint16_t X, uint16_t Height, uint16_t Width,const char* Tittle)
+{
+   Win          = W;
+   Panel        = new_panel ( Win                 );
+   Parent_Sheet = Main_Sheet                       ;
+   Set_Panel_User_Pointer (        );
+   Set_Name               ( Tittle );
+   Redraw_Box             (        );
+}
+Sheet::Sheet(Sheet* Parent,uint16_t Y, uint16_t X, uint16_t Height, uint16_t Width,const char* Tittle)
+{
+   if((Y+Height) > Parent->Max_Y())
+         Height=Parent->Max_Y()-Y;
+   if((X+Width) > Parent->Max_X())
+         Width=Parent->Max_X()-X;
+   Win          = newwin    ( Height ,Width ,Parent->Beg_Y()+Y ,Parent->Beg_X()+X );
+   Panel        = new_panel ( Win                 );
+   Parent_Sheet = Parent;
+   Set_Panel_User_Pointer (        );
+   Set_Name               ( Tittle );
+   Redraw_Box             (        );
 }
 Sheet::Sheet()
 {
-   Win   = newwin    ( 1 ,1 ,0 ,0 );
-   Panel = new_panel ( Win       );
+   Win          = newwin    ( 1 ,1 ,0 ,0 );
+   Panel        = new_panel ( Win       );
+   Parent_Sheet = Main_Sheet;
+}
+void  Sheet::Set_Parent_Sheet(Sheet* P)
+{
+   Parent_Sheet=P;
 }
 void  Sheet::Redraw_Box(void)
 {
@@ -60,7 +88,7 @@ unsigned short int Sheet::Get_Width(void)
 }
 char     Sheet::To_Up(void)
 {
-   if ( (getbegy(Win )-1)>=Main_Sheet->Beg_Y()) {
+   if ( (getbegy(Win )-1)>=Parent_Sheet->Beg_Y()) {
       Sheet::Move_Panel ( Panel,getbegy(Win )-1,getbegx(Win));
       return 0;
    }
@@ -69,7 +97,7 @@ char     Sheet::To_Up(void)
 }
 char  Sheet::To_Down(void)
 {
-   if ( (getbegy(Win )+getmaxy(Win)+1)<=(Main_Sheet->Beg_Y()+Main_Sheet->Max_Y())) {
+   if ( (getbegy(Win )+getmaxy(Win)+1)<=(Parent_Sheet->Beg_Y()+Parent_Sheet->Max_Y())) {
       Sheet::Move_Panel ( Panel,getbegy(Win )+1,getbegx(Win));
       return 0;
    }
@@ -78,7 +106,7 @@ char  Sheet::To_Down(void)
 }
 char  Sheet::To_Right(void)
 {
-   if ( (getbegx(Win )+getmaxx(Win)+1)<=(Main_Sheet->Beg_X()+Main_Sheet->Max_X())) {
+   if ( (getbegx(Win )+getmaxx(Win)+1)<=(Parent_Sheet->Beg_X()+Parent_Sheet->Max_X())) {
       Sheet::Move_Panel ( Panel,getbegy(Win ),getbegx(Win)+1);
       return 0;
    }
@@ -87,7 +115,7 @@ char  Sheet::To_Right(void)
 }
 char  Sheet::To_Left(void)
 {
-   if ( (getbegx(Win )-1)>=Main_Sheet->Beg_X()) {
+   if ( (getbegx(Win )-1)>=Parent_Sheet->Beg_X()) {
       Sheet::Move_Panel ( Panel,getbegy(Win ),getbegx(Win)-1);
       return 0;
    }
@@ -96,7 +124,7 @@ char  Sheet::To_Left(void)
 }
 void  Sheet::Inc_Width(void)
 {
-   if ( (getmaxx(Win )+getbegx(Win)+1)<=Main_Sheet->Max_X()) {
+   if ( (getmaxx(Win )+getbegx(Win)+1)<=Parent_Sheet->Max_X()) {
          wclear  ( Win             )                ;
          wresize ( Win,getmaxy(Win ),getmaxx(Win)+1);
    }
@@ -109,11 +137,11 @@ void  Sheet::Dec_Width(void)
       wresize ( Win,getmaxy(Win ),getmaxx(Win)-1);
    }
    Redraw_Box            ( );
-   Main_Sheet->Touch_Win ( ); // sino quedan residuos del box
+   Parent_Sheet->Touch_Win ( ); // sino quedan residuos del box
 }
 void  Sheet::Inc_Height(void)
 {
-   if ( (getmaxy(Win )+getbegy(Win)+1)<=Main_Sheet->Max_Y()) {
+   if ( (getmaxy(Win )+getbegy(Win)+1)<=Parent_Sheet->Max_Y()) {
          wclear  ( Win             )                ;
          wresize ( Win,getmaxy(Win )+1,getmaxx(Win));
    }
@@ -126,7 +154,7 @@ void  Sheet::Dec_Height(void)
          wresize ( Win,getmaxy(Win )-1,getmaxx(Win));
    }
    Redraw_Box            ( );
-   Main_Sheet->Touch_Win ( ); // sino quedan residuos del box
+   Parent_Sheet->Touch_Win ( ); // sino quedan residuos del box
 }
 void  Sheet::Set_Pos(unsigned short int Y,unsigned short int X)
 {
@@ -159,8 +187,8 @@ void  Sheet::Deselect(void)
 void  Sheet::Full_Screen(void)
 {
    wclear     ( panel_window(Panel       ))                                        ;
-   move_panel ( Panel,Main_Sheet->Beg_Y( ),Main_Sheet->Beg_X())                    ;
-   wresize    ( panel_window(Panel       ),Main_Sheet->Max_Y(),Main_Sheet->Max_X());
+   move_panel ( Panel,Parent_Sheet->Beg_Y( ),Parent_Sheet->Beg_X())                    ;
+   wresize    ( panel_window(Panel       ),Parent_Sheet->Max_Y(),Parent_Sheet->Max_X());
    Sheet::Redraw_Box ( );
 }
 void Sheet::Set_Panel_User_Pointer()

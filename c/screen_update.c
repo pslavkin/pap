@@ -4,6 +4,8 @@
 #include <pthread.h>
 #include "screen_update.h"
 #include "sheet.h"
+#include "gantry.h"
+#include "main.h"
 //----------------------------------------------------------------------------------------------------
 pthread_t                  PT_Screen_Update_Rti    ;
 static struct timespec     Rti_Delay= { 0, 5000000}; // 100 milis
@@ -20,6 +22,7 @@ void* Screen_Update_Rti(void* Arg1)
       update_panels (           );
       Key=getch    (); // ojo que esta humilde funcion llama a wrefresh!!
       doupdate      (           ); // por eso tengo que hacer todo junto con el doupdate 
+      G->Rti();
       switch(Key) {
          case KEY_F1:
          case ' ':

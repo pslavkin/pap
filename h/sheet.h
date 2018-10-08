@@ -15,12 +15,16 @@ class Sheet{
 protected:
 public:
    Sheet                ( WINDOW *Ext_Win ); //con arfs
-   Sheet(uint16_t X, uint16_t Y, uint16_t Height, uint16_t Width,const char* Tittle);
+   Sheet(            uint16_t Y ,uint16_t X ,uint16_t Height ,uint16_t Width ,const char* Tittle);
+   Sheet(WINDOW* W  ,uint16_t Y ,uint16_t X ,uint16_t Height ,uint16_t Width ,const char* Tittle);
+   Sheet(Sheet* Parent,uint16_t Y, uint16_t X, uint16_t Height, uint16_t Width,const char* Tittle);
    Sheet                (                 ); //sin args
    WINDOW*                    Win;
+   Sheet*                     Parent_Sheet; //si la ventana esta dentro de otra
    PANEL*                     Panel;
    char                       Name    [ 100 ];
 
+   void                 Set_Parent_Sheet       (Sheet* P);
    void                 Redraw_Box             ( void                                               );
    void                 Hide_Box               ( void                                               );
    void                 Set_Name               ( const char* Sheet_Name                                   );

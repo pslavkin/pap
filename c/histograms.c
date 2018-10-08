@@ -13,9 +13,9 @@
 #include "histograms.h"
 
 //----------------------------------------------------------------------------------------------------
-Histo_Class::Histo_Class(uint16_t Y,uint16_t X,uint16_t Height, uint16_t Width,char* Tittle,\
+Histo_Class::Histo_Class(Sheet* Parent,uint16_t Y,uint16_t X,uint16_t Height, uint16_t Width,char* Tittle,\
           uint32_t Max_Value, uint32_t Value) \
-         : Sheet(Y,X,Height+2,Width+2,Tittle)
+         : Sheet(Parent,Y,X,Height+2,Width+2,Tittle)
 {
    this->Y         = Y;
    this->X         = X;

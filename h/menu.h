@@ -27,8 +27,5 @@ extern char*            Set_File_Select    ( PANEL* Panel                       
 extern void             Set_Slider         ( PANEL* Panel,unsigned int* Sel,unsigned int Min,unsigned int Max,unsigned int Fine_Step                 );
 extern void             Set_Menu           ( PANEL* Panel,const char* Menu_List[][MAX_SUB_ITEMS],unsigned char Items,int* Submenu_Size,int *Menu_Loc );
 
-
-void Init_Graph(void);
-
 #endif
 
