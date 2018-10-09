@@ -6,6 +6,7 @@
 #include <pthread.h>
 #include <string.h>
 #include "screen_update.h"
+#include "dim.h"
 #include "sheet.h"
 #include "rs232.h"
 #include "menu.h"

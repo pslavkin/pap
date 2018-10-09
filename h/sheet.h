@@ -1,8 +1,6 @@
 #ifndef SHEET
 #define SHEET
 
-#include <panel.h>
-
 
 #define MIN_WIDTH  4
 #define MIN_HEIGHT 4
@@ -14,15 +12,17 @@ class Sheet{
  static  Sheet* Sheet4Panel     ( PANEL* Panel );
 protected:
 public:
-   Sheet                ( WINDOW *Ext_Win ); //con arfs
-   Sheet(            uint16_t Y ,uint16_t X ,uint16_t Height ,uint16_t Width ,const char* Tittle);
-   Sheet(WINDOW* W  ,uint16_t Y ,uint16_t X ,uint16_t Height ,uint16_t Width ,const char* Tittle);
-   Sheet(Sheet* Parent,uint16_t Y, uint16_t X, uint16_t Height, uint16_t Width,const char* Tittle);
+   Sheet ( WINDOW *Ext_Win                                                                                 ); // con arfs
+   Sheet ( uint16_t Y    ,uint16_t X ,uint16_t Height ,uint16_t Width  ,const char* Tittle                 );
+   Sheet(WINDOW* W,Dim D);
+   Sheet ( Sheet* Parent ,uint16_t Y ,uint16_t X      ,uint16_t Height ,uint16_t Width ,const char* Tittle );
    Sheet                (                 ); //sin args
+   Sheet (Sheet* Parent,Dim D);
    WINDOW*                    Win;
-   Sheet*                     Parent_Sheet; //si la ventana esta dentro de otra
+   Sheet*                     Parent_Sheet;
    PANEL*                     Panel;
    char                       Name    [ 100 ];
+   Dim Dims;
 
    void                 Set_Parent_Sheet       (Sheet* P);
    void                 Redraw_Box             ( void                                               );
@@ -47,7 +47,7 @@ public:
    void                 Bottom                 ( void                                               );
    void                 Select                 ( void                                               );
    void                 Deselect               ( void                                               );
-   void Set_Panel_User_Pointer();
+   void                 Set_Panel_User_Pointer();
    void                 Set_Panel_User_Pointer ( Sheet* Ptr                                         );
    void                 Touch_Win              ( void                                               );
    unsigned short int   Max_Y                  ( void                                               );

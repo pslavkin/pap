@@ -5,8 +5,9 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <string.h>
-#include "screen_update.h"
+#include "dim.h"
 #include "sheet.h"
+#include "screen_update.h"
 #include "menu.h"
 #include "rs232.h"
 #include "serialmanager.hpp"

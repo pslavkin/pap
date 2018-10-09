@@ -6,6 +6,7 @@
 #include <panel.h>
 #include <pthread.h>
 
+#include "dim.h"
 #include "sheet.h"
 #include "screen_update.h"
 #include "serialmanager.hpp"

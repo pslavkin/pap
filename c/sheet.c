@@ -6,32 +6,36 @@
 #include <pthread.h>
 #include <string.h>
 #include "screen_update.h"
+#include "dim.h"
 #include "sheet.h"
 #include "menu.h"
 
-Sheet::Sheet(WINDOW *Ext_Win)
+Sheet::Sheet(Sheet* Parent,Dim D)
 {
-   Win          = Ext_Win;
-   Panel        = new_panel ( Win );
-   Parent_Sheet = Main_Sheet;
-}
-Sheet::Sheet(uint16_t Y, uint16_t X, uint16_t Height, uint16_t Width,const char* Tittle)
-{
-   Win          = newwin    ( Height ,Width ,Y ,X );
+   if(D.Y>=Parent->Dims.H)          D.Y=Parent->Dims.H;
+   if((D.Y+D.H) >= Parent->Dims.H)  D.H=Parent->Dims.H-D.Y;
+   if(D.X>=Parent->Dims.W)          D.X=Parent->Dims.W;
+   if((D.X+D.W) >= Parent->Dims.W)  D.W=Parent->Dims.W-D.X;
+   Win          = newwin    ( D.H ,D.W,Parent->Beg_Y()+D.Y ,Parent->Beg_X()+D.X );
    Panel        = new_panel ( Win                 );
-   Parent_Sheet = Main_Sheet                       ;
+   this->Dims=D;
+   Parent_Sheet = Parent;
    Set_Panel_User_Pointer (        );
-   Set_Name               ( Tittle );
+   Set_Name               ( D.Name );
    Redraw_Box             (        );
 }
-Sheet::Sheet(WINDOW* W,uint16_t Y, uint16_t X, uint16_t Height, uint16_t Width,const char* Tittle)
+Sheet::Sheet(WINDOW* W,Dim D)
 {
    Win          = W;
-   Panel        = new_panel ( Win                 );
-   Parent_Sheet = Main_Sheet                       ;
-   Set_Panel_User_Pointer (        );
-   Set_Name               ( Tittle );
-   Redraw_Box             (        );
+   Panel        = new_panel ( Win );
+   Parent_Sheet = this                ;
+   Set_Panel_User_Pointer (               );
+   Set_Name               ( D.Name        );
+   this->Dims=D;
+   wresize                ( Win,D.H,D.W   );
+   move_panel             ( Panel,D.Y,D.X );
+   Redraw_Box             (               );
+
 }
 Sheet::Sheet(Sheet* Parent,uint16_t Y, uint16_t X, uint16_t Height, uint16_t Width,const char* Tittle)
 {
@@ -88,8 +92,9 @@ unsigned short int Sheet::Get_Width(void)
 }
 char     Sheet::To_Up(void)
 {
-   if ( (getbegy(Win )-1)>=Parent_Sheet->Beg_Y()) {
-      Sheet::Move_Panel ( Panel,getbegy(Win )-1,getbegx(Win));
+   if ( Dims.Y>0) {
+      Dims.Y--;
+      move_panel ( Panel,Parent_Sheet->Beg_Y()+Dims.Y,Parent_Sheet->Beg_X()+Dims.X);
       return 0;
    }
    else
@@ -97,8 +102,9 @@ char     Sheet::To_Up(void)
 }
 char  Sheet::To_Down(void)
 {
-   if ( (getbegy(Win )+getmaxy(Win)+1)<=(Parent_Sheet->Beg_Y()+Parent_Sheet->Max_Y())) {
-      Sheet::Move_Panel ( Panel,getbegy(Win )+1,getbegx(Win));
+   if ( (Dims.Y+Dims.H)<Parent_Sheet->Dims.H) {
+      Dims.Y++;
+      move_panel ( Panel,Parent_Sheet->Beg_Y()+Dims.Y,Parent_Sheet->Beg_X()+Dims.X);
       return 0;
    }
    else
@@ -106,8 +112,9 @@ char  Sheet::To_Down(void)
 }
 char  Sheet::To_Right(void)
 {
-   if ( (getbegx(Win )+getmaxx(Win)+1)<=(Parent_Sheet->Beg_X()+Parent_Sheet->Max_X())) {
-      Sheet::Move_Panel ( Panel,getbegy(Win ),getbegx(Win)+1);
+   if ((Dims.X+Dims.W)<Parent_Sheet->Dims.W) {
+      Dims.X++;
+      move_panel ( Panel,Parent_Sheet->Beg_Y()+Dims.Y,Parent_Sheet->Beg_X()+Dims.X);
       return 0;
    }
    else
@@ -115,8 +122,9 @@ char  Sheet::To_Right(void)
 }
 char  Sheet::To_Left(void)
 {
-   if ( (getbegx(Win )-1)>=Parent_Sheet->Beg_X()) {
-      Sheet::Move_Panel ( Panel,getbegy(Win ),getbegx(Win)-1);
+   if ( Dims.X>0) {
+      Dims.X--;
+      move_panel ( Panel,Parent_Sheet->Beg_Y()+Dims.Y,Parent_Sheet->Beg_X()+Dims.X);
       return 0;
    }
    else

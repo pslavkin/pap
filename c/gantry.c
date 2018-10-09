@@ -1,8 +1,9 @@
 #include <cdk/cdk.h>
 #include <thread>
 #include <panel.h>
-#include "menu.h"
+#include "dim.h"
 #include "sheet.h"
+#include "menu.h"
 #include "histograms.h"
 #include "gantry.h"
 
@@ -27,8 +28,7 @@ void Gantry_Class::Toogle_Pixel(unsigned char Y, unsigned char X)
    mvwaddch ( Win, Last_Y[Fade-1]=Y,Last_X[Fade-1]=X, 'O' | COLOR_PAIR(2 ));
 }
 
-Gantry_Class::Gantry_Class(Sheet* Parent,uint16_t Y,uint16_t X,uint16_t Height, uint16_t Width,const char* Tittle)\
-                        :Sheet(Parent,Y,X,Height+2,Width+2,Tittle)
+Gantry_Class::Gantry_Class(Sheet* Parent,Dim D) :Sheet(Parent,D)
 {
    Fade=5;
    Histo_Class* H=new Histo_Class(this,0,0,10-2,3,(char*)"Z",10,5);

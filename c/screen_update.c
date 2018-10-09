@@ -3,6 +3,7 @@
 #include <panel.h>
 #include <pthread.h>
 #include "screen_update.h"
+#include "dim.h"
 #include "sheet.h"
 #include "gantry.h"
 #include "main.h"
@@ -22,7 +23,6 @@ void* Screen_Update_Rti(void* Arg1)
       update_panels (           );
       Key=getch    (); // ojo que esta humilde funcion llama a wrefresh!!
       doupdate      (           ); // por eso tengo que hacer todo junto con el doupdate 
-//      G->Rti(NULL);
       switch(Key) {
          case KEY_F1:
          case ' ':

@@ -1,17 +1,18 @@
 #include <cdk/cdk.h>
+#include <panel.h>
 #include <ncurses.h>
 #include <string.h>
-#include <pthread.h>
 
 #include "screen_update.h"
-#include "menu.h"
+#include "dim.h"
 #include "sheet.h"
+#include "menu.h"
 #include "gantry.h"
 #include "main.h"
-#include "ball.h"
 #include "bed.hpp"
 #include "serialmanager.hpp"
 #include "histograms.h"
+#include "dim.h"
 
 void Init_Curses (void);
 
@@ -23,9 +24,10 @@ int main(int argc, char **argv)
    Init_Menu          (            );
    Init_Screen_Update (            );
    Params_Parser      ( argc,argv  );
-//   G=new Gantry_Class();
-   G=new Gantry_Class(Main_Sheet,10,10,10,10,"gantry1");
-   H=new Gantry_Class(Main_Sheet,20,20,10,10,"gantry2");
+   Dim D(1,3,20,30,"gantry1");
+   G=new Gantry_Class(Main_Sheet,D);
+   Dim DD(1,23,20,30,"gantry2");
+   H=new Gantry_Class(Main_Sheet,DD);
 //   Ball::Init         (            );
 //   // Serial_Manager::Init (           );
 //   H0=new Histo_Class(10,20,getmaxy(stdscr)-10-2,1,(char*)"Z",10,5);

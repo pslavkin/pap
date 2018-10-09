@@ -7,7 +7,7 @@
 
 class Gantry_Class:public Sheet {
    public:
-      Gantry_Class(Sheet* Parent,uint16_t Y,uint16_t X,uint16_t Height, uint16_t Width,const char* Tittle);
+      Gantry_Class(Sheet* Parent,Dim D);
       std::thread TRti;
       void Rti(void);
       void Start_Rti(void);
