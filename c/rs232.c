@@ -7,10 +7,12 @@
 #include <string.h>
 #include "dim.h"
 #include "sheet.h"
-#include "screen_update.h"
+#include "gantry.h"
 #include "menu.h"
 #include "rs232.h"
 #include "serialmanager.hpp"
+#include "histograms.h"
+#include "screen_update.h"
 
 static int Cport[ 1],
            error;
@@ -72,8 +74,7 @@ int OpenComport(int comport_number, int baudrate)
                    break;
     case 1000000 : baudr = B1000000;
                    break;
-    default      : wprintw(Serial_Manager::Serial_Manager_Inst->Win,"invalid baudrate\n");
-                   return(1);
+    default      :
                    break;
   }
 

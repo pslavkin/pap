@@ -3,16 +3,16 @@
 #include <ncurses.h>
 #include <string.h>
 
-#include "screen_update.h"
 #include "dim.h"
 #include "sheet.h"
-#include "menu.h"
 #include "gantry.h"
+#include "menu.h"
 #include "main.h"
 #include "bed.hpp"
 #include "serialmanager.hpp"
 #include "histograms.h"
 #include "dim.h"
+#include "screen_update.h"
 
 void Init_Curses (void);
 
@@ -22,20 +22,7 @@ int main(int argc, char **argv)
 {
    Init_Curses        (            );
    Init_Menu          (            );
-   Init_Screen_Update (            );
    Params_Parser      ( argc,argv  );
-   Dim D(1,3,20,30,"gantry1");
-   G=new Gantry_Class(Main_Sheet,D);
-   Dim DD(1,23,20,30,"gantry2");
-   H=new Gantry_Class(Main_Sheet,DD);
-//   Ball::Init         (            );
-//   // Serial_Manager::Init (           );
-//   H0=new Histo_Class(10,20,getmaxy(stdscr)-10-2,1,(char*)"Z",10,5);
-   //Bed                ( &argc,argv );
-      sleep(2);
-      G->Start_Rti();
-      sleep(2);
-      H->Start_Rti();
    for(;;)
       sleep(10);
       ;

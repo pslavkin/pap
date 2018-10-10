@@ -5,8 +5,10 @@
 #include "dim.h"
 #include "sheet.h"
 #include "menu.h"
-#include "screen_update.h"
+#include "gantry.h"
 #include "serialmanager.hpp"
+#include "histograms.h"
+#include "screen_update.h"
 
 //----------------------------------------------------------------------------------------------------
 pthread_t      PT_Menu_Rti;
@@ -14,8 +16,20 @@ Sheet*         Main_Sheet; // global porque lo usan el resto de las ventanitas p
 //----------------------------------------------------------------------------------------------------
 void Init_Menu (void)
 {
-   Dim D(5, 5,25,60,"menu");
-   Main_Sheet=new Sheet(stdscr,D);
+   Dim PaPD(0, 0,getmaxy(stdscr),getmaxx(stdscr),"PaP");
+   Main_Sheet=new Sheet(stdscr,PaPD);
+
+   Dim XYD(5, 66,35,70,"XY");
+   static Gantry_Class XY(Main_Sheet,XYD);
+
+   Dim ZD(5, 63,35, 3,"z");
+   static Histo_Class Z(Main_Sheet,ZD,100,50);
+
+   Screen_Update_Class* SU=new Screen_Update_Class();
+   SU->Set_Gantry_Rti ( &XY);
+   SU->Set_Histo_Rti ( &Z);
+   SU->Start_Rti();
+
 }
 //----------------------------------------------------------------------------------------------------
 void Set_Menu (PANEL* Panel,const char* Menu_List[][MAX_SUB_ITEMS],unsigned char Items,int* Submenu_Size,int *Menu_Loc)

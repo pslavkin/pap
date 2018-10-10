@@ -1,28 +1,36 @@
 #include <cdk/cdk.h>
 #include <ncurses.h>
 #include <panel.h>
-#include <pthread.h>
-#include "screen_update.h"
+#include <thread>
 #include "dim.h"
 #include "sheet.h"
 #include "gantry.h"
-#include "main.h"
+#include "histograms.h"
+#include "screen_update.h"
 //----------------------------------------------------------------------------------------------------
-pthread_t                  PT_Screen_Update_Rti    ;
-static struct timespec     Rti_Delay= { 0, 5000000}; // 100 milis
-//----------------------------------------------------------------------------------------------------
-void Init_Screen_Update(void)
+Screen_Update_Class::Screen_Update_Class(void)
 {
-   pthread_create ( &PT_Screen_Update_Rti, NULL, Screen_Update_Rti, NULL );
 }
-void* Screen_Update_Rti(void* Arg1)
+void Screen_Update_Class::Start_Rti(void)
+{
+   TRti= std::thread(&Screen_Update_Class::Rti,this);
+}
+void Screen_Update_Class::Set_Gantry_Rti ( Gantry_Class* G )
+{
+   this->G=G;
+};
+void Screen_Update_Class::Set_Histo_Rti ( Histo_Class* H )
+{
+   this->H=H;
+};
+void Screen_Update_Class::Rti(void)
 {
    int Key;
    while(1) {
       nanosleep     ( &Rti_Delay,&Rti_Delay );
-      update_panels (           );
-      Key=getch    (); // ojo que esta humilde funcion llama a wrefresh!!
-      doupdate      (           ); // por eso tengo que hacer todo junto con el doupdate 
+      update_panels ( );
+      Key=getch     ( ); // ojo que esta humilde funcion llama a wrefresh!!
+      doupdate      ( ); // por eso tengo que hacer todo junto con el doupdate
       switch(Key) {
          case KEY_F1:
          case ' ':
@@ -57,7 +65,6 @@ void* Screen_Update_Rti(void* Arg1)
             Sheet::Sheet4Top_Panel()->To_Down();
             break;
          case KEY_RIGHT:
-            ((Sheet*)panel_userptr(panel_below(0)))->To_Right();
             Sheet::Sheet4Top_Panel()->To_Right();
             break;
          case KEY_LEFT:
@@ -80,14 +87,12 @@ void* Screen_Update_Rti(void* Arg1)
          case KEY_HOME:
             break;
          case KEY_ESC:
-            endCDK (   );
+            endCDK();
             exit   ( 0 );
             break;
       }
+      G->Rti();
+      H->Rti();
    }
-}
-void Destroy_Screen_Update(void)
-{
-   pthread_exit ( &PT_Screen_Update_Rti );
 }
 //----------------------------------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 #ifndef SERIALMANAGER
 #define SERIALMANAGER
 
-class    Serial_Manager:public Sheet
+class    Serial_Manager
 {
    Serial_Manager  (      );
    ~Serial_Manager ( void );

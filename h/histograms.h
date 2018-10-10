@@ -1,19 +1,17 @@
 #ifndef HISTOGRAMS
 #define HISTOGRAMS
 
-class Histo_Class:public Sheet {
+class Histo_Class {
    public:
-      Histo_Class(Sheet* Parent,uint16_t Y,uint16_t X,uint16_t Height, uint16_t Width,char* Tittle,
-                  uint32_t Max_Value, uint32_t Value);
+      Histo_Class(Sheet* Parent,Dim D,uint32_t Max_Value, uint32_t Value);
    void Set_V_Inverted_Rule_Value(uint16_t Value);
+   void Rti(void);
 
    private:
-   uint16_t Y;
-   uint16_t X;
-   uint16_t Height;
    uint32_t Max_Value;
    uint32_t Value;
    protected:
+   Sheet* S;
 };
 //----------------------------------------------------------------------------------------------------
 

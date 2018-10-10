@@ -1,16 +1,13 @@
 #ifndef GANTRY
 #define GANTRY
 
-#include <thread>
-
 #define FADE 100
 
-class Gantry_Class:public Sheet {
+class Gantry_Class {
    public:
-      Gantry_Class(Sheet* Parent,Dim D);
-      std::thread TRti;
+      Gantry_Class ( Sheet* Parent,Dim D );
+      Sheet* S;
       void Rti(void);
-      void Start_Rti(void);
    protected:
    private:
       int Fade;

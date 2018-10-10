@@ -5,12 +5,14 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <string.h>
-#include "screen_update.h"
 #include "dim.h"
 #include "sheet.h"
+#include "gantry.h"
 #include "rs232.h"
 #include "menu.h"
 #include "serialmanager.hpp"
+#include "histograms.h"
+#include "screen_update.h"
 
 static int portNumber=0;
 
@@ -38,20 +40,20 @@ Serial_Manager*      Serial_Manager::Serial_Manager_Inst;
 
 int Serial_Manager::Open(int pn,int baudrate)
 {
-   portNumber = pn;
-   Port_Status=OpenComport(portNumber,baudrate);
-   mvwaddstr(Serial_Manager_Inst->Win,10,10,Port_Status?"error":"opened");
+//   portNumber = pn;
+//   Port_Status=OpenComport(portNumber,baudrate);
+//   mvwaddstr(Serial_Manager_Inst->Win,10,10,Port_Status?"error":"opened");
    return Port_Status;
 }
 void Serial_Manager::Init(void)
 {
-   Serial_Manager_Inst = new Serial_Manager;
-   Serial_Manager_Inst->Set_Panel_User_Pointer ( Serial_Manager_Inst );
-   Serial_Manager_Inst->Set_Size   ( 20,30  )        ;
-   Serial_Manager_Inst->Set_Pos    ( 10,10  )        ;
-   Serial_Manager_Inst->Set_Name   ( (char* )"rs232");
-   Serial_Manager_Inst->Redraw_Box (        )        ;
-   Serial_Manager_Inst->Port_Status=1;
+//   Serial_Manager_Inst = new Serial_Manager;
+//   Serial_Manager_Inst->Set_Panel_User_Pointer ( Serial_Manager_Inst );
+//   Serial_Manager_Inst->Set_Size   ( 20,30  )        ;
+//   Serial_Manager_Inst->Set_Pos    ( 10,10  )        ;
+//   Serial_Manager_Inst->Set_Name   ( (char* )"rs232");
+//   Serial_Manager_Inst->Redraw_Box (        )        ;
+//   Serial_Manager_Inst->Port_Status=1;
 }
 
 void* Serial_Manager::Rti(void* Arg1)
@@ -61,13 +63,11 @@ void* Serial_Manager::Rti(void* Arg1)
       }
 }
 
-Serial_Manager::Serial_Manager():Sheet()
+Serial_Manager::Serial_Manager()
 {
-   pthread_create ( &Pt_Serial_Manager_Rti, NULL, Rti, NULL );
 }
 Serial_Manager::~Serial_Manager(void)
 {
-   pthread_exit ( &Pt_Serial_Manager_Rti );
 }
 //----------------------------------------------------------------------------------------------------
 

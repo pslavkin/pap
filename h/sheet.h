@@ -8,8 +8,8 @@
 //---------------------------------------------------------------------------------------------------
 class Sheet{
    public:
- static  Sheet* Sheet4Top_Panel ( void         );
- static  Sheet* Sheet4Panel     ( PANEL* Panel );
+      static  Sheet* Sheet4Top_Panel ( void         );
+      static  Sheet* Sheet4Panel     ( PANEL* Panel );
 protected:
 public:
    Sheet ( WINDOW *Ext_Win                                                                                 ); // con arfs
@@ -24,7 +24,7 @@ public:
    char                       Name    [ 100 ];
    Dim Dims;
 
-   void                 Set_Parent_Sheet       (Sheet* P);
+   void                 Set_Parent_Sheet       ( Sheet* P);
    void                 Redraw_Box             ( void                                               );
    void                 Hide_Box               ( void                                               );
    void                 Set_Name               ( const char* Sheet_Name                                   );
@@ -32,10 +32,10 @@ public:
    unsigned short int   Get_Height             ( void                                               );
    unsigned short int   Get_Width              ( void                                               );
    void                 Set_Pos                ( unsigned short int Y,unsigned short int X          );
-   char                 To_Up                  ( void                                               );
-   char                 To_Down                ( void                                               );
-   char                 To_Right               ( void                                               );
-   char                 To_Left                ( void                                               );
+   void                 To_Up                  ( void                                               );
+   void                 To_Down                ( void                                               );
+   void                 To_Right               ( void                                               );
+   void                 To_Left                ( void                                               );
    void                 Inc_Width              ( void                                               );
    void                 Dec_Width              ( void                                               );
    void                 Inc_Height             ( void                                               );
@@ -57,6 +57,10 @@ public:
    ~Sheet                                      ( void                                               );
 private:
    void     Move_Panel        (PANEL* Panel,unsigned short int Y,unsigned short int X);
+   void Normalize_W(void);
+   void Normalize_H(void);
+   void Normalize_X(void);
+   void Normalize_Y(void);
 };
 
 #endif
