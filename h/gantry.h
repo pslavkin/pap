@@ -1,7 +1,7 @@
 #ifndef GANTRY
 #define GANTRY
 
-#define FADE 100
+#define FADE 190
 
 class Gantry_Class {
    public:
@@ -13,8 +13,9 @@ class Gantry_Class {
       int Fade;
       uint16_t Last_X[FADE];
       uint16_t Last_Y[FADE];
-      void Toogle_Pixel ( unsigned char Y, unsigned char X );
-      void Fade_Pixels  ( unsigned char Times              );
+      void Toogle_Pixel ( uint16_t Y, uint16_t X );
+      void Fade_Pixels  ( uint16_t Y, uint16_t X );
+      struct timespec Rti_Delay= { 0, 20000000}; //   5 milis
 };
 
 #endif

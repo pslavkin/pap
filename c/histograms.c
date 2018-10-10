@@ -32,6 +32,9 @@ void Histo_Class::Set_V_Inverted_Rule_Value(uint16_t Value)
 }
 void Histo_Class::Rti(void)
 {
-   Set_V_Inverted_Rule_Value(rand()%Max_Value);
+   while(1) {
+      nanosleep     ( &Rti_Delay,&Rti_Delay );
+      Set_V_Inverted_Rule_Value(rand()%Max_Value);
+   }
 }
 

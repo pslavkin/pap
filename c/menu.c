@@ -1,5 +1,5 @@
 #include <cdk/cdk.h>
-#include <pthread.h>
+#include <thread>
 #include <panel.h>
 
 #include "dim.h"
@@ -8,6 +8,7 @@
 #include "gantry.h"
 #include "serialmanager.hpp"
 #include "histograms.h"
+#include "timer.hpp"
 #include "screen_update.h"
 
 //----------------------------------------------------------------------------------------------------
@@ -26,9 +27,11 @@ void Init_Menu (void)
    static Histo_Class Z(Main_Sheet,ZD,100,50);
 
    Screen_Update_Class* SU=new Screen_Update_Class();
-   SU->Set_Gantry_Rti ( &XY);
-   SU->Set_Histo_Rti ( &Z);
    SU->Start_Rti();
+
+   static Timer_Class T;
+   T.Set_Gantry_Rti ( &XY );
+   T.Set_Histo_Rti  ( &Z  );
 
 }
 //----------------------------------------------------------------------------------------------------

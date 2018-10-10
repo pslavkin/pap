@@ -15,14 +15,6 @@ void Screen_Update_Class::Start_Rti(void)
 {
    TRti= std::thread(&Screen_Update_Class::Rti,this);
 }
-void Screen_Update_Class::Set_Gantry_Rti ( Gantry_Class* G )
-{
-   this->G=G;
-};
-void Screen_Update_Class::Set_Histo_Rti ( Histo_Class* H )
-{
-   this->H=H;
-};
 void Screen_Update_Class::Rti(void)
 {
    int Key;
@@ -91,8 +83,6 @@ void Screen_Update_Class::Rti(void)
             exit   ( 0 );
             break;
       }
-      G->Rti();
-      H->Rti();
    }
 }
 //----------------------------------------------------------------------------------------------------

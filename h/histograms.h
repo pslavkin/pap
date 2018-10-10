@@ -10,8 +10,9 @@ class Histo_Class {
    private:
    uint32_t Max_Value;
    uint32_t Value;
-   protected:
    Sheet* S;
+   struct timespec Rti_Delay= { 0, 500000000}; //   5 milis
+   protected:
 };
 //----------------------------------------------------------------------------------------------------
 

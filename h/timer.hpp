@@ -6,11 +6,12 @@
 class Timer_Class {
    public:
       Timer_Class ();
-      void Rti       ( void );
-      void Start_Rti ( void );
+      void Set_Gantry_Rti ( Gantry_Class* G );
+      void Set_Histo_Rti  ( Histo_Class* H  );
    protected:
    private:
-      std::thread TRti;
+      std::thread GRti;
+      std::thread HRti;
 };
 
 #endif

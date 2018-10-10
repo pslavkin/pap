@@ -50,7 +50,7 @@ void Init_Curses (void)
    nodelay      ( stdscr,true  );
    initCDKColor (              );
    //start_color        (                                    );
-   Init_Super_Colours ( 0,0,1,  0,192                      );
+   Init_Super_Colours ( 1,0,0,  1,192                      );
    curs_set           ( 0                                  );
 }
 //----------------------------------------------------------------------------------------------------
