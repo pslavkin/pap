@@ -1,0 +1,25 @@
+#include <panel.h>
+#include <ncurses.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <getopt.h>
+#include <termios.h>
+#include <string.h>
+#include <time.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+#include "dim.h"
+#include "sheet.h"
+#include "coords.h"
+#include "gantry.h"
+#include "rs232.h"
+#include "serialmanager.h"
+#include "main.h"
+#include "histograms.h"
+#include "screen_update.h"
+#include "curses_color.h"
+#include "timer.h"
+#include "main_page.h"

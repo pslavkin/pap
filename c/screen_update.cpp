@@ -1,12 +1,4 @@
-#include <cdk/cdk.h>
-#include <ncurses.h>
-#include <panel.h>
-#include <thread>
-#include "dim.h"
-#include "sheet.h"
-#include "gantry.h"
-#include "histograms.h"
-#include "screen_update.h"
+#include "inc_all.h"
 //----------------------------------------------------------------------------------------------------
 Screen_Update_Class::Screen_Update_Class(void)
 {
@@ -24,30 +16,29 @@ void Screen_Update_Class::Rti(void)
       Key=getch     ( ); // ojo que esta humilde funcion llama a wrefresh!!
       doupdate      ( ); // por eso tengo que hacer todo junto con el doupdate
       switch(Key) {
-         case KEY_F1:
          case ' ':
 //            Start_Menu_Menu();
             break;
-         case KEY_F2:
+         case KEY_F(2):
             break;
-         case KEY_F3:
+         case KEY_F(3):
             break;
-         case KEY_F4:
+         case KEY_F(4):
             break;
-         case KEY_F5:
+         case KEY_F(5):
             break;
-         case KEY_F6:
+         case KEY_F(6):
             break;
-         case KEY_F7:
+         case KEY_F(7):
             break;
-         case KEY_F8:
+         case KEY_F(8):
             break;
-         case KEY_F9:
+         case KEY_F(9):
             Sheet::Sheet4Top_Panel()->Hide();
             break;
-         case KEY_F10:
+         case KEY_F(10):
             break;
-         case KEY_F11:
+         case KEY_F(11):
             Sheet::Sheet4Top_Panel()->Full_Screen();
             break;
          case KEY_UP:
@@ -78,9 +69,12 @@ void Screen_Update_Class::Rti(void)
             break;
          case KEY_HOME:
             break;
-         case KEY_ESC:
-            endCDK();
-            exit   ( 0 );
+         case KEY_F(1):
+            clrtoeol (   );
+            endwin   (   );
+            echo     (   );
+            nocbreak (   );
+            exit     ( 0 );
             break;
       }
    }

@@ -1,15 +1,4 @@
-#include <cdk/cdk.h>
-#include <thread>
-#include <panel.h>
-
-#include "dim.h"
-#include "sheet.h"
-#include "menu.h"
-#include "gantry.h"
-#include "serialmanager.hpp"
-#include "histograms.h"
-#include "timer.hpp"
-#include "screen_update.h"
+#include "inc_all.h"
 
 
 Timer_Class::Timer_Class (void)
@@ -22,6 +11,14 @@ void Timer_Class::Set_Gantry_Rti ( Gantry_Class* G )
 void Timer_Class::Set_Histo_Rti  ( Histo_Class* H  )
 {
    HRti = std::thread (&Histo_Class::Rti,H);
+}
+void Timer_Class::Set_Serial_Manager_Rti  ( Serial_Manager_Class* S  )
+{
+   SRti = std::thread (&Serial_Manager_Class::Rti,S);
+}
+void Timer_Class::Set_Coords_Rti  ( Coords_Class* C  )
+{
+   SRti = std::thread (&Coords_Class::Rti,C);
 }
 
 

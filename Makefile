@@ -6,31 +6,41 @@ SRC_DIR=./c
 EXE_DIR=./exe
 
 
-_OBJ= main.o\
+_OBJ= \
+		main.o\
 		screen_update.o\
-		menu.o\
+		main_page.o\
 		sheet.o\
-		bed.o\
 		serialmanager.o\
 		rs232.o\
 		histograms.o\
 		gantry.o\
 		timer.o\
+		coords.o\
+		curses_color.o\
+		main_page.o\
+		bed.o\
 		dim.o
 
 OBJ_DIR=./obj
 OBJ = $(patsubst %,$(OBJ_DIR)/%,$(_OBJ))
 
-_DEP = screen_update.h\
-		 menu.h\
+_DEP = \
+		 main.h\
+		 screen_update.h\
+		 main_page.h\
 		 sheet.h\
-		 bed.hpp\
-		 serialmanager.hpp\
+		 serialmanager.h\
 		 rs232.h\
 		 histograms.h\
 		 gantry.h\
-		 timer.hpp\
+		 timer.h\
+		 coords.h\
+		 curses_color.h\
+		 main_page.h\
+		 bed.h\
 		 dim.h
+
 DEP_DIR=./h
 DEP = $(patsubst %,$(DEP_DIR)/%,$(_DEP))
 

@@ -1,16 +1,4 @@
-#include <cdk/cdk.h>
-#include <panel.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <pthread.h>
-#include <string.h>
-#include "dim.h"
-#include "sheet.h"
-#include "gantry.h"
-#include "menu.h"
-#include "histograms.h"
-#include "screen_update.h"
+#include "inc_all.h"
 
 Sheet::Sheet(Sheet* Parent,Dim D)
 {

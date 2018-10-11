@@ -1,18 +1,4 @@
-#include <cdk/cdk.h>
-#include <panel.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <pthread.h>
-#include <string.h>
-#include "dim.h"
-#include "sheet.h"
-#include "gantry.h"
-#include "menu.h"
-#include "rs232.h"
-#include "serialmanager.hpp"
-#include "histograms.h"
-#include "screen_update.h"
+#include "inc_all.h"
 
 static int Cport[ 1],
            error;
@@ -81,16 +67,16 @@ int OpenComport(int comport_number, int baudrate)
   Cport[comport_number] = open(comports[comport_number], O_RDWR | O_NOCTTY | O_NDELAY);
   if(Cport[comport_number]==-1)
   {
-    printw("unable to open comport ");
+    //printw("unable to open comport ");
     return(1);
   }
 
   error = tcgetattr(Cport[comport_number], old_port_settings + comport_number);
   if(error==-1)
   {
-      printw("unable to read portsettings \n");
+      //printw("unable to read portsettings \n");
       close(Cport[comport_number]);
-    
+
     return(1);
   }
   memset(&new_port_settings, 0, sizeof(new_port_settings));  /* clear the new struct */
@@ -107,10 +93,10 @@ int OpenComport(int comport_number, int baudrate)
   if(error==-1)
   {
     close(Cport[comport_number]);
-    printw("unable to adjust portsettings ");
+    //printw("unable to adjust portsettings ");
     return(1);
   }
-   printw("opening ttyUSB%1d\r\n",comport_number);
+   //printw("opening ttyUSB%1d\r\n",comport_number);
   return(0);
 }
 

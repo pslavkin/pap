@@ -1,57 +1,14 @@
-#include <cdk/cdk.h>
-#include <panel.h>
-#include <ncurses.h>
-#include <string.h>
-
-#include "dim.h"
-#include "sheet.h"
-#include "gantry.h"
-#include "menu.h"
-#include "main.h"
-#include "bed.hpp"
-#include "serialmanager.hpp"
-#include "histograms.h"
-#include "dim.h"
-#include "screen_update.h"
-
-void Init_Curses (void);
-
-Gantry_Class* G,*H;
+#include "inc_all.h"
 
 int main(int argc, char **argv)
 {
-   Init_Curses        (            );
-   Init_Menu          (            );
-   Params_Parser      ( argc,argv  );
+   Curses_Color_Class* Cu= new Curses_Color_Class ( );
+   Main_Page_Class M         ( stdscr    );
+   Params_Parser             ( argc,argv );
    for(;;)
       sleep(10);
       ;
    return 0;
-}
-
-void Init_Super_Colours(unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count)
-{
-   unsigned short int i,Bg,Pair;
-   Pair=MIN_COLOUR_PAIR+From; // los primeros 64 se los regalo a CDK en su llamada a initCDKColor
-   Bg=16+From;                // cdk usa solo 8 colores... me agarro el resto (parece que tambien usa el 15...raaaro)
-   for(i=1;i<Count;i++)    {  // no me puedo pasar de 255 pares... no da mas la funcion PAIR_NUMBER.. si no fuera por eso podria seguir...
-      init_pair (Pair,255,Bg);
-      init_color(Bg,(i*1000/Count)*R,(i*1000/Count)*G,(i*1000/Count)*B);
-      Bg++;
-      Pair++;
-   }
-}
-void Init_Curses (void)
-{
-   initscr ( );
-   cbreak       (              );
-   noecho       (              );
-   keypad       ( stdscr, TRUE );
-   nodelay      ( stdscr,true  );
-   initCDKColor (              );
-   //start_color        (                                    );
-   Init_Super_Colours ( 1,0,0,  1,192                      );
-   curs_set           ( 0                                  );
 }
 //----------------------------------------------------------------------------------------------------
 void Print_Usage(FILE *stream, int exit_code)
@@ -82,7 +39,7 @@ void Params_Parser(int argc, char **argv)
              // Print_Usage(stdout, 0);
               break;
          case 'v': 
-              printf("cdk v1.0\n");
+              printf("Pap v1.0\n");
               printf("Copyright (C) disenioconingenio\n");
               break;
          case 'c':
