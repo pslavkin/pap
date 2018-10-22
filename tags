@@ -19,7 +19,7 @@ ARRAY_SIZE	ncurses_programs/menus/menu_win.c	3;"	d	file:
 AcceptsFocusObj	cdk-5.0-20180306/include/cdk_objs.h	134;"	d
 AcceptsFocusObj	cdk/include/cdk_objs.h	134;"	d
 AcceptsFocusObj	include/cdk_objs.h	134;"	d
-Animate	c/bed.cpp	/^void Animate (void)$/;"	f
+Animate	c/tresd.cpp	/^void TresD_Class::Animate (void)$/;"	f	class:TresD_Class
 AppointmentInfo	cdk-5.0-20180306/demos/appointment.c	/^struct AppointmentInfo$/;"	s	file:
 AppointmentInfo	cdk/demos/appointment.c	/^struct AppointmentInfo$/;"	s	file:
 AppointmentMarker	cdk-5.0-20180306/demos/appointment.c	/^struct AppointmentMarker$/;"	s	file:
@@ -32,7 +32,6 @@ AvailableWidth	cdk/scroll.c	25;"	d	file:
 AvailableWidth	cdk/selection.c	20;"	d	file:
 BAR	cdk-5.0-20180306/examples/histogram_ex.c	93;"	d	file:
 BAR	cdk/examples/histogram_ex.c	96;"	d	file:
-BED	h/bed.h	2;"	d
 BINDFN_PROTO	cdk-5.0-20180306/include/binding.h	61;"	d
 BINDFN_PROTO	cdk/include/binding.h	61;"	d
 BINDFN_PROTO	include/binding.h	61;"	d
@@ -50,7 +49,7 @@ BXAttrOf	include/cdk_objs.h	203;"	d
 BXAttr	cdk-5.0-20180306/include/cdk_objs.h	/^   chtype       BXAttr;$/;"	m	struct:CDKOBJS
 BXAttr	cdk/include/cdk_objs.h	/^   chtype       BXAttr;$/;"	m	struct:CDKOBJS
 BXAttr	include/cdk_objs.h	/^   chtype       BXAttr;$/;"	m	struct:CDKOBJS
-Bed	c/bed.cpp	/^void Bed (int* argc,char* argv[]) {$/;"	f
+Bed	c/tresd.cpp	/^void TresD_Class::Bed (int* argc,char* argv[]) {$/;"	f	class:TresD_Class
 Beep	cdk-5.0-20180306/cdk.c	/^void Beep (void)$/;"	f
 Beep	cdk/cdk.c	/^void Beep (void)$/;"	f
 Beg_X	c/sheet.cpp	/^unsigned short int   Sheet::Beg_X(void)$/;"	f	class:Sheet
@@ -129,11 +128,11 @@ CDKDSCALE_H	include/dscale.h	7;"	d
 CDKDSCALE	cdk-5.0-20180306/include/dscale.h	/^typedef struct SDScale CDKDSCALE;$/;"	t	typeref:struct:SDScale
 CDKDSCALE	cdk/include/dscale.h	/^typedef struct SDScale CDKDSCALE;$/;"	t	typeref:struct:SDScale
 CDKDSCALE	include/dscale.h	/^typedef struct SDScale CDKDSCALE;$/;"	t	typeref:struct:SDScale
-CDKDataType	cdk-5.0-20180306/include/cdk_objs.h	/^} CDKDataType;$/;"	t	typeref:enum:__anon36
-CDKDataType	cdk/include/cdk_objs.h	/^} CDKDataType;$/;"	t	typeref:enum:__anon21
+CDKDataType	cdk-5.0-20180306/include/cdk_objs.h	/^} CDKDataType;$/;"	t	typeref:enum:__anon39
+CDKDataType	cdk/include/cdk_objs.h	/^} CDKDataType;$/;"	t	typeref:enum:__anon24
 CDKDataType	include/cdk_objs.h	/^} CDKDataType;$/;"	t	typeref:enum:__anon8
-CDKDataUnion	cdk-5.0-20180306/include/cdk_objs.h	/^} CDKDataUnion;$/;"	t	typeref:union:__anon37
-CDKDataUnion	cdk/include/cdk_objs.h	/^} CDKDataUnion;$/;"	t	typeref:union:__anon22
+CDKDataUnion	cdk-5.0-20180306/include/cdk_objs.h	/^} CDKDataUnion;$/;"	t	typeref:union:__anon40
+CDKDataUnion	cdk/include/cdk_objs.h	/^} CDKDataUnion;$/;"	t	typeref:union:__anon25
 CDKDataUnion	include/cdk_objs.h	/^} CDKDataUnion;$/;"	t	typeref:union:__anon9
 CDKENTRY_H	cdk-5.0-20180306/include/entry.h	7;"	d
 CDKENTRY_H	cdk/include/entry.h	7;"	d
@@ -465,17 +464,17 @@ CDKSCALE_H	include/scale.h	7;"	d
 CDKSCALE	cdk-5.0-20180306/include/scale.h	/^typedef struct SScale CDKSCALE;$/;"	t	typeref:struct:SScale
 CDKSCALE	cdk/include/scale.h	/^typedef struct SScale CDKSCALE;$/;"	t	typeref:struct:SScale
 CDKSCALE	include/scale.h	/^typedef struct SScale CDKSCALE;$/;"	t	typeref:struct:SScale
-CDKSCREEN_EXITCANCEL	cdk-5.0-20180306/include/cdkscreen.h	/^      , CDKSCREEN_EXITCANCEL$/;"	e	enum:__anon29
-CDKSCREEN_EXITCANCEL	cdk/include/cdkscreen.h	/^      , CDKSCREEN_EXITCANCEL$/;"	e	enum:__anon14
+CDKSCREEN_EXITCANCEL	cdk-5.0-20180306/include/cdkscreen.h	/^      , CDKSCREEN_EXITCANCEL$/;"	e	enum:__anon32
+CDKSCREEN_EXITCANCEL	cdk/include/cdkscreen.h	/^      , CDKSCREEN_EXITCANCEL$/;"	e	enum:__anon17
 CDKSCREEN_EXITCANCEL	include/cdkscreen.h	/^      , CDKSCREEN_EXITCANCEL$/;"	e	enum:__anon1
-CDKSCREEN_EXITOK	cdk-5.0-20180306/include/cdkscreen.h	/^      , CDKSCREEN_EXITOK$/;"	e	enum:__anon29
-CDKSCREEN_EXITOK	cdk/include/cdkscreen.h	/^      , CDKSCREEN_EXITOK$/;"	e	enum:__anon14
+CDKSCREEN_EXITOK	cdk-5.0-20180306/include/cdkscreen.h	/^      , CDKSCREEN_EXITOK$/;"	e	enum:__anon32
+CDKSCREEN_EXITOK	cdk/include/cdkscreen.h	/^      , CDKSCREEN_EXITOK$/;"	e	enum:__anon17
 CDKSCREEN_EXITOK	include/cdkscreen.h	/^      , CDKSCREEN_EXITOK$/;"	e	enum:__anon1
 CDKSCREEN_H	cdk-5.0-20180306/include/cdkscreen.h	7;"	d
 CDKSCREEN_H	cdk/include/cdkscreen.h	7;"	d
 CDKSCREEN_H	include/cdkscreen.h	7;"	d
-CDKSCREEN_NOEXIT	cdk-5.0-20180306/include/cdkscreen.h	/^      CDKSCREEN_NOEXIT = 0$/;"	e	enum:__anon29
-CDKSCREEN_NOEXIT	cdk/include/cdkscreen.h	/^      CDKSCREEN_NOEXIT = 0$/;"	e	enum:__anon14
+CDKSCREEN_NOEXIT	cdk-5.0-20180306/include/cdkscreen.h	/^      CDKSCREEN_NOEXIT = 0$/;"	e	enum:__anon32
+CDKSCREEN_NOEXIT	cdk/include/cdkscreen.h	/^      CDKSCREEN_NOEXIT = 0$/;"	e	enum:__anon17
 CDKSCREEN_NOEXIT	include/cdkscreen.h	/^      CDKSCREEN_NOEXIT = 0$/;"	e	enum:__anon1
 CDKSCREEN	cdk-5.0-20180306/include/cdkscreen.h	/^typedef struct SScreen CDKSCREEN;$/;"	t	typeref:struct:SScreen
 CDKSCREEN	cdk/include/cdkscreen.h	/^typedef struct SScreen CDKSCREEN;$/;"	t	typeref:struct:SScreen
@@ -743,16 +742,19 @@ CHECK_KEYCODE	include/traverse.h	/^typedef boolean (*CHECK_KEYCODE)(int \/* keyC
 CLI_ERROR	cdk-5.0-20180306/include/cdk_params.h	68;"	d
 CLI_ERROR	cdk/include/cdk_params.h	68;"	d
 CLI_ERROR	include/cdk_params.h	68;"	d
+CODE_TOO_LONG	h/parser.h	/^   CODE_TOO_LONG        ,$/;"	e	enum:ERROR_CODES
 COLOR_PAIR	cdk-5.0-20180306/include/cdk.h	259;"	d
 COLOR_PAIR	cdk/include/cdk.h	260;"	d
 COLOR_PAIR	include/cdk.h	259;"	d
 COL	cdk-5.0-20180306/include/cdk.h	248;"	d
 COL	cdk/include/cdk.h	249;"	d
 COL	include/cdk.h	248;"	d
+COMMAND_CODES	h/parser.h	/^enum COMMAND_CODES$/;"	g
 CONTROL	cdk-5.0-20180306/include/cdk.h	262;"	d
 CONTROL	cdk/include/cdk.h	263;"	d
 CONTROL	include/cdk.h	262;"	d
 COORDS	h/coords.h	2;"	d
+COPYING	h/parser.h	/^   COPYING$/;"	e	enum:__anon12
 CRti	h/timer.h	/^      std::thread CRti;$/;"	m	class:Timer_Class
 CTRLD	ncurses_programs/menus/menu_attrib.c	4;"	d	file:
 CTRLD	ncurses_programs/menus/menu_item_data.c	5;"	d	file:
@@ -772,23 +774,30 @@ CURDEF_H	cdk-5.0-20180306/include/curdefs.h	3;"	d
 CURDEF_H	cdk/include/curdefs.h	3;"	d
 CURDEF_H	include/curdefs.h	3;"	d
 CURSES_COLOR	h/curses_color.h	2;"	d
+C_Index	h/parser.h	/^   uint16_t                C_Index   ;$/;"	m	struct:__anon13
 CharOf	cdk-5.0-20180306/include/cdk_int.h	60;"	d
 CharOf	cdk/include/cdk_int.h	60;"	d
 CharOf	include/cdk_int.h	60;"	d
 CloseComport	c/rs232.c	/^void CloseComport(int comport_number)$/;"	f
+Code_Count	h/parser.h	/^   uint8_t                 Code_Count;$/;"	m	struct:__anon13
+Code_Index	h/parser.h	/^   uint8_t                 Code_Index;$/;"	m	struct:__anon13
+Codes_t	h/parser.h	/^} Codes_t;$/;"	t	typeref:struct:__anon13
+Codes	h/parser.h	/^   char                    Codes[MAX_CODES_PER_LINE][MAX_CODE_LENGTH];$/;"	m	struct:__anon13
+Command	h/parser.h	/^   uint8_t                 Command   ;$/;"	m	struct:__anon13
 Coords_Class	h/coords.h	/^class Coords_Class {$/;"	c
 Coords_Class	c/coords.cpp	/^Coords_Class::Coords_Class(Sheet* Parent,Dim D)$/;"	f	class:Coords_Class
 Coords	h/gantry.h	/^      Coords_Class* Coords;$/;"	m	class:Gantry_Class
-Coords	h/histograms.h	/^   Coords_Class* Coords;$/;"	m	class:Histo_Class
-Coords	h/main_page.h	/^         Coords_Class*         Coords       ;$/;"	m	class:Main_Page_Class
+Coords	h/histograms.h	/^      Coords_Class* Coords;$/;"	m	class:Histo_Class
+Coords	h/main_page.h	/^      Coords_Class*         Coords       ;$/;"	m	class:Main_Page_Class
 Cport	c/rs232.c	/^static int Cport[ 1],$/;"	v	file:
-Cube	c/bed.cpp	/^void Cube (void)$/;"	f
+Cube	c/tresd.cpp	/^void TresD_Class::Cube (void)$/;"	f	class:TresD_Class
 CurMatrixCell	cdk-5.0-20180306/matrix.c	27;"	d	file:
 CurMatrixCell	cdk/matrix.c	27;"	d	file:
 CurMatrixInfo	cdk-5.0-20180306/matrix.c	30;"	d	file:
 CurMatrixInfo	cdk/matrix.c	30;"	d	file:
 Curses_Color_Class	h/curses_color.h	/^class Curses_Color_Class {$/;"	c
 Curses_Color_Class	c/curses_color.cpp	/^Curses_Color_Class::Curses_Color_Class (void)$/;"	f	class:Curses_Color_Class
+Curses	c/main.c	/^Curses_Color_Class*  Curses;$/;"	v
 DEFAULT_POLL_INTERVAL	cdk-5.0-20180306/demos/serial.c	23;"	d	file:
 DEFAULT_POLL_INTERVAL	cdk/demos/serial.c	23;"	d	file:
 DEFAULT_PORT	cdk-5.0-20180306/demos/serial.c	22;"	d	file:
@@ -804,26 +813,26 @@ DISC_CHAR	ncurses_programs/JustForFun/hanoi.c	5;"	d	file:
 DOWN	cdk-5.0-20180306/viewer.c	12;"	d	file:
 DOWN	cdk/viewer.c	12;"	d	file:
 DOWN	ncurses_programs/JustForFun/shuffle.c	/^enum { LEFT, RIGHT, UP, DOWN };$/;"	e	enum:__anon10	file:
-DataTypeDouble	cdk-5.0-20180306/include/cdk_objs.h	/^   , DataTypeDouble$/;"	e	enum:__anon36
-DataTypeDouble	cdk/include/cdk_objs.h	/^   , DataTypeDouble$/;"	e	enum:__anon21
+DataTypeDouble	cdk-5.0-20180306/include/cdk_objs.h	/^   , DataTypeDouble$/;"	e	enum:__anon39
+DataTypeDouble	cdk/include/cdk_objs.h	/^   , DataTypeDouble$/;"	e	enum:__anon24
 DataTypeDouble	include/cdk_objs.h	/^   , DataTypeDouble$/;"	e	enum:__anon8
-DataTypeFloat	cdk-5.0-20180306/include/cdk_objs.h	/^   , DataTypeFloat$/;"	e	enum:__anon36
-DataTypeFloat	cdk/include/cdk_objs.h	/^   , DataTypeFloat$/;"	e	enum:__anon21
+DataTypeFloat	cdk-5.0-20180306/include/cdk_objs.h	/^   , DataTypeFloat$/;"	e	enum:__anon39
+DataTypeFloat	cdk/include/cdk_objs.h	/^   , DataTypeFloat$/;"	e	enum:__anon24
 DataTypeFloat	include/cdk_objs.h	/^   , DataTypeFloat$/;"	e	enum:__anon8
-DataTypeInt	cdk-5.0-20180306/include/cdk_objs.h	/^   , DataTypeInt$/;"	e	enum:__anon36
-DataTypeInt	cdk/include/cdk_objs.h	/^   , DataTypeInt$/;"	e	enum:__anon21
+DataTypeInt	cdk-5.0-20180306/include/cdk_objs.h	/^   , DataTypeInt$/;"	e	enum:__anon39
+DataTypeInt	cdk/include/cdk_objs.h	/^   , DataTypeInt$/;"	e	enum:__anon24
 DataTypeInt	include/cdk_objs.h	/^   , DataTypeInt$/;"	e	enum:__anon8
 DataTypeOf	cdk-5.0-20180306/include/cdk_objs.h	122;"	d
 DataTypeOf	cdk/include/cdk_objs.h	122;"	d
 DataTypeOf	include/cdk_objs.h	122;"	d
-DataTypeString	cdk-5.0-20180306/include/cdk_objs.h	/^   , DataTypeString$/;"	e	enum:__anon36
-DataTypeString	cdk/include/cdk_objs.h	/^   , DataTypeString$/;"	e	enum:__anon21
+DataTypeString	cdk-5.0-20180306/include/cdk_objs.h	/^   , DataTypeString$/;"	e	enum:__anon39
+DataTypeString	cdk/include/cdk_objs.h	/^   , DataTypeString$/;"	e	enum:__anon24
 DataTypeString	include/cdk_objs.h	/^   , DataTypeString$/;"	e	enum:__anon8
-DataTypeUnknown	cdk-5.0-20180306/include/cdk_objs.h	/^   DataTypeUnknown = 0$/;"	e	enum:__anon36
-DataTypeUnknown	cdk/include/cdk_objs.h	/^   DataTypeUnknown = 0$/;"	e	enum:__anon21
+DataTypeUnknown	cdk-5.0-20180306/include/cdk_objs.h	/^   DataTypeUnknown = 0$/;"	e	enum:__anon39
+DataTypeUnknown	cdk/include/cdk_objs.h	/^   DataTypeUnknown = 0$/;"	e	enum:__anon24
 DataTypeUnknown	include/cdk_objs.h	/^   DataTypeUnknown = 0$/;"	e	enum:__anon8
-DataTypeUnsigned	cdk-5.0-20180306/include/cdk_objs.h	/^   , DataTypeUnsigned$/;"	e	enum:__anon36
-DataTypeUnsigned	cdk/include/cdk_objs.h	/^   , DataTypeUnsigned$/;"	e	enum:__anon21
+DataTypeUnsigned	cdk-5.0-20180306/include/cdk_objs.h	/^   , DataTypeUnsigned$/;"	e	enum:__anon39
+DataTypeUnsigned	cdk/include/cdk_objs.h	/^   , DataTypeUnsigned$/;"	e	enum:__anon24
 DataTypeUnsigned	include/cdk_objs.h	/^   , DataTypeUnsigned$/;"	e	enum:__anon8
 DayName	cdk-5.0-20180306/include/calendar.h	/^   char *	DayName;$/;"	m	struct:SCalendar
 DayName	cdk/include/calendar.h	/^   char *	DayName;$/;"	m	struct:SCalendar
@@ -864,31 +873,31 @@ Dim	h/dim.h	/^class Dim$/;"	c
 Dim	c/dim.c	/^Dim::Dim()$/;"	f	class:Dim
 Dim	c/dim.c	/^Dim::Dim(uint16_t Y, uint16_t X, uint16_t H, uint16_t W, const char* N)$/;"	f	class:Dim
 Dims	h/sheet.h	/^   Dim Dims;$/;"	m	class:Sheet
-Display	c/bed.cpp	/^void Display () {$/;"	f
+Display	c/tresd.cpp	/^void TresD_Class::Display (void) {$/;"	f	class:TresD_Class
 DrawObj	cdk-5.0-20180306/include/cdk_objs.h	123;"	d
 DrawObj	cdk/include/cdk_objs.h	123;"	d
 DrawObj	include/cdk_objs.h	123;"	d
-EAppointmentType	cdk-5.0-20180306/demos/appointment.c	/^EAppointmentType;$/;"	t	typeref:enum:__anon27	file:
-EAppointmentType	cdk/demos/appointment.c	/^EAppointmentType;$/;"	t	typeref:enum:__anon12	file:
-ECopyFile	cdk-5.0-20180306/demos/vinstall.c	/^ECopyFile;$/;"	t	typeref:enum:__anon26	file:
-ECopyFile	cdk/demos/vinstall.c	/^ECopyFile;$/;"	t	typeref:enum:__anon11	file:
-EDisplayType	cdk-5.0-20180306/include/cdk.h	/^		} EDisplayType;$/;"	t	typeref:enum:__anon31
-EDisplayType	cdk/include/cdk.h	/^		} EDisplayType;$/;"	t	typeref:enum:__anon16
+EAppointmentType	cdk-5.0-20180306/demos/appointment.c	/^EAppointmentType;$/;"	t	typeref:enum:__anon30	file:
+EAppointmentType	cdk/demos/appointment.c	/^EAppointmentType;$/;"	t	typeref:enum:__anon15	file:
+ECopyFile	cdk-5.0-20180306/demos/vinstall.c	/^ECopyFile;$/;"	t	typeref:enum:__anon29	file:
+ECopyFile	cdk/demos/vinstall.c	/^ECopyFile;$/;"	t	typeref:enum:__anon14	file:
+EDisplayType	cdk-5.0-20180306/include/cdk.h	/^		} EDisplayType;$/;"	t	typeref:enum:__anon34
+EDisplayType	cdk/include/cdk.h	/^		} EDisplayType;$/;"	t	typeref:enum:__anon19
 EDisplayType	include/cdk.h	/^		} EDisplayType;$/;"	t	typeref:enum:__anon3
-EExitStatus	cdk-5.0-20180306/include/cdkscreen.h	/^} EExitStatus;$/;"	t	typeref:enum:__anon29
-EExitStatus	cdk/include/cdkscreen.h	/^} EExitStatus;$/;"	t	typeref:enum:__anon14
+EExitStatus	cdk-5.0-20180306/include/cdkscreen.h	/^} EExitStatus;$/;"	t	typeref:enum:__anon32
+EExitStatus	cdk/include/cdkscreen.h	/^} EExitStatus;$/;"	t	typeref:enum:__anon17
 EExitStatus	include/cdkscreen.h	/^} EExitStatus;$/;"	t	typeref:enum:__anon1
-EExitType	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	t	typeref:enum:__anon35
-EExitType	cdk/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	t	typeref:enum:__anon20
+EExitType	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	t	typeref:enum:__anon38
+EExitType	cdk/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	t	typeref:enum:__anon23
 EExitType	include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	t	typeref:enum:__anon7
-EGraphDisplayType	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	t	typeref:enum:__anon33
-EGraphDisplayType	cdk/include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	t	typeref:enum:__anon18
+EGraphDisplayType	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	t	typeref:enum:__anon36
+EGraphDisplayType	cdk/include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	t	typeref:enum:__anon21
 EGraphDisplayType	include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	t	typeref:enum:__anon5
-EHistogramDisplayType	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	t	typeref:enum:__anon32
-EHistogramDisplayType	cdk/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	t	typeref:enum:__anon17
+EHistogramDisplayType	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	t	typeref:enum:__anon35
+EHistogramDisplayType	cdk/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	t	typeref:enum:__anon20
 EHistogramDisplayType	include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	t	typeref:enum:__anon4
-ELineType	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	t	typeref:enum:__anon28
-ELineType	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	t	typeref:enum:__anon13
+ELineType	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	t	typeref:enum:__anon31
+ELineType	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	t	typeref:enum:__anon16
 ENDX	ncurses_programs/JustForFun/life.c	/^int ENDX = 79;$/;"	v
 ENDY	ncurses_programs/JustForFun/life.c	/^int ENDY = 24;$/;"	v
 END_DEBUG	cdk-5.0-20180306/include/cdk.h	274;"	d
@@ -897,16 +906,17 @@ END_DEBUG	include/cdk.h	274;"	d
 ENTRYCB	cdk-5.0-20180306/include/entry.h	/^typedef void (*ENTRYCB) (struct SEntry *entry, chtype character);$/;"	t
 ENTRYCB	cdk/include/entry.h	/^typedef void (*ENTRYCB) (struct SEntry *entry, chtype character);$/;"	t
 ENTRYCB	include/entry.h	/^typedef void (*ENTRYCB) (struct SEntry *entry, chtype character);$/;"	t
-EObjectType	cdk-5.0-20180306/include/cdk.h	/^		} EObjectType;$/;"	t	typeref:enum:__anon30
-EObjectType	cdk/include/cdk.h	/^		} EObjectType;$/;"	t	typeref:enum:__anon15
+EObjectType	cdk-5.0-20180306/include/cdk.h	/^		} EObjectType;$/;"	t	typeref:enum:__anon33
+EObjectType	cdk/include/cdk.h	/^		} EObjectType;$/;"	t	typeref:enum:__anon18
 EObjectType	include/cdk.h	/^		} EObjectType;$/;"	t	typeref:enum:__anon2
-EStripType	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	t	typeref:enum:__anon34
-EStripType	cdk/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	t	typeref:enum:__anon19
+ERROR_CODES	h/parser.h	/^enum ERROR_CODES$/;"	g
+EStripType	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	t	typeref:enum:__anon37
+EStripType	cdk/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	t	typeref:enum:__anon22
 EStripType	include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	t	typeref:enum:__anon6
 EarlyExitOf	cdk-5.0-20180306/include/cdk_objs.h	188;"	d
 EarlyExitOf	cdk/include/cdk_objs.h	188;"	d
 EarlyExitOf	include/cdk_objs.h	188;"	d
-Edges	c/bed.cpp	/^static int Edges[][2] = {$/;"	v	file:
+Edges	h/tresd.h	/^      int Edges[12][2] = {$/;"	m	class:TresD_Class
 EraseObj	cdk-5.0-20180306/include/cdk_objs.h	124;"	d
 EraseObj	cdk/include/cdk_objs.h	124;"	d
 EraseObj	include/cdk_objs.h	124;"	d
@@ -919,6 +929,8 @@ ExitProgram	include/cdk_test.h	81;"	d
 ExitTypeOf	cdk-5.0-20180306/include/cdk_objs.h	187;"	d
 ExitTypeOf	cdk/include/cdk_objs.h	187;"	d
 ExitTypeOf	include/cdk_objs.h	187;"	d
+Extract_Commands	c/parser.cpp	/^int8_t Parser_Class::Extract_Commands(Codes_t* C)$/;"	f	class:Parser_Class
+Extract_Info	c/parser.cpp	/^int8_t Parser_Class::Extract_Info(Codes_t* C)$/;"	f	class:Parser_Class
 FADE	h/gantry.h	4;"	d
 FOPEN_FMT	cdk-5.0-20180306/viewer.c	361;"	d	file:
 FOPEN_FMT	cdk/viewer.c	360;"	d	file:
@@ -961,6 +973,8 @@ FocusObj	cdk-5.0-20180306/include/cdk_objs.h	128;"	d
 FocusObj	cdk/include/cdk_objs.h	128;"	d
 FocusObj	include/cdk_objs.h	128;"	d
 Full_Screen	c/sheet.cpp	/^void  Sheet::Full_Screen(void)$/;"	f	class:Sheet
+G0_COMMAND	h/parser.h	/^   G0_COMMAND    = 0 ,$/;"	e	enum:COMMAND_CODES
+G1_COMMAND	h/parser.h	/^   G1_COMMAND        ,$/;"	e	enum:COMMAND_CODES
 GANTRY	h/gantry.h	2;"	d
 GCC_UNUSED	cdk-5.0-20180306/include/cdk.h	132;"	d
 GCC_UNUSED	cdk/include/cdk.h	133;"	d
@@ -990,9 +1004,10 @@ GRCFile	cdk/demos/rolodex.h	/^static char *GRCFile		= 0;$/;"	v
 GRti	h/timer.h	/^      std::thread GRti;$/;"	m	class:Timer_Class
 Gantry_Class	h/gantry.h	/^class Gantry_Class {$/;"	c
 Gantry_Class	c/gantry.cpp	/^Gantry_Class::Gantry_Class(Sheet* Parent,Dim D)$/;"	f	class:Gantry_Class
-Gantry_XY	h/main_page.h	/^         Gantry_Class*         Gantry_XY    ;$/;"	m	class:Main_Page_Class
+Gantry_XY	h/main_page.h	/^      Gantry_Class*         Gantry_XY    ;$/;"	m	class:Main_Page_Class
 Get_Height	c/sheet.cpp	/^unsigned short int Sheet::Get_Height(void)$/;"	f	class:Sheet
 Get_Width	c/sheet.cpp	/^unsigned short int Sheet::Get_Width(void)$/;"	f	class:Sheet
+Give_Next_Line	c/parser.cpp	/^char* Parser_Class::Give_Next_Line (void)$/;"	f	class:Parser_Class
 HALF	cdk-5.0-20180306/include/cdk.h	256;"	d
 HALF	cdk/include/cdk.h	257;"	d
 HALF	include/cdk.h	256;"	d
@@ -1136,7 +1151,7 @@ Hide_Box	c/sheet.cpp	/^void  Sheet::Hide_Box(void)$/;"	f	class:Sheet
 Hide	c/sheet.cpp	/^void  Sheet::Hide(void)$/;"	f	class:Sheet
 Histo_Class	h/histograms.h	/^class Histo_Class {$/;"	c
 Histo_Class	c/histograms.cpp	/^Histo_Class::Histo_Class(Sheet* Parent,Dim D ,uint32_t Max_Value, uint32_t Value)$/;"	f	class:Histo_Class
-Histo_Z	h/main_page.h	/^         Histo_Class*          Histo_Z      ;$/;"	m	class:Main_Page_Class
+Histo_Z	h/main_page.h	/^      Histo_Class*          Histo_Z      ;$/;"	m	class:Main_Page_Class
 H	h/dim.h	/^      uint16_t Y,X,H,W     ;$/;"	m	class:Dim
 INT_MAX	cdk-5.0-20180306/include/cdk.h	128;"	d
 INT_MAX	cdk/include/cdk.h	129;"	d
@@ -1144,7 +1159,12 @@ INT_MAX	include/cdk.h	128;"	d
 INT_MIN	cdk-5.0-20180306/include/cdk.h	124;"	d
 INT_MIN	cdk/include/cdk.h	125;"	d
 INT_MIN	include/cdk.h	124;"	d
+INVALID_COMMAND	h/parser.h	/^   INVALID_COMMAND,$/;"	e	enum:COMMAND_CODES
+INVALID_XYZ	h/parser.h	/^   INVALID_XYZ,$/;"	e	enum:COMMAND_CODES
+Inc_C_Index	c/parser.cpp	/^bool Parser_Class::Inc_C_Index(Codes_t* C)$/;"	f	class:Parser_Class
+Inc_Codes_Index	c/parser.cpp	/^bool Parser_Class::Inc_Codes_Index(Codes_t* C)$/;"	f	class:Parser_Class
 Inc_Height	c/sheet.cpp	/^void  Sheet::Inc_Height(void)$/;"	f	class:Sheet
+Inc_L_Index	c/parser.cpp	/^bool Parser_Class::Inc_L_Index(Codes_t* C)$/;"	f	class:Parser_Class
 Inc_Width	c/sheet.cpp	/^void  Sheet::Inc_Width(void)$/;"	f	class:Sheet
 Increment	cdk-5.0-20180306/dscale.c	383;"	d	file:
 Increment	cdk-5.0-20180306/fscale.c	383;"	d	file:
@@ -1164,8 +1184,11 @@ Increment	cdk/scale.c	380;"	d	file:
 Increment	cdk/slider.c	401;"	d	file:
 Increment	cdk/uscale.c	380;"	d	file:
 Increment	cdk/uslider.c	401;"	d	file:
+Info_Parser	c/parser.cpp	/^int8_t Parser_Class::Info_Parser(Codes_t* C)$/;"	f	class:Parser_Class
 Init_Curses	c/curses_color.cpp	/^void Curses_Color_Class::Init_Curses (void)$/;"	f	class:Curses_Color_Class
 Init_Gradient_Colors	c/curses_color.cpp	/^void Curses_Color_Class::Init_Gradient_Colors(unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count)$/;"	f	class:Curses_Color_Class
+Init_Info_Parser	c/parser.cpp	/^void Parser_Class::Init_Info_Parser(Codes_t* C)$/;"	f	class:Parser_Class
+Init_Parser	c/parser.cpp	/^int8_t Parser_Class::Init_Parser(Codes_t* C,char* L)$/;"	f	class:Parser_Class
 InjectObj	cdk-5.0-20180306/include/cdk_objs.h	126;"	d
 InjectObj	cdk/include/cdk_objs.h	126;"	d
 InjectObj	include/cdk_objs.h	126;"	d
@@ -1288,6 +1311,8 @@ LFT_B_BOX	cdk-5.0-20180306/matrix.c	55;"	d	file:
 LFT_M_BOX	cdk-5.0-20180306/matrix.c	51;"	d	file:
 LFT_R_BOX	cdk-5.0-20180306/matrix.c	43;"	d	file:
 LFT_T_BOX	cdk-5.0-20180306/matrix.c	47;"	d	file:
+LINE_END	h/parser.h	/^   LINE_END             ,$/;"	e	enum:ERROR_CODES
+LINE_TOO_LONG	h/parser.h	/^   LINE_TOO_LONG        ,$/;"	e	enum:ERROR_CODES
 LLCharOf	cdk-5.0-20180306/include/cdk_objs.h	199;"	d
 LLCharOf	cdk/include/cdk_objs.h	199;"	d
 LLCharOf	include/cdk_objs.h	199;"	d
@@ -1302,10 +1327,12 @@ LRCharOf	include/cdk_objs.h	200;"	d
 LRChar	cdk-5.0-20180306/include/cdk_objs.h	/^   chtype       LRChar;		\/* lines: lower-right *\/$/;"	m	struct:CDKOBJS
 LRChar	cdk/include/cdk_objs.h	/^   chtype       LRChar;		\/* lines: lower-right *\/$/;"	m	struct:CDKOBJS
 LRChar	include/cdk_objs.h	/^   chtype       LRChar;		\/* lines: lower-right *\/$/;"	m	struct:CDKOBJS
+L_Index	h/parser.h	/^   uint16_t                L_Index   ;$/;"	m	struct:__anon13
 L_MARKER	cdk-5.0-20180306/cdk.c	9;"	d	file:
 L_MARKER	cdk/cdk.c	9;"	d	file:
 Last_X	h/gantry.h	/^      uint16_t Last_X[FADE];$/;"	m	class:Gantry_Class
 Last_Y	h/gantry.h	/^      uint16_t Last_Y[FADE];$/;"	m	class:Gantry_Class
+L	h/parser.h	/^   char*                   L         ;$/;"	m	struct:__anon13
 MAIN_PAGE_CLASS	h/main_page.h	2;"	d
 MATRIXCB	cdk-5.0-20180306/include/matrix.h	/^typedef void (*MATRIXCB) (CDKMATRIX *matrix, chtype input);$/;"	t
 MATRIXCB	cdk/include/matrix.h	/^typedef void (*MATRIXCB) (CDKMATRIX *matrix, chtype input);$/;"	t
@@ -1327,7 +1354,7 @@ MAXIMUM	cdk/include/cdk.h	255;"	d
 MAXIMUM	include/cdk.h	254;"	d
 MAXWIDTH	cdk-5.0-20180306/demos/syb.c	11;"	d	file:
 MAXWIDTH	cdk/demos/syb.c	11;"	d	file:
-MAX_BASIC_COLORS	c/curses_color.cpp	21;"	d	file:
+MAX_BASIC_COLORS	c/curses_color.cpp	22;"	d	file:
 MAX_BINDINGS	cdk-5.0-20180306/include/cdk.h	250;"	d
 MAX_BINDINGS	cdk/include/cdk.h	251;"	d
 MAX_BINDINGS	include/cdk.h	250;"	d
@@ -1340,6 +1367,8 @@ MAX_CDK_PARAMS	include/cdk_params.h	52;"	d
 MAX_CHOICES	cdk-5.0-20180306/include/selection.h	60;"	d
 MAX_CHOICES	cdk/include/selection.h	60;"	d
 MAX_CHOICES	include/selection.h	60;"	d
+MAX_CODES_PER_LINE	h/parser.h	9;"	d
+MAX_CODE_LENGTH	h/parser.h	10;"	d
 MAX_COLORS	cdk-5.0-20180306/include/cdk_int.h	64;"	d
 MAX_COLOUR_PAIR	h/curses_color.h	5;"	d
 MAX_DAYS	cdk-5.0-20180306/include/calendar.h	60;"	d
@@ -1360,6 +1389,7 @@ MAX_LABEL_ROWS	include/label.h	60;"	d
 MAX_LINES	cdk-5.0-20180306/include/cdk_compat.h	71;"	d
 MAX_LINES	cdk/include/cdk_compat.h	71;"	d
 MAX_LINES	include/cdk_compat.h	71;"	d
+MAX_LINE_LENGTH	h/parser.h	8;"	d
 MAX_MARKERS	cdk-5.0-20180306/demos/appointment.c	12;"	d	file:
 MAX_MARKERS	cdk/demos/appointment.c	12;"	d	file:
 MAX_MATRIX_COLS	cdk-5.0-20180306/include/matrix.h	61;"	d
@@ -1378,6 +1408,7 @@ MAX_OBJECTS	cdk-5.0-20180306/include/cdkscreen.h	57;"	d
 MAX_OBJECTS	cdk/include/cdkscreen.h	57;"	d
 MAX_OBJECTS	include/cdkscreen.h	57;"	d
 MAX_PAIR	cdk-5.0-20180306/cdk.c	353;"	d	file:
+MAX_PARAM_VALUE	h/parser.h	12;"	d
 MAX_SUB_ITEMS	cdk-5.0-20180306/include/menu.h	61;"	d
 MAX_SUB_ITEMS	cdk/include/menu.h	61;"	d
 MAX_SUB_ITEMS	include/menu.h	61;"	d
@@ -1400,6 +1431,7 @@ MIN_DIALOG_WIDTH	cdk-5.0-20180306/include/dialog.h	62;"	d
 MIN_DIALOG_WIDTH	cdk/include/dialog.h	62;"	d
 MIN_DIALOG_WIDTH	include/dialog.h	62;"	d
 MIN_HEIGHT	h/sheet.h	6;"	d
+MIN_PARAM_VALUE	h/parser.h	11;"	d
 MIN_WIDTH	h/sheet.h	5;"	d
 MIXEDCASE_FILENAMES	cdk-5.0-20180306/include/cdk_config.h	47;"	d
 MIXEDCASE_FILENAMES	cdk/include/cdk_config.h	47;"	d
@@ -1454,8 +1486,9 @@ MY_MAX	cdk-5.0-20180306/examples/traverse_ex.c	11;"	d	file:
 MY_MAX	cdk/examples/traverse_ex.c	11;"	d	file:
 Main_Page_Class	h/main_page.h	/^class Main_Page_Class {$/;"	c
 Main_Page_Class	c/main_page.cpp	/^Main_Page_Class::Main_Page_Class (WINDOW* w)$/;"	f	class:Main_Page_Class
-Main	h/main_page.h	/^         Sheet*                Main         ;$/;"	m	class:Main_Page_Class
-Max_Value	h/histograms.h	/^   uint32_t Max_Value;$/;"	m	class:Histo_Class
+Main_Page	c/main.c	/^Main_Page_Class*     Main_Page;$/;"	v
+Main	h/main_page.h	/^      Sheet*                Main         ;$/;"	m	class:Main_Page_Class
+Max_Value	h/histograms.h	/^      uint32_t Max_Value;$/;"	m	class:Histo_Class
 Max_X	c/sheet.cpp	/^unsigned short int   Sheet::Max_X(void)$/;"	f	class:Sheet
 Max_X	h/coords.h	/^      uint32_t Max_X;$/;"	m	class:Coords_Class
 Max_Y	c/sheet.cpp	/^unsigned short int   Sheet::Max_Y(void)$/;"	f	class:Sheet
@@ -1551,14 +1584,22 @@ POSY	ncurses_programs/JustForFun/hanoi.c	4;"	d	file:
 PROCESSFN	cdk-5.0-20180306/include/binding.h	/^typedef int (*PROCESSFN) ($/;"	t
 PROCESSFN	cdk/include/binding.h	/^typedef int (*PROCESSFN) ($/;"	t
 PROCESSFN	include/binding.h	/^typedef int (*PROCESSFN) ($/;"	t
+PRti	h/timer.h	/^      std::thread PRti;$/;"	m	class:Timer_Class
 Panel	cdk/include/histogram.h	/^   PANEL  *			Panel;$/;"	m	struct:SHistogram
 Panel	h/sheet.h	/^   PANEL*                     Panel;$/;"	m	class:Sheet
 Params_Parser	c/main.c	/^void Params_Parser(int argc, char **argv)$/;"	f
 Parent_Sheet	h/sheet.h	/^   Sheet*                     Parent_Sheet;$/;"	m	class:Sheet
+Parse_Byte	c/parser.cpp	/^int8_t Parser_Class::Parse_Byte(Codes_t* C)$/;"	f	class:Parser_Class
+Parser_Class	h/parser.h	/^class Parser_Class {$/;"	c
+Parser_Class	c/parser.cpp	/^Parser_Class::Parser_Class( Sheet* Parent,Dim D )$/;"	f	class:Parser_Class
+Parser_State_e	h/parser.h	/^} Parser_State_e;$/;"	t	typeref:enum:__anon12
+Parser	h/main_page.h	/^      Parser_Class*         Parser       ;$/;"	m	class:Main_Page_Class
 PatternNotFound	cdk-5.0-20180306/viewer.c	/^static void PatternNotFound (CDKVIEWER *viewer, char *pattern)$/;"	f	file:
 PatternNotFound	cdk/viewer.c	/^static void PatternNotFound (CDKVIEWER *viewer, char *pattern)$/;"	f	file:
 PollComport	c/rs232.c	/^int PollComport(int comport_number, unsigned char *buf, int size)$/;"	f
 Port_Status	h/serialmanager.h	/^      bool     Port_Status;$/;"	m	class:Serial_Manager_Class
+Pos_t	h/parser.h	/^} Pos_t;$/;"	t	typeref:struct:__anon11
+Pos	h/parser.h	/^   Pos_t                   Pos       ;$/;"	m	struct:__anon13
 PostProcessDataOf	cdk-5.0-20180306/include/cdk_objs.h	218;"	d
 PostProcessDataOf	cdk/include/cdk_objs.h	218;"	d
 PostProcessDataOf	include/cdk_objs.h	218;"	d
@@ -1586,11 +1627,12 @@ ROW	cdk/include/cdk.h	248;"	d
 ROW	include/cdk.h	247;"	d
 R_MARKER	cdk-5.0-20180306/cdk.c	10;"	d	file:
 R_MARKER	cdk/cdk.c	10;"	d	file:
-Redraw_Box	c/sheet.cpp	/^void  Sheet::Redraw_Box(void)$/;"	f	class:Sheet
+Redraw_Box	c/sheet.cpp	/^void  Sheet::Redraw_Box(bool Selected)$/;"	f	class:Sheet
 RefreshDataObj	cdk-5.0-20180306/include/cdk_objs.h	131;"	d
 RefreshDataObj	cdk/include/cdk_objs.h	131;"	d
 RefreshDataObj	include/cdk_objs.h	131;"	d
-Reshape	c/bed.cpp	/^void Reshape ( int width, int height ) {$/;"	f
+Reset_Pos	c/parser.cpp	/^void Parser_Class::Reset_Pos(Pos_t* Pos)$/;"	f	class:Parser_Class
+Reshape	c/tresd.cpp	/^void Reshape ( int width, int height ) {$/;"	f
 RestoreFocus	cdk-5.0-20180306/alphalist.c	279;"	d	file:
 RestoreFocus	cdk-5.0-20180306/fselect.c	315;"	d	file:
 RestoreFocus	cdk/alphalist.c	280;"	d	file:
@@ -1603,14 +1645,18 @@ ReturnOf	cdk/include/cdk_objs.h	221;"	d
 ReturnOf	include/cdk_objs.h	221;"	d
 Rti_Delay	h/coords.h	/^      struct timespec Rti_Delay= { 0, 20000000};$/;"	m	class:Coords_Class	typeref:struct:Coords_Class::timespec
 Rti_Delay	h/gantry.h	/^      struct timespec Rti_Delay= { 0, 20000000}; \/\/   5 milis$/;"	m	class:Gantry_Class	typeref:struct:Gantry_Class::timespec
-Rti_Delay	h/histograms.h	/^   struct timespec Rti_Delay= { 0, 500000000}; \/\/   5 milis$/;"	m	class:Histo_Class	typeref:struct:Histo_Class::timespec
+Rti_Delay	h/histograms.h	/^      struct timespec Rti_Delay= { 0, 500000000}; \/\/   5 milis$/;"	m	class:Histo_Class	typeref:struct:Histo_Class::timespec
+Rti_Delay	h/parser.h	/^      struct timespec Rti_Delay= { 0, 200000000}; \/\/   5 milis$/;"	m	class:Parser_Class	typeref:struct:Parser_Class::timespec
 Rti_Delay	h/screen_update.h	/^      struct timespec Rti_Delay= { 0, 10000000}; \/\/   5 milis$/;"	m	class:Screen_Update_Class	typeref:struct:Screen_Update_Class::timespec
 Rti_Delay	h/serialmanager.h	/^      struct timespec Rti_Delay= { 0, 20000000};$/;"	m	class:Serial_Manager_Class	typeref:struct:Serial_Manager_Class::timespec
+Rti_Delay	h/tresd.h	/^      struct timespec Rti_Delay= { 0, 10000000}; \/\/   5 milis$/;"	m	class:TresD_Class	typeref:struct:TresD_Class::timespec
 Rti	c/coords.cpp	/^void Coords_Class::Rti(void)$/;"	f	class:Coords_Class
 Rti	c/gantry.cpp	/^void Gantry_Class::Rti(void)$/;"	f	class:Gantry_Class
 Rti	c/histograms.cpp	/^void Histo_Class::Rti(void)$/;"	f	class:Histo_Class
+Rti	c/parser.cpp	/^void Parser_Class::Rti(void)$/;"	f	class:Parser_Class
 Rti	c/screen_update.cpp	/^void Screen_Update_Class::Rti(void)$/;"	f	class:Screen_Update_Class
 Rti	c/serialmanager.cpp	/^void Serial_Manager_Class::Rti(void)$/;"	f	class:Serial_Manager_Class
+Rti	c/tresd.cpp	/^void TresD_Class::Rti(void)$/;"	f	class:TresD_Class
 SAlphalist	cdk-5.0-20180306/include/alphalist.h	/^struct SAlphalist {$/;"	s
 SAlphalist	cdk/include/alphalist.h	/^struct SAlphalist {$/;"	s
 SAlphalist	include/alphalist.h	/^struct SAlphalist {$/;"	s
@@ -1712,6 +1758,7 @@ SIZEOF	include/cdk_int.h	62;"	d
 SItemList	cdk-5.0-20180306/include/itemlist.h	/^struct SItemList {$/;"	s
 SItemList	cdk/include/itemlist.h	/^struct SItemList {$/;"	s
 SItemList	include/itemlist.h	/^struct SItemList {$/;"	s
+SKIPING	h/parser.h	/^   SKIPING=0,$/;"	e	enum:__anon12
 SLabel	cdk-5.0-20180306/include/label.h	/^struct SLabel {$/;"	s
 SLabel	cdk/include/label.h	/^struct SLabel {$/;"	s
 SLabel	include/label.h	/^struct SLabel {$/;"	s
@@ -1791,6 +1838,7 @@ SUScale	include/uscale.h	/^struct SUScale {$/;"	s
 SUSlider	cdk-5.0-20180306/include/uslider.h	/^struct SUSlider {$/;"	s
 SUSlider	cdk/include/uslider.h	/^struct SUSlider {$/;"	s
 SUSlider	include/uslider.h	/^struct SUSlider {$/;"	s
+SUpdate_Rti	h/timer.h	/^      std::thread SUpdate_Rti;$/;"	m	class:Timer_Class
 SViewer	cdk-5.0-20180306/include/viewer.h	/^struct SViewer {$/;"	s
 SViewer	cdk/include/viewer.h	/^struct SViewer {$/;"	s
 SViewer	include/viewer.h	/^struct SViewer {$/;"	s
@@ -1815,17 +1863,18 @@ ScreenOf	include/cdk_compat.h	89;"	d
 ScreenOf	include/cdk_objs.h	183;"	d
 Screen_Update_Class	h/screen_update.h	/^class Screen_Update_Class {$/;"	c
 Screen_Update_Class	c/screen_update.cpp	/^Screen_Update_Class::Screen_Update_Class(void)$/;"	f	class:Screen_Update_Class
-Screen_Update	h/main_page.h	/^         Screen_Update_Class*  Screen_Update;$/;"	m	class:Main_Page_Class
+Screen_Update	h/main_page.h	/^      Screen_Update_Class*  Screen_Update;$/;"	m	class:Main_Page_Class
 SearchDirection	cdk-5.0-20180306/viewer.c	/^static int SearchDirection = DOWN;$/;"	v	file:
 SearchDirection	cdk/viewer.c	/^static int SearchDirection = DOWN;$/;"	v	file:
 SearchPattern	cdk-5.0-20180306/viewer.c	/^static char *SearchPattern = 0;$/;"	v	file:
 SearchPattern	cdk/viewer.c	/^static char *SearchPattern = 0;$/;"	v	file:
+Selected	h/sheet.h	/^   bool Selected=0;$/;"	m	class:Sheet
 Select	c/sheet.cpp	/^void  Sheet::Select(void)$/;"	f	class:Sheet
 SendBuf	c/rs232.c	/^int SendBuf(int comport_number, unsigned char *buf, int size)$/;"	f
 SendByte	c/rs232.c	/^int SendByte(int comport_number, unsigned char byte)$/;"	f
 Serial_Manager_Class	h/serialmanager.h	/^class    Serial_Manager_Class$/;"	c
 Serial_Manager_Class	c/serialmanager.cpp	/^Serial_Manager_Class::Serial_Manager_Class( Sheet* Parent,Dim D )$/;"	f	class:Serial_Manager_Class
-Serial	h/main_page.h	/^         Serial_Manager_Class* Serial       ;$/;"	m	class:Main_Page_Class
+Serial	h/main_page.h	/^      Serial_Manager_Class* Serial       ;$/;"	m	class:Main_Page_Class
 SetBackAttrObj	cdk-5.0-20180306/include/cdk_objs.h	132;"	d
 SetBackAttrObj	cdk/include/cdk_objs.h	132;"	d
 SetBackAttrObj	include/cdk_objs.h	132;"	d
@@ -1838,9 +1887,12 @@ Set_Name	c/sheet.cpp	/^void  Sheet::Set_Name(const char* Sheet_Name)$/;"	f	class
 Set_Panel_User_Pointer	c/sheet.cpp	/^void Sheet::Set_Panel_User_Pointer()$/;"	f	class:Sheet
 Set_Panel_User_Pointer	c/sheet.cpp	/^void Sheet::Set_Panel_User_Pointer(Sheet* Ptr)$/;"	f	class:Sheet
 Set_Parent_Sheet	c/sheet.cpp	/^void  Sheet::Set_Parent_Sheet(Sheet* P)$/;"	f	class:Sheet
+Set_Parser_Rti	c/timer.cpp	/^void Timer_Class::Set_Parser_Rti  ( Parser_Class* P  )$/;"	f	class:Timer_Class
 Set_Pos	c/sheet.cpp	/^void  Sheet::Set_Pos(unsigned short int Y,unsigned short int X)$/;"	f	class:Sheet
+Set_Screen_Update_Rti	c/timer.cpp	/^void Timer_Class::Set_Screen_Update_Rti( Screen_Update_Class* SUpdate  )$/;"	f	class:Timer_Class
 Set_Serial_Manager_Rti	c/timer.cpp	/^void Timer_Class::Set_Serial_Manager_Rti  ( Serial_Manager_Class* S  )$/;"	f	class:Timer_Class
 Set_Size	c/sheet.cpp	/^void  Sheet::Set_Size(unsigned short int Height,unsigned short int Width)$/;"	f	class:Sheet
+Set_TresD_Rti	c/timer.cpp	/^void Timer_Class::Set_TresD_Rti  ( TresD_Class* TresD  )$/;"	f	class:Timer_Class
 Set_V_Inverted_Rule_Value	c/histograms.cpp	/^void Histo_Class::Set_V_Inverted_Rule_Value(uint32_t Value)$/;"	f	class:Histo_Class
 Shadow	cdk-5.0-20180306/include/cdk_params.h	/^   bool		Shadow;$/;"	m	struct:CDK_PARAMS
 Shadow	cdk/include/cdk_params.h	/^   bool		Shadow;$/;"	m	struct:CDK_PARAMS
@@ -1849,10 +1901,13 @@ Sheet4Panel	c/sheet.cpp	/^Sheet* Sheet::Sheet4Panel(PANEL* Panel)$/;"	f	class:Sh
 Sheet4Top_Panel	c/sheet.cpp	/^Sheet* Sheet::Sheet4Top_Panel(void)$/;"	f	class:Sheet
 Sheet	h/sheet.h	/^class Sheet{$/;"	c
 Sheet	c/sheet.cpp	/^Sheet::Sheet(Sheet* Parent,Dim D)$/;"	f	class:Sheet
+Sheet	c/sheet.cpp	/^Sheet::Sheet(Sheet* Parent,Dim D,bool Box)$/;"	f	class:Sheet
 Sheet	c/sheet.cpp	/^Sheet::Sheet(WINDOW* W,Dim D)$/;"	f	class:Sheet
 S	h/coords.h	/^      Sheet* S;$/;"	m	class:Coords_Class
 S	h/gantry.h	/^      Sheet* S;$/;"	m	class:Gantry_Class
-S	h/histograms.h	/^   Sheet* S;$/;"	m	class:Histo_Class
+S	h/histograms.h	/^      Sheet* S;$/;"	m	class:Histo_Class
+S	h/parser.h	/^      Sheet* S;$/;"	m	class:Parser_Class
+S	h/parser.h	/^   Parser_State_e          S         ;$/;"	m	struct:__anon13
 S	h/serialmanager.h	/^      Sheet* S;$/;"	m	class:Serial_Manager_Class
 S	cdk-5.0-20180306/include/gen-scale.h	/^struct S<MIXED> {$/;"	s
 S	cdk-5.0-20180306/include/gen-slider.h	/^struct S<MIXED> {$/;"	s
@@ -1860,7 +1915,7 @@ S	cdk/include/gen-scale.h	/^struct S<MIXED> {$/;"	s
 S	cdk/include/gen-slider.h	/^struct S<MIXED> {$/;"	s
 S	include/gen-scale.h	/^struct S<MIXED> {$/;"	s
 S	include/gen-slider.h	/^struct S<MIXED> {$/;"	s
-Start_Rti	c/screen_update.cpp	/^void Screen_Update_Class::Start_Rti(void)$/;"	f	class:Screen_Update_Class
+Sub	h/parser.h	/^      Sheet* Sub;$/;"	m	class:Parser_Class
 TAB	cdk-5.0-20180306/include/curdefs.h	82;"	d
 TAB	cdk-5.0-20180306/include/curdefs.h	83;"	d
 TAB	cdk/include/curdefs.h	82;"	d
@@ -1877,6 +1932,7 @@ TITLELINES	cdk-5.0-20180306/menu.c	9;"	d	file:
 TITLELINES	cdk/menu.c	9;"	d	file:
 TITLE_LM	cdk-5.0-20180306/graph.c	11;"	d	file:
 TITLE_LM	cdk/graph.c	11;"	d	file:
+TOO_MANY_CODES	h/parser.h	/^   TOO_MANY_CODES = -10 ,$/;"	e	enum:ERROR_CODES
 TOP_C_BOX	cdk-5.0-20180306/matrix.c	39;"	d	file:
 TOP	cdk-5.0-20180306/include/cdk.h	240;"	d
 TOP	cdk/include/cdk.h	241;"	d
@@ -1884,7 +1940,7 @@ TOP	include/cdk.h	240;"	d
 TRACE_VALUE	ncurses_programs/JustForFun/magic.c	9;"	d	file:
 TRACE	cdk-5.0-20180306/fselect.c	1;"	d	file:
 TRACE	cdk/fselect.c	1;"	d	file:
-TRti	h/screen_update.h	/^      std::thread TRti;$/;"	m	class:Screen_Update_Class
+TRESD	h/tresd.h	2;"	d
 TYPE_CHTYPE_IS_SCALAR	cdk-5.0-20180306/include/cdk_config.h	52;"	d
 TYPE_CHTYPE_IS_SCALAR	cdk/include/cdk_config.h	52;"	d
 TYPE_CHTYPE_IS_SCALAR	include/cdk_config.h	52;"	d
@@ -1902,24 +1958,27 @@ TitleOf	include/cdk_objs.h	191;"	d
 TitlePosOf	cdk-5.0-20180306/include/cdk_objs.h	192;"	d
 TitlePosOf	cdk/include/cdk_objs.h	192;"	d
 TitlePosOf	include/cdk_objs.h	192;"	d
-T	h/main_page.h	/^         Timer_Class T;$/;"	m	class:Main_Page_Class
+T	h/main_page.h	/^      Timer_Class T;$/;"	m	class:Main_Page_Class
 To_Down	c/sheet.cpp	/^void  Sheet::To_Down(void)$/;"	f	class:Sheet
 To_Left	c/sheet.cpp	/^void  Sheet::To_Left(void)$/;"	f	class:Sheet
 To_Right	c/sheet.cpp	/^void  Sheet::To_Right(void)$/;"	f	class:Sheet
 To_Up	c/sheet.cpp	/^void     Sheet::To_Up(void)$/;"	f	class:Sheet
 Toogle_Pixel	c/gantry.cpp	/^void Gantry_Class::Toogle_Pixel(uint32_t Y, uint32_t X)$/;"	f	class:Gantry_Class
+Toogle_Select	c/sheet.cpp	/^void  Sheet::Toogle_Select(void)$/;"	f	class:Sheet
 Top	c/sheet.cpp	/^void  Sheet::Top(void)$/;"	f	class:Sheet
 Touch_Win	c/sheet.cpp	/^void  Sheet::Touch_Win(void)$/;"	f	class:Sheet
+TresD_Class	h/tresd.h	/^class TresD_Class {$/;"	c
+TresD_Rti	h/timer.h	/^      std::thread TresD_Rti;$/;"	m	class:Timer_Class
 ULCharOf	cdk-5.0-20180306/include/cdk_objs.h	197;"	d
 ULCharOf	cdk/include/cdk_objs.h	197;"	d
 ULCharOf	include/cdk_objs.h	197;"	d
 ULChar	cdk-5.0-20180306/include/cdk_objs.h	/^   chtype       ULChar;		\/* lines: upper-left *\/$/;"	m	struct:CDKOBJS
 ULChar	cdk/include/cdk_objs.h	/^   chtype       ULChar;		\/* lines: upper-left *\/$/;"	m	struct:CDKOBJS
 ULChar	include/cdk_objs.h	/^   chtype       ULChar;		\/* lines: upper-left *\/$/;"	m	struct:CDKOBJS
-UNDO	cdk-5.0-20180306/examples/alphalist_ex.c	/^} UNDO;$/;"	t	typeref:struct:__anon40	file:
-UNDO	cdk-5.0-20180306/examples/fselect_ex.c	/^} UNDO;$/;"	t	typeref:struct:__anon38	file:
-UNDO	cdk/examples/alphalist_ex.c	/^} UNDO;$/;"	t	typeref:struct:__anon25	file:
-UNDO	cdk/examples/fselect_ex.c	/^} UNDO;$/;"	t	typeref:struct:__anon23	file:
+UNDO	cdk-5.0-20180306/examples/alphalist_ex.c	/^} UNDO;$/;"	t	typeref:struct:__anon43	file:
+UNDO	cdk-5.0-20180306/examples/fselect_ex.c	/^} UNDO;$/;"	t	typeref:struct:__anon41	file:
+UNDO	cdk/examples/alphalist_ex.c	/^} UNDO;$/;"	t	typeref:struct:__anon28	file:
+UNDO	cdk/examples/fselect_ex.c	/^} UNDO;$/;"	t	typeref:struct:__anon26	file:
 UP	cdk-5.0-20180306/viewer.c	13;"	d	file:
 UP	cdk/viewer.c	13;"	d	file:
 UP	ncurses_programs/JustForFun/shuffle.c	/^enum { LEFT, RIGHT, UP, DOWN };$/;"	e	enum:__anon10	file:
@@ -1934,6 +1993,7 @@ UnfocusObj	cdk/include/cdk_objs.h	129;"	d
 UnfocusObj	include/cdk_objs.h	129;"	d
 Unhide	c/sheet.cpp	/^void  Sheet::Unhide(void)$/;"	f	class:Sheet
 Update	c/coords.cpp	/^void Coords_Class::Update(uint32_t X, uint32_t Y, uint32_t Z)$/;"	f	class:Coords_Class
+VALID_XYZ	h/parser.h	/^   VALID_XYZ,$/;"	e	enum:COMMAND_CODES
 VERTICAL	cdk-5.0-20180306/include/cdk.h	243;"	d
 VERTICAL	cdk/include/cdk.h	244;"	d
 VERTICAL	include/cdk.h	243;"	d
@@ -1943,8 +2003,10 @@ VTCharOf	include/cdk_objs.h	201;"	d
 VTChar	cdk-5.0-20180306/include/cdk_objs.h	/^   chtype       VTChar;		\/* lines: vertical *\/$/;"	m	struct:CDKOBJS
 VTChar	cdk/include/cdk_objs.h	/^   chtype       VTChar;		\/* lines: vertical *\/$/;"	m	struct:CDKOBJS
 VTChar	include/cdk_objs.h	/^   chtype       VTChar;		\/* lines: vertical *\/$/;"	m	struct:CDKOBJS
-Value	h/histograms.h	/^   uint32_t Value;$/;"	m	class:Histo_Class
-Vertices	c/bed.cpp	/^static float Vertices[][3] = {$/;"	v	file:
+Validate_XYZ	c/parser.cpp	/^uint8_t Parser_Class::Validate_XYZ(Pos_t* Pos)$/;"	f	class:Parser_Class
+Validate	c/parser.cpp	/^bool Parser_Class::Validate(float N)$/;"	f	class:Parser_Class
+Value	h/histograms.h	/^      uint32_t Value;$/;"	m	class:Histo_Class
+Vertices	h/tresd.h	/^      float Vertices[8][3] = {$/;"	m	class:TresD_Class
 WHOLE_BOX	cdk-5.0-20180306/matrix.c	37;"	d	file:
 WIDTH	ncurses_programs/JustForFun/magic.c	6;"	d	file:
 WIDTH	ncurses_programs/JustForFun/shuffle.c	5;"	d	file:
@@ -2105,15 +2167,22 @@ XCursesProgramName	cdk/examples/viewer_ex.c	/^char *XCursesProgramName = "viewer
 XCursesProgramName	cdk/examples/viewer_ex2.c	/^char *XCursesProgramName = "viewer_ex";$/;"	v
 XXXCB	cdk-5.0-20180306/examples/entry_ex.c	/^static int XXXCB (EObjectType cdktype GCC_UNUSED,$/;"	f	file:
 XXXCB	cdk/examples/entry_ex.c	/^static int XXXCB (EObjectType cdktype GCC_UNUSED,$/;"	f	file:
+XYZ_NUMBERS_INVALID	h/parser.h	/^   XYZ_NUMBERS_INVALID$/;"	e	enum:COMMAND_CODES
+XYZ_NUMBERS_VALID	h/parser.h	/^   XYZ_NUMBERS_VALID,$/;"	e	enum:COMMAND_CODES
+XYZ_Parser	c/parser.cpp	/^int8_t Parser_Class::XYZ_Parser(Codes_t* C)$/;"	f	class:Parser_Class
 X	h/coords.h	/^      uint32_t X;$/;"	m	class:Coords_Class
 X	h/dim.h	/^      uint16_t Y,X,H,W     ;$/;"	m	class:Dim
+X	h/parser.h	/^   float X;$/;"	m	struct:__anon11
 YEAR2INDEX	cdk-5.0-20180306/calendar.c	9;"	d	file:
 YEAR2INDEX	cdk/calendar.c	9;"	d	file:
 Y	h/coords.h	/^      uint32_t Y;$/;"	m	class:Coords_Class
 Y	h/dim.h	/^      uint16_t Y,X,H,W     ;$/;"	m	class:Dim
+Y	h/parser.h	/^   float Y;$/;"	m	struct:__anon11
 Z	h/coords.h	/^      uint32_t Z;$/;"	m	class:Coords_Class
+Z	h/parser.h	/^   float Z;$/;"	m	struct:__anon11
 _PANEL_DATA	ncurses_programs/panels/panel_hide.c	/^typedef struct _PANEL_DATA {$/;"	s	file:
 _PANEL_DATA	ncurses_programs/panels/panel_resize.c	/^typedef struct _PANEL_DATA {$/;"	s	file:
+_PARSER_H	h/parser.h	2;"	d
 _WIN_struct	ncurses_programs/basics/other_border.c	/^typedef struct _WIN_struct {$/;"	s	file:
 _all_objects	cdk-5.0-20180306/cdkscreen.c	/^typedef struct _all_objects$/;"	s	file:
 _all_objects	cdk/cdkscreen.c	/^typedef struct _all_objects$/;"	s	file:
@@ -3268,10 +3337,10 @@ deletePhoneEntryCB	cdk-5.0-20180306/demos/rolodex.h	/^BINDFN_PROTO(deletePhoneEn
 deletePhoneEntryCB	cdk/demos/rolodex.h	/^BINDFN_PROTO(deletePhoneEntryCB);$/;"	v
 deleteRolodexGroup	cdk-5.0-20180306/demos/rolodex.c	/^int deleteRolodexGroup (CDKSCREEN *screen, SRolodex * groupList, int groupCount)$/;"	f
 deleteRolodexGroup	cdk/demos/rolodex.c	/^int deleteRolodexGroup (CDKSCREEN *screen, SRolodex * groupList, int groupCount)$/;"	f
-deleted	cdk-5.0-20180306/examples/alphalist_ex.c	/^   int deleted;			\/* index in current list which is deleted *\/$/;"	m	struct:__anon40	file:
-deleted	cdk-5.0-20180306/examples/fselect_ex.c	/^   int deleted;			\/* index in current list which is deleted *\/$/;"	m	struct:__anon38	file:
-deleted	cdk/examples/alphalist_ex.c	/^   int deleted;			\/* index in current list which is deleted *\/$/;"	m	struct:__anon25	file:
-deleted	cdk/examples/fselect_ex.c	/^   int deleted;			\/* index in current list which is deleted *\/$/;"	m	struct:__anon23	file:
+deleted	cdk-5.0-20180306/examples/alphalist_ex.c	/^   int deleted;			\/* index in current list which is deleted *\/$/;"	m	struct:__anon43	file:
+deleted	cdk-5.0-20180306/examples/fselect_ex.c	/^   int deleted;			\/* index in current list which is deleted *\/$/;"	m	struct:__anon41	file:
+deleted	cdk/examples/alphalist_ex.c	/^   int deleted;			\/* index in current list which is deleted *\/$/;"	m	struct:__anon28	file:
+deleted	cdk/examples/fselect_ex.c	/^   int deleted;			\/* index in current list which is deleted *\/$/;"	m	struct:__anon26	file:
 desc	cdk-5.0-20180306/demos/rolodex.h	/^	char *desc;$/;"	m	struct:_group_st
 desc	cdk-5.0-20180306/demos/rolodex.h	/^	char *desc;$/;"	m	struct:_record_st
 desc	cdk/demos/rolodex.h	/^	char *desc;$/;"	m	struct:_group_st
@@ -5428,8 +5497,8 @@ menuItems	include/menu.h	/^   int		menuItems;$/;"	m	struct:SMenu
 menuPos	cdk-5.0-20180306/include/menu.h	/^   int		menuPos;$/;"	m	struct:SMenu
 menuPos	cdk/include/menu.h	/^   int		menuPos;$/;"	m	struct:SMenu
 menuPos	include/menu.h	/^   int		menuPos;$/;"	m	struct:SMenu
-menu_table	cdk-5.0-20180306/examples/traverse_ex.c	/^menu_table[] =$/;"	v	typeref:struct:__anon39	file:
-menu_table	cdk/examples/traverse_ex.c	/^menu_table[] =$/;"	v	typeref:struct:__anon24	file:
+menu_table	cdk-5.0-20180306/examples/traverse_ex.c	/^menu_table[] =$/;"	v	typeref:struct:__anon42	file:
+menu_table	cdk/examples/traverse_ex.c	/^menu_table[] =$/;"	v	typeref:struct:__anon27	file:
 menulist	cdk-5.0-20180306/examples/menu_ex.c	/^static const char *menulist[MAX_MENU_ITEMS][MAX_SUB_ITEMS];$/;"	v	file:
 menulist	cdk/examples/menu_ex.c	/^static const char *menulist[MAX_MENU_ITEMS][MAX_SUB_ITEMS];$/;"	v	file:
 mesg_handler	cdk-5.0-20180306/demos/syb.c	/^int mesg_handler (DBPROCESS *dbProcess, DBINT mesgNumber, int mesgState, int severity, char *mesgText)$/;"	f
@@ -5607,10 +5676,10 @@ n_discs	ncurses_programs/JustForFun/hanoi.c	/^	int n_discs;		\/* Number of discs
 n_groups	ncurses_programs/JustForFun/tt.c	/^int n_groups;$/;"	v
 name	cdk-5.0-20180306/demos/rolodex.h	/^	char *name;$/;"	m	struct:_group_st
 name	cdk-5.0-20180306/demos/rolodex.h	/^	char *name;$/;"	m	struct:_record_st
-name	cdk-5.0-20180306/examples/traverse_ex.c	/^   const char *name;$/;"	m	struct:__anon39	file:
+name	cdk-5.0-20180306/examples/traverse_ex.c	/^   const char *name;$/;"	m	struct:__anon42	file:
 name	cdk/demos/rolodex.h	/^	char *name;$/;"	m	struct:_group_st
 name	cdk/demos/rolodex.h	/^	char *name;$/;"	m	struct:_record_st
-name	cdk/examples/traverse_ex.c	/^   const char *name;$/;"	m	struct:__anon24	file:
+name	cdk/examples/traverse_ex.c	/^   const char *name;$/;"	m	struct:__anon27	file:
 newCDKAlphalist	cdk-5.0-20180306/alphalist.c	/^CDKALPHALIST *newCDKAlphalist (CDKSCREEN *cdkscreen,$/;"	f
 newCDKAlphalist	cdk/alphalist.c	/^CDKALPHALIST *newCDKAlphalist (CDKSCREEN *cdkscreen,$/;"	f
 newCDKButtonbox	cdk-5.0-20180306/buttonbox.c	/^CDKBUTTONBOX *newCDKButtonbox (CDKSCREEN *cdkscreen,$/;"	f
@@ -5799,10 +5868,10 @@ openNewRCFile	cdk/demos/rolodex.c	/^int openNewRCFile (CDKSCREEN *screen, SRolod
 orient	cdk-5.0-20180306/include/histogram.h	/^   int				orient;$/;"	m	struct:SHistogram
 orient	cdk/include/histogram.h	/^   int				orient;$/;"	m	struct:SHistogram
 orient	include/histogram.h	/^   int				orient;$/;"	m	struct:SHistogram
-original	cdk-5.0-20180306/examples/alphalist_ex.c	/^   int original;		\/* index in myUserList[] of deleted item *\/$/;"	m	struct:__anon40	file:
-original	cdk-5.0-20180306/examples/fselect_ex.c	/^   int original;		\/* index in myUserList[] of deleted item *\/$/;"	m	struct:__anon38	file:
-original	cdk/examples/alphalist_ex.c	/^   int original;		\/* index in myUserList[] of deleted item *\/$/;"	m	struct:__anon25	file:
-original	cdk/examples/fselect_ex.c	/^   int original;		\/* index in myUserList[] of deleted item *\/$/;"	m	struct:__anon23	file:
+original	cdk-5.0-20180306/examples/alphalist_ex.c	/^   int original;		\/* index in myUserList[] of deleted item *\/$/;"	m	struct:__anon43	file:
+original	cdk-5.0-20180306/examples/fselect_ex.c	/^   int original;		\/* index in myUserList[] of deleted item *\/$/;"	m	struct:__anon41	file:
+original	cdk/examples/alphalist_ex.c	/^   int original;		\/* index in myUserList[] of deleted item *\/$/;"	m	struct:__anon28	file:
+original	cdk/examples/fselect_ex.c	/^   int original;		\/* index in myUserList[] of deleted item *\/$/;"	m	struct:__anon26	file:
 overlayAttr	cdk-5.0-20180306/include/template.h	/^   chtype	overlayAttr;$/;"	m	struct:STemplate
 overlayAttr	cdk/include/template.h	/^   chtype	overlayAttr;$/;"	m	struct:STemplate
 overlayAttr	include/template.h	/^   chtype	overlayAttr;$/;"	m	struct:STemplate
@@ -6032,10 +6101,10 @@ positionCDK	cdk/include/gen-scale.h	215;"	d
 positionCDK	cdk/include/gen-slider.h	215;"	d
 positionCDK	include/gen-scale.h	215;"	d
 positionCDK	include/gen-slider.h	215;"	d
-position	cdk-5.0-20180306/examples/alphalist_ex.c	/^   int position;		\/* position before delete *\/$/;"	m	struct:__anon40	file:
-position	cdk-5.0-20180306/examples/fselect_ex.c	/^   int position;		\/* position before delete *\/$/;"	m	struct:__anon38	file:
-position	cdk/examples/alphalist_ex.c	/^   int position;		\/* position before delete *\/$/;"	m	struct:__anon25	file:
-position	cdk/examples/fselect_ex.c	/^   int position;		\/* position before delete *\/$/;"	m	struct:__anon23	file:
+position	cdk-5.0-20180306/examples/alphalist_ex.c	/^   int position;		\/* position before delete *\/$/;"	m	struct:__anon43	file:
+position	cdk-5.0-20180306/examples/fselect_ex.c	/^   int position;		\/* position before delete *\/$/;"	m	struct:__anon41	file:
+position	cdk/examples/alphalist_ex.c	/^   int position;		\/* position before delete *\/$/;"	m	struct:__anon28	file:
+position	cdk/examples/fselect_ex.c	/^   int position;		\/* position before delete *\/$/;"	m	struct:__anon26	file:
 postProcessData	cdk-5.0-20180306/include/cdk_objs.h	/^   void *	postProcessData;$/;"	m	struct:CDKOBJS
 postProcessData	cdk/include/cdk_objs.h	/^   void *	postProcessData;$/;"	m	struct:CDKOBJS
 postProcessData	include/cdk_objs.h	/^   void *	postProcessData;$/;"	m	struct:CDKOBJS
@@ -7623,7 +7692,7 @@ setLRCharOf	include/cdk_objs.h	208;"	d
 setLRcharObj	cdk-5.0-20180306/include/cdk_objs.h	/^   void         (*setLRcharObj)    (struct CDKOBJS *, chtype);$/;"	m	struct:CDKFUNCS
 setLRcharObj	cdk/include/cdk_objs.h	/^   void         (*setLRcharObj)    (struct CDKOBJS *, chtype);$/;"	m	struct:CDKFUNCS
 setLRcharObj	include/cdk_objs.h	/^   void         (*setLRcharObj)    (struct CDKOBJS *, chtype);$/;"	m	struct:CDKFUNCS
-setMaterial	c/bed.cpp	/^void setMaterial ( GLfloat ambientR, GLfloat ambientG, GLfloat ambientB, $/;"	f
+setMaterial	c/tresd.cpp	/^void TresD_Class::setMaterial ( GLfloat ambientR, GLfloat ambientG, GLfloat ambientB, $/;"	f	class:TresD_Class
 setPWD	cdk-5.0-20180306/fselect.c	/^static void setPWD (CDKFSELECT *fselect)$/;"	f	file:
 setPWD	cdk/fselect.c	/^static void setPWD (CDKFSELECT *fselect)$/;"	f	file:
 setPositionToEnd	cdk-5.0-20180306/entry.c	/^static void setPositionToEnd (CDKENTRY *entry)$/;"	f	file:
@@ -7993,10 +8062,10 @@ tl	ncurses_programs/basics/other_border.c	/^	 	tl, tr, bl, br;$/;"	m	struct:_win
 topRow	cdk-5.0-20180306/include/mentry.h	/^   int		topRow;$/;"	m	struct:SMentry
 topRow	cdk/include/mentry.h	/^   int		topRow;$/;"	m	struct:SMentry
 topRow	include/mentry.h	/^   int		topRow;$/;"	m	struct:SMentry
-topline	cdk-5.0-20180306/examples/alphalist_ex.c	/^   int topline;			\/* top-line before delete *\/$/;"	m	struct:__anon40	file:
-topline	cdk-5.0-20180306/examples/fselect_ex.c	/^   int topline;			\/* top-line before delete *\/$/;"	m	struct:__anon38	file:
-topline	cdk/examples/alphalist_ex.c	/^   int topline;			\/* top-line before delete *\/$/;"	m	struct:__anon25	file:
-topline	cdk/examples/fselect_ex.c	/^   int topline;			\/* top-line before delete *\/$/;"	m	struct:__anon23	file:
+topline	cdk-5.0-20180306/examples/alphalist_ex.c	/^   int topline;			\/* top-line before delete *\/$/;"	m	struct:__anon43	file:
+topline	cdk-5.0-20180306/examples/fselect_ex.c	/^   int topline;			\/* top-line before delete *\/$/;"	m	struct:__anon41	file:
+topline	cdk/examples/alphalist_ex.c	/^   int topline;			\/* top-line before delete *\/$/;"	m	struct:__anon28	file:
+topline	cdk/examples/fselect_ex.c	/^   int topline;			\/* top-line before delete *\/$/;"	m	struct:__anon26	file:
 totalWidth	cdk-5.0-20180306/include/mentry.h	/^   int		totalWidth;$/;"	m	struct:SMentry
 totalWidth	cdk/include/mentry.h	/^   int		totalWidth;$/;"	m	struct:SMentry
 totalWidth	include/mentry.h	/^   int		totalWidth;$/;"	m	struct:SMentry
@@ -8032,9 +8101,9 @@ typeReallocN	cdk-5.0-20180306/include/cdk_int.h	51;"	d
 typeReallocN	cdk/include/cdk_int.h	51;"	d
 typeReallocN	include/cdk_int.h	51;"	d
 type	cdk-5.0-20180306/demos/appointment.c	/^   EAppointmentType type;$/;"	m	struct:AppointmentMarker	file:
-type	cdk-5.0-20180306/examples/traverse_ex.c	/^   EObjectType type;$/;"	m	struct:__anon39	file:
+type	cdk-5.0-20180306/examples/traverse_ex.c	/^   EObjectType type;$/;"	m	struct:__anon42	file:
 type	cdk/demos/appointment.c	/^   EAppointmentType type;$/;"	m	struct:AppointmentMarker	file:
-type	cdk/examples/traverse_ex.c	/^   EObjectType type;$/;"	m	struct:__anon24	file:
+type	cdk/examples/traverse_ex.c	/^   EObjectType type;$/;"	m	struct:__anon27	file:
 typos	cdk-5.0-20180306/include/graph.h	/^   int			typos;$/;"	m	struct:SGraph
 typos	cdk/include/graph.h	/^   int			typos;$/;"	m	struct:SGraph
 typos	include/graph.h	/^   int			typos;$/;"	m	struct:SGraph
@@ -8094,220 +8163,220 @@ userSize	cdk-5.0-20180306/examples/fselect_ex.c	/^static int userSize;$/;"	v	fil
 userSize	cdk/examples/alphalist_ex.c	/^static int userSize;$/;"	v	file:
 userSize	cdk/examples/fselect_ex.c	/^static int userSize;$/;"	v	file:
 user	cdk/include/panel.h	/^  NCURSES_CONST void *user;$/;"	m	struct:panel
-vALPHALIST	cdk-5.0-20180306/include/cdk.h	/^		,vALPHALIST$/;"	e	enum:__anon30
-vALPHALIST	cdk/include/cdk.h	/^		,vALPHALIST$/;"	e	enum:__anon15
+vALPHALIST	cdk-5.0-20180306/include/cdk.h	/^		,vALPHALIST$/;"	e	enum:__anon33
+vALPHALIST	cdk/include/cdk.h	/^		,vALPHALIST$/;"	e	enum:__anon18
 vALPHALIST	include/cdk.h	/^		,vALPHALIST$/;"	e	enum:__anon2
-vAnniversary	cdk-5.0-20180306/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon27	file:
-vAnniversary	cdk/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon12	file:
-vAppointment	cdk-5.0-20180306/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon27	file:
-vAppointment	cdk/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon12	file:
-vBACK	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon34
-vBACK	cdk/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon19
+vAnniversary	cdk-5.0-20180306/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon30	file:
+vAnniversary	cdk/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon15	file:
+vAppointment	cdk-5.0-20180306/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon30	file:
+vAppointment	cdk/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon15	file:
+vBACK	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon37
+vBACK	cdk/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon22
 vBACK	include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon6
-vBOTH	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon34
-vBOTH	cdk/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon19
+vBOTH	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon37
+vBOTH	cdk/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon22
 vBOTH	include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon6
-vBUTTONBOX	cdk-5.0-20180306/include/cdk.h	/^		,vBUTTONBOX$/;"	e	enum:__anon30
-vBUTTONBOX	cdk/include/cdk.h	/^		,vBUTTONBOX$/;"	e	enum:__anon15
+vBUTTONBOX	cdk-5.0-20180306/include/cdk.h	/^		,vBUTTONBOX$/;"	e	enum:__anon33
+vBUTTONBOX	cdk/include/cdk.h	/^		,vBUTTONBOX$/;"	e	enum:__anon18
 vBUTTONBOX	include/cdk.h	/^		,vBUTTONBOX$/;"	e	enum:__anon2
-vBUTTON	cdk-5.0-20180306/include/cdk.h	/^		,vBUTTON$/;"	e	enum:__anon30
-vBUTTON	cdk/include/cdk.h	/^		,vBUTTON$/;"	e	enum:__anon15
+vBUTTON	cdk-5.0-20180306/include/cdk.h	/^		,vBUTTON$/;"	e	enum:__anon33
+vBUTTON	cdk/include/cdk.h	/^		,vBUTTON$/;"	e	enum:__anon18
 vBUTTON	include/cdk.h	/^		,vBUTTON$/;"	e	enum:__anon2
-vBirthday	cdk-5.0-20180306/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon27	file:
-vBirthday	cdk/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon12	file:
-vCALENDAR	cdk-5.0-20180306/include/cdk.h	/^		,vCALENDAR$/;"	e	enum:__anon30
-vCALENDAR	cdk/include/cdk.h	/^		,vCALENDAR$/;"	e	enum:__anon15
+vBirthday	cdk-5.0-20180306/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon30	file:
+vBirthday	cdk/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon15	file:
+vCALENDAR	cdk-5.0-20180306/include/cdk.h	/^		,vCALENDAR$/;"	e	enum:__anon33
+vCALENDAR	cdk/include/cdk.h	/^		,vCALENDAR$/;"	e	enum:__anon18
 vCALENDAR	include/cdk.h	/^		,vCALENDAR$/;"	e	enum:__anon2
-vCHAR	cdk-5.0-20180306/include/cdk.h	/^		,vCHAR$/;"	e	enum:__anon31
-vCHAR	cdk/include/cdk.h	/^		,vCHAR$/;"	e	enum:__anon16
+vCHAR	cdk-5.0-20180306/include/cdk.h	/^		,vCHAR$/;"	e	enum:__anon34
+vCHAR	cdk/include/cdk.h	/^		,vCHAR$/;"	e	enum:__anon19
 vCHAR	include/cdk.h	/^		,vCHAR$/;"	e	enum:__anon3
-vCanNotOpenDest	cdk-5.0-20180306/demos/vinstall.c	/^   vCanNotOpenDest,$/;"	e	enum:__anon26	file:
-vCanNotOpenDest	cdk/demos/vinstall.c	/^   vCanNotOpenDest,$/;"	e	enum:__anon11	file:
-vCanNotOpenSource	cdk-5.0-20180306/demos/vinstall.c	/^   vCanNotOpenSource,$/;"	e	enum:__anon26	file:
-vCanNotOpenSource	cdk/demos/vinstall.c	/^   vCanNotOpenSource,$/;"	e	enum:__anon11	file:
-vCell	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon28
-vCell	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon13
-vDIALOG	cdk-5.0-20180306/include/cdk.h	/^		,vDIALOG$/;"	e	enum:__anon30
-vDIALOG	cdk/include/cdk.h	/^		,vDIALOG$/;"	e	enum:__anon15
+vCanNotOpenDest	cdk-5.0-20180306/demos/vinstall.c	/^   vCanNotOpenDest,$/;"	e	enum:__anon29	file:
+vCanNotOpenDest	cdk/demos/vinstall.c	/^   vCanNotOpenDest,$/;"	e	enum:__anon14	file:
+vCanNotOpenSource	cdk-5.0-20180306/demos/vinstall.c	/^   vCanNotOpenSource,$/;"	e	enum:__anon29	file:
+vCanNotOpenSource	cdk/demos/vinstall.c	/^   vCanNotOpenSource,$/;"	e	enum:__anon14	file:
+vCell	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon31
+vCell	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon16
+vDIALOG	cdk-5.0-20180306/include/cdk.h	/^		,vDIALOG$/;"	e	enum:__anon33
+vDIALOG	cdk/include/cdk.h	/^		,vDIALOG$/;"	e	enum:__anon18
 vDIALOG	include/cdk.h	/^		,vDIALOG$/;"	e	enum:__anon2
-vDSCALE	cdk-5.0-20180306/include/cdk.h	/^		,vDSCALE$/;"	e	enum:__anon30
-vDSCALE	cdk/include/cdk.h	/^		,vDSCALE$/;"	e	enum:__anon15
+vDSCALE	cdk-5.0-20180306/include/cdk.h	/^		,vDSCALE$/;"	e	enum:__anon33
+vDSCALE	cdk/include/cdk.h	/^		,vDSCALE$/;"	e	enum:__anon18
 vDSCALE	include/cdk.h	/^		,vDSCALE$/;"	e	enum:__anon2
-vData1	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon28
-vData1	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon13
-vData2	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon28
-vData2	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon13
-vData3	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon28
-vData3	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon13
-vEARLY_EXIT	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon35
-vEARLY_EXIT	cdk/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon20
+vData1	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon31
+vData1	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon16
+vData2	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon31
+vData2	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon16
+vData3	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon31
+vData3	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon16
+vEARLY_EXIT	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon38
+vEARLY_EXIT	cdk/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon23
 vEARLY_EXIT	include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon7
-vENTRY	cdk-5.0-20180306/include/cdk.h	/^		,vENTRY$/;"	e	enum:__anon30
-vENTRY	cdk/include/cdk.h	/^		,vENTRY$/;"	e	enum:__anon15
+vENTRY	cdk-5.0-20180306/include/cdk.h	/^		,vENTRY$/;"	e	enum:__anon33
+vENTRY	cdk/include/cdk.h	/^		,vENTRY$/;"	e	enum:__anon18
 vENTRY	include/cdk.h	/^		,vENTRY$/;"	e	enum:__anon2
-vERROR	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon35
-vERROR	cdk/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon20
+vERROR	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon38
+vERROR	cdk/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon23
 vERROR	include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon7
-vESCAPE_HIT	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon35
-vESCAPE_HIT	cdk/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon20
+vESCAPE_HIT	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon38
+vESCAPE_HIT	cdk/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon23
 vESCAPE_HIT	include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon7
-vFAX1	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon28
-vFAX1	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon13
-vFAX2	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon28
-vFAX2	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon13
-vFAX3	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon28
-vFAX3	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon13
-vFRACTION	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon32
-vFRACTION	cdk/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon17
+vFAX1	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon31
+vFAX1	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon16
+vFAX2	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon31
+vFAX2	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon16
+vFAX3	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon31
+vFAX3	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon16
+vFRACTION	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon35
+vFRACTION	cdk/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon20
 vFRACTION	include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon4
-vFRONT	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon34
-vFRONT	cdk/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon19
+vFRONT	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon37
+vFRONT	cdk/include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon22
 vFRONT	include/cdk.h	/^typedef enum {vFRONT, vBACK, vBOTH} EStripType;$/;"	e	enum:__anon6
-vFSCALE	cdk-5.0-20180306/include/cdk.h	/^		,vFSCALE$/;"	e	enum:__anon30
-vFSCALE	cdk/include/cdk.h	/^		,vFSCALE$/;"	e	enum:__anon15
+vFSCALE	cdk-5.0-20180306/include/cdk.h	/^		,vFSCALE$/;"	e	enum:__anon33
+vFSCALE	cdk/include/cdk.h	/^		,vFSCALE$/;"	e	enum:__anon18
 vFSCALE	include/cdk.h	/^		,vFSCALE$/;"	e	enum:__anon2
-vFSELECT	cdk-5.0-20180306/include/cdk.h	/^		,vFSELECT$/;"	e	enum:__anon30
-vFSELECT	cdk/include/cdk.h	/^		,vFSELECT$/;"	e	enum:__anon15
+vFSELECT	cdk-5.0-20180306/include/cdk.h	/^		,vFSELECT$/;"	e	enum:__anon33
+vFSELECT	cdk/include/cdk.h	/^		,vFSELECT$/;"	e	enum:__anon18
 vFSELECT	include/cdk.h	/^		,vFSELECT$/;"	e	enum:__anon2
-vFSLIDER	cdk-5.0-20180306/include/cdk.h	/^		,vFSLIDER$/;"	e	enum:__anon30
-vFSLIDER	cdk/include/cdk.h	/^		,vFSLIDER$/;"	e	enum:__anon15
+vFSLIDER	cdk-5.0-20180306/include/cdk.h	/^		,vFSLIDER$/;"	e	enum:__anon33
+vFSLIDER	cdk/include/cdk.h	/^		,vFSLIDER$/;"	e	enum:__anon18
 vFSLIDER	include/cdk.h	/^		,vFSLIDER$/;"	e	enum:__anon2
-vGRAPH	cdk-5.0-20180306/include/cdk.h	/^		,vGRAPH$/;"	e	enum:__anon30
-vGRAPH	cdk/include/cdk.h	/^		,vGRAPH$/;"	e	enum:__anon15
+vGRAPH	cdk-5.0-20180306/include/cdk.h	/^		,vGRAPH$/;"	e	enum:__anon33
+vGRAPH	cdk/include/cdk.h	/^		,vGRAPH$/;"	e	enum:__anon18
 vGRAPH	include/cdk.h	/^		,vGRAPH$/;"	e	enum:__anon2
-vHCHAR	cdk-5.0-20180306/include/cdk.h	/^		,vHCHAR$/;"	e	enum:__anon31
-vHCHAR	cdk/include/cdk.h	/^		,vHCHAR$/;"	e	enum:__anon16
+vHCHAR	cdk-5.0-20180306/include/cdk.h	/^		,vHCHAR$/;"	e	enum:__anon34
+vHCHAR	cdk/include/cdk.h	/^		,vHCHAR$/;"	e	enum:__anon19
 vHCHAR	include/cdk.h	/^		,vHCHAR$/;"	e	enum:__anon3
-vHINT	cdk-5.0-20180306/include/cdk.h	/^		,vHINT$/;"	e	enum:__anon31
-vHINT	cdk/include/cdk.h	/^		,vHINT$/;"	e	enum:__anon16
+vHINT	cdk-5.0-20180306/include/cdk.h	/^		,vHINT$/;"	e	enum:__anon34
+vHINT	cdk/include/cdk.h	/^		,vHINT$/;"	e	enum:__anon19
 vHINT	include/cdk.h	/^		,vHINT$/;"	e	enum:__anon3
-vHISTOGRAM	cdk-5.0-20180306/include/cdk.h	/^		,vHISTOGRAM$/;"	e	enum:__anon30
-vHISTOGRAM	cdk/include/cdk.h	/^		,vHISTOGRAM$/;"	e	enum:__anon15
+vHISTOGRAM	cdk-5.0-20180306/include/cdk.h	/^		,vHISTOGRAM$/;"	e	enum:__anon33
+vHISTOGRAM	cdk/include/cdk.h	/^		,vHISTOGRAM$/;"	e	enum:__anon18
 vHISTOGRAM	include/cdk.h	/^		,vHISTOGRAM$/;"	e	enum:__anon2
-vHMIXED	cdk-5.0-20180306/include/cdk.h	/^		,vHMIXED$/;"	e	enum:__anon31
-vHMIXED	cdk/include/cdk.h	/^		,vHMIXED$/;"	e	enum:__anon16
+vHMIXED	cdk-5.0-20180306/include/cdk.h	/^		,vHMIXED$/;"	e	enum:__anon34
+vHMIXED	cdk/include/cdk.h	/^		,vHMIXED$/;"	e	enum:__anon19
 vHMIXED	include/cdk.h	/^		,vHMIXED$/;"	e	enum:__anon3
-vINT	cdk-5.0-20180306/include/cdk.h	/^		,vINT$/;"	e	enum:__anon31
-vINT	cdk/include/cdk.h	/^		,vINT$/;"	e	enum:__anon16
+vINT	cdk-5.0-20180306/include/cdk.h	/^		,vINT$/;"	e	enum:__anon34
+vINT	cdk/include/cdk.h	/^		,vINT$/;"	e	enum:__anon19
 vINT	include/cdk.h	/^		,vINT$/;"	e	enum:__anon3
-vINVALID	cdk-5.0-20180306/include/cdk.h	/^typedef enum {	vINVALID = 0$/;"	e	enum:__anon31
-vINVALID	cdk/include/cdk.h	/^typedef enum {	vINVALID = 0$/;"	e	enum:__anon16
+vINVALID	cdk-5.0-20180306/include/cdk.h	/^typedef enum {	vINVALID = 0$/;"	e	enum:__anon34
+vINVALID	cdk/include/cdk.h	/^typedef enum {	vINVALID = 0$/;"	e	enum:__anon19
 vINVALID	include/cdk.h	/^typedef enum {	vINVALID = 0$/;"	e	enum:__anon3
-vITEMLIST	cdk-5.0-20180306/include/cdk.h	/^		,vITEMLIST$/;"	e	enum:__anon30
-vITEMLIST	cdk/include/cdk.h	/^		,vITEMLIST$/;"	e	enum:__anon15
+vITEMLIST	cdk-5.0-20180306/include/cdk.h	/^		,vITEMLIST$/;"	e	enum:__anon33
+vITEMLIST	cdk/include/cdk.h	/^		,vITEMLIST$/;"	e	enum:__anon18
 vITEMLIST	include/cdk.h	/^		,vITEMLIST$/;"	e	enum:__anon2
-vLABEL	cdk-5.0-20180306/include/cdk.h	/^		,vLABEL$/;"	e	enum:__anon30
-vLABEL	cdk/include/cdk.h	/^		,vLABEL$/;"	e	enum:__anon15
+vLABEL	cdk-5.0-20180306/include/cdk.h	/^		,vLABEL$/;"	e	enum:__anon33
+vLABEL	cdk/include/cdk.h	/^		,vLABEL$/;"	e	enum:__anon18
 vLABEL	include/cdk.h	/^		,vLABEL$/;"	e	enum:__anon2
-vLCHAR	cdk-5.0-20180306/include/cdk.h	/^		,vLCHAR$/;"	e	enum:__anon31
-vLCHAR	cdk/include/cdk.h	/^		,vLCHAR$/;"	e	enum:__anon16
+vLCHAR	cdk-5.0-20180306/include/cdk.h	/^		,vLCHAR$/;"	e	enum:__anon34
+vLCHAR	cdk/include/cdk.h	/^		,vLCHAR$/;"	e	enum:__anon19
 vLCHAR	include/cdk.h	/^		,vLCHAR$/;"	e	enum:__anon3
-vLHCHAR	cdk-5.0-20180306/include/cdk.h	/^		,vLHCHAR$/;"	e	enum:__anon31
-vLHCHAR	cdk/include/cdk.h	/^		,vLHCHAR$/;"	e	enum:__anon16
+vLHCHAR	cdk-5.0-20180306/include/cdk.h	/^		,vLHCHAR$/;"	e	enum:__anon34
+vLHCHAR	cdk/include/cdk.h	/^		,vLHCHAR$/;"	e	enum:__anon19
 vLHCHAR	include/cdk.h	/^		,vLHCHAR$/;"	e	enum:__anon3
-vLHMIXED	cdk-5.0-20180306/include/cdk.h	/^		,vLHMIXED$/;"	e	enum:__anon31
-vLHMIXED	cdk/include/cdk.h	/^		,vLHMIXED$/;"	e	enum:__anon16
+vLHMIXED	cdk-5.0-20180306/include/cdk.h	/^		,vLHMIXED$/;"	e	enum:__anon34
+vLHMIXED	cdk/include/cdk.h	/^		,vLHMIXED$/;"	e	enum:__anon19
 vLHMIXED	include/cdk.h	/^		,vLHMIXED$/;"	e	enum:__anon3
-vLINE	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	e	enum:__anon33
-vLINE	cdk/include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	e	enum:__anon18
+vLINE	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	e	enum:__anon36
+vLINE	cdk/include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	e	enum:__anon21
 vLINE	include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	e	enum:__anon5
-vLMIXED	cdk-5.0-20180306/include/cdk.h	/^		,vLMIXED$/;"	e	enum:__anon31
-vLMIXED	cdk/include/cdk.h	/^		,vLMIXED$/;"	e	enum:__anon16
+vLMIXED	cdk-5.0-20180306/include/cdk.h	/^		,vLMIXED$/;"	e	enum:__anon34
+vLMIXED	cdk/include/cdk.h	/^		,vLMIXED$/;"	e	enum:__anon19
 vLMIXED	include/cdk.h	/^		,vLMIXED$/;"	e	enum:__anon3
-vMARQUEE	cdk-5.0-20180306/include/cdk.h	/^		,vMARQUEE$/;"	e	enum:__anon30
-vMARQUEE	cdk/include/cdk.h	/^		,vMARQUEE$/;"	e	enum:__anon15
+vMARQUEE	cdk-5.0-20180306/include/cdk.h	/^		,vMARQUEE$/;"	e	enum:__anon33
+vMARQUEE	cdk/include/cdk.h	/^		,vMARQUEE$/;"	e	enum:__anon18
 vMARQUEE	include/cdk.h	/^		,vMARQUEE$/;"	e	enum:__anon2
-vMATRIX	cdk-5.0-20180306/include/cdk.h	/^		,vMATRIX$/;"	e	enum:__anon30
-vMATRIX	cdk/include/cdk.h	/^		,vMATRIX$/;"	e	enum:__anon15
+vMATRIX	cdk-5.0-20180306/include/cdk.h	/^		,vMATRIX$/;"	e	enum:__anon33
+vMATRIX	cdk/include/cdk.h	/^		,vMATRIX$/;"	e	enum:__anon18
 vMATRIX	include/cdk.h	/^		,vMATRIX$/;"	e	enum:__anon2
-vMENTRY	cdk-5.0-20180306/include/cdk.h	/^		,vMENTRY$/;"	e	enum:__anon30
-vMENTRY	cdk/include/cdk.h	/^		,vMENTRY$/;"	e	enum:__anon15
+vMENTRY	cdk-5.0-20180306/include/cdk.h	/^		,vMENTRY$/;"	e	enum:__anon33
+vMENTRY	cdk/include/cdk.h	/^		,vMENTRY$/;"	e	enum:__anon18
 vMENTRY	include/cdk.h	/^		,vMENTRY$/;"	e	enum:__anon2
-vMENU	cdk-5.0-20180306/include/cdk.h	/^		,vMENU$/;"	e	enum:__anon30
-vMENU	cdk/include/cdk.h	/^		,vMENU$/;"	e	enum:__anon15
+vMENU	cdk-5.0-20180306/include/cdk.h	/^		,vMENU$/;"	e	enum:__anon33
+vMENU	cdk/include/cdk.h	/^		,vMENU$/;"	e	enum:__anon18
 vMENU	include/cdk.h	/^		,vMENU$/;"	e	enum:__anon2
-vMIXED	cdk-5.0-20180306/include/cdk.h	/^		,vMIXED$/;"	e	enum:__anon31
-vMIXED	cdk/include/cdk.h	/^		,vMIXED$/;"	e	enum:__anon16
+vMIXED	cdk-5.0-20180306/include/cdk.h	/^		,vMIXED$/;"	e	enum:__anon34
+vMIXED	cdk/include/cdk.h	/^		,vMIXED$/;"	e	enum:__anon19
 vMIXED	include/cdk.h	/^		,vMIXED$/;"	e	enum:__anon3
-vNEVER_ACTIVATED	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon35
-vNEVER_ACTIVATED	cdk/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon20
+vNEVER_ACTIVATED	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon38
+vNEVER_ACTIVATED	cdk/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon23
 vNEVER_ACTIVATED	include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon7
-vNONE	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon32
-vNONE	cdk/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon17
+vNONE	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon35
+vNONE	cdk/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon20
 vNONE	include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon4
-vNORMAL	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon35
-vNORMAL	cdk/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon20
+vNORMAL	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon38
+vNORMAL	cdk/include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon23
 vNORMAL	include/cdk.h	/^typedef enum {vEARLY_EXIT, vESCAPE_HIT, vNORMAL, vNEVER_ACTIVATED, vERROR} EExitType;$/;"	e	enum:__anon7
-vNULL	cdk-5.0-20180306/include/cdk.h	/^typedef enum {	vNULL = 0$/;"	e	enum:__anon30
-vNULL	cdk/include/cdk.h	/^typedef enum {	vNULL = 0$/;"	e	enum:__anon15
+vNULL	cdk-5.0-20180306/include/cdk.h	/^typedef enum {	vNULL = 0$/;"	e	enum:__anon33
+vNULL	cdk/include/cdk.h	/^typedef enum {	vNULL = 0$/;"	e	enum:__anon18
 vNULL	include/cdk.h	/^typedef enum {	vNULL = 0$/;"	e	enum:__anon2
-vOK	cdk-5.0-20180306/demos/vinstall.c	/^   vOK$/;"	e	enum:__anon26	file:
-vOK	cdk/demos/vinstall.c	/^   vOK$/;"	e	enum:__anon11	file:
-vOther	cdk-5.0-20180306/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon27	file:
-vOther	cdk/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon12	file:
-vPERCENT	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon32
-vPERCENT	cdk/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon17
+vOK	cdk-5.0-20180306/demos/vinstall.c	/^   vOK$/;"	e	enum:__anon29	file:
+vOK	cdk/demos/vinstall.c	/^   vOK$/;"	e	enum:__anon14	file:
+vOther	cdk-5.0-20180306/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon30	file:
+vOther	cdk/demos/appointment.c	/^   vBirthday, vAnniversary, vAppointment, vOther$/;"	e	enum:__anon15	file:
+vPERCENT	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon35
+vPERCENT	cdk/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon20
 vPERCENT	include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon4
-vPLOT	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	e	enum:__anon33
-vPLOT	cdk/include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	e	enum:__anon18
+vPLOT	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	e	enum:__anon36
+vPLOT	cdk/include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	e	enum:__anon21
 vPLOT	include/cdk.h	/^typedef enum {vPLOT, vLINE} EGraphDisplayType;$/;"	e	enum:__anon5
-vPager	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon28
-vPager	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon13
-vRADIO	cdk-5.0-20180306/include/cdk.h	/^		,vRADIO$/;"	e	enum:__anon30
-vRADIO	cdk/include/cdk.h	/^		,vRADIO$/;"	e	enum:__anon15
+vPager	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon31
+vPager	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon16
+vRADIO	cdk-5.0-20180306/include/cdk.h	/^		,vRADIO$/;"	e	enum:__anon33
+vRADIO	cdk/include/cdk.h	/^		,vRADIO$/;"	e	enum:__anon18
 vRADIO	include/cdk.h	/^		,vRADIO$/;"	e	enum:__anon2
-vREAL	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon32
-vREAL	cdk/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon17
+vREAL	cdk-5.0-20180306/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon35
+vREAL	cdk/include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon20
 vREAL	include/cdk.h	/^typedef enum {vNONE, vPERCENT, vFRACTION, vREAL} EHistogramDisplayType;$/;"	e	enum:__anon4
-vSCALE	cdk-5.0-20180306/include/cdk.h	/^		,vSCALE$/;"	e	enum:__anon30
-vSCALE	cdk/include/cdk.h	/^		,vSCALE$/;"	e	enum:__anon15
+vSCALE	cdk-5.0-20180306/include/cdk.h	/^		,vSCALE$/;"	e	enum:__anon33
+vSCALE	cdk/include/cdk.h	/^		,vSCALE$/;"	e	enum:__anon18
 vSCALE	include/cdk.h	/^		,vSCALE$/;"	e	enum:__anon2
-vSCROLL	cdk-5.0-20180306/include/cdk.h	/^		,vSCROLL$/;"	e	enum:__anon30
-vSCROLL	cdk/include/cdk.h	/^		,vSCROLL$/;"	e	enum:__anon15
+vSCROLL	cdk-5.0-20180306/include/cdk.h	/^		,vSCROLL$/;"	e	enum:__anon33
+vSCROLL	cdk/include/cdk.h	/^		,vSCROLL$/;"	e	enum:__anon18
 vSCROLL	include/cdk.h	/^		,vSCROLL$/;"	e	enum:__anon2
-vSELECTION	cdk-5.0-20180306/include/cdk.h	/^		,vSELECTION$/;"	e	enum:__anon30
-vSELECTION	cdk/include/cdk.h	/^		,vSELECTION$/;"	e	enum:__anon15
+vSELECTION	cdk-5.0-20180306/include/cdk.h	/^		,vSELECTION$/;"	e	enum:__anon33
+vSELECTION	cdk/include/cdk.h	/^		,vSELECTION$/;"	e	enum:__anon18
 vSELECTION	include/cdk.h	/^		,vSELECTION$/;"	e	enum:__anon2
-vSLIDER	cdk-5.0-20180306/include/cdk.h	/^		,vSLIDER$/;"	e	enum:__anon30
-vSLIDER	cdk/include/cdk.h	/^		,vSLIDER$/;"	e	enum:__anon15
+vSLIDER	cdk-5.0-20180306/include/cdk.h	/^		,vSLIDER$/;"	e	enum:__anon33
+vSLIDER	cdk/include/cdk.h	/^		,vSLIDER$/;"	e	enum:__anon18
 vSLIDER	include/cdk.h	/^		,vSLIDER$/;"	e	enum:__anon2
-vSWINDOW	cdk-5.0-20180306/include/cdk.h	/^		,vSWINDOW$/;"	e	enum:__anon30
-vSWINDOW	cdk/include/cdk.h	/^		,vSWINDOW$/;"	e	enum:__anon15
+vSWINDOW	cdk-5.0-20180306/include/cdk.h	/^		,vSWINDOW$/;"	e	enum:__anon33
+vSWINDOW	cdk/include/cdk.h	/^		,vSWINDOW$/;"	e	enum:__anon18
 vSWINDOW	include/cdk.h	/^		,vSWINDOW$/;"	e	enum:__anon2
-vTEMPLATE	cdk-5.0-20180306/include/cdk.h	/^		,vTEMPLATE$/;"	e	enum:__anon30
-vTEMPLATE	cdk/include/cdk.h	/^		,vTEMPLATE$/;"	e	enum:__anon15
+vTEMPLATE	cdk-5.0-20180306/include/cdk.h	/^		,vTEMPLATE$/;"	e	enum:__anon33
+vTEMPLATE	cdk/include/cdk.h	/^		,vTEMPLATE$/;"	e	enum:__anon18
 vTEMPLATE	include/cdk.h	/^		,vTEMPLATE$/;"	e	enum:__anon2
-vTRAVERSE	cdk-5.0-20180306/include/cdk.h	/^		,vTRAVERSE$/;"	e	enum:__anon30
-vTRAVERSE	cdk/include/cdk.h	/^		,vTRAVERSE$/;"	e	enum:__anon15
+vTRAVERSE	cdk-5.0-20180306/include/cdk.h	/^		,vTRAVERSE$/;"	e	enum:__anon33
+vTRAVERSE	cdk/include/cdk.h	/^		,vTRAVERSE$/;"	e	enum:__anon18
 vTRAVERSE	include/cdk.h	/^		,vTRAVERSE$/;"	e	enum:__anon2
-vUCHAR	cdk-5.0-20180306/include/cdk.h	/^		,vUCHAR$/;"	e	enum:__anon31
-vUCHAR	cdk/include/cdk.h	/^		,vUCHAR$/;"	e	enum:__anon16
+vUCHAR	cdk-5.0-20180306/include/cdk.h	/^		,vUCHAR$/;"	e	enum:__anon34
+vUCHAR	cdk/include/cdk.h	/^		,vUCHAR$/;"	e	enum:__anon19
 vUCHAR	include/cdk.h	/^		,vUCHAR$/;"	e	enum:__anon3
-vUHCHAR	cdk-5.0-20180306/include/cdk.h	/^		,vUHCHAR$/;"	e	enum:__anon31
-vUHCHAR	cdk/include/cdk.h	/^		,vUHCHAR$/;"	e	enum:__anon16
+vUHCHAR	cdk-5.0-20180306/include/cdk.h	/^		,vUHCHAR$/;"	e	enum:__anon34
+vUHCHAR	cdk/include/cdk.h	/^		,vUHCHAR$/;"	e	enum:__anon19
 vUHCHAR	include/cdk.h	/^		,vUHCHAR$/;"	e	enum:__anon3
-vUHMIXED	cdk-5.0-20180306/include/cdk.h	/^		,vUHMIXED$/;"	e	enum:__anon31
-vUHMIXED	cdk/include/cdk.h	/^		,vUHMIXED$/;"	e	enum:__anon16
+vUHMIXED	cdk-5.0-20180306/include/cdk.h	/^		,vUHMIXED$/;"	e	enum:__anon34
+vUHMIXED	cdk/include/cdk.h	/^		,vUHMIXED$/;"	e	enum:__anon19
 vUHMIXED	include/cdk.h	/^		,vUHMIXED$/;"	e	enum:__anon3
-vUMIXED	cdk-5.0-20180306/include/cdk.h	/^		,vUMIXED$/;"	e	enum:__anon31
-vUMIXED	cdk/include/cdk.h	/^		,vUMIXED$/;"	e	enum:__anon16
+vUMIXED	cdk-5.0-20180306/include/cdk.h	/^		,vUMIXED$/;"	e	enum:__anon34
+vUMIXED	cdk/include/cdk.h	/^		,vUMIXED$/;"	e	enum:__anon19
 vUMIXED	include/cdk.h	/^		,vUMIXED$/;"	e	enum:__anon3
-vUSCALE	cdk-5.0-20180306/include/cdk.h	/^		,vUSCALE$/;"	e	enum:__anon30
-vUSCALE	cdk/include/cdk.h	/^		,vUSCALE$/;"	e	enum:__anon15
+vUSCALE	cdk-5.0-20180306/include/cdk.h	/^		,vUSCALE$/;"	e	enum:__anon33
+vUSCALE	cdk/include/cdk.h	/^		,vUSCALE$/;"	e	enum:__anon18
 vUSCALE	include/cdk.h	/^		,vUSCALE$/;"	e	enum:__anon2
-vUSLIDER	cdk-5.0-20180306/include/cdk.h	/^		,vUSLIDER$/;"	e	enum:__anon30
-vUSLIDER	cdk/include/cdk.h	/^		,vUSLIDER$/;"	e	enum:__anon15
+vUSLIDER	cdk-5.0-20180306/include/cdk.h	/^		,vUSLIDER$/;"	e	enum:__anon33
+vUSLIDER	cdk/include/cdk.h	/^		,vUSLIDER$/;"	e	enum:__anon18
 vUSLIDER	include/cdk.h	/^		,vUSLIDER$/;"	e	enum:__anon2
-vUnknown	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon28
-vUnknown	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon13
-vVIEWER	cdk-5.0-20180306/include/cdk.h	/^		,vVIEWER$/;"	e	enum:__anon30
-vVIEWER	cdk/include/cdk.h	/^		,vVIEWER$/;"	e	enum:__anon15
+vUnknown	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon31
+vUnknown	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon16
+vVIEWER	cdk-5.0-20180306/include/cdk.h	/^		,vVIEWER$/;"	e	enum:__anon33
+vVIEWER	cdk/include/cdk.h	/^		,vVIEWER$/;"	e	enum:__anon18
 vVIEWER	include/cdk.h	/^		,vVIEWER$/;"	e	enum:__anon2
-vVIEWONLY	cdk-5.0-20180306/include/cdk.h	/^		,vVIEWONLY$/;"	e	enum:__anon31
-vVIEWONLY	cdk/include/cdk.h	/^		,vVIEWONLY$/;"	e	enum:__anon16
+vVIEWONLY	cdk-5.0-20180306/include/cdk.h	/^		,vVIEWONLY$/;"	e	enum:__anon34
+vVIEWONLY	cdk/include/cdk.h	/^		,vVIEWONLY$/;"	e	enum:__anon19
 vVIEWONLY	include/cdk.h	/^		,vVIEWONLY$/;"	e	enum:__anon3
-vVoice	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon28
-vVoice	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon13
+vVoice	cdk-5.0-20180306/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon31
+vVoice	cdk/demos/rolodex.h	/^typedef enum {vUnknown = -1, vVoice = 0, vCell, vPager, vFAX1, vFAX2, vFAX3, vData1, vData2, vData3} ELineType;$/;"	e	enum:__anon16
 validCDKObject	cdk-5.0-20180306/cdkscreen.c	/^bool validCDKObject (CDKOBJS *obj)$/;"	f
 validCDKObject	cdk/cdkscreen.c	/^bool validCDKObject (CDKOBJS *obj)$/;"	f
 validEditPosition	cdk-5.0-20180306/dscale.c	/^static int validEditPosition (CDKDSCALE * widget, int newPosition)$/;"	f	file:
@@ -8330,20 +8399,20 @@ validObjType	cdk-5.0-20180306/cdkscreen.c	/^static boolean validObjType (CDKOBJS
 validObjType	cdk/cdkscreen.c	/^static boolean validObjType (CDKOBJS *obj, EObjectType type)$/;"	f	file:
 validTemplate	cdk-5.0-20180306/template.c	/^static boolean validTemplate (CDKTEMPLATE *cdktemplate, char *input)$/;"	f	file:
 validTemplate	cdk/template.c	/^static boolean validTemplate (CDKTEMPLATE *cdktemplate, char *input)$/;"	f	file:
-valueDouble	cdk-5.0-20180306/include/cdk_objs.h	/^   double valueDouble;$/;"	m	union:__anon37
-valueDouble	cdk/include/cdk_objs.h	/^   double valueDouble;$/;"	m	union:__anon22
+valueDouble	cdk-5.0-20180306/include/cdk_objs.h	/^   double valueDouble;$/;"	m	union:__anon40
+valueDouble	cdk/include/cdk_objs.h	/^   double valueDouble;$/;"	m	union:__anon25
 valueDouble	include/cdk_objs.h	/^   double valueDouble;$/;"	m	union:__anon9
-valueFloat	cdk-5.0-20180306/include/cdk_objs.h	/^   float  valueFloat;$/;"	m	union:__anon37
-valueFloat	cdk/include/cdk_objs.h	/^   float  valueFloat;$/;"	m	union:__anon22
+valueFloat	cdk-5.0-20180306/include/cdk_objs.h	/^   float  valueFloat;$/;"	m	union:__anon40
+valueFloat	cdk/include/cdk_objs.h	/^   float  valueFloat;$/;"	m	union:__anon25
 valueFloat	include/cdk_objs.h	/^   float  valueFloat;$/;"	m	union:__anon9
-valueInt	cdk-5.0-20180306/include/cdk_objs.h	/^   int    valueInt;$/;"	m	union:__anon37
-valueInt	cdk/include/cdk_objs.h	/^   int    valueInt;$/;"	m	union:__anon22
+valueInt	cdk-5.0-20180306/include/cdk_objs.h	/^   int    valueInt;$/;"	m	union:__anon40
+valueInt	cdk/include/cdk_objs.h	/^   int    valueInt;$/;"	m	union:__anon25
 valueInt	include/cdk_objs.h	/^   int    valueInt;$/;"	m	union:__anon9
-valueString	cdk-5.0-20180306/include/cdk_objs.h	/^   char * valueString;$/;"	m	union:__anon37
-valueString	cdk/include/cdk_objs.h	/^   char * valueString;$/;"	m	union:__anon22
+valueString	cdk-5.0-20180306/include/cdk_objs.h	/^   char * valueString;$/;"	m	union:__anon40
+valueString	cdk/include/cdk_objs.h	/^   char * valueString;$/;"	m	union:__anon25
 valueString	include/cdk_objs.h	/^   char * valueString;$/;"	m	union:__anon9
-valueUnsigned	cdk-5.0-20180306/include/cdk_objs.h	/^   unsigned valueUnsigned;$/;"	m	union:__anon37
-valueUnsigned	cdk/include/cdk_objs.h	/^   unsigned valueUnsigned;$/;"	m	union:__anon22
+valueUnsigned	cdk-5.0-20180306/include/cdk_objs.h	/^   unsigned valueUnsigned;$/;"	m	union:__anon40
+valueUnsigned	cdk/include/cdk_objs.h	/^   unsigned valueUnsigned;$/;"	m	union:__anon25
 valueUnsigned	include/cdk_objs.h	/^   unsigned valueUnsigned;$/;"	m	union:__anon9
 value	cdk-5.0-20180306/include/histogram.h	/^   int				value;$/;"	m	struct:SHistogram
 value	cdk/include/histogram.h	/^   int				value;$/;"	m	struct:SHistogram

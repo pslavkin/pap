@@ -1,10 +1,13 @@
 #include "inc_all.h"
 
+Curses_Color_Class*  Curses;
+Main_Page_Class*     Main_Page;
+
 int main(int argc, char **argv)
 {
-   Curses_Color_Class* Cu= new Curses_Color_Class ( );
-   Main_Page_Class M         ( stdscr    );
-   Params_Parser             ( argc,argv );
+   Curses    = new Curses_Color_Class (           );
+   Main_Page = new Main_Page_Class    ( stdscr    );
+   Params_Parser                      ( argc,argv );
    for(;;)
       sleep(10);
       ;

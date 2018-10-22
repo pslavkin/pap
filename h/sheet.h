@@ -12,12 +12,9 @@ class Sheet{
       static  Sheet* Sheet4Panel     ( PANEL* Panel );
 protected:
 public:
-   Sheet ( WINDOW *Ext_Win                                                                                 ); // con arfs
-   Sheet ( uint16_t Y    ,uint16_t X ,uint16_t Height ,uint16_t Width  ,const char* Tittle                 );
-   Sheet(WINDOW* W,Dim D);
-   Sheet ( Sheet* Parent ,uint16_t Y ,uint16_t X      ,uint16_t Height ,uint16_t Width ,const char* Tittle );
-   Sheet                (                 ); //sin args
-   Sheet (Sheet* Parent,Dim D);
+   Sheet ( WINDOW* W     ,Dim D           );
+   Sheet ( Sheet* Parent ,Dim D           );
+   Sheet ( Sheet* Parent ,Dim D ,bool Box );
    WINDOW*                    Win;
    Sheet*                     Parent_Sheet;
    PANEL*                     Panel;
@@ -25,7 +22,7 @@ public:
    Dim Dims;
 
    void                 Set_Parent_Sheet       ( Sheet* P);
-   void                 Redraw_Box             ( void                                               );
+   void                 Redraw_Box(bool Selected);
    void                 Hide_Box               ( void                                               );
    void                 Set_Name               ( const char* Sheet_Name                                   );
    void                 Set_Size               ( unsigned short int Height,unsigned short int Width );
@@ -45,6 +42,7 @@ public:
    void                 Unhide                 ( void                                               );
    void                 Top                    ( void                                               );
    void                 Bottom                 ( void                                               );
+   void  Toogle_Select(void);
    void                 Select                 ( void                                               );
    void                 Deselect               ( void                                               );
    void                 Set_Panel_User_Pointer();
@@ -61,6 +59,7 @@ private:
    void Normalize_H(void);
    void Normalize_X(void);
    void Normalize_Y(void);
+   bool Selected=0;
 };
 
 #endif

@@ -14,7 +14,7 @@ void Histo_Class::Set_V_Inverted_Rule_Value(uint32_t Value)
    uint16_t Height=S->Dims.H-2;
    Value= ( Value*Height )/Max_Value;
    for(i=0;i<Height;i++)
-      mvwaddch(S->Win,Height-i,2,Value<(Height-i)?('.'|COLOR_PAIR(0)):(' '|COLOR_PAIR(3)));
+      mvwaddch(S->Win,Height-i,2,Value<(Height-i)?('.'|COLOR_PAIR(0)):('.'|COLOR_PAIR(MAX_COLOUR_PAIR)));
 }
 void Histo_Class::Rti(void)
 {

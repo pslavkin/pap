@@ -19,8 +19,9 @@ _OBJ= \
 		coords.o\
 		curses_color.o\
 		main_page.o\
-		bed.o\
-		dim.o
+		tresd.o\
+		parser.o\
+		dim.o\
 
 OBJ_DIR=./obj
 OBJ = $(patsubst %,$(OBJ_DIR)/%,$(_OBJ))
@@ -38,8 +39,9 @@ _DEP = \
 		 coords.h\
 		 curses_color.h\
 		 main_page.h\
-		 bed.h\
-		 dim.h
+		 tresd.h\
+		 parser.h\
+		 dim.h\
 
 DEP_DIR=./h
 DEP = $(patsubst %,$(DEP_DIR)/%,$(_DEP))

@@ -8,11 +8,11 @@ Sheet::Sheet(Sheet* Parent,Dim D)
    Normalize_H ( );
    Normalize_X ( );
    Normalize_W ( );
-   Win          = newwin    ( D.H ,D.W,Parent->Beg_Y()+D.Y ,Parent->Beg_X()+D.X );
-   Panel        = new_panel ( Win    );
-   Set_Panel_User_Pointer   (        );
-   Set_Name                 ( D.Name );
-   Redraw_Box               (        );
+   Win          = newwin    ( Dims.H ,Dims.W,Parent->Beg_Y()+Dims.Y ,Parent->Beg_X()+Dims.X );
+   Panel        = new_panel ( Win      );
+   Set_Panel_User_Pointer   (          );
+   Set_Name                 ( D.Name   );
+   Redraw_Box               ( Selected );
 }
 Sheet::Sheet(WINDOW* W,Dim D)
 {
@@ -21,22 +21,36 @@ Sheet::Sheet(WINDOW* W,Dim D)
    Parent_Sheet = this                ;
    Set_Panel_User_Pointer (               );
    Set_Name               ( D.Name        );
-   this->Dims=D;
+   this->Dims=D                            ;
    wresize                ( Win,D.H,D.W   );
    move_panel             ( Panel,D.Y,D.X );
-   Redraw_Box             (               );
+   Redraw_Box             ( Selected      );
 
 
+}
+Sheet::Sheet(Sheet* Parent,Dim D,bool Box)
+{
+   this->Dims   = D;
+   Parent_Sheet = Parent;
+   Normalize_Y ( );
+   Normalize_H ( );
+   Normalize_X ( );
+   Normalize_W ( );
+   Win          = newwin    ( Dims.H ,Dims.W,Parent->Beg_Y()+Dims.Y ,Parent->Beg_X()+Dims.X );
+   Panel        = new_panel ( Win      );
+   Set_Panel_User_Pointer   (          );
+   Set_Name                 ( D.Name   );
+   if(Box==true) Redraw_Box ( Selected );
 }
 void  Sheet::Set_Parent_Sheet(Sheet* P)
 {
    Parent_Sheet=P;
 }
-void  Sheet::Redraw_Box(void)
+void  Sheet::Redraw_Box(bool Selected)
 {
-   wattron       ( Win ,COLOR_PAIR(100 ));
-   box           ( Win ,0 ,0           ) ;
-   wattroff      ( Win ,COLOR_PAIR(100 ));
+   wattron  ( Win ,COLOR_PAIR(Selected?12 :100 ));
+   box      ( Win ,0 ,0                        ) ;
+   wattroff ( Win ,COLOR_PAIR(0                ));
    wattron       ( Win ,COLOR_PAIR(180 ));
    if(strlen(Name)+2 <= getmaxx(Win))
       mvwprintw ( Win ,0 ,1 ,Name );
@@ -114,7 +128,7 @@ void  Sheet::Inc_Width(void)
    Normalize_W();
    wresize    ( Win,Dims.H,Dims.W );
    wclear     ( Win               );
-   Redraw_Box (                   );
+   Redraw_Box ( Selected             );
 }
 void  Sheet::Dec_Width(void)
 {
@@ -122,7 +136,7 @@ void  Sheet::Dec_Width(void)
       Dims.W--;
    wresize    ( Win,Dims.H,Dims.W );
    wclear     ( Win               );
-   Redraw_Box (                   );
+   Redraw_Box ( Selected             );
    Parent_Sheet->Touch_Win ( ); // sino quedan residuos del box
 }
 void  Sheet::Inc_Height(void)
@@ -131,7 +145,7 @@ void  Sheet::Inc_Height(void)
    Normalize_H();
    wresize    ( Win,Dims.H,Dims.W );
    wclear     ( Win               );
-   Redraw_Box (                   );
+   Redraw_Box ( Selected             );
 }
 void  Sheet::Dec_Height(void)
 {
@@ -139,7 +153,7 @@ void  Sheet::Dec_Height(void)
       Dims.H--;
    wresize    ( Win,Dims.H,Dims.W );
    wclear     ( Win               );
-   Redraw_Box (                   );
+   Redraw_Box ( Selected             );
    Parent_Sheet->Touch_Win ( ); // sino quedan residuos del box
 }
 void  Sheet::Set_Pos(unsigned short int Y,unsigned short int X)
@@ -162,20 +176,27 @@ void  Sheet::Bottom(void)
 {
    bottom_panel ( Panel );
 }
+void  Sheet::Toogle_Select(void)
+{
+   Selected=Selected?false:true;
+   Redraw_Box(Selected);
+}
 void  Sheet::Select(void)
 {
-   mvwaddch ( Win,1,1,'*'|A_BOLD );
+   Selected=true;
+   Redraw_Box(Selected);
 }
 void  Sheet::Deselect(void)
 {
-   mvwaddch ( Win,1,1,' '|A_NORMAL );
+   Selected=false;
+   Redraw_Box(Selected);
 }
 void  Sheet::Full_Screen(void)
 {
-   wclear ( panel_window(Panel ));
    move_panel ( Panel,Parent_Sheet->Beg_Y( ),Parent_Sheet->Beg_X());
-   wresize ( panel_window(Panel ),Parent_Sheet->Max_Y(),Parent_Sheet->Max_X());
-   Sheet::Redraw_Box ( );
+   wresize    ( panel_window(Panel         ),Parent_Sheet->Max_Y(),Parent_Sheet->Max_X());
+   wclear ( panel_window(Panel ));
+   Sheet::Redraw_Box (Selected );
 }
 void Sheet::Set_Panel_User_Pointer()
 {

@@ -3,10 +3,10 @@
 Screen_Update_Class::Screen_Update_Class(void)
 {
 }
-void Screen_Update_Class::Start_Rti(void)
-{
-   TRti= std::thread(&Screen_Update_Class::Rti,this);
-}
+//void Screen_Update_Class::Start_Rti(void)
+//{
+//   TRti= std::thread(&Screen_Update_Class::Rti,this);
+//}
 void Screen_Update_Class::Rti(void)
 {
    int Key;
@@ -16,10 +16,20 @@ void Screen_Update_Class::Rti(void)
       Key=getch     ( ); // ojo que esta humilde funcion llama a wrefresh!!
       doupdate      ( ); // por eso tengo que hacer todo junto con el doupdate
       switch(Key) {
-         case ' ':
-//            Start_Menu_Menu();
+         case 'x':
+            if(Sheet::Sheet4Top_Panel()!=Main_Page->Gantry_XY->S)
+               Sheet::Sheet4Top_Panel()->Deselect();
+            Main_Page->Gantry_XY->S->Toogle_Select();
+            Main_Page->Gantry_XY->S->Top();
             break;
-         case KEY_F(2):
+         case 'z':
+            if(Sheet::Sheet4Top_Panel()!=Main_Page->Histo_Z->S)
+            Sheet::Sheet4Top_Panel()->Deselect();
+            Main_Page->Histo_Z->S->Toogle_Select();
+            Main_Page->Histo_Z->S->Top();
+            break;
+         case '3':
+               Main_Page->T.Set_TresD_Rti ( Main_Page->TresD );
             break;
          case KEY_F(3):
             break;
@@ -69,7 +79,7 @@ void Screen_Update_Class::Rti(void)
             break;
          case KEY_HOME:
             break;
-         case KEY_F(1):
+         case 'q':
             clrtoeol (   );
             endwin   (   );
             echo     (   );

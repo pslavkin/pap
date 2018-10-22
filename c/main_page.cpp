@@ -18,15 +18,22 @@ Main_Page_Class::Main_Page_Class (WINDOW* w)
    Dim Dim_Coords ( 0,61,  5, 75,"Coords" );
    Coords=new Coords_Class(Main,Dim_Coords);
 
+   Dim Dim_Parser ( 20, 0, 10, 61,"Parser" );
+   Parser=new Parser_Class(Main,Dim_Parser);
+
+   TresD=new TresD_Class();
+
    Gantry_XY->Set_Coords ( Coords );
    Histo_Z->Set_Coords   ( Coords );
 
    Screen_Update=new Screen_Update_Class();
-   Screen_Update->Start_Rti();
 
-   T.Set_Coords_Rti ( Coords    );
-   T.Set_Gantry_Rti ( Gantry_XY );
-   T.Set_Histo_Rti  ( Histo_Z   );
+   T.Set_Coords_Rti        ( Coords        );
+   T.Set_Gantry_Rti        ( Gantry_XY     );
+   T.Set_Histo_Rti         ( Histo_Z       );
+   T.Set_Parser_Rti        ( Parser        );
+   T.Set_Screen_Update_Rti ( Screen_Update );
+//   T.Set_TresD_Rti         ( TresD         );
 }
 //----------------------------------------------------------------------------------------------------
 

@@ -20,7 +20,6 @@ int Serial_Manager_Class::Open(int pn,int baudrate)
    mvwaddstr(S->Win,2,2,Port_Status?"error":"opened");
    return Port_Status;
 }
-
 void Serial_Manager_Class::Rti(void)
 {
    while ( 1 ) {

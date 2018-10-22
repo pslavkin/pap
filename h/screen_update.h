@@ -7,10 +7,10 @@ class Screen_Update_Class {
 
    public:
       Screen_Update_Class ( void      );
-      void Start_Rti      ( void      );
+//      void Start_Rti      ( void      );
       void Rti            ( void );
    private:
-      std::thread TRti;
+ //     std::thread TRti;
       struct timespec Rti_Delay= { 0, 10000000}; //   5 milis
 };
 

@@ -1,6 +1,8 @@
 #include <panel.h>
 #include <ncurses.h>
 #include <unistd.h>
+#include <GL/gl.h>
+#include <GL/glut.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <getopt.h>
@@ -11,15 +13,17 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+#include "tresd.h"
 #include "dim.h"
 #include "sheet.h"
 #include "coords.h"
 #include "gantry.h"
 #include "rs232.h"
 #include "serialmanager.h"
-#include "main.h"
 #include "histograms.h"
 #include "screen_update.h"
 #include "curses_color.h"
+#include "parser.h"
 #include "timer.h"
 #include "main_page.h"
+#include "main.h"
