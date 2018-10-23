@@ -21,10 +21,10 @@ public:
    char                       Name    [ 100 ];
    Dim Dims;
 
-   void                 Set_Parent_Sheet       ( Sheet* P);
-   void                 Redraw_Box(bool Selected);
+   void                 Set_Parent_Sheet       ( Sheet* P                                           );
+   void                 Redraw_Box             ( bool Selected                                      );
    void                 Hide_Box               ( void                                               );
-   void                 Set_Name               ( const char* Sheet_Name                                   );
+   void                 Set_Name               ( const char* Sheet_Name                             );
    void                 Set_Size               ( unsigned short int Height,unsigned short int Width );
    unsigned short int   Get_Height             ( void                                               );
    unsigned short int   Get_Width              ( void                                               );
@@ -42,10 +42,10 @@ public:
    void                 Unhide                 ( void                                               );
    void                 Top                    ( void                                               );
    void                 Bottom                 ( void                                               );
-   void  Toogle_Select(void);
+   void  Toogle_Select                         ( void                                               );
    void                 Select                 ( void                                               );
    void                 Deselect               ( void                                               );
-   void                 Set_Panel_User_Pointer();
+   void                 Set_Panel_User_Pointer (                                                    );
    void                 Set_Panel_User_Pointer ( Sheet* Ptr                                         );
    void                 Touch_Win              ( void                                               );
    unsigned short int   Max_Y                  ( void                                               );
@@ -53,13 +53,14 @@ public:
    unsigned short int   Beg_Y                  ( void                                               );
    unsigned short int   Beg_X                  ( void                                               );
    ~Sheet                                      ( void                                               );
+   virtual void Key ( char K );
+   bool Selected=0;
 private:
    void     Move_Panel        (PANEL* Panel,unsigned short int Y,unsigned short int X);
    void Normalize_W(void);
    void Normalize_H(void);
    void Normalize_X(void);
    void Normalize_Y(void);
-   bool Selected=0;
 };
 
 #endif

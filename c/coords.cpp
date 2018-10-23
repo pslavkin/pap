@@ -3,14 +3,16 @@
 Coords_Class::Coords_Class(Sheet* Parent,Dim D)
 {
    S = new Sheet(Parent,D);
-   mvwprintw(S->Win,1,7,"X         Y         Z");
-   X=0;Y=0;Z=0;
-   Max_X=20;
-   Max_Y=20;
-   Max_Z=20;
-   Min_X=1;
-   Min_Y=1;
-   Min_Z=1;
+   mvwprintw(S->Win ,1 ,7 ,"X         Y         Z");
+   X     = 0    ;
+   Y     = 0    ;
+   Z     = 0    ;
+   Max_X = 1000 ;
+   Max_Y = 1000 ;
+   Max_Z = 20   ;
+   Min_X = -1000;
+   Min_Y = -1000;
+   Min_Z = 1    ;
 }
 void Coords_Class::Rti(void)
 {
@@ -18,30 +20,30 @@ void Coords_Class::Rti(void)
       nanosleep     ( &Rti_Delay,&Rti_Delay );
       switch(rand()%4) {
          case 0:
-            if(X<Max_X) {
-               X++;
+            if(X<(Max_X-50)) {
+               X+=rand()%50;
             }
             else
-               X=Min_X;
+               X--;
             break;
          case 1:
-            if(X>Min_X)
-               X--;
+            if(X>(Min_X+50))
+               X-=rand()%50;
             else
-               X=Max_X;
+               X++;
             break;
          case 2:
-            if(Y<Max_Y) {
-               Y++;
+            if(Y<(Max_Y-50)) {
+               Y+=rand()%50;
             }
             else
-               Y=Min_Y;
+               Y--;
             break;
          case 3:
-            if(Y>Min_Y)
-               Y--;
+            if(Y>(Min_Y+50))
+               Y-=rand()%50;
             else
-               Y=Max_Y;
+               Y++;
             break;
       }
       if(rand()%2) {
@@ -58,10 +60,10 @@ void Coords_Class::Write(void)
    wattroff(S->Win,A_BOLD);
 }
 
-void Coords_Class::Update(uint32_t X, uint32_t Y, uint32_t Z)
+void Coords_Class::Update(int32_t X, int32_t Y, int32_t Z)
 {
-   this->X=X;
-   this->Y=Y;
-   this->Z=Z;
+   this->X = X;
+   this->Y = Y;
+   this->Z = Z;
    Write();
 }

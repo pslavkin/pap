@@ -64,8 +64,8 @@ void TresD_Class::Cube (void)
 //      glVertex2fv(Point);
 //   }
    for(Pos=0;Pos<Main_Page->Gantry_XY->Fade;Pos++) {
-      Point[1]=(float)10*(-Main_Page->Gantry_XY->Last_Y[Pos]+Main_Page->Gantry_XY->S->Dims.H/2)/Main_Page->Gantry_XY->S->Dims.H;
-      Point[0]=(float)10*(Main_Page->Gantry_XY->Last_X[Pos]-Main_Page->Gantry_XY->S->Dims.W/2)/Main_Page->Gantry_XY->S->Dims.W;
+      Point[1]=(float)10*(-Main_Page->Gantry_XY->Last_Y[Pos]+Main_Page->Gantry_XY->Dims.H/2)/Main_Page->Gantry_XY->Dims.H;
+      Point[0]=(float)10*( Main_Page->Gantry_XY->Last_X[Pos]-Main_Page->Gantry_XY->Dims.W/2)/Main_Page->Gantry_XY->Dims.W;
       Point[2]=0;
       glVertex3fv(Point);
    }
