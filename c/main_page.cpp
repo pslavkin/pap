@@ -29,6 +29,7 @@ Main_Page_Class::Main_Page_Class (WINDOW* w)
    Screen_Update=new Screen_Update_Class();
 
    T.Set_Coords_Rti        ( Coords        );
+   T.Set_Serial_Manager_Rti( Serial        );
    T.Set_Gantry_Rti        ( Gantry_XY     );
    T.Set_Histo_Rti         ( Histo_Z       );
    T.Set_Parser_Rti        ( Parser        );

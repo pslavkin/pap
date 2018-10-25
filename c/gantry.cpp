@@ -3,41 +3,96 @@
 Gantry_Class::Gantry_Class(Sheet* Parent,Dim D):Sheet(Parent,D)
 {
    uint16_t Pos;
-//   S    = new Sheet(Parent,D);
-   Fade = 50;//FADE-1;
+   Fade = 50;
    for(Pos=0;Pos<FADE;Pos++) {
       Last_X      [Pos]    =D.W/2;
       Last_Y      [Pos]    =D.H/2;
    }
 }
+void Gantry_Class::Grid(int16_t G)
+{
+   int32_t x,y;
+   int32_t Win_Max_Y,Win_Max_X,Win_Min_Y,Win_Min_X;
+   Absolute_Y2Gantry(Coords->Max_Y,&Win_Max_Y);
+   Absolute_Y2Gantry(Coords->Min_Y,&Win_Min_Y);
+   Absolute_X2Gantry(Coords->Max_X,&Win_Max_X);
+   Absolute_X2Gantry(Coords->Min_X,&Win_Min_X);
+   for(x=View_Min_X;x<=View_Max_X;x++) {
+      int32_t Win_X;
+      Absolute_X2Gantry(x,&Win_X);
+      if(View_Max_Y>=Coords->Max_Y)
+         mvwaddch (Win, Win_Max_Y, Win_X, ('-' | COLOR_PAIR(0)));
+      if(View_Min_Y<=Coords->Min_Y)
+         mvwaddch (Win, Win_Min_Y, Win_X, ('-' | COLOR_PAIR(0)));
+      }
+   for(y=View_Min_Y;y<=View_Max_Y;y++) {
+      int32_t Win_Y;
+      Absolute_Y2Gantry(y,&Win_Y);
+      if(View_Max_X>=Coords->Max_X)
+         mvwaddch (Win, Win_Y, Win_Max_X, ('|' | COLOR_PAIR(0)));
+      if(View_Min_X<=Coords->Min_X)
+         mvwaddch (Win, Win_Y, Win_Min_X, ('|' | COLOR_PAIR(0)));
+   }
+}
+
 void Gantry_Class::Key(char K)
 {
    switch(K) {
       case 'i':
-         if(View_Scale<100)
-            Change_Scale(View_Scale+1);
+         Inc_Scale(  2);
          break;
       case 'o':
-            if(View_Scale>1)
-               Change_Scale(View_Scale-1);
+         Dec_Scale(  2);
          break;
       case 'l':
-               Change_Center(View_Center_Y,View_Center_X+100);
+               Change_Center(View_Center_Y,View_Center_X+View_W/4);
          break;
       case 'h':
-               Change_Center(View_Center_Y,View_Center_X-100);
+               Change_Center(View_Center_Y,View_Center_X-View_W/4);
          break;
       case 'j':
-               Change_Center(View_Center_Y-100,View_Center_X);
+               Change_Center(View_Center_Y+View_H/4,View_Center_X);
          break;
       case 'k':
-               Change_Center(View_Center_Y+100,View_Center_X);
+               Change_Center(View_Center_Y-View_H/4,View_Center_X);
+         break;
+      case 'p':
+               Change_Center(Coords->Y,Coords->X);
+         break;
+      case 'f':
+               Dec_Fade(FADE/4);
+         break;
+      case 'F':
+               Inc_Fade(FADE/4);
          break;
    }
+}
+void Gantry_Class::Inc_Scale(uint16_t Inc)
+{
+   if((View_Scale+Inc)<MAX_SCALE) View_Scale+=Inc;
+   else View_Scale=MAX_SCALE;
+   Change_Scale(View_Scale);
+}
+void Gantry_Class::Dec_Scale(uint16_t Dec)
+{
+   if(View_Scale>Dec) View_Scale-=Dec;
+   else View_Scale=1;
+   Change_Scale(View_Scale);
+}
+void Gantry_Class::Inc_Fade(uint16_t Inc)
+{
+   if((Fade+Inc)<(FADE-1)) Fade+=Inc;
+   else Fade=FADE-1;
+}
+void Gantry_Class::Dec_Fade(uint16_t Dec)
+{
+   if(Fade>Dec) Fade-=Dec;
+   else Fade=0;
 }
 void Gantry_Class::Set_Coords(Coords_Class* C)
 {
    this->Coords        = C;
+   Change_Scale(1);
 }
 void Gantry_Class::Rti(void)
 {
@@ -49,53 +104,66 @@ void Gantry_Class::Rti(void)
 
 void Gantry_Class::Change_Scale(float New_Scale)
 {
-   View_Scale=New_Scale;
-   View_H=MAX_H/View_Scale;
-   View_W=MAX_W/View_Scale;
-   View_Max_X=View_Center_X+View_W/2;
-   View_Min_X=View_Center_X-View_W/2;
-   View_Max_Y=View_Center_Y+View_H/2;
-   View_Min_Y=View_Center_Y-View_H/2;
+   View_Scale = New_Scale;
+   View_H     = (Coords->Max_Y-Coords->Min_Y)/View_Scale;
+   View_W     = (Coords->Max_X-Coords->Min_X)/View_Scale;
+   View_Max_X = View_Center_X+View_W/2;
+   View_Min_X = View_Center_X-View_W/2;
+   View_Max_Y = View_Center_Y+View_H/2;
+   View_Min_Y = View_Center_Y-View_H/2;
+   Change_Center(View_Center_Y,View_Center_X);
    wclear(Win);
    Redraw_Box(Selected);
 }
 void Gantry_Class::Change_Center(int32_t New_Center_Y, int32_t New_Center_X)
 {
-   if(New_Center_Y<Coords->Max_Y && 
-      New_Center_Y>Coords->Min_Y &&
-      New_Center_X<Coords->Max_X &&
-      New_Center_X>Coords->Min_X){
-         View_Center_Y=New_Center_Y;
-         View_Center_X=New_Center_X;
-         View_Max_X=View_Center_X+View_W/2;
-         View_Min_X=View_Center_X-View_W/2;
-         View_Max_Y=View_Center_Y+View_H/2;
-         View_Min_Y=View_Center_Y-View_H/2;
-         wclear     ( Win      );
-         Redraw_Box ( Selected );
-   }
+   if((New_Center_Y+View_H/2)>=Coords->Max_Y)
+      View_Center_Y = Coords->Max_Y-View_H/2;
+   else
+      if((New_Center_Y-View_H/2)<=Coords->Min_Y)
+         View_Center_Y = Coords->Min_Y+View_H/2;
+      else
+         View_Center_Y = New_Center_Y;
+   View_Max_Y    = View_Center_Y+View_H/2;
+   View_Min_Y    = View_Center_Y-View_H/2;
+
+   if((New_Center_X+View_W/2)>=Coords->Max_X)
+      View_Center_X = Coords->Max_X-View_W/2;
+   else
+      if((New_Center_X-View_W/2)<=Coords->Min_X)
+         View_Center_X = Coords->Min_X+View_W/2;
+      else
+         View_Center_X = New_Center_X;
+   View_Max_X    = View_Center_X+View_W/2;
+   View_Min_X    = View_Center_X-View_W/2;
+   wclear     ( Win      );
+   Redraw_Box ( Selected );
 }
 
 bool Gantry_Class::Absolute_X2Gantry(int32_t In_X,int32_t* Out_X)
 {
    bool Ans;
    if(In_X>=View_Min_X && In_X<=View_Max_X) {
-      *Out_X=1+((Dims.W-3)*(In_X-View_Min_X))/(View_Max_X-View_Min_X);
+      *Out_X=1+((Dims.W-3)*(In_X-View_Min_X))/View_W;
       Ans=true;
    }
-   else
-      Ans=false;
+   else {
+      *Out_X = 100000;
+      Ans    = false;
+   }
    return Ans;
 }
 bool Gantry_Class::Absolute_Y2Gantry(int32_t In_Y,int32_t* Out_Y)
 {
    bool Ans;
    if(In_Y>=View_Min_Y && In_Y<=View_Max_Y) {
-      *Out_Y=1+((Dims.H-3)*(In_Y-View_Min_Y))/(View_Max_Y-View_Min_Y);
+      *Out_Y=1+((Dims.H-3)*(In_Y-View_Min_Y))/View_H;
       Ans=true;
    }
-   else
+   else {
+      *Out_Y=100000;
       Ans=false;
+   }
    return Ans;
 }
 
@@ -122,8 +190,8 @@ void Gantry_Class::Fade_Pixels(int32_t Y, int32_t X)
    if(Absolute_Y2Gantry(Last_Y[Pos],&Gantry_Y) &&
       Absolute_X2Gantry(Last_X[Pos],&Gantry_X))
       mvwaddch (Win, Gantry_Y,Gantry_X, 'O' | COLOR_PAIR(0));
-//   Change_Center(Y,X);
    wattroff(Win,A_BOLD);
+   Grid(0);
 }
 void Gantry_Class::Toogle_Pixel(int32_t Y, int32_t X)
 {

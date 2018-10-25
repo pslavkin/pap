@@ -15,7 +15,7 @@ class    Serial_Manager_Class
       int      serial_receive ( char* buf   ,int size );
       bool     Port_Status;
       uint8_t  portNumber ;
-      struct timespec Rti_Delay= { 0, 20000000};
+      struct timespec Rti_Delay= { 0,100000000};
 };
 
 #endif

@@ -14,7 +14,7 @@ void Timer_Class::Set_Histo_Rti  ( Histo_Class* H  )
 }
 void Timer_Class::Set_Serial_Manager_Rti  ( Serial_Manager_Class* S  )
 {
-   SRti = std::thread (&Serial_Manager_Class::Rti,S);
+   Serial_Rti = std::thread (&Serial_Manager_Class::Rti,S);
 }
 void Timer_Class::Set_Coords_Rti  ( Coords_Class* C  )
 {

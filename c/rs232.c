@@ -6,7 +6,7 @@ static int Cport[ 1],
 static struct termios   new_port_settings,
                         old_port_settings[1];
 
-static char comports[][13]={"/dev/ttyUSB1"};
+static char comports[][13]={"/dev/ttyACM0"};
 
 
 int OpenComport(int comport_number, int baudrate)
@@ -128,7 +128,7 @@ int SendByte(int comport_number, unsigned char byte)
 }
 
 
-int SendBuf(int comport_number, unsigned char *buf, int size)
+int SendBuf(int comport_number, char *buf, int size)
 {
   return(write(Cport[comport_number], buf, size));
 }

@@ -7,45 +7,47 @@ Coords_Class::Coords_Class(Sheet* Parent,Dim D)
    X     = 0    ;
    Y     = 0    ;
    Z     = 0    ;
-   Max_X = 1000 ;
-   Max_Y = 1000 ;
-   Max_Z = 20   ;
-   Min_X = -1000;
-   Min_Y = -1000;
+   Max_X = 2097152;
+   Max_Y = 2097152;
+   Max_Z = 20    ;
+   Min_X = -2097152;
+   Min_Y = -2097152;
    Min_Z = 1    ;
 }
 void Coords_Class::Rti(void)
 {
    while(1) {
       nanosleep     ( &Rti_Delay,&Rti_Delay );
-      switch(rand()%4) {
-         case 0:
-            if(X<(Max_X-50)) {
-               X+=rand()%50;
-            }
-            else
-               X--;
-            break;
-         case 1:
-            if(X>(Min_X+50))
-               X-=rand()%50;
-            else
-               X++;
-            break;
-         case 2:
-            if(Y<(Max_Y-50)) {
-               Y+=rand()%50;
-            }
-            else
-               Y--;
-            break;
-         case 3:
-            if(Y>(Min_Y+50))
-               Y-=rand()%50;
-            else
-               Y++;
-            break;
-      }
+
+#define INC 1
+//      switch(rand()%4) {
+//         case 0:
+//            if(X<(Max_X-INC)) {
+//               X+=INC;
+//            }
+//            else
+//               X--;
+//            break;
+//         case 1:
+//            if(X>(Min_X+INC))
+//               X-=INC;
+//            else
+//               X++;
+//            break;
+//         case 2:
+//            if(Y<(Max_Y-INC)) {
+//               Y+=INC;
+//            }
+//            else
+//               Y--;
+//            break;
+//         case 3:
+//            if(Y>(Min_Y+INC))
+//               Y-=INC;
+//            else
+//               Y++;
+//            break;
+//      }
       if(rand()%2) {
               if(Z<Max_Z) Z++;
       }

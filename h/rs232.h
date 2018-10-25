@@ -16,7 +16,7 @@ int   setDTR       ( int comport_number, int level );
 int   OpenComport  ( int, int                      );
 int   PollComport  ( int, unsigned char *, int     );
 int   SendByte     ( int, unsigned char            );
-int   SendBuf      ( int, unsigned char *, int     );
+int   SendBuf      ( int, char *, int     );
 void  CloseComport ( int                           );
 void  cprintf      ( int, const char *             );
 int   IsCTSEnabled ( int                           );

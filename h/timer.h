@@ -20,6 +20,7 @@ class Timer_Class {
       std::thread SRti;
       std::thread CRti;
       std::thread PRti;
+      std::thread Serial_Rti;
       std::thread TresD_Rti;
       std::thread SUpdate_Rti;
 };

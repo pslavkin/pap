@@ -2,7 +2,7 @@
 
 int Serial_Manager_Class::serial_send(char* pData,int size)
 {
-   SendBuf(portNumber, (unsigned char*)pData, size);
+   SendBuf(portNumber, pData, size);
 }
 void Serial_Manager_Class::serial_close(void)
 {
@@ -22,13 +22,26 @@ int Serial_Manager_Class::Open(int pn,int baudrate)
 }
 void Serial_Manager_Class::Rti(void)
 {
+   char Buf[200],n;
+   int Y,X;
    while ( 1 ) {
-      nanosleep     ( &Rti_Delay,&Rti_Delay );
+      if(Port_Status==0) {
+         serial_send((char*)"pos\r",4);
+         nanosleep     ( &Rti_Delay,&Rti_Delay );
+         n=serial_receive(Buf,200);
+         sscanf(Buf,"Pos= %d %d",&Y,&X);
+         wprintw(S->Win,"Y=%d X=%d\n",Y,X);
+         Main_Page->Coords->X=X;
+         Main_Page->Coords->Y=Y;
       }
+      else
+         nanosleep     ( &Rti_Delay,&Rti_Delay );
+   }
 }
 Serial_Manager_Class::Serial_Manager_Class( Sheet* Parent,Dim D )
 {
    S           = new Sheet(Parent,D);
+   scrollok        ( S->Win, TRUE );
    Port_Status = 1;
    portNumber  = 0;
    Open(0,115200);
