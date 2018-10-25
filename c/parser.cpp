@@ -239,7 +239,9 @@ void Parser_Class::Rti(void)
 
    while(1) {
       nanosleep   ( &Rti_Delay ,&Rti_Delay );
-      wprintw(Sub->Win,"X=%f Y=%f Z=%f \n",C.Pos.X,C.Pos.Y,C.Pos.Z);
+      pthread_mutex_lock(&Main_Page->Print_Mutex);
+         wprintw(Sub->Win,"X=%f Y=%f Z=%f \n",C.Pos.X,C.Pos.Y,C.Pos.Z);
+      pthread_mutex_unlock(&Main_Page->Print_Mutex);
    }
 }
 

@@ -3,6 +3,8 @@
 //----------------------------------------------------------------------------------------------------
 Main_Page_Class::Main_Page_Class (WINDOW* w)
 {
+   pthread_mutex_init(&Print_Mutex,NULL);
+
    Dim Dim_Main_Page(0, 0,getmaxy(w),getmaxx(w),"PaP");
    Main=new Sheet(w,Dim_Main_Page);
 

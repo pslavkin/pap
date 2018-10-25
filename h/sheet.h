@@ -53,7 +53,7 @@ public:
    unsigned short int   Beg_Y                  ( void                                               );
    unsigned short int   Beg_X                  ( void                                               );
    ~Sheet                                      ( void                                               );
-   virtual void Key ( char K );
+   virtual void Key ( int K );
    bool Selected=0;
 private:
    void     Move_Panel        (PANEL* Panel,unsigned short int Y,unsigned short int X);

@@ -3,6 +3,7 @@
 
 class Main_Page_Class {
    public:
+      pthread_mutex_t Print_Mutex;
       Main_Page_Class(WINDOW* w);
       Sheet*                Main         ;
       Gantry_Class*         Gantry_XY    ;

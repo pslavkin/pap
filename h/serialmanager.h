@@ -8,9 +8,9 @@ class    Serial_Manager_Class
       Serial_Manager_Class  (          );
       Sheet* S;
       void Rti ( void );
+      int      serial_send    ( char* pData ,int size );
    private:
       int      Open           ( int pn,int baudrate   );
-      int      serial_send    ( char* pData ,int size );
       void     serial_close   ( void                  );
       int      serial_receive ( char* buf   ,int size );
       bool     Port_Status;

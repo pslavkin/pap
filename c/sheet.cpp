@@ -243,7 +243,7 @@ Sheet* Sheet::Sheet4Panel(PANEL* Panel)
 {
    return ( Sheet* )(panel_userptr(Panel));
 }
-void Sheet::Key(char K)
+void Sheet::Key(int K)
 {
 }
 

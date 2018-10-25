@@ -26,13 +26,16 @@ void Serial_Manager_Class::Rti(void)
    int Y,X;
    while ( 1 ) {
       if(Port_Status==0) {
+
          serial_send((char*)"pos\r",4);
          nanosleep     ( &Rti_Delay,&Rti_Delay );
          n=serial_receive(Buf,200);
          sscanf(Buf,"Pos= %d %d",&Y,&X);
-         wprintw(S->Win,"Y=%d X=%d\n",Y,X);
-         Main_Page->Coords->X=X;
-         Main_Page->Coords->Y=Y;
+         pthread_mutex_lock(&Main_Page->Print_Mutex);
+            wprintw(S->Win,"Y=%d X=%d\n",Y,X);
+            Main_Page->Coords->X=X;
+            Main_Page->Coords->Y=Y;
+         pthread_mutex_unlock(&Main_Page->Print_Mutex);
       }
       else
          nanosleep     ( &Rti_Delay,&Rti_Delay );
