@@ -20,6 +20,7 @@ public:
    PANEL*                     Panel;
    char                       Name    [ 100 ];
    Dim Dims;
+   Dim Restore_Dims;
 
    void                 Set_Parent_Sheet       ( Sheet* P                                           );
    void                 Redraw_Box             ( bool Selected                                      );
@@ -38,6 +39,7 @@ public:
    void                 Inc_Height             ( void                                               );
    void                 Dec_Height             ( void                                               );
    void                 Full_Screen            ( void                                               );
+   void                 Restore_Screen(void);
    void                 Hide                   ( void                                               );
    void                 Unhide                 ( void                                               );
    void                 Top                    ( void                                               );

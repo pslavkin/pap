@@ -1,6 +1,6 @@
 CC=g++
 #LIBS= -lncurses -lpthread  -lpanel -lrt -L lib/ -lcdk_ps_64 -lX11 -lGL -lGLU -lglut
-LIBS= -lGL -lGLU -lglut -lncurses -lpthread	-lpanel -lrt -L lib/ -lcdk_ps_64 
+LIBS= -lGL -lGLU -lglut -lncurses -lpthread	-lpanel -lrt -L lib/ #-lcdk_ps_64 
 #LIBS= -lGL -lGLU -lglut -lncurses -lpthread  -lpanel -lrt -L lib/ -lcdk_new 
 SRC_DIR=./c
 EXE_DIR=./exe
@@ -20,7 +20,7 @@ _OBJ= \
 		curses_color.o\
 		main_page.o\
 		tresd.o\
-		parser.o\
+		sender.o\
 		dim.o\
 
 OBJ_DIR=./obj
@@ -40,7 +40,7 @@ _DEP = \
 		 curses_color.h\
 		 main_page.h\
 		 tresd.h\
-		 parser.h\
+		 sender.h\
 		 dim.h\
 
 DEP_DIR=./h

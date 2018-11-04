@@ -20,9 +20,9 @@ void Timer_Class::Set_Coords_Rti  ( Coords_Class* C  )
 {
    SRti = std::thread (&Coords_Class::Rti,C);
 }
-void Timer_Class::Set_Parser_Rti  ( Parser_Class* P  )
+void Timer_Class::Set_Sender_Rti  ( Sender_Class* S  )
 {
-   PRti = std::thread (&Parser_Class::Rti,P);
+   Sender_Rti = std::thread (&Sender_Class::Rti,S);
 }
 void Timer_Class::Set_TresD_Rti  ( TresD_Class* TresD  )
 {

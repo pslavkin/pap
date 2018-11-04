@@ -10,7 +10,7 @@ class Main_Page_Class {
       Histo_Class*          Histo_Z      ;
       Serial_Manager_Class* Serial       ;
       Coords_Class*         Coords       ;
-      Parser_Class*         Parser       ;
+      Sender_Class*         Sender       ;
       Screen_Update_Class*  Screen_Update;
       TresD_Class*          TresD        ;
       Timer_Class T;

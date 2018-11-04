@@ -2,7 +2,8 @@
 
 Sheet::Sheet(Sheet* Parent,Dim D)
 {
-   this->Dims   = D;
+   this->Dims         = D;
+   this->Restore_Dims = D;
    Parent_Sheet = Parent;
    Normalize_Y ( );
    Normalize_H ( );
@@ -191,12 +192,31 @@ void  Sheet::Deselect(void)
    Selected=false;
    Redraw_Box(Selected);
 }
+void  Sheet::Restore_Screen(void)
+{
+   this->Dims   = Restore_Dims;
+   Deselect    ( );
+   Normalize_Y ( );
+   Normalize_H ( );
+   Normalize_X ( );
+   Normalize_W ( );
+   wresize    ( panel_window(Panel),Dims.H,Dims.W);
+   move_panel ( Panel,Parent_Sheet->Beg_Y()+Dims.Y,Parent_Sheet->Beg_X()+Dims.X);
+   wclear ( Win);
+   Redraw_Box ( Selected );
+   touchwin(Parent_Sheet->Win);
+}
 void  Sheet::Full_Screen(void)
 {
-   move_panel ( Panel,Parent_Sheet->Beg_Y( ),Parent_Sheet->Beg_X());
-   wresize    ( panel_window(Panel         ),Parent_Sheet->Max_Y(),Parent_Sheet->Max_X());
+   Restore_Dims=Dims;
+   Dims.Y=Parent_Sheet->Beg_Y();
+   Dims.X=Parent_Sheet->Beg_X();
+   Dims.H=Parent_Sheet->Max_Y();
+   Dims.W=Parent_Sheet->Max_X();
+   move_panel ( Panel,Dims.Y,Dims.X);
+   wresize    ( panel_window(Panel),Dims.H,Dims.W);
    wclear ( panel_window(Panel ));
-   Sheet::Redraw_Box (Selected );
+   Redraw_Box (Selected );
 }
 void Sheet::Set_Panel_User_Pointer()
 {

@@ -3,7 +3,7 @@
 Gantry_Class::Gantry_Class(Sheet* Parent,Dim D):Sheet(Parent,D)
 {
    uint16_t Pos;
-   Fade = 50;
+   Fade = FADE-1;
    for(Pos=0;Pos<FADE;Pos++) {
       Last_X      [Pos]    =D.W/2;
       Last_Y      [Pos]    =D.H/2;
@@ -35,10 +35,10 @@ void Gantry_Class::Key(int K)
 {
    switch(K) {
       case 'i':
-         Inc_Scale(  Max_Y_Scale/10000 ,Max_X_Scale/10000);
+         Inc_Scale();
          break;
       case 'o':
-         Dec_Scale(  Max_Y_Scale/10000 ,Max_X_Scale/10000);
+         Dec_Scale();
          break;
       case 'l':
                Change_Center(View_Center_Y,View_Center_X+View_W/4);
@@ -76,8 +76,22 @@ void Gantry_Class::Key(int K)
       case KEY_DOWN:
                Jog2Down();
          break;
+      case '+':
+               Coords->Inc_Jog_Speed();
+         break;
+      case '-':
+               Coords->Dec_Jog_Speed();
+         break;
+      case 'u':
+               Full_Screen();
+         break;
+      case 'U':
+               Restore_Screen();
+         break;
       case ' ':
          char Buf[100],Len;
+         Len=sprintf(Buf,"F %f\r",Coords->Jog_Speed);
+         Main_Page->Serial->serial_send(Buf,Len);
          Len=sprintf(Buf,"G1 %d %d\r",Coords->Jog_Y,Coords->Jog_X);
          Main_Page->Serial->serial_send(Buf,Len);
          break;
@@ -116,16 +130,16 @@ void Gantry_Class::Jog2Down(void)
       Coords->Jog_Y-=D;
 }
 
-void Gantry_Class::Inc_Scale(int32_t Y, int32_t X)
+void Gantry_Class::Inc_Scale(void)
 {
-   if( (View_Y_Scale+Y)<=Max_Y_Scale) View_Y_Scale+=Y;
-   if( (View_X_Scale+X)<=Max_X_Scale) View_X_Scale+=X;
+   if(Scale_Index>1)
+      Scale_Index/=2;
    Change_Scale();
 }
-void Gantry_Class::Dec_Scale(int32_t Y, int32_t X)
+void Gantry_Class::Dec_Scale(void)
 {
-   if( (View_Y_Scale-Y)>=1) View_Y_Scale-=Y;
-   if( (View_X_Scale-X)>=1) View_X_Scale-=X;
+   if(Scale_Index<MAX_SCALE_INDEX)
+      Scale_Index*=2;
    Change_Scale();
 }
 void Gantry_Class::Inc_Fade(uint16_t Inc)
@@ -140,11 +154,8 @@ void Gantry_Class::Dec_Fade(uint16_t Dec)
 }
 void Gantry_Class::Set_Coords(Coords_Class* C)
 {
-   this->Coords        = C;
-   Max_Y_Scale = (Coords->Max_Y-Coords->Min_Y)/(Dims.H-2);
-   Max_X_Scale = (Coords->Max_X-Coords->Min_X)/(Dims.W-2);
-   View_X_Scale=1;
-   View_Y_Scale=1;
+   this->Coords = C;
+   Scale_Index  = MAX_SCALE_INDEX;
    Change_Scale();
 }
 void Gantry_Class::Rti(void)
@@ -159,8 +170,11 @@ void Gantry_Class::Rti(void)
 
 void Gantry_Class::Change_Scale(void)
 {
-   View_H     = (Coords->Max_Y-Coords->Min_Y)/View_Y_Scale;
-   View_W     = (Coords->Max_X-Coords->Min_X)/View_X_Scale;
+   uint32_t Max_H=(Coords->Max_Y-Coords->Min_Y);
+   uint32_t Max_W=(Coords->Max_X-Coords->Min_X);
+
+   View_H=(((Dims.H-2)*Scale_Index)>Max_H)?Max_H:(Dims.H-2)*Scale_Index;
+   View_W=(((Dims.W-2)*Scale_Index)>Max_W)?Max_W:(Dims.W-2)*Scale_Index;
    View_Max_X = View_Center_X+View_W/2;
    View_Min_X = View_Center_X-View_W/2;
    View_Max_Y = View_Center_Y+View_H/2;
@@ -221,7 +235,6 @@ bool Gantry_Class::Absolute_Y2Gantry(int32_t In_Y,int32_t* Out_Y)
    return Ans;
 }
 
-
 void Gantry_Class::Fade_Pixels(int32_t Y, int32_t X)
 {
    uint16_t Pos,Color;
@@ -259,8 +272,3 @@ void Gantry_Class::Print_Jog_Pixel(void)
    Absolute_X2Gantry(Coords->Jog_X,&Gantry_X);
    mvwaddch (Win ,Gantry_Y ,Gantry_X ,'X' | COLOR_PAIR(3));
 }
-
-
-
-
-
