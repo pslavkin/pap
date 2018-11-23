@@ -18,7 +18,7 @@ class    Serial_Manager_Class
       int      Open           ( int pn,int baudrate   );
       void     serial_close   ( void                  );
       uint8_t  portNumber ;
-      struct timespec Rti_Delay= { 0, 100000000};
+      struct timespec Rti_Delay= { 0,  50000000};
       struct timespec Open_Port_Delay= { 0,900000000};
 };
 
