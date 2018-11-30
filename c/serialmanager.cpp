@@ -27,30 +27,75 @@ void Serial_Manager_Class::Rti(void)
    high_resolution_clock::time_point Time;
    char Buf[200],n;
    int32_t Y=0,X=0,Z=0;
+   uint32_t Exec_Line;
    float Speed_X=0,Speed_Y=0,Speed_Z=0;
    while ( 1 ) {
       if(Port_Status==0) {
-         serial_send((char*)"pos\rspeed\rq\r",12);
          nanosleep     ( &Rti_Delay,&Rti_Delay );
+         serial_send((char*)"pos\rspeed\rspace\rline\r",21);
+         nanosleep     ( &Ans_Delay,&Ans_Delay );
          n=serial_receive(Buf,200);
-         sscanf(Buf,"Pos= %d %d %d\rstep/seg= %f %f %f\rspace=%d",&X,&Y,&Z,&Speed_X,&Speed_Y,&Speed_Z,&Available_Space);
-         Time=high_resolution_clock::now();
+         sscanf(Buf,"Pos= %d %d %d\rstep/seg= %f %f %f\rspace=%d\rline=%d\r"
+               ,&X,&Y,&Z,&Speed_X,&Speed_Y,&Speed_Z,&Available_Space,&Exec_Line);
+         Time                       = high_resolution_clock::now();
          duration<double> time_span = duration_cast<duration<double>>(Time-t1);
-         Log_File << X << ' ' << Y << ' ' << Z << ' ' << Speed_X << ' ' << Speed_Y << ' ' << Speed_Z << ' ' << time_span.count() << ' ' << Available_Space << std::endl;
-            Main_Page->Coords->X=X;
-            Main_Page->Coords->Y=Y;
-            Main_Page->Coords->Z=Z;
-            Main_Page->Coords->Speed_X=Speed_X;
-            Main_Page->Coords->Speed_Y=Speed_Y;
-            Main_Page->Coords->Speed_Z=Speed_Z;
-            Main_Page->Coords->Speed=sqrt(Speed_X*Speed_X+Speed_Y*Speed_Y+Speed_Z*Speed_Z);
+         Main_Page->Sender->Exec_Line      = Exec_Line>0?(Exec_Line-1):Exec_Line;
+         Main_Page->Coords->Actual_Y       = (float)Y/Y_SCALE;
+         Main_Page->Coords->Actual_X       = (float)X/X_SCALE;
+         Main_Page->Coords->Actual_Z       = (float)Z/Z_SCALE;
+         Main_Page->Coords->Actual_Speed_Y = (float)((float)Speed_Y*MICROSTEP)/Y_SCALE;
+         Main_Page->Coords->Actual_Speed_X = (float)((float)Speed_X*MICROSTEP)/X_SCALE;
+         Main_Page->Coords->Actual_Speed_Z = (float)((float)Speed_Z*MICROSTEP)/Z_SCALE;
+         Main_Page->Coords->Actual_Speed   = sqrt(
+               Main_Page->Coords->Actual_Speed_Y*Main_Page->Coords->Actual_Speed_Y+\
+               Main_Page->Coords->Actual_Speed_X*Main_Page->Coords->Actual_Speed_X+\
+               Main_Page->Coords->Actual_Speed_Z*Main_Page->Coords->Actual_Speed_Z
+               );
+         Main_Page->Coords->X       = X;
+         Main_Page->Coords->Y       = Y;
+         Main_Page->Coords->Z       = Z;
+         Main_Page->Coords->Speed_Y = Speed_Y;
+         Main_Page->Coords->Speed_X = Speed_X;
+         Main_Page->Coords->Speed_Z = Speed_Z;
+         Main_Page->Coords->Speed   = sqrt(Speed_X*Speed_X+Speed_Y*Speed_Y+Speed_Z*Speed_Z);
+         Log_File                                      <<
+            Main_Page->Coords->Actual_X       <<
+            ' '                               <<
+            Main_Page->Coords->Actual_Y       <<
+            ' '                               <<
+            Main_Page->Coords->Actual_Z       <<
+            ' '                               <<
+            Main_Page->Coords->Actual_Speed_X <<
+            ' '                               <<
+            Main_Page->Coords->Actual_Speed_Y <<
+            ' '                               <<
+            Main_Page->Coords->Actual_Speed_Z <<
+            ' '                               <<
+            time_span.count()                 <<
+            ' '                               <<
+            Available_Space                   <<
+            std::endl;
          pthread_mutex_lock(&Main_Page->Print_Mutex);
-            wprintw(Sub->Win,"X%05d Y%05d Z%05d\nSX%06.2f SY%06.2f SZ%06.2f Q%d\n",X,Y,Z,Speed_X,Speed_Y,Speed_Z,Available_Space);
+         wprintw(Sub->Win,"X%05d Y%05d Z%05d\nSX%06.2f SY%06.2f SZ%06.2f Q%d N%d\n"
+               ,X,Y,Z,Speed_X,Speed_Y,Speed_Z,Available_Space,Exec_Line);
          pthread_mutex_unlock(&Main_Page->Print_Mutex);
+
+         Main_Page->Sender->File2Win();
+         if(Available_Space>0) {
+            if(Main_Page->Sender->Actual_Line<=Main_Page->Sender->Total_Lines) {
+               serial_send((char*)"GL ",3);
+               serial_send((char*)Main_Page->Sender->Lines[Main_Page->Sender->Actual_Line].c_str(),Main_Page->Sender->Lines[Main_Page->Sender->Actual_Line].length());
+               serial_send((char*)"\r",1);
+               nanosleep     ( &Ans_Delay,&Ans_Delay );
+               n=serial_receive(Buf,200);
+               sscanf(Buf,"ok\r");
+               Main_Page->Sender->Actual_Line++;
+            }
+         }
       }
       else {
          nanosleep     ( &Open_Port_Delay,&Open_Port_Delay );
-         if(Open(0,115200)==false) {
+         if(Open(0,115200)==0) {
             serial_send((char*)"init\rhome\r",10);
          }
       }

@@ -16,6 +16,7 @@ public:
    Sheet ( Sheet* Parent ,Dim D           );
    Sheet ( Sheet* Parent ,Dim D ,bool Box );
    WINDOW*                    Win;
+   WINDOW*                    Sub_Win;
    Sheet*                     Parent_Sheet;
    PANEL*                     Panel;
    char                       Name    [ 100 ];

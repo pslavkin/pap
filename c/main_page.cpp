@@ -14,14 +14,15 @@ Main_Page_Class::Main_Page_Class (WINDOW* w)
    Dim Dim_Histo(5, 42,35, 5,"Z");
    Histo_Z=new Histo_Class(Main,Dim_Histo,10,-10,50);
 
+   Dim Dim_Sender ( 5, 0, 15, 42,"Sender" );
+   Sender=new Sender_Class(Main,Dim_Sender);
+
    Dim Dim_Serial ( 20, 0,  8, 42,"Serial" );
    Serial=new Serial_Manager_Class(Main,Dim_Serial);
 
    Dim Dim_Coords ( 0,42,  5, 55,"Coords" );
    Coords=new Coords_Class(Main,Dim_Coords);
 
-   Dim Dim_Sender ( 5, 0, 15, 42,"Sender" );
-   Sender=new Sender_Class(Main,Dim_Sender);
 
    TresD=new TresD_Class();
 

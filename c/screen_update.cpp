@@ -31,6 +31,12 @@ void Screen_Update_Class::Rti(void)
             Main_Page->Histo_Z->S->Toogle_Select();
             Main_Page->Histo_Z->S->Top();
             break;
+         case 's':
+            if(Sheet::Sheet4Top_Panel()!=Main_Page->Sender)
+               Sheet::Sheet4Top_Panel()->Deselect();
+            Main_Page->Sender->Toogle_Select ( );
+            Main_Page->Sender->Top           ( );
+            break;
          case '3':
                Main_Page->T.Set_TresD_Rti ( Main_Page->TresD );
             break;

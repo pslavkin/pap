@@ -90,9 +90,9 @@ void Gantry_Class::Key(int K)
          break;
       case ' ':
          char Buf[100],Len;
-         Len=sprintf(Buf,"F %f\r",Coords->Jog_Speed);
-         Main_Page->Serial->serial_send(Buf,Len);
-         Len=sprintf(Buf,"G1 %d %d\r",Coords->Jog_Y,Coords->Jog_X);
+  //       Len=sprintf(Buf,"F %f\r",Coords->Jog_Speed);
+  //       Main_Page->Serial->serial_send(Buf,Len);
+         Len=sprintf(Buf,"GL X%d Y%d\r",Coords->Actual_Jog_X,Coords->Actual_Jog_Y);
          Main_Page->Serial->serial_send(Buf,Len);
          break;
    }
@@ -110,24 +110,28 @@ void Gantry_Class::Jog2Left(void)
    int32_t D=Pixel_X_Distance();
    if( (Coords->Jog_X-D) >= Coords->Min_X)   //View_Min_X)
       Coords->Jog_X -= D;
+   Coords->Actual_Jog_X=(float)Coords->Jog_X/X_SCALE;
 }
 void Gantry_Class::Jog2Right(void)
 {
    int32_t D=Pixel_X_Distance();
    if( (Coords->Jog_X+D) <= Coords->Max_X) //View_Max_X)
       Coords->Jog_X += D;
+   Coords->Actual_Jog_X=(float)Coords->Jog_X/X_SCALE;
 }
 void Gantry_Class::Jog2Up(void)
 {
    int32_t D=Pixel_Y_Distance();
    if( (Coords->Jog_Y+D)<= Coords->Max_Y) //View_Max_Y)
       Coords->Jog_Y+=D;
+   Coords->Actual_Jog_Y=(float)Coords->Jog_Y/Y_SCALE;
 }
 void Gantry_Class::Jog2Down(void)
 {
    int32_t D=Pixel_Y_Distance();
    if( (Coords->Jog_Y-D)>= Coords->Min_Y)//View_Min_Y)
       Coords->Jog_Y-=D;
+   Coords->Actual_Jog_Y=(float)Coords->Jog_Y/Y_SCALE;
 }
 
 void Gantry_Class::Inc_Scale(void)
@@ -162,7 +166,7 @@ void Gantry_Class::Rti(void)
 {
    while(1) {
       nanosleep   ( &Rti_Delay ,&Rti_Delay );
-      Fade_Pixels ( Coords->Y  ,Coords->X  );
+      Fade_Pixels ( Coords->Y,Coords->X);
       Grid(0);
       Print_Jog_Pixel();
    }

@@ -21,7 +21,7 @@ void Histo_Class::Rti(void)
 {
    while(1) {
       nanosleep     ( &Rti_Delay,&Rti_Delay );
-      Set_V_Inverted_Rule_Value(Coords->Z);
+      Set_V_Inverted_Rule_Value(Coords->Z*Z_SCALE);
    }
 }
 void Histo_Class::Set_Coords(Coords_Class* C)

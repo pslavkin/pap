@@ -9,11 +9,12 @@ Sheet::Sheet(Sheet* Parent,Dim D)
    Normalize_H ( );
    Normalize_X ( );
    Normalize_W ( );
-   Win          = newwin    ( Dims.H ,Dims.W,Parent->Beg_Y()+Dims.Y ,Parent->Beg_X()+Dims.X );
-   Panel        = new_panel ( Win      );
-   Set_Panel_User_Pointer   (          );
-   Set_Name                 ( D.Name   );
-   Redraw_Box               ( Selected );
+   Win     = newwin       ( Dims.H   ,Dims.W   ,Parent->Beg_Y(     )+Dims.Y   ,Parent->Beg_X()+Dims.X ) ;
+   Sub_Win = derwin       ( Win,Dims.H-4 ,Dims.W-4 ,Parent->Beg_Y( )+Dims.Y+2 ,Parent->Beg_X()+Dims.X+2);
+   Panel   = new_panel    ( Win                                    )                                    ;
+   Set_Panel_User_Pointer (                                        )                                    ;
+   Set_Name               ( D.Name                                 )                                    ;
+   Redraw_Box             ( Selected                               )                                    ;
 }
 Sheet::Sheet(WINDOW* W,Dim D)
 {
@@ -23,11 +24,10 @@ Sheet::Sheet(WINDOW* W,Dim D)
    Set_Panel_User_Pointer (               );
    Set_Name               ( D.Name        );
    this->Dims=D                            ;
-   wresize                ( Win,D.H,D.W   );
-   move_panel             ( Panel,D.Y,D.X );
-   Redraw_Box             ( Selected      );
-
-
+   wresize                   ( Win,D.H,D.W                   );
+   move_panel                ( Panel,D.Y,D.X                 );
+   Redraw_Box                ( Selected                      );
+   Sub_Win          = derwin ( W, D.H-4 ,D.W-4 ,D.Y+2 ,D.X+2 );
 }
 Sheet::Sheet(Sheet* Parent,Dim D,bool Box)
 {
@@ -217,6 +217,7 @@ void  Sheet::Full_Screen(void)
    wresize    ( panel_window(Panel),Dims.H,Dims.W);
    wclear ( panel_window(Panel ));
    Redraw_Box (Selected );
+//   wresize    ( Sub_Win,Dims.H-4,Dims.W-4);
 }
 void Sheet::Set_Panel_User_Pointer()
 {
