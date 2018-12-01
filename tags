@@ -45,7 +45,7 @@ Actual_X	h/coords.h	/^      float   Actual_X;$/;"	m	class:Coords_Class
 Actual_Y	h/coords.h	/^      float   Actual_Y;$/;"	m	class:Coords_Class
 Actual_Z	h/coords.h	/^      float   Actual_Z;$/;"	m	class:Coords_Class
 Animate	c/tresd.cpp	/^void TresD_Class::Animate (void)$/;"	f	class:TresD_Class
-Ans_Delay	h/serialmanager.h	/^      struct timespec Ans_Delay= { 0, 50000000}; \/\/ans delay$/;"	m	class:Serial_Manager_Class	typeref:struct:Serial_Manager_Class::timespec
+Ans_Delay	h/serialmanager.h	/^      struct timespec Ans_Delay= { 0, 20000000}; \/\/ans delay$/;"	m	class:Serial_Manager_Class	typeref:struct:Serial_Manager_Class::timespec
 AppointmentInfo	cdk-5.0-20180306/demos/appointment.c	/^struct AppointmentInfo$/;"	s	file:
 AppointmentInfo	cdk/demos/appointment.c	/^struct AppointmentInfo$/;"	s	file:
 AppointmentMarker	cdk-5.0-20180306/demos/appointment.c	/^struct AppointmentMarker$/;"	s	file:
@@ -1140,7 +1140,7 @@ FULL	cdk-5.0-20180306/include/cdk.h	244;"	d
 FULL	cdk/include/cdk.h	245;"	d
 FULL	include/cdk.h	244;"	d
 Fade	h/gantry.h	/^      int Fade;$/;"	m	class:Gantry_Class
-Fade_Pixels	c/gantry.cpp	/^void Gantry_Class::Fade_Pixels(int32_t Y, int32_t X)$/;"	f	class:Gantry_Class
+Fade_Pixels	c/gantry.cpp	/^void Gantry_Class::Fade_Pixels(int32_t Y, int32_t X, int32_t Z)$/;"	f	class:Gantry_Class
 File2Win	c/sender.cpp	/^void Sender_Class::File2Win(void)$/;"	f	class:Sender_Class
 FocusObj	cdk-5.0-20180306/include/cdk_objs.h	128;"	d
 FocusObj	cdk/include/cdk_objs.h	128;"	d
@@ -1766,6 +1766,7 @@ MAX_OBJECTS	cdk/include/cdkscreen.h	57;"	d
 MAX_OBJECTS	include/cdkscreen.h	57;"	d
 MAX_PAIR	cdk-5.0-20180306/cdk.c	353;"	d	file:
 MAX_PARAM_VALUE	h/parser.h	12;"	d
+MAX_PATH	h/gantry.h	6;"	d
 MAX_SCALE_INDEX	h/gantry.h	5;"	d
 MAX_SUB_ITEMS	cdk-5.0-20180306/include/menu.h	61;"	d
 MAX_SUB_ITEMS	cdk/include/menu.h	61;"	d
@@ -1773,6 +1774,7 @@ MAX_SUB_ITEMS	include/menu.h	61;"	d
 MAX_YEARS	cdk-5.0-20180306/include/calendar.h	62;"	d
 MAX_YEARS	cdk/include/calendar.h	62;"	d
 MAX_YEARS	include/calendar.h	62;"	d
+MAX_Z_TABLE	h/gantry.h	7;"	d
 MENTRYCB	cdk-5.0-20180306/include/mentry.h	/^typedef void (*MENTRYCB) (CDKMENTRY *mentry, chtype character);$/;"	t
 MENTRYCB	cdk/include/mentry.h	/^typedef void (*MENTRYCB) (CDKMENTRY *mentry, chtype character);$/;"	t
 MENTRYCB	include/mentry.h	/^typedef void (*MENTRYCB) (CDKMENTRY *mentry, chtype character);$/;"	t
@@ -2005,6 +2007,10 @@ Parse_Byte	c/parser.cpp	/^int8_t Parser_Class::Parse_Byte(Codes_t* C)$/;"	f	clas
 Parser_Class	c/parser.cpp	/^Parser_Class::Parser_Class( Sheet* Parent,Dim D )$/;"	f	class:Parser_Class
 Parser_Class	h/parser.h	/^class Parser_Class {$/;"	c
 Parser_State_e	h/parser.h	/^} Parser_State_e;$/;"	t	typeref:enum:__anon12
+Path_Index	h/gantry.h	/^      int32_t Path_Index=1;$/;"	m	class:Gantry_Class
+Path_X	h/gantry.h	/^      int32_t Path_X[MAX_PATH];$/;"	m	class:Gantry_Class
+Path_Y	h/gantry.h	/^      int32_t Path_Y[MAX_PATH];$/;"	m	class:Gantry_Class
+Path_Z	h/gantry.h	/^      int32_t Path_Z[MAX_PATH];$/;"	m	class:Gantry_Class
 PatternNotFound	cdk-5.0-20180306/viewer.c	/^static void PatternNotFound (CDKVIEWER *viewer, char *pattern)$/;"	f	file:
 PatternNotFound	cdk/viewer.c	/^static void PatternNotFound (CDKVIEWER *viewer, char *pattern)$/;"	f	file:
 Pixel_X_Distance	c/gantry.cpp	/^int32_t Gantry_Class::Pixel_X_Distance(void)$/;"	f	class:Gantry_Class
@@ -2060,6 +2066,7 @@ RPATH_LIST	cdk-5.0-20180306/Makefile	/^RPATH_LIST	= $/;"	m
 RPATH_LIST	cdk/Makefile	/^RPATH_LIST	= $/;"	m
 R_MARKER	cdk-5.0-20180306/cdk.c	10;"	d	file:
 R_MARKER	cdk/cdk.c	10;"	d	file:
+Re_Fade_Pixels	c/gantry.cpp	/^void Gantry_Class::Re_Fade_Pixels(void)$/;"	f	class:Gantry_Class
 Read_File	c/sender.cpp	/^void Sender_Class::Read_File(void)$/;"	f	class:Sender_Class
 Redraw_Box	c/sheet.cpp	/^void  Sheet::Redraw_Box(bool Selected)$/;"	f	class:Sheet
 RefreshDataObj	cdk-5.0-20180306/include/cdk_objs.h	131;"	d
@@ -2091,9 +2098,9 @@ Rti_Delay	h/coords.h	/^      struct timespec Rti_Delay= { 0, 200000000};$/;"	m	c
 Rti_Delay	h/gantry.h	/^      struct timespec Rti_Delay= { 0, 20000000}             ; \/\/ 5 milis$/;"	m	class:Gantry_Class	typeref:struct:Gantry_Class::timespec
 Rti_Delay	h/histograms.h	/^      struct timespec Rti_Delay= { 0, 50000000}; \/\/   5 milis$/;"	m	class:Histo_Class	typeref:struct:Histo_Class::timespec
 Rti_Delay	h/parser.h	/^      struct timespec Rti_Delay= { 0, 200000000}; \/\/   5 milis$/;"	m	class:Parser_Class	typeref:struct:Parser_Class::timespec
-Rti_Delay	h/screen_update.h	/^      struct timespec Rti_Delay= { 0, 50000000}; \/\/   5 milis$/;"	m	class:Screen_Update_Class	typeref:struct:Screen_Update_Class::timespec
-Rti_Delay	h/sender.h	/^      struct timespec Rti_Delay= { 0, 50000000};$/;"	m	class:Sender_Class	typeref:struct:Sender_Class::timespec
-Rti_Delay	h/serialmanager.h	/^      struct timespec Rti_Delay= { 0, 50000000};$/;"	m	class:Serial_Manager_Class	typeref:struct:Serial_Manager_Class::timespec
+Rti_Delay	h/screen_update.h	/^      struct timespec Rti_Delay= { 0, 20000000}; \/\/   5 milis$/;"	m	class:Screen_Update_Class	typeref:struct:Screen_Update_Class::timespec
+Rti_Delay	h/sender.h	/^      struct timespec Rti_Delay= { 0, 100000000};$/;"	m	class:Sender_Class	typeref:struct:Sender_Class::timespec
+Rti_Delay	h/serialmanager.h	/^      struct timespec Rti_Delay= { 0, 40000000};$/;"	m	class:Serial_Manager_Class	typeref:struct:Serial_Manager_Class::timespec
 Rti_Delay	h/tresd.h	/^      struct timespec Rti_Delay= { 0, 10000000}; \/\/   5 milis$/;"	m	class:TresD_Class	typeref:struct:TresD_Class::timespec
 S	cdk-5.0-20180306/include/gen-scale.h	/^struct S<MIXED> {$/;"	s
 S	cdk-5.0-20180306/include/gen-slider.h	/^struct S<MIXED> {$/;"	s

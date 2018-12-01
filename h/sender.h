@@ -1,7 +1,7 @@
 #ifndef SENDER
 #define SENDER
 
-#define MAX_LINES       10000
+#define MAX_LINES       100000
 
 class Sender_Class:public Sheet {
    public:

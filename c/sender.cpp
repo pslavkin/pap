@@ -51,12 +51,16 @@ void Sender_Class::File2Win(void)
    for(i=0;i<HH;i++)
          mvwprintw(Sub_Win,i,0,"%.*s",Dims.W-5,
                Exec_Line>=(HH-i)?Lines[Exec_Line-(HH-i)].data():"---");
-   wcolor_set(Sub_Win, 4,NULL);
+   wcolor_set(Sub_Win, 5,NULL);
      mvwprintw(Sub_Win,i,0,"%.*s",Dims.W-5,Lines[Exec_Line].data());
    wcolor_set(Sub_Win, 0,NULL);
-   for(i++;i<Dims.H-4;i++)
+   for(i++;i<Dims.H-4;i++) {
+         if(Exec_Line+(i-HH)==Actual_Line)
+            wcolor_set(Sub_Win,6,NULL);
          mvwprintw(Sub_Win,i,0,"%.*s",Dims.W-5,
-         (Exec_Line+(i-HH))<Total_Lines?Lines[Exec_Line+(i-HH)].data():"~~~");
+                   (Exec_Line+(i-HH))<Total_Lines?Lines[Exec_Line+(i-HH)].data():"~~~");
+         wcolor_set(Sub_Win, 0,NULL);
+   }
    Touch_Win();
    pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
@@ -64,13 +68,16 @@ void Sender_Class::File2Win(void)
 void Sender_Class::Send_Next_Line(void)
 {
    if(Main_Page->Serial->Space>0) {
-      if(Actual_Line<=Total_Lines) {
+      if(Actual_Line<Total_Lines) {
          char Buf[200];
          char Ans_Buf[20];
          strcpy(Buf,"GL ");
          strcpy(Buf+3,Lines[Actual_Line].c_str());
          Main_Page->Serial->Send_And_Receive(Buf,Ans_Buf,3);
          Actual_Line++;
+      }
+      else {
+         Next_State=STOP;
       }
    }
 }

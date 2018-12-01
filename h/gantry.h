@@ -3,12 +3,19 @@
 
 #define FADE 190
 #define MAX_SCALE_INDEX 1000000
+#define MAX_PATH 50000
+#define MAX_Z_TABLE (25*Z_SCALE) //para definir el color mas oscuro.. supongo que z puede subir 25mm max, desde cero..  //para definir el color mas oscuro.. supongo que z puede subir 25mm max, desde cero..  //para definir el color mas oscuro.. supongo que z puede subir 25mm max, desde cero..
+
 class Gantry_Class : public Sheet{
    public:
       Gantry_Class ( Sheet* Parent,Dim D );
  //     Sheet* S;
       void Set_Coords(Coords_Class* C);
       void Rti(void);
+      int32_t Path_X[MAX_PATH];
+      int32_t Path_Y[MAX_PATH];
+      int32_t Path_Z[MAX_PATH];
+      int32_t Path_Index=1;
       int32_t Last_X[FADE];
       int32_t Last_Y[FADE];
       int Fade;
@@ -32,7 +39,9 @@ class Gantry_Class : public Sheet{
       Coords_Class* Coords;
       struct timespec Rti_Delay= { 0, 20000000}             ; // 5 milis
       void Toogle_Pixel      ( int32_t Y, int32_t X        );
-      void Fade_Pixels       ( int32_t Y, int32_t X        );
+      uint8_t Color4Hight(int32_t Z);
+      void Fade_Pixels       ( int32_t Y, int32_t X        ,int32_t Z);
+      void Re_Fade_Pixels(void);
       bool Absolute_X2Gantry ( int32_t In_X,int32_t* Out_X );
       bool Absolute_Y2Gantry ( int32_t In_Y,int32_t* Out_Y );
       void Inc_Fade          ( uint16_t Inc                );
