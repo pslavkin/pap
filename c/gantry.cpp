@@ -83,10 +83,7 @@ void Gantry_Class::Key(int K)
                Coords->Dec_Jog_Speed();
          break;
       case 'u':
-               Full_Screen();
-         break;
-      case 'U':
-               Restore_Screen();
+         Toogle_Full_Restore_Screen();
          break;
       case ' ':
          char Buf[100],Len;

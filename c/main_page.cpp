@@ -4,6 +4,7 @@
 Main_Page_Class::Main_Page_Class (WINDOW* w)
 {
    pthread_mutex_init(&Print_Mutex,NULL);
+   pthread_mutex_init(&Serial_Mutex,NULL); //ara repartir el acceso al puerto serie..
 
    Dim Dim_Main_Page(0, 0,getmaxy(w),getmaxx(w),"PaP");
    Main=new Sheet(w,Dim_Main_Page);
@@ -12,7 +13,7 @@ Main_Page_Class::Main_Page_Class (WINDOW* w)
    Gantry_XY=new Gantry_Class(Main,Dim_Gantry);
 
    Dim Dim_Histo(5, 42,35, 5,"Z");
-   Histo_Z=new Histo_Class(Main,Dim_Histo,10,-10,50);
+   Histo_Z=new Histo_Class(Main,Dim_Histo,25*Z_SCALE,-25*Z_SCALE,0);
 
    Dim Dim_Sender ( 5, 0, 15, 42,"Sender" );
    Sender=new Sender_Class(Main,Dim_Sender);
@@ -32,11 +33,11 @@ Main_Page_Class::Main_Page_Class (WINDOW* w)
    Screen_Update=new Screen_Update_Class();
 
    T.Set_Coords_Rti        ( Coords        );
-   T.Set_Serial_Manager_Rti( Serial        );
    T.Set_Gantry_Rti        ( Gantry_XY     );
    T.Set_Histo_Rti         ( Histo_Z       );
    T.Set_Sender_Rti        ( Sender        );
    T.Set_Screen_Update_Rti ( Screen_Update );
+   T.Set_Serial_Manager_Rti( Serial        );
 //   T.Set_TresD_Rti         ( TresD         );
 }
 //----------------------------------------------------------------------------------------------------

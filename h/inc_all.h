@@ -15,6 +15,7 @@
 #include <fcntl.h>
 #include <iostream>
 #include <fstream>
+#include <chrono>
 
 #include "tresd.h"
 #include "dim.h"

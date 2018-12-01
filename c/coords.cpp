@@ -26,12 +26,10 @@ Coords_Class::Coords_Class(Sheet* Parent,Dim D)
    Actual_Jog_Z   = 0       ;
    Max_X          = 2097152 ;
    Max_Y          = 2097152 ;
-// Max_Z     = 2097152 ;
-   Max_Z          = 100000  ;
+   Max_Z          = 2097152 ;
    Min_X          = -2097152;
    Min_Y          = -2097152;
-// Min_Z     = -2097152;
-   Min_Z          = -100000 ;
+   Min_Z          = -2097152;
 }
 void Coords_Class::Rti(void)
 {
@@ -60,6 +58,26 @@ void Coords_Class::Jog2Machine(void)
    Actual_Jog_Y=Actual_Y;
    Actual_Jog_X=Actual_X;
    Actual_Jog_Z=Actual_Z;
+}
+void Coords_Class::Machine2Coords(int32_t X, int32_t Y,int32_t Z,
+                                  float Speed_X, float Speed_Y, float Speed_Z)
+{
+   Actual_Y       = (float)Y/Y_SCALE;
+   Actual_X       = (float)X/X_SCALE;
+   Actual_Z       = (float)Z/Z_SCALE;
+   Actual_Speed_Y = (float)((float)Speed_Y*MICROSTEP)/Y_SCALE;
+   Actual_Speed_X = (float)((float)Speed_X*MICROSTEP)/X_SCALE;
+   Actual_Speed_Z = (float)((float)Speed_Z*MICROSTEP)/Z_SCALE;
+   Actual_Speed   = sqrt( Actual_Speed_Y*Actual_Speed_Y +\
+                          Actual_Speed_X*Actual_Speed_X+\
+                          Actual_Speed_Z*Actual_Speed_Z);
+   this->X       = X;
+   this->Y       = Y;
+   this->Z       = Z;
+   this->Speed_Y = Speed_Y;
+   this->Speed_X = Speed_X;
+   this->Speed_Z = Speed_Z;
+   this->Speed   = sqrt(Speed_X*Speed_X+Speed_Y*Speed_Y+Speed_Z*Speed_Z);
 }
 
 void Coords_Class::Inc_Jog_Speed(void)

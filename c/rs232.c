@@ -1,12 +1,12 @@
 #include "inc_all.h"
 
-static int Cport[ 1],
+static int Cport[ 3],
            error;
 
 static struct termios   new_port_settings,
                         old_port_settings[1];
 
-static char comports[][13]={"/dev/ttyACM0"};
+static char comports[][13]={"/dev/ttyACM0","/dev/ttyACM1","/dev/ttyACM1"};
 
 
 int OpenComport(int comport_number, int baudrate)

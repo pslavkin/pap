@@ -21,13 +21,13 @@ void Histo_Class::Rti(void)
 {
    while(1) {
       nanosleep     ( &Rti_Delay,&Rti_Delay );
-      Set_V_Inverted_Rule_Value(Coords->Z*Z_SCALE);
+      Set_V_Inverted_Rule_Value(Coords->Z);
    }
 }
 void Histo_Class::Set_Coords(Coords_Class* C)
 {
    this->Coords = C;
-   Max_Value    = this->Coords->Max_Z;
-   Min_Value    = this->Coords->Min_Z;
+//   Max_Value    = this->Coords->Max_Z;
+//   Min_Value    = this->Coords->Min_Z;
 }
 

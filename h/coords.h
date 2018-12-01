@@ -42,6 +42,7 @@ class Coords_Class {
       float   Speed;
       void Inc_Jog_Speed(void);
       void Dec_Jog_Speed(void);
+      void Machine2Coords(int32_t X, int32_t Y,int32_t Z, float Speed_X, float Speed_Y, float Speed_Z);
    protected:
    private:
       void Write ( void );

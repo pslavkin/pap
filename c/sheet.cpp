@@ -10,7 +10,7 @@ Sheet::Sheet(Sheet* Parent,Dim D)
    Normalize_X ( );
    Normalize_W ( );
    Win     = newwin       ( Dims.H   ,Dims.W   ,Parent->Beg_Y(     )+Dims.Y   ,Parent->Beg_X()+Dims.X ) ;
-   Sub_Win = derwin       ( Win,Dims.H-4 ,Dims.W-4 ,Parent->Beg_Y( )+Dims.Y+2 ,Parent->Beg_X()+Dims.X+2);
+   Sub_Win = derwin       ( Win,Dims.H-4 ,Dims.W-4 ,2 ,2);
    Panel   = new_panel    ( Win                                    )                                    ;
    Set_Panel_User_Pointer (                                        )                                    ;
    Set_Name               ( D.Name                                 )                                    ;
@@ -23,11 +23,11 @@ Sheet::Sheet(WINDOW* W,Dim D)
    Parent_Sheet = this                ;
    Set_Panel_User_Pointer (               );
    Set_Name               ( D.Name        );
-   this->Dims=D                            ;
-   wresize                   ( Win,D.H,D.W                   );
-   move_panel                ( Panel,D.Y,D.X                 );
-   Redraw_Box                ( Selected                      );
-   Sub_Win          = derwin ( W, D.H-4 ,D.W-4 ,D.Y+2 ,D.X+2 );
+   this->Dims=D;
+   wresize                ( Win,D.H,D.W   );
+   move_panel             ( Panel,D.Y,D.X );
+   Redraw_Box             ( Selected      );
+   Sub_Win          = derwin ( W, D.H-4 ,D.W-4 ,2 ,2 );
 }
 Sheet::Sheet(Sheet* Parent,Dim D,bool Box)
 {
@@ -37,7 +37,8 @@ Sheet::Sheet(Sheet* Parent,Dim D,bool Box)
    Normalize_H ( );
    Normalize_X ( );
    Normalize_W ( );
-   Win          = newwin    ( Dims.H ,Dims.W,Parent->Beg_Y()+Dims.Y ,Parent->Beg_X()+Dims.X );
+   Win          = newwin ( Dims.H ,Dims.W,Parent->Beg_Y()+Dims.Y ,Parent->Beg_X()+Dims.X );
+   Sub_Win      = derwin ( Win, D.H-4 ,D.W-4 ,2 ,2 );
    Panel        = new_panel ( Win      );
    Set_Panel_User_Pointer   (          );
    Set_Name                 ( D.Name   );
@@ -192,9 +193,17 @@ void  Sheet::Deselect(void)
    Selected=false;
    Redraw_Box(Selected);
 }
+void  Sheet::Toogle_Full_Restore_Screen(void)
+{
+   if(Is_Full_Screen)
+      Restore_Screen();
+   else
+      Full_Screen();
+}
 void  Sheet::Restore_Screen(void)
 {
-   this->Dims   = Restore_Dims;
+   this->Dims     = Restore_Dims;
+   Is_Full_Screen = false;
    Deselect    ( );
    Normalize_Y ( );
    Normalize_H ( );
@@ -202,12 +211,15 @@ void  Sheet::Restore_Screen(void)
    Normalize_W ( );
    wresize    ( panel_window(Panel),Dims.H,Dims.W);
    move_panel ( Panel,Parent_Sheet->Beg_Y()+Dims.Y,Parent_Sheet->Beg_X()+Dims.X);
-   wclear ( Win);
-   Redraw_Box ( Selected );
-   touchwin(Parent_Sheet->Win);
+   wclear     ( Win                       );
+   Redraw_Box ( Selected                  );
+   wresize    ( Sub_Win,Dims.H-4,Dims.W-4 );
+   wclear     ( Sub_Win                   );
+   touchwin   ( Parent_Sheet->Win         );
 }
 void  Sheet::Full_Screen(void)
 {
+   Is_Full_Screen=true;
    Restore_Dims=Dims;
    Dims.Y=Parent_Sheet->Beg_Y();
    Dims.X=Parent_Sheet->Beg_X();
@@ -217,7 +229,7 @@ void  Sheet::Full_Screen(void)
    wresize    ( panel_window(Panel),Dims.H,Dims.W);
    wclear ( panel_window(Panel ));
    Redraw_Box (Selected );
-//   wresize    ( Sub_Win,Dims.H-4,Dims.W-4);
+   wresize    ( Sub_Win,Dims.H-4,Dims.W-4);
 }
 void Sheet::Set_Panel_User_Pointer()
 {

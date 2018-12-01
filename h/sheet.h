@@ -39,6 +39,7 @@ public:
    void                 Dec_Width              ( void                                               );
    void                 Inc_Height             ( void                                               );
    void                 Dec_Height             ( void                                               );
+   void                 Toogle_Full_Restore_Screen(void);
    void                 Full_Screen            ( void                                               );
    void                 Restore_Screen(void);
    void                 Hide                   ( void                                               );
@@ -64,6 +65,7 @@ private:
    void Normalize_H(void);
    void Normalize_X(void);
    void Normalize_Y(void);
+   bool Is_Full_Screen=false;
 };
 
 #endif

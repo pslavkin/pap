@@ -37,6 +37,18 @@ void Screen_Update_Class::Rti(void)
             Main_Page->Sender->Toogle_Select ( );
             Main_Page->Sender->Top           ( );
             break;
+         case 'c':
+            if(Sheet::Sheet4Top_Panel()!=Main_Page->Serial)
+               Sheet::Sheet4Top_Panel()->Deselect();
+            Main_Page->Serial->Toogle_Select ( );
+            Main_Page->Serial->Top           ( );
+            break;
+         case 'd':
+            if(Sheet::Sheet4Top_Panel()!=Main_Page->Coords->S)
+               Sheet::Sheet4Top_Panel()->Deselect();
+            Main_Page->Coords->S->Toogle_Select ( );
+            Main_Page->Coords->S->Top           ( );
+            break;
          case '3':
                Main_Page->T.Set_TresD_Rti ( Main_Page->TresD );
             break;
