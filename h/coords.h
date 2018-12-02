@@ -46,7 +46,7 @@ class Coords_Class {
    protected:
    private:
       void Write ( void );
-      struct timespec Rti_Delay= { 0, 200000000};
+      struct timespec Rti_Delay= { 0, 50000000};
 };
 
 #endif

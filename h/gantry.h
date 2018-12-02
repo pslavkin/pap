@@ -1,9 +1,8 @@
 #ifndef GANTRY
 #define GANTRY
 
-#define FADE 190
 #define MAX_SCALE_INDEX 1000000
-#define MAX_PATH 50000
+#define MAX_PATH 5000000
 #define MAX_Z_TABLE (25*Z_SCALE) //para definir el color mas oscuro.. supongo que z puede subir 25mm max, desde cero..  //para definir el color mas oscuro.. supongo que z puede subir 25mm max, desde cero..  //para definir el color mas oscuro.. supongo que z puede subir 25mm max, desde cero..
 
 class Gantry_Class : public Sheet{
@@ -16,9 +15,6 @@ class Gantry_Class : public Sheet{
       int32_t Path_Y[MAX_PATH];
       int32_t Path_Z[MAX_PATH];
       int32_t Path_Index=1;
-      int32_t Last_X[FADE];
-      int32_t Last_Y[FADE];
-      int Fade;
       int32_t  View_Max_X       ;
       int32_t  View_Min_X       ;
       int32_t  View_Max_Y       ;
@@ -36,25 +32,24 @@ class Gantry_Class : public Sheet{
 
    protected:
    private:
-      Coords_Class* Coords;
-      struct timespec Rti_Delay= { 0, 20000000}             ; // 5 milis
-      void Toogle_Pixel      ( int32_t Y, int32_t X        );
-      uint8_t Color4Hight(int32_t Z);
-      void Fade_Pixels       ( int32_t Y, int32_t X        ,int32_t Z);
-      void Re_Fade_Pixels(void);
-      bool Absolute_X2Gantry ( int32_t In_X,int32_t* Out_X );
-      bool Absolute_Y2Gantry ( int32_t In_Y,int32_t* Out_Y );
-      void Inc_Fade          ( uint16_t Inc                );
-      void Dec_Fade          ( uint16_t Dec                );
-      void     Inc_Scale         ( void                        );
-      void     Dec_Scale         ( void                        );
-      void Print_Jog_Pixel   ( void                        );
-      void Jog2Left          ( void                        );
-      void Jog2Right         ( void                        );
-      void Jog2Up            ( void                        );
-      void Jog2Down          ( void                        );
-      int32_t Pixel_X_Distance(void);
-      int32_t Pixel_Y_Distance(void);
+      Coords_Class* Coords                                               ;
+      struct timespec Rti_Delay= { 0, 50000000}                          ; // 5 milis
+      void     Toogle_Pixel      ( int32_t Y, int32_t X                   );
+      uint8_t  Color4Hight       ( int32_t Z                              );
+      void     Draw_Path         ( int32_t Y, int32_t X        ,int32_t Z );
+      void     Redraw_Path       ( void                                   );
+      void     Clear_Path        ( void                                   );
+      bool     Absolute_X2Gantry ( int32_t In_X,int32_t* Out_X            );
+      bool     Absolute_Y2Gantry ( int32_t In_Y,int32_t* Out_Y            );
+      void     Inc_Scale         ( void                                   );
+      void     Dec_Scale         ( void                                   );
+      void     Print_Jog_Pixel   ( void                                   );
+      void     Jog2Left          ( void                                   );
+      void     Jog2Right         ( void                                   );
+      void     Jog2Up            ( void                                   );
+      void     Jog2Down          ( void                                   );
+      int32_t  Pixel_X_Distance  ( void                                   );
+      int32_t  Pixel_Y_Distance  ( void                                   );
 };
 
 #endif

@@ -22,6 +22,7 @@ _OBJ= \
 		tresd.o\
 		sender.o\
 		dim.o\
+		gnuplot_i.o\
 
 OBJ_DIR=./obj
 OBJ = $(patsubst %,$(OBJ_DIR)/%,$(_OBJ))
@@ -42,6 +43,7 @@ _DEP = \
 		 tresd.h\
 		 sender.h\
 		 dim.h\
+		 gnuplot_i.h\
 
 DEP_DIR=./h
 DEP = $(patsubst %,$(DEP_DIR)/%,$(_DEP))

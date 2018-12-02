@@ -19,7 +19,7 @@ class    Serial_Manager_Class:public Sheet {
       void Key              ( int K               );
       void     serial_close ( void                );
       uint8_t  portNumber ;
-      struct timespec Rti_Delay= { 0, 40000000};
+      struct timespec Rti_Delay= { 0, 3000000};
       struct timespec Ans_Delay= { 0, 20000000}; //ans delay
       struct timespec Open_Port_Delay= { 0,900000000};
 };

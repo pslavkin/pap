@@ -25,7 +25,7 @@ class Sender_Class:public Sheet {
       void Key(int K);
       std::ifstream GFile;
       void Read_File ( void );
-      struct timespec Rti_Delay= { 0, 100000000};
+      struct timespec Rti_Delay= { 0, 50000000};
 };
 
 #endif

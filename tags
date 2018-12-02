@@ -44,7 +44,6 @@ Actual_Speed_Z	h/coords.h	/^      float   Actual_Speed_Z;$/;"	m	class:Coords_Cla
 Actual_X	h/coords.h	/^      float   Actual_X;$/;"	m	class:Coords_Class
 Actual_Y	h/coords.h	/^      float   Actual_Y;$/;"	m	class:Coords_Class
 Actual_Z	h/coords.h	/^      float   Actual_Z;$/;"	m	class:Coords_Class
-Animate	c/tresd.cpp	/^void TresD_Class::Animate (void)$/;"	f	class:TresD_Class
 Ans_Delay	h/serialmanager.h	/^      struct timespec Ans_Delay= { 0, 20000000}; \/\/ans delay$/;"	m	class:Serial_Manager_Class	typeref:struct:Serial_Manager_Class::timespec
 AppointmentInfo	cdk-5.0-20180306/demos/appointment.c	/^struct AppointmentInfo$/;"	s	file:
 AppointmentInfo	cdk/demos/appointment.c	/^struct AppointmentInfo$/;"	s	file:
@@ -87,7 +86,6 @@ BXAttr	include/cdk_objs.h	/^   chtype       BXAttr;$/;"	m	struct:CDKOBJS
 BXAttrOf	cdk-5.0-20180306/include/cdk_objs.h	203;"	d
 BXAttrOf	cdk/include/cdk_objs.h	203;"	d
 BXAttrOf	include/cdk_objs.h	203;"	d
-Bed	c/tresd.cpp	/^void TresD_Class::Bed (int* argc,char* argv[]) {$/;"	f	class:TresD_Class
 Beep	cdk-5.0-20180306/cdk.c	/^void Beep (void)$/;"	f
 Beep	cdk/cdk.c	/^void Beep (void)$/;"	f
 Beg_X	c/sheet.cpp	/^unsigned short int   Sheet::Beg_X(void)$/;"	f	class:Sheet
@@ -905,19 +903,20 @@ Change_Scale	c/gantry.cpp	/^void Gantry_Class::Change_Scale(void)$/;"	f	class:Ga
 CharOf	cdk-5.0-20180306/include/cdk_int.h	60;"	d
 CharOf	cdk/include/cdk_int.h	60;"	d
 CharOf	include/cdk_int.h	60;"	d
+Clear_Path	c/gantry.cpp	/^void Gantry_Class::Clear_Path(void)$/;"	f	class:Gantry_Class
 CloseComport	c/rs232.c	/^void CloseComport(int comport_number)$/;"	f
 Code_Count	h/parser.h	/^   uint8_t                 Code_Count;$/;"	m	struct:__anon13
 Code_Index	h/parser.h	/^   uint8_t                 Code_Index;$/;"	m	struct:__anon13
 Codes	h/parser.h	/^   char                    Codes[MAX_CODES_PER_LINE][MAX_CODE_LENGTH];$/;"	m	struct:__anon13
 Codes_t	h/parser.h	/^} Codes_t;$/;"	t	typeref:struct:__anon13
+Color4Hight	c/gantry.cpp	/^uint8_t Gantry_Class::Color4Hight(int32_t Z)$/;"	f	class:Gantry_Class
 Command	h/parser.h	/^   uint8_t                 Command   ;$/;"	m	struct:__anon13
-Coords	h/gantry.h	/^      Coords_Class* Coords;$/;"	m	class:Gantry_Class
+Coords	h/gantry.h	/^      Coords_Class* Coords                                               ;$/;"	m	class:Gantry_Class
 Coords	h/histograms.h	/^      Coords_Class* Coords;$/;"	m	class:Histo_Class
 Coords	h/main_page.h	/^      Coords_Class*         Coords       ;$/;"	m	class:Main_Page_Class
 Coords_Class	c/coords.cpp	/^Coords_Class::Coords_Class(Sheet* Parent,Dim D)$/;"	f	class:Coords_Class
 Coords_Class	h/coords.h	/^class Coords_Class {$/;"	c
 Cport	c/rs232.c	/^static int Cport[ 3],$/;"	v	file:
-Cube	c/tresd.cpp	/^void TresD_Class::Cube (void)$/;"	f	class:TresD_Class
 CurMatrixCell	cdk-5.0-20180306/matrix.c	27;"	d	file:
 CurMatrixCell	cdk/matrix.c	27;"	d	file:
 CurMatrixInfo	cdk-5.0-20180306/matrix.c	30;"	d	file:
@@ -984,7 +983,6 @@ DataTypeUnsigned	include/cdk_objs.h	/^   , DataTypeUnsigned$/;"	e	enum:__anon8
 DayName	cdk-5.0-20180306/include/calendar.h	/^   char *	DayName;$/;"	m	struct:SCalendar
 DayName	cdk/include/calendar.h	/^   char *	DayName;$/;"	m	struct:SCalendar
 DayName	include/calendar.h	/^   char *	DayName;$/;"	m	struct:SCalendar
-Dec_Fade	c/gantry.cpp	/^void Gantry_Class::Dec_Fade(uint16_t Dec)$/;"	f	class:Gantry_Class
 Dec_Height	c/sheet.cpp	/^void  Sheet::Dec_Height(void)$/;"	f	class:Sheet
 Dec_Jog_Speed	c/coords.cpp	/^void Coords_Class::Dec_Jog_Speed(void)$/;"	f	class:Coords_Class
 Dec_Scale	c/gantry.cpp	/^void Gantry_Class::Dec_Scale(void)$/;"	f	class:Gantry_Class
@@ -1023,10 +1021,10 @@ Dim	c/dim.c	/^Dim::Dim()$/;"	f	class:Dim
 Dim	c/dim.c	/^Dim::Dim(uint16_t Y, uint16_t X, uint16_t H, uint16_t W, const char* N)$/;"	f	class:Dim
 Dim	h/dim.h	/^class Dim$/;"	c
 Dims	h/sheet.h	/^   Dim Dims;$/;"	m	class:Sheet
-Display	c/tresd.cpp	/^void TresD_Class::Display (void) {$/;"	f	class:TresD_Class
 DrawObj	cdk-5.0-20180306/include/cdk_objs.h	123;"	d
 DrawObj	cdk/include/cdk_objs.h	123;"	d
 DrawObj	include/cdk_objs.h	123;"	d
+Draw_Path	c/gantry.cpp	/^void Gantry_Class::Draw_Path ( int32_t Y, int32_t X, int32_t Z )$/;"	f	class:Gantry_Class
 EAppointmentType	cdk-5.0-20180306/demos/appointment.c	/^EAppointmentType;$/;"	t	typeref:enum:__anon30	file:
 EAppointmentType	cdk/demos/appointment.c	/^EAppointmentType;$/;"	t	typeref:enum:__anon15	file:
 ECopyFile	cdk-5.0-20180306/demos/vinstall.c	/^ECopyFile;$/;"	t	typeref:enum:__anon29	file:
@@ -1087,7 +1085,6 @@ EXTRACT_SUFX	cdk/package/freebsd/Makefile	/^EXTRACT_SUFX=	.tgz$/;"	m
 EarlyExitOf	cdk-5.0-20180306/include/cdk_objs.h	188;"	d
 EarlyExitOf	cdk/include/cdk_objs.h	188;"	d
 EarlyExitOf	include/cdk_objs.h	188;"	d
-Edges	c/tresd.cpp	/^static int Edges[12][2] = {$/;"	v	file:
 EraseObj	cdk-5.0-20180306/include/cdk_objs.h	124;"	d
 EraseObj	cdk/include/cdk_objs.h	124;"	d
 EraseObj	include/cdk_objs.h	124;"	d
@@ -1103,7 +1100,6 @@ ExitTypeOf	cdk/include/cdk_objs.h	187;"	d
 ExitTypeOf	include/cdk_objs.h	187;"	d
 Extract_Commands	c/parser.cpp	/^int8_t Parser_Class::Extract_Commands(Codes_t* C)$/;"	f	class:Parser_Class
 Extract_Info	c/parser.cpp	/^int8_t Parser_Class::Extract_Info(Codes_t* C)$/;"	f	class:Parser_Class
-FADE	h/gantry.h	4;"	d
 FOPEN_FMT	cdk-5.0-20180306/viewer.c	361;"	d	file:
 FOPEN_FMT	cdk/viewer.c	360;"	d	file:
 FPUsage	cdk-5.0-20180306/cli/cdkalphalist.c	/^static const char *FPUsage = "-l List | -f filename [-F Field Character] [-T Title] [-L Label] [-B Buttons] [-O Output File] [-X X Position] [-Y Y Position] [-H Height] [-W Width] [-N] [-S]";$/;"	v	file:
@@ -1139,8 +1135,6 @@ FPUsage	cdk/demos/vinstall.c	/^static const char *FPUsage = "-f filename [-s sou
 FULL	cdk-5.0-20180306/include/cdk.h	244;"	d
 FULL	cdk/include/cdk.h	245;"	d
 FULL	include/cdk.h	244;"	d
-Fade	h/gantry.h	/^      int Fade;$/;"	m	class:Gantry_Class
-Fade_Pixels	c/gantry.cpp	/^void Gantry_Class::Fade_Pixels(int32_t Y, int32_t X, int32_t Z)$/;"	f	class:Gantry_Class
 File2Win	c/sender.cpp	/^void Sender_Class::File2Win(void)$/;"	f	class:Sender_Class
 FocusObj	cdk-5.0-20180306/include/cdk_objs.h	128;"	d
 FocusObj	cdk/include/cdk_objs.h	128;"	d
@@ -1175,6 +1169,7 @@ GPCurrentDatabase	cdk-5.0-20180306/demos/syb.c	/^char *GPCurrentDatabase = 0;$/;
 GPCurrentDatabase	cdk/demos/syb.c	/^char *GPCurrentDatabase = 0;$/;"	v
 GPUsage	cdk-5.0-20180306/demos/syb.c	/^char *GPUsage		= "[-p Command Prompt] [-U User] [-P Password] [-S Server] [-h help]";$/;"	v
 GPUsage	cdk/demos/syb.c	/^char *GPUsage		= "[-p Command Prompt] [-U User] [-P Password] [-S Server] [-h help]";$/;"	v
+GP_MAX_TMP_FILES	h/gnuplot_i.h	34;"	d
 GPasteBuffer	cdk-5.0-20180306/cdk.c	/^char *GPasteBuffer = 0;$/;"	v
 GPasteBuffer	cdk/cdk.c	/^char *GPasteBuffer = 0;$/;"	v
 GRCFile	cdk-5.0-20180306/demos/rolodex.h	/^static char *GRCFile		= 0;$/;"	v
@@ -1368,7 +1363,6 @@ IceConnectionNumber	cdk-5.0-20180306/configure	/^IceConnectionNumber ();$/;"	f
 IceConnectionNumber	cdk/configure	/^IceConnectionNumber ();$/;"	f
 Inc_C_Index	c/parser.cpp	/^bool Parser_Class::Inc_C_Index(Codes_t* C)$/;"	f	class:Parser_Class
 Inc_Codes_Index	c/parser.cpp	/^bool Parser_Class::Inc_Codes_Index(Codes_t* C)$/;"	f	class:Parser_Class
-Inc_Fade	c/gantry.cpp	/^void Gantry_Class::Inc_Fade(uint16_t Inc)$/;"	f	class:Gantry_Class
 Inc_Height	c/sheet.cpp	/^void  Sheet::Inc_Height(void)$/;"	f	class:Sheet
 Inc_Jog_Speed	c/coords.cpp	/^void Coords_Class::Inc_Jog_Speed(void)$/;"	f	class:Coords_Class
 Inc_L_Index	c/parser.cpp	/^bool Parser_Class::Inc_L_Index(Codes_t* C)$/;"	f	class:Parser_Class
@@ -1670,8 +1664,6 @@ LRCharOf	include/cdk_objs.h	200;"	d
 L_Index	h/parser.h	/^   uint16_t                L_Index   ;$/;"	m	struct:__anon13
 L_MARKER	cdk-5.0-20180306/cdk.c	9;"	d	file:
 L_MARKER	cdk/cdk.c	9;"	d	file:
-Last_X	h/gantry.h	/^      int32_t Last_X[FADE];$/;"	m	class:Gantry_Class
-Last_Y	h/gantry.h	/^      int32_t Last_Y[FADE];$/;"	m	class:Gantry_Class
 Lines	h/sender.h	/^      std::string Lines[MAX_LINES];$/;"	m	class:Sender_Class
 Log	c/serialmanager.cpp	/^void Serial_Manager_Class::Log(void)$/;"	f	class:Serial_Manager_Class
 Log_File	h/serialmanager.h	/^      std::ofstream Log_File;$/;"	m	class:Serial_Manager_Class
@@ -1766,15 +1758,15 @@ MAX_OBJECTS	cdk/include/cdkscreen.h	57;"	d
 MAX_OBJECTS	include/cdkscreen.h	57;"	d
 MAX_PAIR	cdk-5.0-20180306/cdk.c	353;"	d	file:
 MAX_PARAM_VALUE	h/parser.h	12;"	d
-MAX_PATH	h/gantry.h	6;"	d
-MAX_SCALE_INDEX	h/gantry.h	5;"	d
+MAX_PATH	h/gantry.h	5;"	d
+MAX_SCALE_INDEX	h/gantry.h	4;"	d
 MAX_SUB_ITEMS	cdk-5.0-20180306/include/menu.h	61;"	d
 MAX_SUB_ITEMS	cdk/include/menu.h	61;"	d
 MAX_SUB_ITEMS	include/menu.h	61;"	d
 MAX_YEARS	cdk-5.0-20180306/include/calendar.h	62;"	d
 MAX_YEARS	cdk/include/calendar.h	62;"	d
 MAX_YEARS	include/calendar.h	62;"	d
-MAX_Z_TABLE	h/gantry.h	7;"	d
+MAX_Z_TABLE	h/gantry.h	6;"	d
 MENTRYCB	cdk-5.0-20180306/include/mentry.h	/^typedef void (*MENTRYCB) (CDKMENTRY *mentry, chtype character);$/;"	t
 MENTRYCB	cdk/include/mentry.h	/^typedef void (*MENTRYCB) (CDKMENTRY *mentry, chtype character);$/;"	t
 MENTRYCB	include/mentry.h	/^typedef void (*MENTRYCB) (CDKMENTRY *mentry, chtype character);$/;"	t
@@ -2066,14 +2058,13 @@ RPATH_LIST	cdk-5.0-20180306/Makefile	/^RPATH_LIST	= $/;"	m
 RPATH_LIST	cdk/Makefile	/^RPATH_LIST	= $/;"	m
 R_MARKER	cdk-5.0-20180306/cdk.c	10;"	d	file:
 R_MARKER	cdk/cdk.c	10;"	d	file:
-Re_Fade_Pixels	c/gantry.cpp	/^void Gantry_Class::Re_Fade_Pixels(void)$/;"	f	class:Gantry_Class
 Read_File	c/sender.cpp	/^void Sender_Class::Read_File(void)$/;"	f	class:Sender_Class
 Redraw_Box	c/sheet.cpp	/^void  Sheet::Redraw_Box(bool Selected)$/;"	f	class:Sheet
+Redraw_Path	c/gantry.cpp	/^void Gantry_Class::Redraw_Path(void)$/;"	f	class:Gantry_Class
 RefreshDataObj	cdk-5.0-20180306/include/cdk_objs.h	131;"	d
 RefreshDataObj	cdk/include/cdk_objs.h	131;"	d
 RefreshDataObj	include/cdk_objs.h	131;"	d
 Reset_Pos	c/parser.cpp	/^void Parser_Class::Reset_Pos(Pos_t* Pos)$/;"	f	class:Parser_Class
-Reshape	c/tresd.cpp	/^void Reshape ( int width, int height ) {$/;"	f
 RestoreFocus	cdk-5.0-20180306/alphalist.c	279;"	d	file:
 RestoreFocus	cdk-5.0-20180306/fselect.c	315;"	d	file:
 RestoreFocus	cdk/alphalist.c	280;"	d	file:
@@ -2094,13 +2085,13 @@ Rti	c/screen_update.cpp	/^void Screen_Update_Class::Rti(void)$/;"	f	class:Screen
 Rti	c/sender.cpp	/^void Sender_Class::Rti(void)$/;"	f	class:Sender_Class
 Rti	c/serialmanager.cpp	/^void Serial_Manager_Class::Rti(void)$/;"	f	class:Serial_Manager_Class
 Rti	c/tresd.cpp	/^void TresD_Class::Rti(void)$/;"	f	class:TresD_Class
-Rti_Delay	h/coords.h	/^      struct timespec Rti_Delay= { 0, 200000000};$/;"	m	class:Coords_Class	typeref:struct:Coords_Class::timespec
-Rti_Delay	h/gantry.h	/^      struct timespec Rti_Delay= { 0, 20000000}             ; \/\/ 5 milis$/;"	m	class:Gantry_Class	typeref:struct:Gantry_Class::timespec
+Rti_Delay	h/coords.h	/^      struct timespec Rti_Delay= { 0, 50000000};$/;"	m	class:Coords_Class	typeref:struct:Coords_Class::timespec
+Rti_Delay	h/gantry.h	/^      struct timespec Rti_Delay= { 0, 50000000}                          ; \/\/ 5 milis$/;"	m	class:Gantry_Class	typeref:struct:Gantry_Class::timespec
 Rti_Delay	h/histograms.h	/^      struct timespec Rti_Delay= { 0, 50000000}; \/\/   5 milis$/;"	m	class:Histo_Class	typeref:struct:Histo_Class::timespec
 Rti_Delay	h/parser.h	/^      struct timespec Rti_Delay= { 0, 200000000}; \/\/   5 milis$/;"	m	class:Parser_Class	typeref:struct:Parser_Class::timespec
 Rti_Delay	h/screen_update.h	/^      struct timespec Rti_Delay= { 0, 20000000}; \/\/   5 milis$/;"	m	class:Screen_Update_Class	typeref:struct:Screen_Update_Class::timespec
-Rti_Delay	h/sender.h	/^      struct timespec Rti_Delay= { 0, 100000000};$/;"	m	class:Sender_Class	typeref:struct:Sender_Class::timespec
-Rti_Delay	h/serialmanager.h	/^      struct timespec Rti_Delay= { 0, 40000000};$/;"	m	class:Serial_Manager_Class	typeref:struct:Serial_Manager_Class::timespec
+Rti_Delay	h/sender.h	/^      struct timespec Rti_Delay= { 0, 50000000};$/;"	m	class:Sender_Class	typeref:struct:Sender_Class::timespec
+Rti_Delay	h/serialmanager.h	/^      struct timespec Rti_Delay= { 0, 3000000};$/;"	m	class:Serial_Manager_Class	typeref:struct:Serial_Manager_Class::timespec
 Rti_Delay	h/tresd.h	/^      struct timespec Rti_Delay= { 0, 10000000}; \/\/   5 milis$/;"	m	class:TresD_Class	typeref:struct:TresD_Class::timespec
 S	cdk-5.0-20180306/include/gen-scale.h	/^struct S<MIXED> {$/;"	s
 S	cdk-5.0-20180306/include/gen-slider.h	/^struct S<MIXED> {$/;"	s
@@ -2411,8 +2402,8 @@ Speed	h/coords.h	/^      float   Speed;$/;"	m	class:Coords_Class
 Speed_X	h/coords.h	/^      float   Speed_X;$/;"	m	class:Coords_Class
 Speed_Y	h/coords.h	/^      float   Speed_Y;$/;"	m	class:Coords_Class
 Speed_Z	h/coords.h	/^      float   Speed_Z;$/;"	m	class:Coords_Class
+Splot	c/tresd.cpp	/^void TresD_Class::Splot (void)$/;"	f	class:TresD_Class
 State	h/sender.h	/^      Sender_State State      = STOP;$/;"	m	class:Sender_Class
-Strip	c/tresd.cpp	/^static float Strip[8][3] = {$/;"	v	file:
 Sub	h/parser.h	/^      Sheet* Sub;$/;"	m	class:Parser_Class
 Sub_Win	h/sheet.h	/^   WINDOW*                    Sub_Win;$/;"	m	class:Sheet
 T	h/main_page.h	/^      Timer_Class T;$/;"	m	class:Main_Page_Class
@@ -2530,7 +2521,6 @@ VTCharOf	include/cdk_objs.h	201;"	d
 Validate	c/parser.cpp	/^bool Parser_Class::Validate(float N)$/;"	f	class:Parser_Class
 Validate_XYZ	c/parser.cpp	/^uint8_t Parser_Class::Validate_XYZ(Pos_t* Pos)$/;"	f	class:Parser_Class
 Value	h/histograms.h	/^      int32_t Value;$/;"	m	class:Histo_Class
-Vertices	c/tresd.cpp	/^static float Vertices[8][3] = {$/;"	v	file:
 View_Center_X	h/gantry.h	/^      int32_t  View_Center_X = 0;$/;"	m	class:Gantry_Class
 View_Center_Y	h/gantry.h	/^      int32_t  View_Center_Y = 0;$/;"	m	class:Gantry_Class
 View_H	h/gantry.h	/^      int32_t View_H           ;$/;"	m	class:Gantry_Class
@@ -2725,6 +2715,8 @@ Z	h/coords.h	/^      int32_t Z;$/;"	m	class:Coords_Class
 Z	h/parser.h	/^   float Z;$/;"	m	struct:__anon11
 Z_SCALE	h/coords.h	7;"	d
 _DEP	Makefile	/^_DEP = \\$/;"	m
+_GNUPLOT_CTRL_	h/gnuplot_i.h	/^typedef struct _GNUPLOT_CTRL_ {$/;"	s
+_GNUPLOT_PIPES_H_	h/gnuplot_i.h	26;"	d
 _OBJ	Makefile	/^_OBJ= \\$/;"	m
 _PANEL_DATA	ncurses_programs/panels/panel_hide.c	/^typedef struct _PANEL_DATA {$/;"	s	file:
 _PANEL_DATA	ncurses_programs/panels/panel_resize.c	/^typedef struct _PANEL_DATA {$/;"	s	file:
@@ -5209,6 +5201,25 @@ getmaxy	include/curdefs.h	140;"	d
 getmaxyx	cdk-5.0-20180306/include/curdefs.h	123;"	d
 getmaxyx	cdk/include/curdefs.h	123;"	d
 getmaxyx	include/curdefs.h	123;"	d
+gnucmd	h/gnuplot_i.h	/^    FILE    * gnucmd ;$/;"	m	struct:_GNUPLOT_CTRL_
+gnuplot_close	c/gnuplot_i.c	/^void gnuplot_close(gnuplot_ctrl * handle)$/;"	f
+gnuplot_cmd	c/gnuplot_i.c	/^void gnuplot_cmd(gnuplot_ctrl *  handle, char const *  cmd, ...)$/;"	f
+gnuplot_ctrl	h/gnuplot_i.h	/^} gnuplot_ctrl ;$/;"	t	typeref:struct:_GNUPLOT_CTRL_
+gnuplot_init	c/gnuplot_i.c	/^gnuplot_ctrl * gnuplot_init(void)$/;"	f
+gnuplot_plot_atmpfile	c/gnuplot_i.c	/^void gnuplot_plot_atmpfile(gnuplot_ctrl * handle, char const* tmp_filename, char const* title)$/;"	f
+gnuplot_plot_equation	c/gnuplot_i.c	/^void gnuplot_plot_equation($/;"	f
+gnuplot_plot_once	c/gnuplot_i.c	/^void gnuplot_plot_once($/;"	f
+gnuplot_plot_slope	c/gnuplot_i.c	/^void gnuplot_plot_slope($/;"	f
+gnuplot_plot_x	c/gnuplot_i.c	/^void gnuplot_plot_x($/;"	f
+gnuplot_plot_xy	c/gnuplot_i.c	/^void gnuplot_plot_xy($/;"	f
+gnuplot_resetplot	c/gnuplot_i.c	/^void gnuplot_resetplot(gnuplot_ctrl * h)$/;"	f
+gnuplot_set_xlabel	c/gnuplot_i.c	/^void gnuplot_set_xlabel(gnuplot_ctrl * h, const char * label)$/;"	f
+gnuplot_set_ylabel	c/gnuplot_i.c	/^void gnuplot_set_ylabel(gnuplot_ctrl * h, const char * label)$/;"	f
+gnuplot_setstyle	c/gnuplot_i.c	/^void gnuplot_setstyle(gnuplot_ctrl * h, const char * plot_style)$/;"	f
+gnuplot_tmpfile	c/gnuplot_i.c	/^char const * gnuplot_tmpfile(gnuplot_ctrl * handle)$/;"	f
+gnuplot_write_multi_csv	c/gnuplot_i.c	/^int gnuplot_write_multi_csv($/;"	f
+gnuplot_write_x_csv	c/gnuplot_i.c	/^int gnuplot_write_x_csv($/;"	f
+gnuplot_write_xy_csv	c/gnuplot_i.c	/^int gnuplot_write_xy_csv($/;"	f
 graphChar	cdk-5.0-20180306/include/graph.h	/^   chtype *		graphChar;$/;"	m	struct:SGraph
 graphChar	cdk/include/graph.h	/^   chtype *		graphChar;$/;"	m	struct:SGraph
 graphChar	include/graph.h	/^   chtype *		graphChar;$/;"	m	struct:SGraph
@@ -6414,7 +6425,9 @@ newline	cdk/include/cdk.h	118;"	d
 newline	include/cdk.h	117;"	d
 newstate	ncurses_programs/JustForFun/life.c	/^	int newstate;$/;"	m	struct:_state	file:
 next	ncurses_programs/panels/panel_resize.c	/^	PANEL *next;$/;"	m	struct:_PANEL_DATA	file:
+nplots	h/gnuplot_i.h	/^    int       nplots ;$/;"	m	struct:_GNUPLOT_CTRL_
 nqueens	ncurses_programs/JustForFun/queens.c	/^int *nqueens(int num)$/;"	f
+ntmp	h/gnuplot_i.h	/^    int       ntmp ;$/;"	m	struct:_GNUPLOT_CTRL_
 numbers	cdk-5.0-20180306/include/scroll.h	/^   boolean	numbers;	\/* *\/$/;"	m	struct:SScroll
 numbers	cdk/include/scroll.h	/^   boolean	numbers;	\/* *\/$/;"	m	struct:SScroll
 numbers	include/scroll.h	/^   boolean	numbers;	\/* *\/$/;"	m	struct:SScroll
@@ -6836,6 +6849,7 @@ probeModem	cdk-5.0-20180306/demos/serial.c	/^boolean probeModem (void)$/;"	f
 probeModem	cdk/demos/serial.c	/^boolean probeModem (void)$/;"	f
 province	cdk-5.0-20180306/demos/rolodex.h	/^	char *province;$/;"	m	struct:_record_st
 province	cdk/demos/rolodex.h	/^	char *province;$/;"	m	struct:_record_st
+pstyle	h/gnuplot_i.h	/^    char      pstyle[32] ;$/;"	m	struct:_GNUPLOT_CTRL_
 pullWin	cdk-5.0-20180306/include/menu.h	/^   WINDOW *	pullWin[MAX_MENU_ITEMS];$/;"	m	struct:SMenu
 pullWin	cdk/include/menu.h	/^   WINDOW *	pullWin[MAX_MENU_ITEMS];$/;"	m	struct:SMenu
 pullWin	include/menu.h	/^   WINDOW *	pullWin[MAX_MENU_ITEMS];$/;"	m	struct:SMenu
@@ -8381,7 +8395,6 @@ setLRCharOf	include/cdk_objs.h	208;"	d
 setLRcharObj	cdk-5.0-20180306/include/cdk_objs.h	/^   void         (*setLRcharObj)    (struct CDKOBJS *, chtype);$/;"	m	struct:CDKFUNCS
 setLRcharObj	cdk/include/cdk_objs.h	/^   void         (*setLRcharObj)    (struct CDKOBJS *, chtype);$/;"	m	struct:CDKFUNCS
 setLRcharObj	include/cdk_objs.h	/^   void         (*setLRcharObj)    (struct CDKOBJS *, chtype);$/;"	m	struct:CDKFUNCS
-setMaterial	c/tresd.cpp	/^void TresD_Class::setMaterial ( GLfloat ambientR, GLfloat ambientG, GLfloat ambientB,$/;"	f	class:TresD_Class
 setPWD	cdk-5.0-20180306/fselect.c	/^static void setPWD (CDKFSELECT *fselect)$/;"	f	file:
 setPWD	cdk/fselect.c	/^static void setPWD (CDKFSELECT *fselect)$/;"	f	file:
 setPositionToEnd	cdk-5.0-20180306/entry.c	/^static void setPositionToEnd (CDKENTRY *entry)$/;"	f	file:
@@ -8763,6 +8776,7 @@ titlehighlight	cdk-5.0-20180306/include/scroll.h	/^   chtype	titlehighlight;	\/*
 titlehighlight	cdk/include/scroll.h	/^   chtype	titlehighlight;	\/* *\/$/;"	m	struct:SScroll
 titlehighlight	include/scroll.h	/^   chtype	titlehighlight;	\/* *\/$/;"	m	struct:SScroll
 tl	ncurses_programs/basics/other_border.c	/^	 	tl, tr, bl, br;$/;"	m	struct:_win_border_struct	file:
+tmp_filename_tbl	h/gnuplot_i.h	/^    char*      tmp_filename_tbl[GP_MAX_TMP_FILES] ;$/;"	m	struct:_GNUPLOT_CTRL_
 topRow	cdk-5.0-20180306/include/mentry.h	/^   int		topRow;$/;"	m	struct:SMentry
 topRow	cdk/include/mentry.h	/^   int		topRow;$/;"	m	struct:SMentry
 topRow	include/mentry.h	/^   int		topRow;$/;"	m	struct:SMentry

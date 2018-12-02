@@ -4,7 +4,7 @@ using namespace std::chrono;
 int Serial_Manager_Class::serial_send(char* pData,int size)
 {
    SendBuf(portNumber, pData, size);
-   Log_File << "<" << pData << std::endl;
+//   Log_File << "<" << pData << std::endl;
 }
 void Serial_Manager_Class::serial_close(void)
 {
@@ -15,7 +15,8 @@ int Serial_Manager_Class::serial_receive(char* buf,int size)
 {
    int Ans;
    Ans=PollComport(portNumber, (unsigned char*) buf,size);
-   Log_File << ">" << buf << std::endl;
+//   buf[Ans+0]='\0'; //porque sino no termina...
+//   Log_File << ">" << buf << std::endl;
    return Ans;
 }
 int Serial_Manager_Class::Open(int pn,int baudrate)
@@ -61,18 +62,16 @@ void Serial_Manager_Class::Rti(void)
 {
    char Buf[MAX_ANS_SIZE],n;
    int32_t Y=0,X=0,Z=0;
-   uint32_t Exec_Line;
+   uint32_t Exec_Line=0;
    float Speed_X=0,Speed_Y=0,Speed_Z=0;
    while ( 1 ) {
       if(Port_Status==0) {
          nanosleep ( &Rti_Delay,&Rti_Delay );
-         Send_And_Receive("pos\nspeed\nspace\nline\n",Buf,sizeof(Buf));
-         sscanf(Buf,"pos= %d %d %d step/seg= %f %f %f space=%d line=%d"
-               ,&X,&Y,&Z,&Speed_X,&Speed_Y,&Speed_Z,&Space,&Exec_Line);
-
+         Send_And_Receive("K\n",Buf,sizeof(Buf));
+         sscanf(Buf,"%d %d %d %f %f %f %d %d",&X,&Y,&Z,&Speed_X,&Speed_Y,&Speed_Z,&Space,&Exec_Line);
          Main_Page->Coords->Machine2Coords(X,Y,Z,Speed_X,Speed_Y,Speed_Z);
          Main_Page->Sender->Exec_Line      = Exec_Line;
-         //Log();
+         Log();
          pthread_mutex_lock(&Main_Page->Print_Mutex);
             wprintw(Sub_Win,"X%05d Y%05d Z%05d SX%06.2f SY%06.2f SZ%06.2f Q%d N%d\n"
                   ,X,Y,Z,Speed_X,Speed_Y,Speed_Z,Space,Exec_Line);

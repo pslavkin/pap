@@ -17,6 +17,8 @@
 #include <fstream>
 #include <chrono>
 
+#include "gnuplot_i.h"
+
 #include "tresd.h"
 #include "dim.h"
 #include "sheet.h"
