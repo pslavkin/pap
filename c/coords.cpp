@@ -1,9 +1,11 @@
 #include "inc_all.h"
 
-Coords_Class::Coords_Class(Sheet* Parent,Dim D)
+Coords_Class::Coords_Class(Sheet* Parent,Dim D) : Sheet(Parent,D)
 {
-   S = new Sheet(Parent,D);
-   mvwprintw(S->Win ,1 ,7 ,"X           Y           Z        Speed");
+//   S = new Sheet(Parent,D);
+   mvwprintw(Win ,1 ,16 ,"X           Y           Z        Speed    |   Accel      Decel");
+   mvwprintw(Win ,2 ,2 ,"Actual |");
+   mvwprintw(Win ,3 ,2 ,"Jog    |");
    X              = 0       ;
    Y              = 0       ;
    Z              = 0       ;
@@ -17,7 +19,7 @@ Coords_Class::Coords_Class(Sheet* Parent,Dim D)
    Actual_Speed_Y = 0       ;
    Actual_Speed_Z = 0       ;
    Speed          = 0       ;
-   Jog_Speed      = 600     ;
+   Jog_Speed      = 10      ;
    Jog_X          = 0       ;
    Jog_Y          = 0       ;
    Jog_Z          = 0       ;
@@ -30,6 +32,9 @@ Coords_Class::Coords_Class(Sheet* Parent,Dim D)
    Min_X          = -2097152;
    Min_Y          = -2097152;
    Min_Z          = -2097152;
+   Max_Acc      = 1000      ;
+   Max_Dec      = 1000      ;
+   Speed_Scale  = 50        ;
 }
 void Coords_Class::Rti(void)
 {
@@ -41,12 +46,12 @@ void Coords_Class::Rti(void)
 void Coords_Class::Write(void)
 {
    pthread_mutex_lock(&Main_Page->Print_Mutex);
-      wattron(S->Win,A_BOLD);
-      mvwprintw(S->Win,2,2,"%+011.3f %+011.3f %+011.3f %010.3f",Actual_X,Actual_Y,Actual_Z,Actual_Speed);
-      wattroff(S->Win,A_BOLD);
-      wcolor_set(S->Win, 2,NULL);
-      mvwprintw(S->Win,3,2,"%+011.3f %+011.3f %+011.3f %010.3f",Actual_Jog_X,Actual_Jog_Y,Actual_Jog_Z,Jog_Speed);
-      wcolor_set(S->Win, 0,NULL);
+      wattron(Win,A_BOLD);
+      mvwprintw(Win,2,11,"%+011.3f %+011.3f %+011.3f %010.3f | %010.3f %010.3f",
+                Actual_X,Actual_Y,Actual_Z,Actual_Speed,Max_Acc,Max_Dec);
+      wattroff(Win,A_BOLD);
+      mvwprintw(Win,3,11,"%+011.3f %+011.3f %+011.3f %010.3f | Speed % = %0.3d",
+            Actual_Jog_X,Actual_Jog_Y,Actual_Jog_Z,Jog_Speed,Speed_Scale);
    pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
 
@@ -80,19 +85,56 @@ void Coords_Class::Machine2Coords(int32_t X, int32_t Y,int32_t Z,
    this->Speed   = sqrt(Speed_X*Speed_X+Speed_Y*Speed_Y+Speed_Z*Speed_Z);
 }
 
+void Coords_Class::Inc_Speed_Scale(void)
+{
+   if(Speed_Scale<=90)
+      Speed_Scale+=10;
+}
+void Coords_Class::Dec_Speed_Scale(void)
+{
+   if(Speed_Scale>=10)
+      Speed_Scale-=10;
+}
 void Coords_Class::Inc_Jog_Speed(void)
 {
-   char Buf[100],Len;
-   if((Jog_Speed+100)<MAX_JOG_SPEED)
-      Jog_Speed+=100;
-   Len=sprintf(Buf,"F %f\r",Jog_Speed);
-   Main_Page->Serial->serial_send(Buf,Len);
+   if(Jog_Speed<10)
+      Jog_Speed++;
+   else {
+      if((Jog_Speed+10)<=MAX_JOG_SPEED)
+         Jog_Speed+=10;
+   }
 }
 void Coords_Class::Dec_Jog_Speed(void)
 {
-   char Buf[100],Len;
-   if(Jog_Speed>100)
-      Jog_Speed-=100;
-   Len=sprintf(Buf,"F %f\r",Jog_Speed);
-   Main_Page->Serial->serial_send(Buf,Len);
+   if(Jog_Speed<=10) {
+      if(Jog_Speed>0)
+         Jog_Speed--;
+   }
+   else
+      Jog_Speed-=10;
+}
+
+void Coords_Class::Key(int K)
+{
+   switch(K) {
+      case '+':
+         Inc_Jog_Speed();
+         break;
+      case '-':
+         Dec_Jog_Speed();
+         break;
+      case KEY_LEFT:
+         break;
+      case KEY_RIGHT:
+         break;
+      case KEY_UP:
+         Inc_Speed_Scale();
+         break;
+      case KEY_DOWN:
+         Dec_Speed_Scale();
+         break;
+      case 'u':
+         Toogle_Full_Restore_Screen();
+         break;
+   }
 }

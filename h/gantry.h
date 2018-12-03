@@ -1,14 +1,9 @@
 #ifndef GANTRY
 #define GANTRY
 
-#define MAX_SCALE_INDEX 1000000
-#define MAX_PATH 5000000
-#define MAX_Z_TABLE (25*Z_SCALE) //para definir el color mas oscuro.. supongo que z puede subir 25mm max, desde cero..  //para definir el color mas oscuro.. supongo que z puede subir 25mm max, desde cero..  //para definir el color mas oscuro.. supongo que z puede subir 25mm max, desde cero..
-
 class Gantry_Class : public Sheet{
    public:
       Gantry_Class ( Sheet* Parent,Dim D );
- //     Sheet* S;
       void Set_Coords(Coords_Class* C);
       void Rti(void);
       int32_t Path_X[MAX_PATH];
@@ -29,13 +24,13 @@ class Gantry_Class : public Sheet{
       void Change_Center(int32_t New_Center_Y, int32_t New_Center_X);
       void Key(int K);
       void Grid(int16_t G);
+      uint8_t  Color4Hight       ( int32_t Z                              );
 
    protected:
    private:
       Coords_Class* Coords                                               ;
-      struct timespec Rti_Delay= { 0, 50000000}                          ; // 5 milis
+      struct timespec Rti_Delay= { 0, GANTRY_RTI}                         ; 
       void     Toogle_Pixel      ( int32_t Y, int32_t X                   );
-      uint8_t  Color4Hight       ( int32_t Z                              );
       void     Draw_Path         ( int32_t Y, int32_t X        ,int32_t Z );
       void     Redraw_Path       ( void                                   );
       void     Clear_Path        ( void                                   );

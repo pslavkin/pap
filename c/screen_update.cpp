@@ -14,9 +14,10 @@ void Screen_Update_Class::Rti(void)
       switch(Key) {
          case 'q':
             clrtoeol (   );
-            endwin   (   );
             echo     (   );
             nocbreak (   );
+            curs_set ( 1 );
+            endwin   (   );
             exit     ( 0 );
             break;
          case 'x':
@@ -26,10 +27,10 @@ void Screen_Update_Class::Rti(void)
             Main_Page->Gantry_XY->Top();
             break;
          case 'z':
-            if(Sheet::Sheet4Top_Panel()!=Main_Page->Histo_Z->S)
+            if(Sheet::Sheet4Top_Panel()!=Main_Page->Histo_Z)
                Sheet::Sheet4Top_Panel()->Deselect();
-            Main_Page->Histo_Z->S->Toogle_Select();
-            Main_Page->Histo_Z->S->Top();
+            Main_Page->Histo_Z->Toogle_Select();
+            Main_Page->Histo_Z->Top();
             break;
          case 's':
             if(Sheet::Sheet4Top_Panel()!=Main_Page->Sender)
@@ -44,13 +45,22 @@ void Screen_Update_Class::Rti(void)
             Main_Page->Serial->Top           ( );
             break;
          case 'd':
-            if(Sheet::Sheet4Top_Panel()!=Main_Page->Coords->S)
+            if(Sheet::Sheet4Top_Panel()!=Main_Page->Coords)
                Sheet::Sheet4Top_Panel()->Deselect();
-            Main_Page->Coords->S->Toogle_Select ( );
-            Main_Page->Coords->S->Top           ( );
+            Main_Page->Coords->Toogle_Select ( );
+            Main_Page->Coords->Top           ( );
+            break;
+         case '2':
+               Main_Page->TresD->Toogle_Plot2();
             break;
          case '3':
-               Main_Page->T.Set_TresD_Rti ( Main_Page->TresD );
+               Main_Page->TresD->Toogle_Plot3();
+            break;
+         case '4':
+               Main_Page->TresD->Toogle_Last_Plot2();
+            break;
+         case '5':
+               Main_Page->TresD->Toogle_Last_Plot3();
             break;
          default:
             Sheet::Sheet4Top_Panel()->Key(Key);

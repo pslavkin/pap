@@ -50,13 +50,11 @@ void  Sheet::Set_Parent_Sheet(Sheet* P)
 }
 void  Sheet::Redraw_Box(bool Selected)
 {
-   wattron  ( Win ,COLOR_PAIR(Selected?12 :100 ));
+   wattron  ( Win ,COLOR_PAIR(Selected? 3 :0 ));
    box      ( Win ,0 ,0                        ) ;
-   wattroff ( Win ,COLOR_PAIR(0                ));
-   wattron       ( Win ,COLOR_PAIR(180 ));
+   wattroff ( Win ,COLOR_PAIR(Selected? 3 :0 ));
    if(strlen(Name)+2 <= getmaxx(Win))
       mvwprintw ( Win ,0 ,1 ,Name );
-   wattroff      ( Win ,COLOR_PAIR(180 ));
 }
 void  Sheet::Hide_Box(void)
 {

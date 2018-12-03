@@ -2,13 +2,14 @@
 
 Sender_Class::Sender_Class(Sheet* Parent,Dim D):Sheet(Parent,D)
 {
-   scrollok           ( Sub_Win, TRUE              );
+   scrollok(Sub_Win,TRUE);
    GFile.open("gcodes/route.nc");
    if(GFile.good()) {
          Read_File();
    //      File2Win();
    }
 }
+
 void Sender_Class::Key(int K)
 {
    switch(K) {
@@ -51,12 +52,14 @@ void Sender_Class::File2Win(void)
    for(i=0;i<HH;i++)
          mvwprintw(Sub_Win,i,0,"%.*s",Dims.W-5,
                Exec_Line>=(HH-i)?Lines[Exec_Line-(HH-i)].data():"---");
-   wcolor_set(Sub_Win, 5,NULL);
+   wattron(Sub_Win,A_BOLD);
+   wcolor_set(Sub_Win, 4,NULL);
      mvwprintw(Sub_Win,i,0,"%.*s",Dims.W-5,Lines[Exec_Line].data());
    wcolor_set(Sub_Win, 0,NULL);
+   wattroff(Sub_Win,A_BOLD);
    for(i++;i<Dims.H-4;i++) {
          if(Exec_Line+(i-HH)==Actual_Line)
-            wcolor_set(Sub_Win,6,NULL);
+            wcolor_set(Sub_Win,3,NULL);
          mvwprintw(Sub_Win,i,0,"%.*s",Dims.W-5,
                    (Exec_Line+(i-HH))<Total_Lines?Lines[Exec_Line+(i-HH)].data():"~~~");
          wcolor_set(Sub_Win, 0,NULL);

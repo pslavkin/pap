@@ -12,21 +12,21 @@ void Curses_Color_Class::Init_Curses (void)
    noecho               (               );
    keypad               ( stdscr, TRUE  );
    nodelay              ( stdscr,true   );
-   init_Basic_Colors    (               );
-   Init_Gradient_Colors ( 1,0,0,  1,192 );
+   start_color ();
+   Init_Full_Colors    (               );
+//   init_Basic_Colors    (               );
+//   Init_Gradient_Colors ( 1,0,0,  1,192 );
    curs_set             ( 0             );
 }
 
 void Curses_Color_Class::init_Basic_Colors (void)
 {
-#define MAX_BASIC_COLORS      8
   if (has_colors ()) {
       int color[] = { COLOR_WHITE, COLOR_RED, COLOR_GREEN, COLOR_YELLOW, COLOR_BLUE, COLOR_MAGENTA, COLOR_CYAN, COLOR_BLACK };
       int pair = 1;
       int fg, bg;
       int limit;
 
-      start_color ();
       limit = (COLORS < MAX_BASIC_COLORS) ? COLORS : MAX_BASIC_COLORS;
 
       /* Create the color pairs. */
@@ -37,6 +37,47 @@ void Curses_Color_Class::init_Basic_Colors (void)
       }
    }
 }
+void Curses_Color_Class::Init_Full_Colors (void)
+{
+   int color[] = { COLOR_WHITE, COLOR_RED, COLOR_GREEN, COLOR_YELLOW, COLOR_BLUE, COLOR_MAGENTA, COLOR_CYAN, COLOR_BLACK };
+   int Count=48;
+   int Pair=1;
+   int i;
+   for(Pair=1;Pair<8;Pair++) {
+      init_pair (Pair, COLOR_WHITE,color[Pair]);
+   }
+   for(Pair=8;Pair<16;Pair++) {
+      init_pair (Pair, COLOR_WHITE,Pair);
+      init_color(Pair,Pair*1000/8,Pair*1000/8,Pair*1000/8);
+   }
+   Pair=16;
+   for(i=0;i<Count;i++) {
+      init_pair (Pair, COLOR_WHITE, Pair);
+      init_color(Pair,i*1000/Count,400,400);
+      Pair++;
+   }
+   for(i=0;i<Count;i++) {
+      init_pair (Pair, COLOR_WHITE, Pair);
+      init_color(Pair,1000-i*1000/Count,i*1000/Count,0);
+      Pair++;
+   }
+   for(i=0;i<Count;i++) {
+      init_pair (Pair, COLOR_WHITE, Pair);
+      init_color(Pair,0,1000-i*1000/Count,i*1000/Count);
+      Pair++;
+   }
+   for(i=0;i<Count;i++) {
+      init_pair (Pair, COLOR_WHITE, Pair);
+      init_color(Pair,i*1000/Count,0,1000);
+      Pair++;
+   }
+   for(i=0;i<Count;i++) {
+      init_pair (Pair, COLOR_WHITE, Pair);
+      init_color(Pair,1000,i*1000/Count,1000);
+      Pair++;
+   }
+}
+
 void Curses_Color_Class::Init_Gradient_Colors(unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count)
 {
    if (has_colors ()) {

@@ -68,14 +68,9 @@ void Gantry_Class::Key(int K)
       case KEY_DOWN:
                Jog2Down();
          break;
-      case '+':
-               Coords->Inc_Jog_Speed();
-         break;
-      case '-':
-               Coords->Dec_Jog_Speed();
-         break;
       case 'u':
          Toogle_Full_Restore_Screen();
+         Redraw_Path ( );
          break;
       case ' ':
          char Buf[100],Len;
@@ -223,11 +218,11 @@ bool Gantry_Class::Absolute_Y2Gantry(int32_t In_Y,int32_t* Out_Y)
 uint8_t Gantry_Class::Color4Hight(int32_t Z)
 {
    uint8_t Color;
-   if(Z<=0) Color=MAX_COLOUR_PAIR;
+   if(Z<=0) Color=MIN_COLOUR_PAIR;
    else
-      if(Z>=MAX_Z_TABLE) MIN_COLOUR_PAIR;
+      if(Z>=MAX_Z_TABLE) MAX_COLOUR_PAIR;
       else
-         Color=MIN_COLOUR_PAIR+((MAX_Z_TABLE-Z)*(MAX_COLOUR_PAIR-MIN_COLOUR_PAIR))/MAX_Z_TABLE;
+         Color=(Z*(MAX_COLOUR_PAIR-MIN_COLOUR_PAIR))/MAX_Z_TABLE;
    return Color;
 }
 

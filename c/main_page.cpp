@@ -13,7 +13,7 @@ Main_Page_Class::Main_Page_Class (WINDOW* w)
    Gantry_XY=new Gantry_Class(Main,Dim_Gantry);
 
    Dim Dim_Histo(5, 42,35, 5,"Z");
-   Histo_Z=new Histo_Class(Main,Dim_Histo,25*Z_SCALE,-25*Z_SCALE,0);
+   Histo_Z=new Histo_Class(Main,Dim_Histo,25*Z_SCALE,-5*Z_SCALE,0);
 
    Dim Dim_Sender ( 5, 0, 15, 42,"Sender" );
    Sender=new Sender_Class(Main,Dim_Sender);
@@ -21,7 +21,7 @@ Main_Page_Class::Main_Page_Class (WINDOW* w)
    Dim Dim_Serial ( 20, 0,  8, 42,"Serial" );
    Serial=new Serial_Manager_Class(Main,Dim_Serial);
 
-   Dim Dim_Coords ( 0,42,  5, 55,"Coords" );
+   Dim Dim_Coords ( 0,14,  5, 83,"Coords" );
    Coords=new Coords_Class(Main,Dim_Coords);
 
 
@@ -38,7 +38,7 @@ Main_Page_Class::Main_Page_Class (WINDOW* w)
    T.Set_Sender_Rti        ( Sender        );
    T.Set_Screen_Update_Rti ( Screen_Update );
    T.Set_Serial_Manager_Rti( Serial        );
-//   T.Set_TresD_Rti         ( TresD         );
+   T.Set_TresD_Rti         ( TresD         );
 }
 //----------------------------------------------------------------------------------------------------
 

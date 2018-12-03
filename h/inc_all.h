@@ -1,3 +1,5 @@
+#include "opt.h"
+
 #include <panel.h>
 #include <ncurses.h>
 #include <unistd.h>
@@ -33,3 +35,7 @@
 #include "timer.h"
 #include "main_page.h"
 #include "main.h"
+
+
+
+
