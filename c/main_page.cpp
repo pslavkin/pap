@@ -13,7 +13,7 @@ Main_Page_Class::Main_Page_Class (WINDOW* w)
    Gantry_XY=new Gantry_Class(Main,Dim_Gantry);
 
    Dim Dim_Histo(5, 42,35, 5,"Z");
-   Histo_Z=new Histo_Class(Main,Dim_Histo,25*Z_SCALE,-5*Z_SCALE,0);
+   Histo_Z=new Histo_Class(Main,Dim_Histo,MAX_Z_TABLE,MIN_Z_TABLE,0);
 
    Dim Dim_Sender ( 5, 0, 15, 42,"Sender" );
    Sender=new Sender_Class(Main,Dim_Sender);

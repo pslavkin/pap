@@ -1,7 +1,7 @@
 #include "inc_all.h"
 
 Curses_Color_Class*  Curses;
-Main_Page_Class*     Main_Page;
+Main_Page_Class*     Main_Page=NULL;
 
 int main(int argc, char **argv)
 {

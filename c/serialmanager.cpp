@@ -23,9 +23,19 @@ int Serial_Manager_Class::Open(int pn,int baudrate)
 {
    char Buf[MAX_ANS_SIZE];
    Port_Status = OpenComport(Port_Number,baudrate);
-   mvwaddstr(Sub_Win,0,0,Port_Status?"error":"opened");
-   if(Port_Status==0)
-      Send_And_Receive("halt\nrstpos\nhalt\n",Buf,sizeof(Buf));
+   wprintw(Sub_Win,"\n serial port %d status %s \n",Port_Number,(Port_Status?"error":"opened"));
+   if(Port_Status==0){
+      Send_And_Receive                               ( "halt\nrstpos\nhalt\n",Buf,sizeof(Buf ));
+      Main_Page->Coords->Send_Speed_Limit2Controller (                                       ) ;
+      Main_Page->Coords->Send_Acc_Dec2Controller     (                                       ) ;
+   }
+   else {
+      if(Port_Number<MAX_SERIAL_PORTS)
+         Port_Number++;
+      else
+         Port_Number=0;
+   }
+
    return Port_Status;
 }
 

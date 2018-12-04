@@ -19,7 +19,6 @@ Coords_Class::Coords_Class(Sheet* Parent,Dim D) : Sheet(Parent,D)
    Actual_Speed_Y = 0       ;
    Actual_Speed_Z = 0       ;
    Speed          = 0       ;
-   Jog_Speed      = 10      ;
    Jog_X          = 0       ;
    Jog_Y          = 0       ;
    Jog_Z          = 0       ;
@@ -32,9 +31,9 @@ Coords_Class::Coords_Class(Sheet* Parent,Dim D) : Sheet(Parent,D)
    Min_X          = -2097152;
    Min_Y          = -2097152;
    Min_Z          = -2097152;
-   Max_Acc      = 1000      ;
-   Max_Dec      = 1000      ;
-   Speed_Scale  = 50        ;
+   Acc      = 1000      ;
+   Dec      = 1000      ;
+   Speed_Limit  = 10        ;
 }
 void Coords_Class::Rti(void)
 {
@@ -48,10 +47,10 @@ void Coords_Class::Write(void)
    pthread_mutex_lock(&Main_Page->Print_Mutex);
       wattron(Win,A_BOLD);
       mvwprintw(Win,2,11,"%+011.3f %+011.3f %+011.3f %010.3f | %010.3f %010.3f",
-                Actual_X,Actual_Y,Actual_Z,Actual_Speed,Max_Acc,Max_Dec);
+                Actual_X,Actual_Y,Actual_Z,Actual_Speed,Acc,Dec);
       wattroff(Win,A_BOLD);
-      mvwprintw(Win,3,11,"%+011.3f %+011.3f %+011.3f %010.3f | Speed % = %0.3d",
-            Actual_Jog_X,Actual_Jog_Y,Actual_Jog_Z,Jog_Speed,Speed_Scale);
+      mvwprintw(Win,3,11,"%+011.3f %+011.3f %+011.3f    %3d.000 |",
+            Actual_Jog_X,Actual_Jog_Y,Actual_Jog_Z,Speed_Limit);
    pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
 
@@ -85,53 +84,81 @@ void Coords_Class::Machine2Coords(int32_t X, int32_t Y,int32_t Z,
    this->Speed   = sqrt(Speed_X*Speed_X+Speed_Y*Speed_Y+Speed_Z*Speed_Z);
 }
 
-void Coords_Class::Inc_Speed_Scale(void)
+void Coords_Class::Send_Acc_Dec2Controller(void)
 {
-   if(Speed_Scale<=90)
-      Speed_Scale+=10;
+   char Buf[100];
+   sprintf(Buf,"ramps %f %f\n",Acc,Dec);
+   Main_Page->Serial->Send_And_Receive(Buf,Buf,sizeof(Buf));
 }
-void Coords_Class::Dec_Speed_Scale(void)
+void Coords_Class::Inc_Acc(void)
 {
-   if(Speed_Scale>=10)
-      Speed_Scale-=10;
-}
-void Coords_Class::Inc_Jog_Speed(void)
-{
-   if(Jog_Speed<10)
-      Jog_Speed++;
-   else {
-      if((Jog_Speed+10)<=MAX_JOG_SPEED)
-         Jog_Speed+=10;
+   if((Acc+ACC_STEP)<=MAX_ACC) {
+      Acc+=ACC_STEP;
+      Send_Acc_Dec2Controller();
    }
 }
-void Coords_Class::Dec_Jog_Speed(void)
+void Coords_Class::Dec_Acc(void)
 {
-   if(Jog_Speed<=10) {
-      if(Jog_Speed>0)
-         Jog_Speed--;
+   if(Acc>=ACC_STEP) {
+      Acc-=ACC_STEP;
+      Send_Acc_Dec2Controller();
    }
-   else
-      Jog_Speed-=10;
+}
+void Coords_Class::Inc_Dec(void)
+{
+   if((Dec+ACC_STEP)<=MAX_DEC) {
+      Dec+=ACC_STEP;
+      Send_Acc_Dec2Controller();
+   }
+}
+void Coords_Class::Dec_Dec(void)
+{
+   if(Dec>=ACC_STEP) {
+      Dec-=ACC_STEP;
+      Send_Acc_Dec2Controller();
+   }
+}
+void Coords_Class::Send_Speed_Limit2Controller(void)
+{
+   char Buf[100];
+   sprintf(Buf,"ls %d \n",Speed_Limit);
+   Main_Page->Serial->Send_And_Receive(Buf,Buf,sizeof(Buf));
+}
+void Coords_Class::Inc_Speed_Limit(void)
+{
+   if(Speed_Limit<MAX_SPEED_LIMIT) {
+      Speed_Limit++;
+      Send_Speed_Limit2Controller();
+   }
+}
+void Coords_Class::Dec_Speed_Limit(void)
+{
+   if(Speed_Limit>1) {
+      Speed_Limit--;
+      Send_Speed_Limit2Controller();
+   }
 }
 
 void Coords_Class::Key(int K)
 {
    switch(K) {
       case '+':
-         Inc_Jog_Speed();
+         Inc_Acc();
+         Inc_Dec();
          break;
       case '-':
-         Dec_Jog_Speed();
+         Dec_Acc();
+         Dec_Dec();
          break;
       case KEY_LEFT:
          break;
       case KEY_RIGHT:
          break;
       case KEY_UP:
-         Inc_Speed_Scale();
+         Inc_Speed_Limit();
          break;
       case KEY_DOWN:
-         Dec_Speed_Scale();
+         Dec_Speed_Limit();
          break;
       case 'u':
          Toogle_Full_Restore_Screen();

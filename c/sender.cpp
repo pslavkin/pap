@@ -25,13 +25,42 @@ void Sender_Class::Key(int K)
       case 'p':
          Next_State=PLAY;
          break;
+      case 'r':
+         Next_State=RESTART;
+         break;
+      case 'k':
+         Next_State=STOP_NOW;
+         break;
       case ' ':
          Next_State=STOP;
+         break;
+      case 'R':
+         Reload_File();
          break;
       case 'u':
          Toogle_Full_Restore_Screen();
          break;
    }
+}
+void Sender_Class::Stop_Now(void)
+{
+   char Buf[10];
+   Actual_Line=0;
+   Main_Page->Serial->Send_And_Receive("halt\n",Buf,3);
+}
+void Sender_Class::Restart(void)
+{
+   char Buf[10];
+   Actual_Line=0;
+   Main_Page->Serial->Send_And_Receive("halt\n",Buf,3);
+   Main_Page->Serial->Send_And_Receive("GL N0\n",Buf,3);
+}
+void Sender_Class::Reload_File(void)
+{
+   GFile.close();
+   GFile.open("gcodes/route.nc");
+   Read_File();
+   Next_State=RESTART;
 }
 
 void Sender_Class::Read_File(void)
@@ -44,28 +73,34 @@ void Sender_Class::Read_File(void)
    Actual_Line=0;
    Total_Lines=i;
 }
+
+char* Sender_Class::Get_Line(int32_t Pos)
+{
+   if(Pos<=0 || Pos>Total_Lines)
+      return (char*)"---";
+   else
+      return (char*)Lines[Pos-1].c_str();
+}
+
 void Sender_Class::File2Win(void)
 {
-   uint16_t i,HH=2;//=Sub_Dim->H/2-2;
+   uint16_t i,HH=3;//=Sub_Dim->H/2-2;
    wclear(Sub_Win);
    pthread_mutex_lock(&Main_Page->Print_Mutex);
-   for(i=0;i<HH;i++)
-         mvwprintw(Sub_Win,i,0,"%.*s",Dims.W-5,
-               Exec_Line>=(HH-i)?Lines[Exec_Line-(HH-i)].data():"---");
-   wattron(Sub_Win,A_BOLD);
-   wcolor_set(Sub_Win, 4,NULL);
-     mvwprintw(Sub_Win,i,0,"%.*s",Dims.W-5,Lines[Exec_Line].data());
-   wcolor_set(Sub_Win, 0,NULL);
-   wattroff(Sub_Win,A_BOLD);
-   for(i++;i<Dims.H-4;i++) {
-         if(Exec_Line+(i-HH)==Actual_Line)
-            wcolor_set(Sub_Win,3,NULL);
-         mvwprintw(Sub_Win,i,0,"%.*s",Dims.W-5,
-                   (Exec_Line+(i-HH))<Total_Lines?Lines[Exec_Line+(i-HH)].data():"~~~");
-         wcolor_set(Sub_Win, 0,NULL);
+   {
+   for(i=0;i<Dims.H-4;i++) {
+      if(i==3) {
+         wcolor_set(Sub_Win, 4,NULL);
+         wattron(Sub_Win,A_BOLD);
+      }
+      if(Actual_Line-Exec_Line+3==i) wcolor_set(Sub_Win, 3,NULL);
+         mvwprintw(Sub_Win,i,0,"%.*s",Dims.W-5,Get_Line(Exec_Line+i-3));
+      if(i==3) wattroff(Sub_Win,A_BOLD);
+      wcolor_set(Sub_Win, 0,NULL);
    }
    Touch_Win();
    pthread_mutex_unlock(&Main_Page->Print_Mutex);
+   }
 }
 
 void Sender_Class::Send_Next_Line(void)
@@ -97,6 +132,14 @@ void Sender_Class::Rti(void)
             break;
          case ONE_LINE:
             Send_Next_Line();
+            Next_State=STOP;
+            break;
+         case RESTART:
+            Restart();
+            Next_State=STOP;
+            break;
+         case STOP_NOW:
+            Stop_Now();
             Next_State=STOP;
             break;
       }

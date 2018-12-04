@@ -34,19 +34,23 @@ class Coords_Class : public Sheet {
       float   Actual_Speed_Z;
       float   Actual_Speed;
       float   Speed;
-      float   Max_Acc;
-      float   Max_Dec;
-      uint8_t Speed_Scale;
-      void Inc_Speed_Scale(void);
-      void Dec_Speed_Scale(void);
-      void Inc_Jog_Speed(void);
-      void Dec_Jog_Speed(void);
+      float   Acc;
+      float   Dec;
+      uint16_t Speed_Limit;
+      void Inc_Speed_Limit(void);
+      void Dec_Speed_Limit(void);
+      void Send_Speed_Limit2Controller(void);
+      void Send_Acc_Dec2Controller(void);
       void Machine2Coords(int32_t X, int32_t Y,int32_t Z, float Speed_X, float Speed_Y, float Speed_Z);
       void Key(int K);
    protected:
    private:
       void Write ( void );
       struct timespec Rti_Delay= { 0, COORDS_RTI};
+      void Inc_Acc(void);
+      void Dec_Acc(void);
+      void Inc_Dec(void);
+      void Dec_Dec(void);
 };
 
 #endif

@@ -6,12 +6,18 @@ Screen_Update_Class::Screen_Update_Class(void)
 void Screen_Update_Class::Rti(void)
 {
    int Key;
+   while(Main_Page==NULL)
+      ;
    while(1) {
-      nanosleep     ( &Rti_Delay,&Rti_Delay );
+   pthread_mutex_lock(&Main_Page->Print_Mutex);
       update_panels ( );
       Key=getch     ( ); // ojo que esta humilde funcion llama a wrefresh!!
       doupdate      ( ); // por eso tengo que hacer todo junto con el doupdate
+   pthread_mutex_unlock(&Main_Page->Print_Mutex);
       switch(Key) {
+         case ERR:   //cuando no hay tecna espero.. si hay, no espero asi es mas rapida la atencion al publico
+            nanosleep     ( &Rti_Delay,&Rti_Delay );
+            break;
          case 'q':
             clrtoeol (   );
             echo     (   );
@@ -57,10 +63,18 @@ void Screen_Update_Class::Rti(void)
                Main_Page->TresD->Toogle_Plot3();
             break;
          case '4':
-               Main_Page->TresD->Toogle_Last_Plot2();
+               Main_Page->TresD->Toogle_Plot_Pos2();
             break;
          case '5':
+               Main_Page->TresD->Toogle_Last_Plot2();
+            break;
+         case '6':
                Main_Page->TresD->Toogle_Last_Plot3();
+            break;
+         case 'C':
+               Curses->Init_Full_Colors();
+               Main_Page->Gantry_XY->Redraw_Path();
+               Main_Page->Histo_Z->Touch_Win();
             break;
          default:
             Sheet::Sheet4Top_Panel()->Key(Key);

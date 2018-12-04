@@ -51,7 +51,8 @@ void Gantry_Class::Key(int K)
                Change_Center(Coords->Y,Coords->X);
          break;
       case 'P':
-              Coords->Jog2Machine();
+            //  Coords->Jog2Machine();
+               Toogle_Auto_Center();
          break;
       case 'L':
                Clear_Path();
@@ -62,6 +63,7 @@ void Gantry_Class::Key(int K)
       case KEY_RIGHT:
                Jog2Right();
          break;
+
       case KEY_UP:
                Jog2Up();
          break;
@@ -73,11 +75,15 @@ void Gantry_Class::Key(int K)
          Redraw_Path ( );
          break;
       case ' ':
-         char Buf[100],Len;
-  //       Len=sprintf(Buf,"F %f\r",Coords->Jog_Speed);
-  //       Main_Page->Serial->serial_send(Buf,Len);
-         Len=sprintf(Buf,"GL X%d Y%d\r",Coords->Actual_Jog_X,Coords->Actual_Jog_Y);
-         Main_Page->Serial->serial_send(Buf,Len);
+              Jog2New_Zero();
+
+
+
+//         char Buf[100],Len;
+//  //       Len=sprintf(Buf,"F %f\r",Coords->Jog_Speed);
+//  //       Main_Page->Serial->serial_send(Buf,Len);
+//         Len=sprintf(Buf,"GL X%d Y%d\r",Coords->Actual_Jog_X,Coords->Actual_Jog_Y);
+//         Main_Page->Serial->serial_send(Buf,Len);
          break;
    }
 }
@@ -133,7 +139,7 @@ void Gantry_Class::Dec_Scale(void)
 void Gantry_Class::Set_Coords(Coords_Class* C)
 {
    this->Coords = C;
-   Scale_Index  = MAX_SCALE_INDEX/8;
+   Scale_Index  = MAX_SCALE_INDEX/1000;
    Change_Scale();
 }
 void Gantry_Class::Rti(void)
@@ -143,8 +149,14 @@ void Gantry_Class::Rti(void)
       Draw_Path       ( Coords->Y,Coords->X,Coords->Z );
       Grid            ( 0                             );
       Print_Jog_Pixel (                               );
+      Auto_Center     ( Coords->Y,Coords->X           );
    }
 }
+void Gantry_Class::Jog2New_Zero(void)
+{
+
+}
+
 
 void Gantry_Class::Change_Scale(void)
 {
@@ -162,6 +174,25 @@ void Gantry_Class::Change_Scale(void)
    Redraw_Box(Selected);
    Redraw_Path();
 }
+void Gantry_Class::Auto_Center(int32_t New_Center_Y, int32_t New_Center_X)
+{
+   static uint8_t Period=0;
+   if(Auto_Center_Enabled==true)
+      if(++Period>10) {
+         Period=0;
+         Change_Center(New_Center_Y,New_Center_X);
+      }
+}
+
+void Gantry_Class::Toogle_Auto_Center(void)
+{
+   if(Auto_Center_Enabled==true)
+      Auto_Center_Enabled=false;
+   else
+      Auto_Center_Enabled=true;
+}
+
+
 void Gantry_Class::Change_Center(int32_t New_Center_Y, int32_t New_Center_X)
 {
    if((New_Center_Y+View_H/2)>=Coords->Max_Y)
@@ -218,11 +249,11 @@ bool Gantry_Class::Absolute_Y2Gantry(int32_t In_Y,int32_t* Out_Y)
 uint8_t Gantry_Class::Color4Hight(int32_t Z)
 {
    uint8_t Color;
-   if(Z<=0) Color=MIN_COLOUR_PAIR;
+   if(Z<=MIN_Z_TABLE) Color=MIN_COLOUR_PAIR;
    else
-      if(Z>=MAX_Z_TABLE) MAX_COLOUR_PAIR;
+      if(Z>=MAX_Z_TABLE) Color=MAX_COLOUR_PAIR;
       else
-         Color=(Z*(MAX_COLOUR_PAIR-MIN_COLOUR_PAIR))/MAX_Z_TABLE;
+         Color=MIN_COLOUR_PAIR+((Z-MIN_Z_TABLE)*(MAX_COLOUR_PAIR-MIN_COLOUR_PAIR))/(MAX_Z_TABLE-MIN_Z_TABLE);
    return Color;
 }
 
@@ -239,6 +270,8 @@ void Gantry_Class::Redraw_Path(void)
 {
    uint32_t i;
    int32_t Gantry_X,Gantry_Y;
+   wclear(Win);
+   Redraw_Box(Selected);
    for(i=0;i<Path_Index;i++)
       if(Absolute_Y2Gantry(Path_Y[i],&Gantry_Y) &&
          Absolute_X2Gantry(Path_X[i],&Gantry_X))
@@ -274,5 +307,12 @@ void Gantry_Class::Print_Jog_Pixel(void)
    mvwaddch (Win ,Gantry_Y ,Gantry_X ,' ' | COLOR_PAIR(0));
    Absolute_Y2Gantry(Coords->Jog_Y,&Gantry_Y);
    Absolute_X2Gantry(Coords->Jog_X,&Gantry_X);
-   mvwaddch (Win ,Gantry_Y ,Gantry_X ,'X' | COLOR_PAIR(3));
+   mvwaddch (Win ,Gantry_Y ,Gantry_X ,'X' | COLOR_PAIR(2));
+
+
+//   mvwaddch (Win ,Zero_Gantry_Y ,Zero_Gantry_X ,' ' | COLOR_PAIR(0));
+   int32_t Zero_Gantry_X,Zero_Gantry_Y;
+   Absolute_Y2Gantry(0,&Zero_Gantry_Y);
+   Absolute_X2Gantry(0,&Zero_Gantry_X);
+   mvwaddch (Win ,Zero_Gantry_Y ,Zero_Gantry_X ,'+' | COLOR_PAIR(5));
 }

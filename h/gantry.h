@@ -25,26 +25,30 @@ class Gantry_Class : public Sheet{
       void Key(int K);
       void Grid(int16_t G);
       uint8_t  Color4Hight       ( int32_t Z                              );
+      void     Redraw_Path       ( void                                   );
 
    protected:
    private:
       Coords_Class* Coords                                               ;
-      struct timespec Rti_Delay= { 0, GANTRY_RTI}                         ; 
-      void     Toogle_Pixel      ( int32_t Y, int32_t X                   );
-      void     Draw_Path         ( int32_t Y, int32_t X        ,int32_t Z );
-      void     Redraw_Path       ( void                                   );
-      void     Clear_Path        ( void                                   );
-      bool     Absolute_X2Gantry ( int32_t In_X,int32_t* Out_X            );
-      bool     Absolute_Y2Gantry ( int32_t In_Y,int32_t* Out_Y            );
-      void     Inc_Scale         ( void                                   );
-      void     Dec_Scale         ( void                                   );
-      void     Print_Jog_Pixel   ( void                                   );
-      void     Jog2Left          ( void                                   );
-      void     Jog2Right         ( void                                   );
-      void     Jog2Up            ( void                                   );
-      void     Jog2Down          ( void                                   );
-      int32_t  Pixel_X_Distance  ( void                                   );
-      int32_t  Pixel_Y_Distance  ( void                                   );
+      struct timespec Rti_Delay= { 0, GANTRY_RTI}                         ;
+      bool  Auto_Center_Enabled=false;
+      void Toogle_Auto_Center    ( void                                       );
+      void Auto_Center           ( int32_t New_Center_Y, int32_t New_Center_X );
+      void     Toogle_Pixel      ( int32_t Y, int32_t X                       );
+      void     Draw_Path         ( int32_t Y, int32_t X        ,int32_t Z     );
+      void     Clear_Path        ( void                                       );
+      void Jog2New_Zero          ( void                                       );
+      bool     Absolute_X2Gantry ( int32_t In_X,int32_t* Out_X                );
+      bool     Absolute_Y2Gantry ( int32_t In_Y,int32_t* Out_Y                );
+      void     Inc_Scale         ( void                                       );
+      void     Dec_Scale         ( void                                       );
+      void     Print_Jog_Pixel   ( void                                       );
+      void     Jog2Left          ( void                                       );
+      void     Jog2Right         ( void                                       );
+      void     Jog2Up            ( void                                       );
+      void     Jog2Down          ( void                                       );
+      int32_t  Pixel_X_Distance  ( void                                       );
+      int32_t  Pixel_Y_Distance  ( void                                       );
 };
 
 #endif
