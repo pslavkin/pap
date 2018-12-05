@@ -84,58 +84,52 @@ void Coords_Class::Machine2Coords(int32_t X, int32_t Y,int32_t Z,
    this->Speed   = sqrt(Speed_X*Speed_X+Speed_Y*Speed_Y+Speed_Z*Speed_Z);
 }
 
-void Coords_Class::Send_Acc_Dec2Controller(void)
+void Coords_Class::Send_Acc_Dec2Controller(float Acc, float Dec)
 {
    char Buf[100];
    sprintf(Buf,"ramps %f %f\n",Acc,Dec);
-   Main_Page->Serial->Send_And_Receive(Buf,Buf,sizeof(Buf));
+   Main_Page->Serial->Send_And_Forget(Buf);
 }
 void Coords_Class::Inc_Acc(void)
 {
    if((Acc+ACC_STEP)<=MAX_ACC) {
-      Acc+=ACC_STEP;
-      Send_Acc_Dec2Controller();
+      Send_Acc_Dec2Controller(Acc+ACC_STEP,Dec);
    }
 }
 void Coords_Class::Dec_Acc(void)
 {
    if(Acc>=ACC_STEP) {
-      Acc-=ACC_STEP;
-      Send_Acc_Dec2Controller();
+      Send_Acc_Dec2Controller(Acc-ACC_STEP,Dec);
    }
 }
 void Coords_Class::Inc_Dec(void)
 {
    if((Dec+ACC_STEP)<=MAX_DEC) {
-      Dec+=ACC_STEP;
-      Send_Acc_Dec2Controller();
+      Send_Acc_Dec2Controller(Acc,Dec+ACC_STEP);
    }
 }
 void Coords_Class::Dec_Dec(void)
 {
    if(Dec>=ACC_STEP) {
-      Dec-=ACC_STEP;
-      Send_Acc_Dec2Controller();
+      Send_Acc_Dec2Controller(Acc,Dec-ACC_STEP);
    }
 }
-void Coords_Class::Send_Speed_Limit2Controller(void)
+void Coords_Class::Send_Speed_Limit2Controller(uint16_t Limit)
 {
    char Buf[100];
-   sprintf(Buf,"ls %d \n",Speed_Limit);
-   Main_Page->Serial->Send_And_Receive(Buf,Buf,sizeof(Buf));
+   sprintf(Buf,"ls %d\n",Limit);
+   Main_Page->Serial->Send_And_Forget(Buf);
 }
 void Coords_Class::Inc_Speed_Limit(void)
 {
    if(Speed_Limit<MAX_SPEED_LIMIT) {
-      Speed_Limit++;
-      Send_Speed_Limit2Controller();
+      Send_Speed_Limit2Controller(Speed_Limit+1);
    }
 }
 void Coords_Class::Dec_Speed_Limit(void)
 {
    if(Speed_Limit>1) {
-      Speed_Limit--;
-      Send_Speed_Limit2Controller();
+      Send_Speed_Limit2Controller(Speed_Limit-1);
    }
 }
 
@@ -144,10 +138,14 @@ void Coords_Class::Key(int K)
    switch(K) {
       case '+':
          Inc_Acc();
+         break;
+      case '=':
+         Dec_Acc();
+         break;
+      case '_':
          Inc_Dec();
          break;
       case '-':
-         Dec_Acc();
          Dec_Dec();
          break;
       case KEY_LEFT:

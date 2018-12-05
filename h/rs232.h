@@ -20,6 +20,7 @@ int   SendBuf      ( int, char *, int     );
 void  CloseComport ( int                           );
 void  cprintf      ( int, const char *             );
 int   IsCTSEnabled ( int                           );
+int Get_Byte(int comport_number, unsigned char *buf);
 
 #endif
 

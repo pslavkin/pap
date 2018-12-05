@@ -9,10 +9,10 @@ Main_Page_Class::Main_Page_Class (WINDOW* w)
    Dim Dim_Main_Page(0, 0,getmaxy(w),getmaxx(w),"PaP");
    Main=new Sheet(w,Dim_Main_Page);
 
-   Dim Dim_Gantry(5, 47,35,50,"XY");
+   Dim Dim_Gantry(5, 47,23,50,"XY");
    Gantry_XY=new Gantry_Class(Main,Dim_Gantry);
 
-   Dim Dim_Histo(5, 42,35, 5,"Z");
+   Dim Dim_Histo(5, 42,23, 5,"Z");
    Histo_Z=new Histo_Class(Main,Dim_Histo,MAX_Z_TABLE,MIN_Z_TABLE,0);
 
    Dim Dim_Sender ( 5, 0, 15, 42,"Sender" );
@@ -23,7 +23,6 @@ Main_Page_Class::Main_Page_Class (WINDOW* w)
 
    Dim Dim_Coords ( 0,14,  5, 83,"Coords" );
    Coords=new Coords_Class(Main,Dim_Coords);
-
 
    TresD=new TresD_Class();
 

@@ -100,6 +100,10 @@ int OpenComport(int comport_number, int baudrate)
   return(0);
 }
 
+int Get_Byte(int comport_number, unsigned char *buf)
+{
+  return read(Cport[comport_number], buf, 1);
+}
 
 int PollComport(int comport_number, unsigned char *buf, int size)
 {

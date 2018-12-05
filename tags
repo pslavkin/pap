@@ -6,7 +6,7 @@
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 ABI_VERSION	cdk-5.0-20180306/Makefile	/^ABI_VERSION	= 6.1.4$/;"	m
 ABI_VERSION	cdk/Makefile	/^ABI_VERSION	= 6.0.4$/;"	m
-ACC_STEP	h/opt.h	33;"	d
+ACC_STEP	h/opt.h	35;"	d
 ALL_OBJECTS	cdk-5.0-20180306/cdkscreen.c	/^ALL_OBJECTS;$/;"	t	typeref:struct:_all_objects	file:
 ALL_OBJECTS	cdk/cdkscreen.c	/^ALL_OBJECTS;$/;"	t	typeref:struct:_all_objects	file:
 ALL_SCREENS	cdk-5.0-20180306/cdkscreen.c	/^ALL_SCREENS;$/;"	t	typeref:struct:_all_screens	file:
@@ -862,7 +862,7 @@ CONTROL	cdk-5.0-20180306/include/cdk.h	262;"	d
 CONTROL	cdk/include/cdk.h	263;"	d
 CONTROL	include/cdk.h	262;"	d
 COORDS	h/coords.h	2;"	d
-COORDS_RTI	h/opt.h	23;"	d
+COORDS_RTI	h/opt.h	25;"	d
 COPYING	h/parser.h	/^   COPYING$/;"	e	enum:__anon12
 CPP	cdk-5.0-20180306/Makefile	/^CPP		= gcc -E$/;"	m
 CPP	cdk/Makefile	/^CPP		= gcc -E$/;"	m
@@ -1187,6 +1187,7 @@ GRti	h/timer.h	/^      std::thread GRti;$/;"	m	class:Timer_Class
 Gantry_Class	c/gantry.cpp	/^Gantry_Class::Gantry_Class(Sheet* Parent,Dim D):Sheet(Parent,D)$/;"	f	class:Gantry_Class
 Gantry_Class	h/gantry.h	/^class Gantry_Class : public Sheet{$/;"	c
 Gantry_XY	h/main_page.h	/^      Gantry_Class*         Gantry_XY    ;$/;"	m	class:Main_Page_Class
+Get_Byte	c/rs232.c	/^int Get_Byte(int comport_number, unsigned char *buf)$/;"	f
 Get_Height	c/sheet.cpp	/^unsigned short int Sheet::Get_Height(void)$/;"	f	class:Sheet
 Get_Line	c/sender.cpp	/^char* Sender_Class::Get_Line(int32_t Pos)$/;"	f	class:Sender_Class
 Get_Width	c/sheet.cpp	/^unsigned short int Sheet::Get_Width(void)$/;"	f	class:Sheet
@@ -1726,8 +1727,8 @@ MAXIMUM	cdk/include/cdk.h	255;"	d
 MAXIMUM	include/cdk.h	254;"	d
 MAXWIDTH	cdk-5.0-20180306/demos/syb.c	11;"	d	file:
 MAXWIDTH	cdk/demos/syb.c	11;"	d	file:
-MAX_ACC	h/opt.h	31;"	d
-MAX_ANS_SIZE	h/serialmanager.h	4;"	d
+MAX_ACC	h/opt.h	33;"	d
+MAX_ANS_SIZE	h/opt.h	23;"	d
 MAX_BASIC_COLORS	h/opt.h	16;"	d
 MAX_BINDINGS	cdk-5.0-20180306/include/cdk.h	250;"	d
 MAX_BINDINGS	cdk/include/cdk.h	251;"	d
@@ -1748,7 +1749,7 @@ MAX_COLOUR_PAIR	h/opt.h	15;"	d
 MAX_DAYS	cdk-5.0-20180306/include/calendar.h	60;"	d
 MAX_DAYS	cdk/include/calendar.h	60;"	d
 MAX_DAYS	include/calendar.h	60;"	d
-MAX_DEC	h/opt.h	32;"	d
+MAX_DEC	h/opt.h	34;"	d
 MAX_DIALOG_BUTTONS	cdk-5.0-20180306/include/dialog.h	61;"	d
 MAX_DIALOG_BUTTONS	cdk/include/dialog.h	61;"	d
 MAX_DIALOG_BUTTONS	include/dialog.h	61;"	d
@@ -1758,7 +1759,7 @@ MAX_DIALOG_ROWS	include/dialog.h	60;"	d
 MAX_ITEMS	cdk-5.0-20180306/include/cdk.h	251;"	d
 MAX_ITEMS	cdk/include/cdk.h	252;"	d
 MAX_ITEMS	include/cdk.h	251;"	d
-MAX_JOG_SPEED	h/opt.h	24;"	d
+MAX_JOG_SPEED	h/opt.h	26;"	d
 MAX_LABEL_ROWS	cdk-5.0-20180306/include/label.h	60;"	d
 MAX_LABEL_ROWS	cdk/include/label.h	60;"	d
 MAX_LABEL_ROWS	include/label.h	60;"	d
@@ -1800,7 +1801,7 @@ MAX_Z_TABLE	h/opt.h	11;"	d
 MENTRYCB	cdk-5.0-20180306/include/mentry.h	/^typedef void (*MENTRYCB) (CDKMENTRY *mentry, chtype character);$/;"	t
 MENTRYCB	cdk/include/mentry.h	/^typedef void (*MENTRYCB) (CDKMENTRY *mentry, chtype character);$/;"	t
 MENTRYCB	include/mentry.h	/^typedef void (*MENTRYCB) (CDKMENTRY *mentry, chtype character);$/;"	t
-MICROSTEP	h/opt.h	28;"	d
+MICROSTEP	h/opt.h	30;"	d
 MID_B_BOX	cdk-5.0-20180306/matrix.c	56;"	d	file:
 MID_C_BOX	cdk-5.0-20180306/matrix.c	40;"	d	file:
 MID_M_BOX	cdk-5.0-20180306/matrix.c	52;"	d	file:
@@ -2131,7 +2132,7 @@ Rti_Delay	h/gantry.h	/^      struct timespec Rti_Delay= { 0, GANTRY_RTI}        
 Rti_Delay	h/histograms.h	/^      struct timespec Rti_Delay= { 0,HISTOGRAMS_RTI }; \/\/   5 milis$/;"	m	class:Histo_Class	typeref:struct:Histo_Class::timespec
 Rti_Delay	h/parser.h	/^      struct timespec Rti_Delay= { 0, 200000000}; \/\/   5 milis$/;"	m	class:Parser_Class	typeref:struct:Parser_Class::timespec
 Rti_Delay	h/screen_update.h	/^      struct timespec Rti_Delay= { 0,SCREEN_UPDATE_RTI }; \/\/   5 milis$/;"	m	class:Screen_Update_Class	typeref:struct:Screen_Update_Class::timespec
-Rti_Delay	h/sender.h	/^      struct timespec Rti_Delay= { 0, 50000000};$/;"	m	class:Sender_Class	typeref:struct:Sender_Class::timespec
+Rti_Delay	h/sender.h	/^      struct timespec Rti_Delay= { 0, SENDER_RTI};$/;"	m	class:Sender_Class	typeref:struct:Sender_Class::timespec
 Rti_Delay	h/serialmanager.h	/^      struct timespec Rti_Delay       = { 0 ,SERIAL_MANAGER_RTI}    ;$/;"	m	class:Serial_Manager_Class	typeref:struct:Serial_Manager_Class::timespec
 Rti_Delay	h/tresd.h	/^      struct timespec Rti_Delay= { 0, TRESD_RTI}; \/\/   5 milis$/;"	m	class:TresD_Class	typeref:struct:TresD_Class::timespec
 S	cdk-5.0-20180306/include/gen-scale.h	/^struct S<MIXED> {$/;"	s
@@ -2225,6 +2226,7 @@ SDialogBox	cdk-5.0-20180306/include/dialog.h	/^struct SDialogBox {$/;"	s
 SDialogBox	cdk/include/dialog.h	/^struct SDialogBox {$/;"	s
 SDialogBox	include/dialog.h	/^struct SDialogBox {$/;"	s
 SENDER	h/sender.h	2;"	d
+SENDER_RTI	h/opt.h	22;"	d
 SERIALMANAGER	h/serialmanager.h	2;"	d
 SERIAL_ANS_DELAY	h/opt.h	2;"	d
 SERIAL_MANAGER_RTI	h/opt.h	1;"	d
@@ -2401,16 +2403,17 @@ Select	c/sheet.cpp	/^void  Sheet::Select(void)$/;"	f	class:Sheet
 Selected	h/sheet.h	/^   bool Selected=0;$/;"	m	class:Sheet
 SendBuf	c/rs232.c	/^int SendBuf(int comport_number, char *buf, int size)$/;"	f
 SendByte	c/rs232.c	/^int SendByte(int comport_number, unsigned char byte)$/;"	f
-Send_Acc_Dec2Controller	c/coords.cpp	/^void Coords_Class::Send_Acc_Dec2Controller(void)$/;"	f	class:Coords_Class
-Send_And_Receive	c/serialmanager.cpp	/^uint8_t Serial_Manager_Class::Send_And_Receive(const char* S, char* Buf, uint8_t Length)$/;"	f	class:Serial_Manager_Class
+Send_Acc_Dec2Controller	c/coords.cpp	/^void Coords_Class::Send_Acc_Dec2Controller(float Acc, float Dec)$/;"	f	class:Coords_Class
+Send_And_Forget	c/serialmanager.cpp	/^uint8_t Serial_Manager_Class::Send_And_Forget(const char* S)$/;"	f	class:Serial_Manager_Class
 Send_Next_Line	c/sender.cpp	/^void Sender_Class::Send_Next_Line(void)$/;"	f	class:Sender_Class
-Send_Speed_Limit2Controller	c/coords.cpp	/^void Coords_Class::Send_Speed_Limit2Controller(void)$/;"	f	class:Coords_Class
+Send_Speed_Limit2Controller	c/coords.cpp	/^void Coords_Class::Send_Speed_Limit2Controller(uint16_t Limit)$/;"	f	class:Coords_Class
 Sender	h/main_page.h	/^      Sender_Class*         Sender       ;$/;"	m	class:Main_Page_Class
 Sender_Class	c/sender.cpp	/^Sender_Class::Sender_Class(Sheet* Parent,Dim D):Sheet(Parent,D)$/;"	f	class:Sender_Class
 Sender_Class	h/sender.h	/^class Sender_Class:public Sheet {$/;"	c
 Sender_Rti	h/timer.h	/^      std::thread Sender_Rti;$/;"	m	class:Timer_Class
 Sender_State	h/sender.h	/^      enum Sender_State {$/;"	g	class:Sender_Class
 Serial	h/main_page.h	/^      Serial_Manager_Class* Serial       ;$/;"	m	class:Main_Page_Class
+Serial_Bloked_Get_Line	c/serialmanager.cpp	/^void Serial_Manager_Class::Serial_Bloked_Get_Line(char* Buf,uint8_t Size)$/;"	f	class:Serial_Manager_Class
 Serial_Manager_Class	c/serialmanager.cpp	/^Serial_Manager_Class::Serial_Manager_Class( Sheet* Parent,Dim D ):Sheet(Parent,D)$/;"	f	class:Serial_Manager_Class
 Serial_Manager_Class	h/serialmanager.h	/^class    Serial_Manager_Class:public Sheet {$/;"	c
 Serial_Mutex	h/main_page.h	/^      pthread_mutex_t Serial_Mutex;$/;"	m	class:Main_Page_Class
@@ -2762,7 +2765,7 @@ XXXCB	cdk/examples/entry_ex.c	/^static int XXXCB (EObjectType cdktype GCC_UNUSED
 XYZ_NUMBERS_INVALID	h/parser.h	/^   XYZ_NUMBERS_INVALID$/;"	e	enum:COMMAND_CODES
 XYZ_NUMBERS_VALID	h/parser.h	/^   XYZ_NUMBERS_VALID,$/;"	e	enum:COMMAND_CODES
 XYZ_Parser	c/parser.cpp	/^int8_t Parser_Class::XYZ_Parser(Codes_t* C)$/;"	f	class:Parser_Class
-X_SCALE	h/opt.h	25;"	d
+X_SCALE	h/opt.h	27;"	d
 XextCreateExtension	cdk-5.0-20180306/configure	/^XextCreateExtension ();$/;"	f
 XextCreateExtension	cdk/configure	/^XextCreateExtension ();$/;"	f
 XtAppInitialize	cdk-5.0-20180306/configure	/^XtAppInitialize ();$/;"	f
@@ -2772,10 +2775,10 @@ Y	h/dim.h	/^      uint16_t Y,X,H,W     ;$/;"	m	class:Dim
 Y	h/parser.h	/^   float Y;$/;"	m	struct:__anon11
 YEAR2INDEX	cdk-5.0-20180306/calendar.c	9;"	d	file:
 YEAR2INDEX	cdk/calendar.c	9;"	d	file:
-Y_SCALE	h/opt.h	26;"	d
+Y_SCALE	h/opt.h	28;"	d
 Z	h/coords.h	/^      int32_t Z;$/;"	m	class:Coords_Class
 Z	h/parser.h	/^   float Z;$/;"	m	struct:__anon11
-Z_SCALE	h/opt.h	27;"	d
+Z_SCALE	h/opt.h	29;"	d
 _DEP	Makefile	/^_DEP = \\$/;"	m
 _GNUPLOT_CTRL_	h/gnuplot_i.h	/^typedef struct _GNUPLOT_CTRL_ {$/;"	s
 _GNUPLOT_PIPES_H_	h/gnuplot_i.h	26;"	d

@@ -9,8 +9,27 @@ int Serial_Manager_Class::serial_send(char* pData,int size)
 void Serial_Manager_Class::serial_close(void)
 {
    CloseComport ( Port_Number             );
-   printf       ( "serial port closed\n" );
+   printf ( "serial port closed\n" );
 }
+void Serial_Manager_Class::Serial_Bloked_Get_Line(char* Buf,uint8_t Size)
+{
+   uint8_t Index = 0;
+   unsigned char  Data;
+   while(1) {
+      while ( Get_Byte(Port_Number,&Data )!=1)
+         nanosleep ( &Ans_Delay,&Ans_Delay );
+
+      if ( (Data == '\r' )|| (Data == '\n') || (Data == 0x1b)) {
+         break;
+      }
+      if(Index < Size) {
+         Buf[Index] = Data;
+         Index++;
+      }
+   }
+   Buf[Index] = 0;
+}
+
 int Serial_Manager_Class::serial_receive(char* buf,int size)
 {
    int Ans;
@@ -25,9 +44,9 @@ int Serial_Manager_Class::Open(int pn,int baudrate)
    Port_Status = OpenComport(Port_Number,baudrate);
    wprintw(Sub_Win,"\n serial port %d status %s \n",Port_Number,(Port_Status?"error":"opened"));
    if(Port_Status==0){
-      Send_And_Receive                               ( "halt\nrstpos\nhalt\n",Buf,sizeof(Buf ));
-      Main_Page->Coords->Send_Speed_Limit2Controller (                                       ) ;
-      Main_Page->Coords->Send_Acc_Dec2Controller     (                                       ) ;
+//      Send_And_Receive                               ( "halt\nrstpos\nhalt\n",Buf,sizeof(Buf ));
+//      Main_Page->Coords->Send_Speed_Limit2Controller (                                       ) ;
+//      Main_Page->Coords->Send_Acc_Dec2Controller     (                                       ) ;
    }
    else {
       if(Port_Number<MAX_SERIAL_PORTS)
@@ -35,45 +54,52 @@ int Serial_Manager_Class::Open(int pn,int baudrate)
       else
          Port_Number=0;
    }
-
    return Port_Status;
 }
 
-uint8_t Serial_Manager_Class::Send_And_Receive(const char* S, char* Buf, uint8_t Length)
+uint8_t Serial_Manager_Class::Send_And_Forget(const char* S)
 {
-   uint8_t Aux_Buf[100];
-   uint8_t Ans;
-   if(Simulation==true) {
-      std::string S="0 0 0 0 0 0 0 0";
-      int32_t Y=0,X=0,Z=0;
-      float Actual_X=0,Actual_Y=0,Actual_Z=0;
-      float Speed_X=0,Speed_Y=0,Speed_Z=0;
-      if(std::getline(Simul_Log_File,S)) {
-         strcpy   (Buf,S.c_str());
-         sscanf(Buf,"%f %f %f %f %f %f",&Actual_X,&Actual_Y,&Actual_Z,&Speed_X,&Speed_Y,&Speed_Z);
-         X=Actual_X*X_SCALE;
-         Y=Actual_Y*Y_SCALE;
-         Z=Actual_Z*Z_SCALE;
-         waddstr(Sub_Win,S.c_str());
-         Ans=sprintf(Buf,"%d %d %d %f %f %f 0 0",X,Y,Z,Speed_X,Speed_Y,Speed_Z);
-      }
-      else
-         mvwaddstr(Sub_Win,0,0,"simulation end");
-      return Ans;
-   }
-   else {
+   if(Port_Status==0) {
       pthread_mutex_lock(&Main_Page->Serial_Mutex);
-      {
-         while(PollComport(Port_Number, Aux_Buf,sizeof(Aux_Buf))==sizeof(Aux_Buf)) //purga basura pendiente
-            ;
-         serial_send ( (char* )S,strlen(S));
-         nanosleep             ( &Ans_Delay,&Ans_Delay );
-         Ans=serial_receive ( Buf,Length );
-      }
+      serial_send ( (char* )S,strlen(S));
       pthread_mutex_unlock(&Main_Page->Serial_Mutex);
    }
-   return Ans;
 }
+//uint8_t Serial_Manager_Class::Send_And_Receive(const char* S, char* Buf, uint8_t Length)
+//{
+//   uint8_t Aux_Buf[100];
+//   uint8_t Ans;
+//   if(Simulation==true) {
+//      std::string S="0 0 0 0 0 0 0 0";
+//      int32_t Y=0,X=0,Z=0;
+//      float Actual_X=0,Actual_Y=0,Actual_Z=0;
+//      float Speed_X=0,Speed_Y=0,Speed_Z=0;
+//      if(std::getline(Simul_Log_File,S)) {
+//         strcpy   (Buf,S.c_str());
+//         sscanf(Buf,"%f %f %f %f %f %f",&Actual_X,&Actual_Y,&Actual_Z,&Speed_X,&Speed_Y,&Speed_Z);
+//         X=Actual_X*X_SCALE;
+//         Y=Actual_Y*Y_SCALE;
+//         Z=Actual_Z*Z_SCALE;
+//         waddstr(Sub_Win,S.c_str());
+//         Ans=sprintf(Buf,"%d %d %d %f %f %f 0 0",X,Y,Z,Speed_X,Speed_Y,Speed_Z);
+//      }
+//      else
+//         mvwaddstr(Sub_Win,0,0,"simulation end");
+//      return Ans;
+//   }
+//   else {
+//      pthread_mutex_lock(&Main_Page->Serial_Mutex);
+//      {
+//         while(PollComport(Port_Number, Aux_Buf,sizeof(Aux_Buf))==sizeof(Aux_Buf)) //purga basura pendiente
+//            ;
+//         serial_send ( (char* )S,strlen(S));
+//         nanosleep             ( &Ans_Delay,&Ans_Delay );
+//         Ans=serial_receive ( Buf,Length );
+//      }
+//      pthread_mutex_unlock(&Main_Page->Serial_Mutex);
+//   }
+//   return Ans;
+//}
 
 void Serial_Manager_Class::Log(void)
 {
@@ -90,34 +116,33 @@ void Serial_Manager_Class::Log(void)
 
 void Serial_Manager_Class::Rti(void)
 {
-   char Buf[MAX_ANS_SIZE],n;
-   int32_t Y=0,X=0,Z=0;
-   uint32_t Exec_Line=0;
-   float Speed_X=0,Speed_Y=0,Speed_Z=0;
+   char        Buf[MAX_ANS_SIZE];
+   int32_t     Y       ,X      ,Z      ;
+   float       Speed_X ,Speed_Y,Speed_Z;
+   while(Open(Port_Number,115200)!=0)
+      nanosleep ( &Open_Port_Delay,&Open_Port_Delay );
+   t1 = high_resolution_clock::now();
    while ( 1 ) {
-      if(Port_Status==0) {
-         nanosleep ( &Rti_Delay,&Rti_Delay );
-         Send_And_Receive("K\n",Buf,sizeof(Buf));
-         sscanf(Buf,"%d %d %d %f %f %f %d %d",&X,&Y,&Z,&Speed_X,&Speed_Y,&Speed_Z,&Space,&Exec_Line);
-         Main_Page->Coords->Machine2Coords(X,Y,Z,Speed_X,Speed_Y,Speed_Z);
-         Main_Page->Sender->Exec_Line      = Exec_Line;
-         Log();
-         pthread_mutex_lock(&Main_Page->Print_Mutex);
-            wprintw(Sub_Win,"X%05d Y%05d Z%05d SX%06.2f SY%06.2f SZ%06.2f Q%d N%d\n"
-                  ,X,Y,Z,Speed_X,Speed_Y,Speed_Z,Space,Exec_Line);
-         pthread_mutex_unlock(&Main_Page->Print_Mutex);
-      }
-      else {
-         nanosleep     ( &Open_Port_Delay,&Open_Port_Delay );
-         if(Open(Port_Number,115200)==0 || Simulation==true)
-            if(Simulation) {
-               Simul_Log_File.open  ( "octave/last_log.txt" );
-               mvwaddstr(Sub_Win,0,0,Simul_Log_File.good()?"simulation ok":"simul bad");
-               Port_Status=0;
-            }
-            t1 = high_resolution_clock::now();
-      }
-   Touch_Win();
+      Serial_Bloked_Get_Line(Buf,sizeof(Buf));
+      sscanf(Buf,"%d %d %d %f %f %f %d %d %d %f %f %d"
+            ,&X,&Y,&Z,&Speed_X,&Speed_Y,&Speed_Z,&Space,
+            &Main_Page->Sender->Exec_Line,
+            &Main_Page->Sender->Actual_Line,
+            &Main_Page->Coords->Acc,
+            &Main_Page->Coords->Dec,
+            &Main_Page->Coords->Speed_Limit);
+      Main_Page->Coords->Machine2Coords(X,Y,Z,Speed_X,Speed_Y,Speed_Z);
+      Log();
+      pthread_mutex_lock(&Main_Page->Print_Mutex);
+      wprintw(Sub_Win,"X%05d Y%05d Z%05d SX%06.2f SY%06.2f SZ%06.2f Q%d EN%d WN%d Acc%f Dec=%f Ls=%d\n"
+            ,X,Y,Z,Speed_X,Speed_Y,Speed_Z,Space,
+            Main_Page->Sender->Exec_Line,
+            Main_Page->Sender->Actual_Line,
+            Main_Page->Coords->Acc,
+            Main_Page->Coords->Dec,
+            Main_Page->Coords->Speed_Limit);
+      pthread_mutex_unlock(&Main_Page->Print_Mutex);
+      Touch_Win();
    }
 }
 Serial_Manager_Class::Serial_Manager_Class( Sheet* Parent,Dim D ):Sheet(Parent,D)

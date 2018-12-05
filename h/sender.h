@@ -31,7 +31,7 @@ class Sender_Class:public Sheet {
       void Reload_File(void);
       void Restart(void);
       void Stop_Now(void);
-      struct timespec Rti_Delay= { 0, 50000000};
+      struct timespec Rti_Delay= { 0, SENDER_RTI};
 };
 
 #endif

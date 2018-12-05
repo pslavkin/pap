@@ -12,7 +12,7 @@ Sender_Class::Sender_Class(Sheet* Parent,Dim D):Sheet(Parent,D)
 
 void Sender_Class::Key(int K)
 {
-   switch(K) {
+   switch ( K ) {
       case KEY_LEFT:
          break;
       case KEY_RIGHT:
@@ -46,14 +46,15 @@ void Sender_Class::Stop_Now(void)
 {
    char Buf[10];
    Actual_Line=0;
-   Main_Page->Serial->Send_And_Receive("halt\n",Buf,3);
+   Main_Page->Serial->Send_And_Forget("halt\n");
 }
 void Sender_Class::Restart(void)
 {
    char Buf[10];
    Actual_Line=0;
-   Main_Page->Serial->Send_And_Receive("halt\n",Buf,3);
-   Main_Page->Serial->Send_And_Receive("GL N0\n",Buf,3);
+   Main_Page->Serial->Send_And_Forget ( "halt\n"     );
+   Main_Page->Serial->Send_And_Forget ( "GL N0 G2\n" );
+   Main_Page->Serial->Send_And_Forget ( "halt\n"     );
 }
 void Sender_Class::Reload_File(void)
 {
@@ -84,18 +85,18 @@ char* Sender_Class::Get_Line(int32_t Pos)
 
 void Sender_Class::File2Win(void)
 {
-   uint16_t i,HH=3;//=Sub_Dim->H/2-2;
+   uint16_t i;
    wclear(Sub_Win);
    pthread_mutex_lock(&Main_Page->Print_Mutex);
    {
    for(i=0;i<Dims.H-4;i++) {
-      if(i==3) {
+      if(i==EXEC_LINE_POS) {
          wcolor_set(Sub_Win, 4,NULL);
          wattron(Sub_Win,A_BOLD);
       }
-      if(Actual_Line-Exec_Line+3==i) wcolor_set(Sub_Win, 3,NULL);
-         mvwprintw(Sub_Win,i,0,"%.*s",Dims.W-5,Get_Line(Exec_Line+i-3));
-      if(i==3) wattroff(Sub_Win,A_BOLD);
+      if(Actual_Line-Exec_Line+EXEC_LINE_POS==i) wcolor_set(Sub_Win, 3,NULL);
+         mvwprintw(Sub_Win,i,0,"%.*s",Dims.W-5,Get_Line(Exec_Line+i-EXEC_LINE_POS));
+      if(i==EXEC_LINE_POS) wattroff(Sub_Win,A_BOLD);
       wcolor_set(Sub_Win, 0,NULL);
    }
    Touch_Win();
@@ -108,11 +109,9 @@ void Sender_Class::Send_Next_Line(void)
    if(Main_Page->Serial->Space>0) {
       if(Actual_Line<Total_Lines) {
          char Buf[200];
-         char Ans_Buf[20];
          strcpy(Buf,"GL ");
          strcpy(Buf+3,Lines[Actual_Line].c_str());
-         Main_Page->Serial->Send_And_Receive(Buf,Ans_Buf,3);
-         Actual_Line++;
+         Main_Page->Serial->Send_And_Forget(Buf);
       }
       else {
          Next_State=STOP;
@@ -122,7 +121,8 @@ void Sender_Class::Send_Next_Line(void)
 void Sender_Class::Rti(void)
 {
    while(1) {
-      nanosleep     ( &Rti_Delay,&Rti_Delay );
+      nanosleep ( &Rti_Delay,&Rti_Delay );
+      Main_Page->Serial->Send_And_Forget ( "K\n" );
       State=Next_State;
       switch(State) {
          case STOP:
