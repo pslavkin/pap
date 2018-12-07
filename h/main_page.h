@@ -5,7 +5,8 @@ class Main_Page_Class {
    public:
       pthread_mutex_t Print_Mutex;
       pthread_mutex_t Serial_Mutex;
-      Main_Page_Class(WINDOW* w);
+      Main_Page_Class(void);
+      void Init (WINDOW* W);
       Sheet*                Main         ;
       Gantry_Class*         Gantry_XY    ;
       Histo_Class*          Histo_Z      ;

@@ -4,7 +4,6 @@ using namespace std::chrono;
 int Serial_Manager_Class::serial_send(char* pData,int size)
 {
    SendBuf(Port_Number, pData, size);
-//   Log_File << "<" << pData << std::endl;
 }
 void Serial_Manager_Class::serial_close(void)
 {
@@ -34,8 +33,6 @@ int Serial_Manager_Class::serial_receive(char* buf,int size)
 {
    int Ans;
    Ans=PollComport(Port_Number, (unsigned char*) buf,size);
-//   buf[Ans+0]='\0'; //porque sino no termina...
-//   Log_File << ">" << buf << std::endl;
    return Ans;
 }
 int Serial_Manager_Class::Open(int pn,int baudrate)
@@ -65,41 +62,6 @@ uint8_t Serial_Manager_Class::Send_And_Forget(const char* S)
       pthread_mutex_unlock(&Main_Page->Serial_Mutex);
    }
 }
-//uint8_t Serial_Manager_Class::Send_And_Receive(const char* S, char* Buf, uint8_t Length)
-//{
-//   uint8_t Aux_Buf[100];
-//   uint8_t Ans;
-//   if(Simulation==true) {
-//      std::string S="0 0 0 0 0 0 0 0";
-//      int32_t Y=0,X=0,Z=0;
-//      float Actual_X=0,Actual_Y=0,Actual_Z=0;
-//      float Speed_X=0,Speed_Y=0,Speed_Z=0;
-//      if(std::getline(Simul_Log_File,S)) {
-//         strcpy   (Buf,S.c_str());
-//         sscanf(Buf,"%f %f %f %f %f %f",&Actual_X,&Actual_Y,&Actual_Z,&Speed_X,&Speed_Y,&Speed_Z);
-//         X=Actual_X*X_SCALE;
-//         Y=Actual_Y*Y_SCALE;
-//         Z=Actual_Z*Z_SCALE;
-//         waddstr(Sub_Win,S.c_str());
-//         Ans=sprintf(Buf,"%d %d %d %f %f %f 0 0",X,Y,Z,Speed_X,Speed_Y,Speed_Z);
-//      }
-//      else
-//         mvwaddstr(Sub_Win,0,0,"simulation end");
-//      return Ans;
-//   }
-//   else {
-//      pthread_mutex_lock(&Main_Page->Serial_Mutex);
-//      {
-//         while(PollComport(Port_Number, Aux_Buf,sizeof(Aux_Buf))==sizeof(Aux_Buf)) //purga basura pendiente
-//            ;
-//         serial_send ( (char* )S,strlen(S));
-//         nanosleep             ( &Ans_Delay,&Ans_Delay );
-//         Ans=serial_receive ( Buf,Length );
-//      }
-//      pthread_mutex_unlock(&Main_Page->Serial_Mutex);
-//   }
-//   return Ans;
-//}
 
 void Serial_Manager_Class::Log(void)
 {
@@ -107,10 +69,11 @@ void Serial_Manager_Class::Log(void)
    high_resolution_clock::time_point Time;
    Time                       = high_resolution_clock::now();
    duration<double> time_span = duration_cast<duration<double>>(Time-t1);
-   if(Log_File.good()) {
-   Log_File << C->Actual_X       << ' ' << C->Actual_Y       << ' ' << C->Actual_Z       << ' ' <<
-               C->Actual_Speed_X << ' ' << C->Actual_Speed_Y << ' ' << C->Actual_Speed_Z << ' ' << 
-               time_span.count() << std::endl;
+   if(Log_File.good() && Main_Page->Sender->Is_Running()) {
+      C->Plot_Lines++;
+      Log_File << C->Actual_X       << ' ' << C->Actual_Y       << ' ' << C->Actual_Z       << ' ' <<
+                  C->Actual_Speed_X << ' ' << C->Actual_Speed_Y << ' ' << C->Actual_Speed_Z << ' ' << 
+                  time_span.count() << std::endl;
    }
 }
 
@@ -121,7 +84,9 @@ void Serial_Manager_Class::Rti(void)
    float       Speed_X ,Speed_Y,Speed_Z;
    while(Open(Port_Number,115200)!=0)
       nanosleep ( &Open_Port_Delay,&Open_Port_Delay );
+
    t1 = high_resolution_clock::now();
+
    while ( 1 ) {
       Serial_Bloked_Get_Line(Buf,sizeof(Buf));
       sscanf(Buf,"%d %d %d %f %f %f %d %d %d %f %f %d"
@@ -130,17 +95,19 @@ void Serial_Manager_Class::Rti(void)
             &Main_Page->Sender->Actual_Line,
             &Main_Page->Coords->Acc,
             &Main_Page->Coords->Dec,
-            &Main_Page->Coords->Speed_Limit);
+            &Main_Page->Coords->Speed_Limit
+            );
       Main_Page->Coords->Machine2Coords(X,Y,Z,Speed_X,Speed_Y,Speed_Z);
       Log();
       pthread_mutex_lock(&Main_Page->Print_Mutex);
-      wprintw(Sub_Win,"X%05d Y%05d Z%05d SX%06.2f SY%06.2f SZ%06.2f Q%d EN%d WN%d Acc%f Dec=%f Ls=%d\n"
+      wprintw(Sub_Win,"X%05d Y%05d Z%05d SX%06.2f SY%06.2f SZ%06.2f Q%d EN%d WN%d Acc%8.2f Dec=%8.2f SL=%d\n"
             ,X,Y,Z,Speed_X,Speed_Y,Speed_Z,Space,
             Main_Page->Sender->Exec_Line,
             Main_Page->Sender->Actual_Line,
             Main_Page->Coords->Acc,
             Main_Page->Coords->Dec,
-            Main_Page->Coords->Speed_Limit);
+            Main_Page->Coords->Speed_Limit
+            );
       pthread_mutex_unlock(&Main_Page->Print_Mutex);
       Touch_Win();
    }
@@ -151,6 +118,14 @@ Serial_Manager_Class::Serial_Manager_Class( Sheet* Parent,Dim D ):Sheet(Parent,D
    Port_Status = 1;
    Port_Number = 0;
    Log_File.open("octave/log.txt");
+
+//   Log_File_Lines=0;
+}
+void Serial_Manager_Class::Reopen_Log(void)
+{
+   Log_File.close();
+   Log_File.open("octave/log.txt");
+   Main_Page->Coords->Plot_Lines=0;
 }
 void Serial_Manager_Class::Key(int K)
 {

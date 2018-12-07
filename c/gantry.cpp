@@ -51,7 +51,6 @@ void Gantry_Class::Key(int K)
                Change_Center(Coords->Y,Coords->X);
          break;
       case 'P':
-            //  Coords->Jog2Machine();
                Toogle_Auto_Center();
          break;
       case 'L':
@@ -75,17 +74,18 @@ void Gantry_Class::Key(int K)
          Redraw_Path ( );
          break;
       case ' ':
-              Jog2New_Zero();
-
-
-
-//         char Buf[100],Len;
-//  //       Len=sprintf(Buf,"F %f\r",Coords->Jog_Speed);
-//  //       Main_Page->Serial->serial_send(Buf,Len);
-//         Len=sprintf(Buf,"GL X%d Y%d\r",Coords->Actual_Jog_X,Coords->Actual_Jog_Y);
-//         Main_Page->Serial->serial_send(Buf,Len);
+              Goto_Jog();
          break;
    }
+}
+void Gantry_Class::Print_Scale(void)
+{
+   float StepsX=(float)Pixel_X_Distance()/X_SCALE;
+   float StepsY=(float)Pixel_Y_Distance()/Y_SCALE;
+   pthread_mutex_lock(&Main_Page->Print_Mutex);
+      mvwprintw ( Win ,1 ,2 ,"X%07.3f [mm/pixel]" ,StepsX );
+      mvwprintw ( Win ,2 ,2 ,"Y%07.3f [mm/pixel]" ,StepsY );
+   pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
 int32_t Gantry_Class::Pixel_X_Distance(void)
 {
@@ -152,6 +152,36 @@ void Gantry_Class::Rti(void)
       Auto_Center     ( Coords->Y,Coords->X           );
    }
 }
+void Gantry_Class::Goto_Jog(void)
+{
+   if(Main_Page->Sender->Is_Running()==false) {
+      char Buf[100];
+      sprintf(Buf,"maxv %f %f %f\n",
+            (float)(Coords->Speed_Limit*X_SCALE)/MICROSTEP,
+            (float)(Coords->Speed_Limit*Y_SCALE)/MICROSTEP,
+            (float)(Coords->Speed_Limit*Z_SCALE)/MICROSTEP
+            );
+      Main_Page->Serial->Send_And_Forget(Buf);
+
+      sprintf(Buf,"acc %f %f %f\n",
+            (float)(Coords->Acc*X_SCALE)/MICROSTEP,
+            (float)(Coords->Acc*Y_SCALE)/MICROSTEP,
+            (float)(Coords->Acc*Z_SCALE)/MICROSTEP
+            );
+      Main_Page->Serial->Send_And_Forget(Buf);
+
+      sprintf(Buf,"dec %f %f %f\n",
+            (float)(Coords->Acc*X_SCALE)/MICROSTEP,
+            (float)(Coords->Acc*Y_SCALE)/MICROSTEP,
+            (float)(Coords->Acc*Z_SCALE)/MICROSTEP
+            );
+      Main_Page->Serial->Send_And_Forget(Buf);
+
+      sprintf(Buf,"goto %d %d %d\n",Coords->Jog_X,Coords->Jog_Y,Coords->Jog_Z);
+      Main_Page->Serial->Send_And_Forget(Buf);
+  }
+
+}
 void Gantry_Class::Jog2New_Zero(void)
 {
 
@@ -169,10 +199,11 @@ void Gantry_Class::Change_Scale(void)
    View_Min_X = View_Center_X-View_W/2;
    View_Max_Y = View_Center_Y+View_H/2;
    View_Min_Y = View_Center_Y-View_H/2;
-   Change_Center(View_Center_Y,View_Center_X);
-   wclear(Win);
-   Redraw_Box(Selected);
-   Redraw_Path();
+   Change_Center ( View_Center_Y,View_Center_X );
+   wclear        ( Win                         );
+   Redraw_Box    ( Selected                    );
+   Redraw_Path   (                             );
+   Print_Scale (          );
 }
 void Gantry_Class::Auto_Center(int32_t New_Center_Y, int32_t New_Center_X)
 {
@@ -181,6 +212,7 @@ void Gantry_Class::Auto_Center(int32_t New_Center_Y, int32_t New_Center_X)
       if(++Period>10) {
          Period=0;
          Change_Center(New_Center_Y,New_Center_X);
+         Main_Page->Histo_Z->Change_Center(Coords->Z);
       }
 }
 
@@ -269,50 +301,58 @@ void Gantry_Class::Clear_Path(void)
 void Gantry_Class::Redraw_Path(void)
 {
    uint32_t i;
+   uint32_t End=Path_Index;
+   uint32_t Begin=End>Main_Page->Coords->Plot_Limit?End-Main_Page->Coords->Plot_Limit:0;
    int32_t Gantry_X,Gantry_Y;
    wclear(Win);
    Redraw_Box(Selected);
-   for(i=0;i<Path_Index;i++)
-      if(Absolute_Y2Gantry(Path_Y[i],&Gantry_Y) &&
-         Absolute_X2Gantry(Path_X[i],&Gantry_X))
-         mvwaddch (Win, Gantry_Y, Gantry_X, '.' | COLOR_PAIR(Color4Hight(Path_Z[i])));
+   pthread_mutex_lock(&Main_Page->Print_Mutex);
+      for(i=Begin;i<End;i++)
+         if(Absolute_Y2Gantry(Path_Y[i],&Gantry_Y) &&
+            Absolute_X2Gantry(Path_X[i],&Gantry_X))
+            mvwaddch (Win, Gantry_Y, Gantry_X, '.' | COLOR_PAIR(Color4Hight(Path_Z[i])));
+   pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
 void Gantry_Class::Draw_Path ( int32_t Y, int32_t X, int32_t Z )
 {
    uint16_t Color;
    int32_t Gantry_X,Gantry_Y;
-   if(Path_Y[Path_Index]!=Y || Path_Y[Path_Index]!=X || Path_Y[Path_Index]!=Z) {
-      if(Absolute_Y2Gantry(Path_Y[Path_Index],&Gantry_Y) &&
-         Absolute_X2Gantry(Path_X[Path_Index],&Gantry_X))
-         mvwaddch (Win, Gantry_Y, Gantry_X, '.' | COLOR_PAIR(Color4Hight(Z)));
-      Path_Index++;
-      Path_Y[Path_Index] = Y;
-      Path_X[Path_Index] = X;
-      Path_Z[Path_Index] = Z;
-      wattron(Win,A_BOLD);
-      if(Absolute_Y2Gantry(Path_Y[Path_Index],&Gantry_Y) &&
-         Absolute_X2Gantry(Path_X[Path_Index],&Gantry_X))
-         mvwaddch (Win, Gantry_Y,Gantry_X, 'O' | COLOR_PAIR(0));
-      wattroff(Win,A_BOLD);
+   pthread_mutex_lock(&Main_Page->Print_Mutex);
+      if(Path_Y[Path_Index]!=Y || Path_Y[Path_Index]!=X || Path_Y[Path_Index]!=Z) {
+         if(Absolute_Y2Gantry(Path_Y[Path_Index],&Gantry_Y) &&
+            Absolute_X2Gantry(Path_X[Path_Index],&Gantry_X))
+            mvwaddch (Win, Gantry_Y, Gantry_X, '.' | COLOR_PAIR(Color4Hight(Z)));
+         Path_Index++;
+         Path_Y[Path_Index] = Y;
+         Path_X[Path_Index] = X;
+         Path_Z[Path_Index] = Z;
+         wattron(Win,A_BOLD);
+         if(Absolute_Y2Gantry(Path_Y[Path_Index],&Gantry_Y) &&
+            Absolute_X2Gantry(Path_X[Path_Index],&Gantry_X))
+            mvwaddch (Win, Gantry_Y,Gantry_X, 'O' | COLOR_PAIR(0));
+         wattroff(Win,A_BOLD);
    }
+   pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
 void Gantry_Class::Toogle_Pixel(int32_t Y, int32_t X)
 {
-   mvwaddch (Win ,Y ,X ,'X' | COLOR_PAIR(2));
+   pthread_mutex_lock(&Main_Page->Print_Mutex);
+      mvwaddch (Win ,Y ,X ,'X' | COLOR_PAIR(2));
+   pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
 
 void Gantry_Class::Print_Jog_Pixel(void)
 {
    static int32_t Gantry_X,Gantry_Y;
-   mvwaddch (Win ,Gantry_Y ,Gantry_X ,' ' | COLOR_PAIR(0));
-   Absolute_Y2Gantry(Coords->Jog_Y,&Gantry_Y);
-   Absolute_X2Gantry(Coords->Jog_X,&Gantry_X);
-   mvwaddch (Win ,Gantry_Y ,Gantry_X ,'X' | COLOR_PAIR(2));
-
-
-//   mvwaddch (Win ,Zero_Gantry_Y ,Zero_Gantry_X ,' ' | COLOR_PAIR(0));
-   int32_t Zero_Gantry_X,Zero_Gantry_Y;
-   Absolute_Y2Gantry(0,&Zero_Gantry_Y);
-   Absolute_X2Gantry(0,&Zero_Gantry_X);
-   mvwaddch (Win ,Zero_Gantry_Y ,Zero_Gantry_X ,'+' | COLOR_PAIR(5));
+   pthread_mutex_lock(&Main_Page->Print_Mutex);
+      mvwaddch (Win ,Gantry_Y ,Gantry_X ,' ' | COLOR_PAIR(0));
+      Absolute_Y2Gantry(Coords->Jog_Y,&Gantry_Y);
+      Absolute_X2Gantry(Coords->Jog_X,&Gantry_X);
+      mvwaddch (Win ,Gantry_Y ,Gantry_X ,'X' | COLOR_PAIR(2));
+   //   mvwaddch (Win ,Zero_Gantry_Y ,Zero_Gantry_X ,' ' | COLOR_PAIR(0));
+      int32_t Zero_Gantry_X,Zero_Gantry_Y;
+      Absolute_Y2Gantry(0,&Zero_Gantry_Y);
+      Absolute_X2Gantry(0,&Zero_Gantry_X);
+      mvwaddch (Win ,Zero_Gantry_Y ,Zero_Gantry_X ,'+' | COLOR_PAIR(5));
+   pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }

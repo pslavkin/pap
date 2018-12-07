@@ -3,8 +3,8 @@
 #include <panel.h>
 #include <ncurses.h>
 #include <unistd.h>
-#include <GL/gl.h>
-#include <GL/glut.h>
+//#include <GL/gl.h>
+//#include <GL/glut.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <getopt.h>

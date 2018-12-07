@@ -11,12 +11,13 @@ class    Serial_Manager_Class:public Sheet {
       void Log                 ( void                                     );
       int      serial_send     ( char* pData ,int size                    );
       int      serial_receive  ( char* buf   ,int size                    );
- //     uint8_t Send_And_Receive    ( const char* S, char* Buf, uint8_t Length );
       uint8_t Send_And_Forget     ( const char* S);
       void Serial_Bloked_Get_Line ( char* Buf,uint8_t Size                       );
       void Toogle_Simulation (void);
+      void Reopen_Log(void);
    private:
       std::ofstream Log_File;
+      std::ofstream Full_Log_File;
       std::ifstream Input_Log_File;
       std::ofstream Last_Log_File    ;
       std::ifstream Simul_Log_File    ;

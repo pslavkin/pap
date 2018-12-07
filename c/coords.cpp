@@ -27,13 +27,14 @@ Coords_Class::Coords_Class(Sheet* Parent,Dim D) : Sheet(Parent,D)
    Actual_Jog_Z   = 0       ;
    Max_X          = 2097152 ;
    Max_Y          = 2097152 ;
-   Max_Z          = 2097152 ;
+   Max_Z          = MAX_Z_TABLE; //2097152 ;
    Min_X          = -2097152;
    Min_Y          = -2097152;
-   Min_Z          = -2097152;
-   Acc      = 1000      ;
-   Dec      = 1000      ;
-   Speed_Limit  = 10        ;
+   Min_Z          = MIN_Z_TABLE;//-2097152;
+   Acc      = 1000   ;
+   Dec      = 1000   ;
+   Speed_Limit  = 10 ;
+   Plot_Limit  = 100;
 }
 void Coords_Class::Rti(void)
 {
@@ -49,8 +50,8 @@ void Coords_Class::Write(void)
       mvwprintw(Win,2,11,"%+011.3f %+011.3f %+011.3f %010.3f | %010.3f %010.3f",
                 Actual_X,Actual_Y,Actual_Z,Actual_Speed,Acc,Dec);
       wattroff(Win,A_BOLD);
-      mvwprintw(Win,3,11,"%+011.3f %+011.3f %+011.3f    %3d.000 |",
-            Actual_Jog_X,Actual_Jog_Y,Actual_Jog_Z,Speed_Limit);
+      mvwprintw(Win,3,11,"%+011.3f %+011.3f %+011.3f  %5d.000 | plot %6d/%6d",
+            Actual_Jog_X,Actual_Jog_Y,Actual_Jog_Z,Speed_Limit,Plot_Limit,Plot_Lines);
    pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
 
@@ -87,7 +88,7 @@ void Coords_Class::Machine2Coords(int32_t X, int32_t Y,int32_t Z,
 void Coords_Class::Send_Acc_Dec2Controller(float Acc, float Dec)
 {
    char Buf[100];
-   sprintf(Buf,"ramps %f %f\n",Acc,Dec);
+   sprintf(Buf,"ramps %d %d\n",(int)Acc,(int)Dec);
    Main_Page->Serial->Send_And_Forget(Buf);
 }
 void Coords_Class::Inc_Acc(void)
@@ -112,6 +113,18 @@ void Coords_Class::Dec_Dec(void)
 {
    if(Dec>=ACC_STEP) {
       Send_Acc_Dec2Controller(Acc,Dec-ACC_STEP);
+   }
+}
+void Coords_Class::Dec_Plot_Limit(void)
+{
+   if(Plot_Limit>PLOT_STEP) {
+      Plot_Limit-=PLOT_STEP;
+   }
+}
+void Coords_Class::Inc_Plot_Limit(void)
+{
+   if((Plot_Limit+PLOT_STEP)<=PLOT_MAX) {
+      Plot_Limit+=PLOT_STEP;
    }
 }
 void Coords_Class::Send_Speed_Limit2Controller(uint16_t Limit)
@@ -147,6 +160,12 @@ void Coords_Class::Key(int K)
          break;
       case '-':
          Dec_Dec();
+         break;
+      case ')':
+         Inc_Plot_Limit();
+         break;
+      case '0':
+         Dec_Plot_Limit();
          break;
       case KEY_LEFT:
          break;

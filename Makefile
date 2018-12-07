@@ -1,6 +1,6 @@
 CC=g++
 #LIBS= -lncurses -lpthread  -lpanel -lrt -L lib/ -lcdk_ps_64 -lX11 -lGL -lGLU -lglut
-LIBS= -lGL -lGLU -lglut -lncurses -lpthread	-lpanel -lrt -L lib/ #-lcdk_ps_64 
+LIBS= -lncurses -lpthread	-lpanel -lrt 
 #LIBS= -lGL -lGLU -lglut -lncurses -lpthread  -lpanel -lrt -L lib/ -lcdk_new 
 SRC_DIR=./c
 EXE_DIR=./exe

@@ -5,8 +5,9 @@ Main_Page_Class*     Main_Page=NULL;
 
 int main(int argc, char **argv)
 {
-   Curses    = new Curses_Color_Class (           );
-   Main_Page = new Main_Page_Class    ( stdscr    );
+   Curses    = new Curses_Color_Class (        );
+   Main_Page = new Main_Page_Class    (        );
+   Main_Page->Init                    ( stdscr );
    Params_Parser                      ( argc,argv );
    for(;;)
       sleep(10);

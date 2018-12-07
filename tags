@@ -6,7 +6,7 @@
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 ABI_VERSION	cdk-5.0-20180306/Makefile	/^ABI_VERSION	= 6.1.4$/;"	m
 ABI_VERSION	cdk/Makefile	/^ABI_VERSION	= 6.0.4$/;"	m
-ACC_STEP	h/opt.h	35;"	d
+ACC_STEP	h/opt.h	36;"	d
 ALL_OBJECTS	cdk-5.0-20180306/cdkscreen.c	/^ALL_OBJECTS;$/;"	t	typeref:struct:_all_objects	file:
 ALL_OBJECTS	cdk/cdkscreen.c	/^ALL_OBJECTS;$/;"	t	typeref:struct:_all_objects	file:
 ALL_SCREENS	cdk-5.0-20180306/cdkscreen.c	/^ALL_SCREENS;$/;"	t	typeref:struct:_all_screens	file:
@@ -31,6 +31,7 @@ AUTO_SRC	cdk-5.0-20180306/Makefile	/^AUTO_SRC	= \\$/;"	m
 AUTO_SRC	cdk/Makefile	/^AUTO_SRC	= \\$/;"	m
 Absolute_X2Gantry	c/gantry.cpp	/^bool Gantry_Class::Absolute_X2Gantry(int32_t In_X,int32_t* Out_X)$/;"	f	class:Gantry_Class
 Absolute_Y2Gantry	c/gantry.cpp	/^bool Gantry_Class::Absolute_Y2Gantry(int32_t In_Y,int32_t* Out_Y)$/;"	f	class:Gantry_Class
+Absolute_Z2Histo	c/histograms.cpp	/^int32_t Histo_Class::Absolute_Z2Histo(int32_t In_Z)$/;"	f	class:Histo_Class
 Acc	h/coords.h	/^      float   Acc;$/;"	m	class:Coords_Class
 AcceptsFocusObj	cdk-5.0-20180306/include/cdk_objs.h	134;"	d
 AcceptsFocusObj	cdk/include/cdk_objs.h	134;"	d
@@ -94,6 +95,7 @@ Beep	cdk-5.0-20180306/cdk.c	/^void Beep (void)$/;"	f
 Beep	cdk/cdk.c	/^void Beep (void)$/;"	f
 Beg_X	c/sheet.cpp	/^unsigned short int   Sheet::Beg_X(void)$/;"	f	class:Sheet
 Beg_Y	c/sheet.cpp	/^unsigned short int   Sheet::Beg_Y(void)$/;"	f	class:Sheet
+Begin	h/tresd.h	/^      uint32_t Begin,End;$/;"	m	class:TresD_Class
 BorderOf	cdk-5.0-20180306/include/cdk_objs.h	185;"	d
 BorderOf	cdk/include/cdk_objs.h	185;"	d
 BorderOf	include/cdk_objs.h	185;"	d
@@ -862,7 +864,7 @@ CONTROL	cdk-5.0-20180306/include/cdk.h	262;"	d
 CONTROL	cdk/include/cdk.h	263;"	d
 CONTROL	include/cdk.h	262;"	d
 COORDS	h/coords.h	2;"	d
-COORDS_RTI	h/opt.h	25;"	d
+COORDS_RTI	h/opt.h	26;"	d
 COPYING	h/parser.h	/^   COPYING$/;"	e	enum:__anon12
 CPP	cdk-5.0-20180306/Makefile	/^CPP		= gcc -E$/;"	m
 CPP	cdk/Makefile	/^CPP		= gcc -E$/;"	m
@@ -903,8 +905,11 @@ CURDEF_H	cdk/include/curdefs.h	3;"	d
 CURDEF_H	include/curdefs.h	3;"	d
 CURSES_COLOR	h/curses_color.h	2;"	d
 C_Index	h/parser.h	/^   uint16_t                C_Index   ;$/;"	m	struct:__anon13
+Calc_Plot_Limit	c/tresd.cpp	/^void TresD_Class::Calc_Plot_Limit(void)$/;"	f	class:TresD_Class
 Change_Center	c/gantry.cpp	/^void Gantry_Class::Change_Center(int32_t New_Center_Y, int32_t New_Center_X)$/;"	f	class:Gantry_Class
+Change_Center	c/histograms.cpp	/^void Histo_Class::Change_Center(int32_t New_Center_Z)$/;"	f	class:Histo_Class
 Change_Scale	c/gantry.cpp	/^void Gantry_Class::Change_Scale(void)$/;"	f	class:Gantry_Class
+Change_Scale	c/histograms.cpp	/^void Histo_Class::Change_Scale(void)$/;"	f	class:Histo_Class
 CharOf	cdk-5.0-20180306/include/cdk_int.h	60;"	d
 CharOf	cdk/include/cdk_int.h	60;"	d
 CharOf	include/cdk_int.h	60;"	d
@@ -992,7 +997,9 @@ Dec	h/coords.h	/^      float   Dec;$/;"	m	class:Coords_Class
 Dec_Acc	c/coords.cpp	/^void Coords_Class::Dec_Acc(void)$/;"	f	class:Coords_Class
 Dec_Dec	c/coords.cpp	/^void Coords_Class::Dec_Dec(void)$/;"	f	class:Coords_Class
 Dec_Height	c/sheet.cpp	/^void  Sheet::Dec_Height(void)$/;"	f	class:Sheet
+Dec_Plot_Limit	c/coords.cpp	/^void Coords_Class::Dec_Plot_Limit(void)$/;"	f	class:Coords_Class
 Dec_Scale	c/gantry.cpp	/^void Gantry_Class::Dec_Scale(void)$/;"	f	class:Gantry_Class
+Dec_Scale	c/histograms.cpp	/^void Histo_Class::Dec_Scale(void)$/;"	f	class:Histo_Class
 Dec_Speed_Limit	c/coords.cpp	/^void Coords_Class::Dec_Speed_Limit(void)$/;"	f	class:Coords_Class
 Dec_Width	c/sheet.cpp	/^void  Sheet::Dec_Width(void)$/;"	f	class:Sheet
 DeclareCDKObjects	cdk-5.0-20180306/include/cdk_objs.h	251;"	d
@@ -1077,6 +1084,7 @@ ETAGS	cdk/Makefile	/^ETAGS		= etags$/;"	m
 ETAGS	cdk/cli/Makefile	/^ETAGS		= etags$/;"	m
 ETAGS	cdk/demos/Makefile	/^ETAGS		= etags$/;"	m
 ETAGS	cdk/examples/Makefile	/^ETAGS		= etags$/;"	m
+EXEC_LINE_POS	h/opt.h	23;"	d
 EXES	ncurses_programs/JustForFun/Makefile	/^EXES = \\$/;"	m
 EXES	ncurses_programs/basics/Makefile	/^EXES = \\$/;"	m
 EXES	ncurses_programs/forms/Makefile	/^EXES = \\$/;"	m
@@ -1093,6 +1101,7 @@ EXTRACT_SUFX	cdk/package/freebsd/Makefile	/^EXTRACT_SUFX=	.tgz$/;"	m
 EarlyExitOf	cdk-5.0-20180306/include/cdk_objs.h	188;"	d
 EarlyExitOf	cdk/include/cdk_objs.h	188;"	d
 EarlyExitOf	include/cdk_objs.h	188;"	d
+End	h/tresd.h	/^      uint32_t Begin,End;$/;"	m	class:TresD_Class
 EraseObj	cdk-5.0-20180306/include/cdk_objs.h	124;"	d
 EraseObj	cdk/include/cdk_objs.h	124;"	d
 EraseObj	include/cdk_objs.h	124;"	d
@@ -1147,6 +1156,7 @@ File2Win	c/sender.cpp	/^void Sender_Class::File2Win(void)$/;"	f	class:Sender_Cla
 FocusObj	cdk-5.0-20180306/include/cdk_objs.h	128;"	d
 FocusObj	cdk/include/cdk_objs.h	128;"	d
 FocusObj	include/cdk_objs.h	128;"	d
+Full_Log_File	h/serialmanager.h	/^      std::ofstream Full_Log_File;$/;"	m	class:Serial_Manager_Class
 Full_Screen	c/sheet.cpp	/^void  Sheet::Full_Screen(void)$/;"	f	class:Sheet
 G0_COMMAND	h/parser.h	/^   G0_COMMAND    = 0 ,$/;"	e	enum:COMMAND_CODES
 G1_COMMAND	h/parser.h	/^   G1_COMMAND        ,$/;"	e	enum:COMMAND_CODES
@@ -1192,6 +1202,7 @@ Get_Height	c/sheet.cpp	/^unsigned short int Sheet::Get_Height(void)$/;"	f	class:
 Get_Line	c/sender.cpp	/^char* Sender_Class::Get_Line(int32_t Pos)$/;"	f	class:Sender_Class
 Get_Width	c/sheet.cpp	/^unsigned short int Sheet::Get_Width(void)$/;"	f	class:Sheet
 Give_Next_Line	c/parser.cpp	/^char* Parser_Class::Give_Next_Line (void)$/;"	f	class:Parser_Class
+Goto_Jog	c/gantry.cpp	/^void Gantry_Class::Goto_Jog(void)$/;"	f	class:Gantry_Class
 Gpm_Open	cdk-5.0-20180306/configure	/^Gpm_Open ();$/;"	f
 Gpm_Open	cdk/configure	/^Gpm_Open ();$/;"	f
 Grid	c/gantry.cpp	/^void Gantry_Class::Grid(int16_t G)$/;"	f	class:Gantry_Class
@@ -1349,6 +1360,7 @@ Hide_Last_Plot3	c/tresd.cpp	/^void TresD_Class::Hide_Last_Plot3 (void)$/;"	f	cla
 Hide_Plot2	c/tresd.cpp	/^void TresD_Class::Hide_Plot2 (void)$/;"	f	class:TresD_Class
 Hide_Plot3	c/tresd.cpp	/^void TresD_Class::Hide_Plot3 (void)$/;"	f	class:TresD_Class
 Hide_Plot_Pos2	c/tresd.cpp	/^void TresD_Class::Hide_Plot_Pos2 (void)$/;"	f	class:TresD_Class
+Histo_2ZAbsolute	c/histograms.cpp	/^int32_t Histo_Class::Histo_2ZAbsolute(uint8_t Histo_Z)$/;"	f	class:Histo_Class
 Histo_Class	c/histograms.cpp	/^Histo_Class::Histo_Class(Sheet* Parent,Dim D ,int32_t Max_Value, int32_t Min_Value, int32_t Value) : Sheet (Parent,D)$/;"	f	class:Histo_Class
 Histo_Class	h/histograms.h	/^class Histo_Class : public Sheet {$/;"	c
 Histo_Z	h/main_page.h	/^      Histo_Class*          Histo_Z      ;$/;"	m	class:Main_Page_Class
@@ -1384,7 +1396,9 @@ Inc_Codes_Index	c/parser.cpp	/^bool Parser_Class::Inc_Codes_Index(Codes_t* C)$/;
 Inc_Dec	c/coords.cpp	/^void Coords_Class::Inc_Dec(void)$/;"	f	class:Coords_Class
 Inc_Height	c/sheet.cpp	/^void  Sheet::Inc_Height(void)$/;"	f	class:Sheet
 Inc_L_Index	c/parser.cpp	/^bool Parser_Class::Inc_L_Index(Codes_t* C)$/;"	f	class:Parser_Class
+Inc_Plot_Limit	c/coords.cpp	/^void Coords_Class::Inc_Plot_Limit(void)$/;"	f	class:Coords_Class
 Inc_Scale	c/gantry.cpp	/^void Gantry_Class::Inc_Scale(void)$/;"	f	class:Gantry_Class
+Inc_Scale	c/histograms.cpp	/^void Histo_Class::Inc_Scale(void)$/;"	f	class:Histo_Class
 Inc_Speed_Limit	c/coords.cpp	/^void Coords_Class::Inc_Speed_Limit(void)$/;"	f	class:Coords_Class
 Inc_Width	c/sheet.cpp	/^void  Sheet::Inc_Width(void)$/;"	f	class:Sheet
 Increment	cdk-5.0-20180306/dscale.c	383;"	d	file:
@@ -1406,6 +1420,7 @@ Increment	cdk/slider.c	401;"	d	file:
 Increment	cdk/uscale.c	380;"	d	file:
 Increment	cdk/uslider.c	401;"	d	file:
 Info_Parser	c/parser.cpp	/^int8_t Parser_Class::Info_Parser(Codes_t* C)$/;"	f	class:Parser_Class
+Init	c/main_page.cpp	/^void Main_Page_Class::Init (WINDOW* w)$/;"	f	class:Main_Page_Class
 Init_Curses	c/curses_color.cpp	/^void Curses_Color_Class::Init_Curses (void)$/;"	f	class:Curses_Color_Class
 Init_Full_Colors	c/curses_color.cpp	/^void Curses_Color_Class::Init_Full_Colors (void)$/;"	f	class:Curses_Color_Class
 Init_Gradient_Colors	c/curses_color.cpp	/^void Curses_Color_Class::Init_Gradient_Colors(unsigned char R,unsigned char G,unsigned char B,unsigned char From, unsigned char Count)$/;"	f	class:Curses_Color_Class
@@ -1426,12 +1441,15 @@ IsVisibleObj	cdk-5.0-20180306/include/cdk_objs.h	136;"	d
 IsVisibleObj	cdk/include/cdk_objs.h	136;"	d
 IsVisibleObj	include/cdk_objs.h	136;"	d
 Is_Full_Screen	h/sheet.h	/^   bool Is_Full_Screen=false;$/;"	m	class:Sheet
+Is_Running	c/sender.cpp	/^bool  Sender_Class::Is_Running(void)$/;"	f	class:Sender_Class
 Jog2Down	c/gantry.cpp	/^void Gantry_Class::Jog2Down(void)$/;"	f	class:Gantry_Class
+Jog2Down	c/histograms.cpp	/^void Histo_Class::Jog2Down(void)$/;"	f	class:Histo_Class
 Jog2Left	c/gantry.cpp	/^void Gantry_Class::Jog2Left(void)$/;"	f	class:Gantry_Class
 Jog2Machine	c/coords.cpp	/^void Coords_Class::Jog2Machine(void)$/;"	f	class:Coords_Class
 Jog2New_Zero	c/gantry.cpp	/^void Gantry_Class::Jog2New_Zero(void)$/;"	f	class:Gantry_Class
 Jog2Right	c/gantry.cpp	/^void Gantry_Class::Jog2Right(void)$/;"	f	class:Gantry_Class
 Jog2Up	c/gantry.cpp	/^void Gantry_Class::Jog2Up(void)$/;"	f	class:Gantry_Class
+Jog2Up	c/histograms.cpp	/^void Histo_Class::Jog2Up(void)$/;"	f	class:Histo_Class
 Jog_Speed	h/coords.h	/^      float   Jog_Speed;$/;"	m	class:Coords_Class
 Jog_X	h/coords.h	/^      int32_t Jog_X;$/;"	m	class:Coords_Class
 Jog_Y	h/coords.h	/^      int32_t Jog_Y;$/;"	m	class:Coords_Class
@@ -1561,7 +1579,7 @@ LFT_B_BOX	cdk-5.0-20180306/matrix.c	55;"	d	file:
 LFT_M_BOX	cdk-5.0-20180306/matrix.c	51;"	d	file:
 LFT_R_BOX	cdk-5.0-20180306/matrix.c	43;"	d	file:
 LFT_T_BOX	cdk-5.0-20180306/matrix.c	47;"	d	file:
-LIBS	Makefile	/^LIBS= -lGL -lGLU -lglut -lncurses -lpthread	-lpanel -lrt -L lib\/ #-lcdk_ps_64 $/;"	m
+LIBS	Makefile	/^LIBS= -lncurses -lpthread	-lpanel -lrt $/;"	m
 LIBS	cdk-5.0-20180306/Makefile	/^LIBS		= -lncurses $/;"	m
 LIBS	cdk-5.0-20180306/cli/Makefile	/^LIBS		= -lcdk -lncurses $/;"	m
 LIBS	cdk-5.0-20180306/demos/Makefile	/^LIBS		= -lcdk -lncurses $/;"	m
@@ -1727,8 +1745,8 @@ MAXIMUM	cdk/include/cdk.h	255;"	d
 MAXIMUM	include/cdk.h	254;"	d
 MAXWIDTH	cdk-5.0-20180306/demos/syb.c	11;"	d	file:
 MAXWIDTH	cdk/demos/syb.c	11;"	d	file:
-MAX_ACC	h/opt.h	33;"	d
-MAX_ANS_SIZE	h/opt.h	23;"	d
+MAX_ACC	h/opt.h	34;"	d
+MAX_ANS_SIZE	h/opt.h	24;"	d
 MAX_BASIC_COLORS	h/opt.h	16;"	d
 MAX_BINDINGS	cdk-5.0-20180306/include/cdk.h	250;"	d
 MAX_BINDINGS	cdk/include/cdk.h	251;"	d
@@ -1749,7 +1767,7 @@ MAX_COLOUR_PAIR	h/opt.h	15;"	d
 MAX_DAYS	cdk-5.0-20180306/include/calendar.h	60;"	d
 MAX_DAYS	cdk/include/calendar.h	60;"	d
 MAX_DAYS	include/calendar.h	60;"	d
-MAX_DEC	h/opt.h	34;"	d
+MAX_DEC	h/opt.h	35;"	d
 MAX_DIALOG_BUTTONS	cdk-5.0-20180306/include/dialog.h	61;"	d
 MAX_DIALOG_BUTTONS	cdk/include/dialog.h	61;"	d
 MAX_DIALOG_BUTTONS	include/dialog.h	61;"	d
@@ -1759,7 +1777,7 @@ MAX_DIALOG_ROWS	include/dialog.h	60;"	d
 MAX_ITEMS	cdk-5.0-20180306/include/cdk.h	251;"	d
 MAX_ITEMS	cdk/include/cdk.h	252;"	d
 MAX_ITEMS	include/cdk.h	251;"	d
-MAX_JOG_SPEED	h/opt.h	26;"	d
+MAX_JOG_SPEED	h/opt.h	27;"	d
 MAX_LABEL_ROWS	cdk-5.0-20180306/include/label.h	60;"	d
 MAX_LABEL_ROWS	cdk/include/label.h	60;"	d
 MAX_LABEL_ROWS	include/label.h	60;"	d
@@ -1801,7 +1819,7 @@ MAX_Z_TABLE	h/opt.h	11;"	d
 MENTRYCB	cdk-5.0-20180306/include/mentry.h	/^typedef void (*MENTRYCB) (CDKMENTRY *mentry, chtype character);$/;"	t
 MENTRYCB	cdk/include/mentry.h	/^typedef void (*MENTRYCB) (CDKMENTRY *mentry, chtype character);$/;"	t
 MENTRYCB	include/mentry.h	/^typedef void (*MENTRYCB) (CDKMENTRY *mentry, chtype character);$/;"	t
-MICROSTEP	h/opt.h	30;"	d
+MICROSTEP	h/opt.h	31;"	d
 MID_B_BOX	cdk-5.0-20180306/matrix.c	56;"	d	file:
 MID_C_BOX	cdk-5.0-20180306/matrix.c	40;"	d	file:
 MID_M_BOX	cdk-5.0-20180306/matrix.c	52;"	d	file:
@@ -1888,9 +1906,9 @@ MY_MAX	cdk/examples/traverse_ex.c	11;"	d	file:
 Machine2Coords	c/coords.cpp	/^void Coords_Class::Machine2Coords(int32_t X, int32_t Y,int32_t Z,$/;"	f	class:Coords_Class
 Main	h/main_page.h	/^      Sheet*                Main         ;$/;"	m	class:Main_Page_Class
 Main_Page	c/main.c	/^Main_Page_Class*     Main_Page=NULL;$/;"	v
-Main_Page_Class	c/main_page.cpp	/^Main_Page_Class::Main_Page_Class (WINDOW* w)$/;"	f	class:Main_Page_Class
+Main_Page_Class	c/main_page.cpp	/^Main_Page_Class::Main_Page_Class (void)$/;"	f	class:Main_Page_Class
 Main_Page_Class	h/main_page.h	/^class Main_Page_Class {$/;"	c
-Max_Value	h/histograms.h	/^      int32_t Max_Value;$/;"	m	class:Histo_Class
+Max_Value	h/histograms.h	/^      int32_t  Max_Value         ;$/;"	m	class:Histo_Class
 Max_X	c/sheet.cpp	/^unsigned short int   Sheet::Max_X(void)$/;"	f	class:Sheet
 Max_X	h/coords.h	/^      int32_t Max_X;$/;"	m	class:Coords_Class
 Max_Y	c/sheet.cpp	/^unsigned short int   Sheet::Max_Y(void)$/;"	f	class:Sheet
@@ -1902,7 +1920,7 @@ MethodOf	include/cdk_objs.h	182;"	d
 MethodPtr	cdk-5.0-20180306/include/cdk_objs.h	118;"	d
 MethodPtr	cdk/include/cdk_objs.h	118;"	d
 MethodPtr	include/cdk_objs.h	118;"	d
-Min_Value	h/histograms.h	/^      int32_t Min_Value;$/;"	m	class:Histo_Class
+Min_Value	h/histograms.h	/^      int32_t  Min_Value         ;$/;"	m	class:Histo_Class
 Min_X	h/coords.h	/^      int32_t Min_X;$/;"	m	class:Coords_Class
 Min_Y	h/coords.h	/^      int32_t Min_Y;$/;"	m	class:Coords_Class
 Min_Z	h/coords.h	/^      int32_t Min_Z;$/;"	m	class:Coords_Class
@@ -2004,6 +2022,8 @@ PANEL_DATA	ncurses_programs/panels/panel_resize.c	/^}PANEL_DATA;$/;"	t	typeref:s
 PAP	h/main.h	2;"	d
 PEG_CHAR	ncurses_programs/JustForFun/hanoi.c	6;"	d	file:
 PLAY	h/sender.h	/^         PLAY,$/;"	e	enum:Sender_Class::Sender_State
+PLOT_MAX	h/opt.h	39;"	d
+PLOT_STEP	h/opt.h	38;"	d
 PORTDOCS	cdk-5.0-20180306/package/freebsd/Makefile	/^PORTDOCS=	COPYING EXPANDING INSTALL NOTES README TODO$/;"	m
 PORTDOCS	cdk/package/freebsd/Makefile	/^PORTDOCS=	COPYING EXPANDING INSTALL NOTES README TODO$/;"	m
 PORTEPOCH	cdk-5.0-20180306/package/freebsd/Makefile	/^PORTEPOCH=	1$/;"	m
@@ -2039,10 +2059,13 @@ PatternNotFound	cdk-5.0-20180306/viewer.c	/^static void PatternNotFound (CDKVIEW
 PatternNotFound	cdk/viewer.c	/^static void PatternNotFound (CDKVIEWER *viewer, char *pattern)$/;"	f	file:
 Pixel_X_Distance	c/gantry.cpp	/^int32_t Gantry_Class::Pixel_X_Distance(void)$/;"	f	class:Gantry_Class
 Pixel_Y_Distance	c/gantry.cpp	/^int32_t Gantry_Class::Pixel_Y_Distance(void)$/;"	f	class:Gantry_Class
+Pixel_Z_Distance	c/histograms.cpp	/^int32_t Histo_Class::Pixel_Z_Distance(void)$/;"	f	class:Histo_Class
 Plot2	c/tresd.cpp	/^void TresD_Class::Plot2 (void)$/;"	f	class:TresD_Class
 Plot2_Enable	h/tresd.h	/^      bool Plot2_Enable      = false;$/;"	m	class:TresD_Class
 Plot3	c/tresd.cpp	/^void TresD_Class::Plot3 (void)$/;"	f	class:TresD_Class
 Plot3_Enable	h/tresd.h	/^      bool Plot3_Enable      = false;$/;"	m	class:TresD_Class
+Plot_Limit	h/coords.h	/^      uint32_t   Plot_Limit;$/;"	m	class:Coords_Class
+Plot_Lines	h/coords.h	/^      uint32_t   Plot_Lines;$/;"	m	class:Coords_Class
 Plot_Pos2	c/tresd.cpp	/^void TresD_Class::Plot_Pos2 (void)$/;"	f	class:TresD_Class
 Plot_Pos2_Enable	h/tresd.h	/^      bool Plot_Pos2_Enable  = false;$/;"	m	class:TresD_Class
 PollComport	c/rs232.c	/^int PollComport(int comport_number, unsigned char *buf, int size)$/;"	f
@@ -2063,7 +2086,9 @@ PreProcessFuncOf	cdk-5.0-20180306/include/cdk_objs.h	215;"	d
 PreProcessFuncOf	cdk/include/cdk_objs.h	215;"	d
 PreProcessFuncOf	include/cdk_objs.h	215;"	d
 Print_Jog_Pixel	c/gantry.cpp	/^void Gantry_Class::Print_Jog_Pixel(void)$/;"	f	class:Gantry_Class
+Print_Jog_Pixel	c/histograms.cpp	/^void Histo_Class::Print_Jog_Pixel(void)$/;"	f	class:Histo_Class
 Print_Mutex	h/main_page.h	/^      pthread_mutex_t Print_Mutex;$/;"	m	class:Main_Page_Class
+Print_Scale	c/gantry.cpp	/^void Gantry_Class::Print_Scale(void)$/;"	f	class:Gantry_Class
 Print_Usage	c/main.c	/^void Print_Usage(FILE *stream, int exit_code)$/;"	f
 QUEEN_CHAR	ncurses_programs/JustForFun/queens.c	4;"	d	file:
 RANLIB	cdk-5.0-20180306/Makefile	/^RANLIB		= ranlib$/;"	m
@@ -2105,6 +2130,7 @@ RefreshDataObj	cdk-5.0-20180306/include/cdk_objs.h	131;"	d
 RefreshDataObj	cdk/include/cdk_objs.h	131;"	d
 RefreshDataObj	include/cdk_objs.h	131;"	d
 Reload_File	c/sender.cpp	/^void Sender_Class::Reload_File(void)$/;"	f	class:Sender_Class
+Reopen_Log	c/serialmanager.cpp	/^void Serial_Manager_Class::Reopen_Log(void)$/;"	f	class:Serial_Manager_Class
 Reset_Pos	c/parser.cpp	/^void Parser_Class::Reset_Pos(Pos_t* Pos)$/;"	f	class:Parser_Class
 Restart	c/sender.cpp	/^void Sender_Class::Restart(void)$/;"	f	class:Sender_Class
 RestoreFocus	cdk-5.0-20180306/alphalist.c	279;"	d	file:
@@ -2349,7 +2375,8 @@ STATUSY	ncurses_programs/JustForFun/tt.c	12;"	d	file:
 STDC_HEADERS	cdk-5.0-20180306/include/cdk_config.h	50;"	d
 STDC_HEADERS	cdk/include/cdk_config.h	50;"	d
 STDC_HEADERS	include/cdk_config.h	50;"	d
-STOP	h/sender.h	/^         STOP=0,$/;"	e	enum:Sender_Class::Sender_State
+STOP	h/sender.h	/^         STOP,$/;"	e	enum:Sender_Class::Sender_State
+STOPED	h/sender.h	/^         STOPED=0,$/;"	e	enum:Sender_Class::Sender_State
 STOP_NOW	h/sender.h	/^         STOP_NOW,$/;"	e	enum:Sender_Class::Sender_State
 STemplate	cdk-5.0-20180306/include/template.h	/^struct STemplate {$/;"	s
 STemplate	cdk/include/template.h	/^struct STemplate {$/;"	s
@@ -2386,6 +2413,7 @@ SaveFocus	cdk-5.0-20180306/fselect.c	310;"	d	file:
 SaveFocus	cdk/alphalist.c	275;"	d	file:
 SaveFocus	cdk/fselect.c	309;"	d	file:
 Scale_Index	h/gantry.h	/^      uint32_t  Scale_Index                   ;$/;"	m	class:Gantry_Class
+Scale_Index	h/histograms.h	/^      uint32_t Scale_Index=1     ;$/;"	m	class:Histo_Class
 ScreenOf	cdk-5.0-20180306/include/cdk_compat.h	89;"	d
 ScreenOf	cdk-5.0-20180306/include/cdk_objs.h	183;"	d
 ScreenOf	cdk/include/cdk_compat.h	89;"	d
@@ -2580,21 +2608,26 @@ VTCharOf	cdk/include/cdk_objs.h	201;"	d
 VTCharOf	include/cdk_objs.h	201;"	d
 Validate	c/parser.cpp	/^bool Parser_Class::Validate(float N)$/;"	f	class:Parser_Class
 Validate_XYZ	c/parser.cpp	/^uint8_t Parser_Class::Validate_XYZ(Pos_t* Pos)$/;"	f	class:Parser_Class
-Value	h/histograms.h	/^      int32_t Value;$/;"	m	class:Histo_Class
+Value	h/histograms.h	/^      int32_t  Value             ;$/;"	m	class:Histo_Class
 View_Center_X	h/gantry.h	/^      int32_t  View_Center_X = 0;$/;"	m	class:Gantry_Class
 View_Center_Y	h/gantry.h	/^      int32_t  View_Center_Y = 0;$/;"	m	class:Gantry_Class
+View_Center_Z	h/histograms.h	/^      int32_t  View_Center_Z =  0;$/;"	m	class:Histo_Class
 View_H	h/gantry.h	/^      int32_t View_H           ;$/;"	m	class:Gantry_Class
+View_H	h/histograms.h	/^      int32_t  View_H            ;$/;"	m	class:Histo_Class
 View_Last_Plot2	c/tresd.cpp	/^void TresD_Class::View_Last_Plot2 (void)$/;"	f	class:TresD_Class
 View_Last_Plot3	c/tresd.cpp	/^void TresD_Class::View_Last_Plot3 (void)$/;"	f	class:TresD_Class
 View_Max_X	h/gantry.h	/^      int32_t  View_Max_X       ;$/;"	m	class:Gantry_Class
 View_Max_Y	h/gantry.h	/^      int32_t  View_Max_Y       ;$/;"	m	class:Gantry_Class
+View_Max_Z	h/histograms.h	/^      int32_t  View_Max_Z        ;$/;"	m	class:Histo_Class
 View_Min_X	h/gantry.h	/^      int32_t  View_Min_X       ;$/;"	m	class:Gantry_Class
 View_Min_Y	h/gantry.h	/^      int32_t  View_Min_Y       ;$/;"	m	class:Gantry_Class
+View_Min_Z	h/histograms.h	/^      int32_t  View_Min_Z        ;$/;"	m	class:Histo_Class
 View_Plot2	c/tresd.cpp	/^void TresD_Class::View_Plot2 (void)$/;"	f	class:TresD_Class
 View_Plot3	c/tresd.cpp	/^void TresD_Class::View_Plot3 (void)$/;"	f	class:TresD_Class
 View_Plot_Pos2	c/tresd.cpp	/^void TresD_Class::View_Plot_Pos2 (void)$/;"	f	class:TresD_Class
 View_W	h/gantry.h	/^      int32_t View_W           ;$/;"	m	class:Gantry_Class
 View_Y_Scale	h/gantry.h	/^      int32_t View_Y_Scale;$/;"	m	class:Gantry_Class
+View_Z_Scale	h/histograms.h	/^      int32_t  View_Z_Scale      ;$/;"	m	class:Histo_Class
 W	h/dim.h	/^      uint16_t Y,X,H,W     ;$/;"	m	class:Dim
 WHOLE_BOX	cdk-5.0-20180306/matrix.c	37;"	d	file:
 WIDTH	ncurses_programs/JustForFun/magic.c	6;"	d	file:
@@ -2765,7 +2798,7 @@ XXXCB	cdk/examples/entry_ex.c	/^static int XXXCB (EObjectType cdktype GCC_UNUSED
 XYZ_NUMBERS_INVALID	h/parser.h	/^   XYZ_NUMBERS_INVALID$/;"	e	enum:COMMAND_CODES
 XYZ_NUMBERS_VALID	h/parser.h	/^   XYZ_NUMBERS_VALID,$/;"	e	enum:COMMAND_CODES
 XYZ_Parser	c/parser.cpp	/^int8_t Parser_Class::XYZ_Parser(Codes_t* C)$/;"	f	class:Parser_Class
-X_SCALE	h/opt.h	27;"	d
+X_SCALE	h/opt.h	28;"	d
 XextCreateExtension	cdk-5.0-20180306/configure	/^XextCreateExtension ();$/;"	f
 XextCreateExtension	cdk/configure	/^XextCreateExtension ();$/;"	f
 XtAppInitialize	cdk-5.0-20180306/configure	/^XtAppInitialize ();$/;"	f
@@ -2775,10 +2808,10 @@ Y	h/dim.h	/^      uint16_t Y,X,H,W     ;$/;"	m	class:Dim
 Y	h/parser.h	/^   float Y;$/;"	m	struct:__anon11
 YEAR2INDEX	cdk-5.0-20180306/calendar.c	9;"	d	file:
 YEAR2INDEX	cdk/calendar.c	9;"	d	file:
-Y_SCALE	h/opt.h	28;"	d
+Y_SCALE	h/opt.h	29;"	d
 Z	h/coords.h	/^      int32_t Z;$/;"	m	class:Coords_Class
 Z	h/parser.h	/^   float Z;$/;"	m	struct:__anon11
-Z_SCALE	h/opt.h	29;"	d
+Z_SCALE	h/opt.h	30;"	d
 _DEP	Makefile	/^_DEP = \\$/;"	m
 _GNUPLOT_CTRL_	h/gnuplot_i.h	/^typedef struct _GNUPLOT_CTRL_ {$/;"	s
 _GNUPLOT_PIPES_H_	h/gnuplot_i.h	26;"	d

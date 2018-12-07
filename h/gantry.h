@@ -26,6 +26,7 @@ class Gantry_Class : public Sheet{
       void Grid(int16_t G);
       uint8_t  Color4Hight       ( int32_t Z                              );
       void     Redraw_Path       ( void                                   );
+      void Goto_Jog(void);
 
    protected:
    private:
@@ -49,6 +50,7 @@ class Gantry_Class : public Sheet{
       void     Jog2Down          ( void                                       );
       int32_t  Pixel_X_Distance  ( void                                       );
       int32_t  Pixel_Y_Distance  ( void                                       );
+     void Print_Scale(void);
 };
 
 #endif

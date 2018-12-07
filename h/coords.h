@@ -36,6 +36,8 @@ class Coords_Class : public Sheet {
       float   Speed;
       float   Acc;
       float   Dec;
+      uint32_t   Plot_Lines;
+      uint32_t   Plot_Limit;
       uint16_t Speed_Limit;
       void Inc_Speed_Limit(void);
       void Dec_Speed_Limit(void);
@@ -45,6 +47,8 @@ class Coords_Class : public Sheet {
       void Key(int K);
    protected:
    private:
+      void Dec_Plot_Limit(void);
+      void Inc_Plot_Limit(void);
       void Write ( void );
       struct timespec Rti_Delay= { 0, COORDS_RTI};
       void Inc_Acc(void);

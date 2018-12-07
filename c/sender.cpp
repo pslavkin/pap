@@ -9,6 +9,10 @@ Sender_Class::Sender_Class(Sheet* Parent,Dim D):Sheet(Parent,D)
    //      File2Win();
    }
 }
+bool  Sender_Class::Is_Running(void)
+{
+   return State!=STOPED;
+}
 
 void Sender_Class::Key(int K)
 {
@@ -55,6 +59,7 @@ void Sender_Class::Restart(void)
    Main_Page->Serial->Send_And_Forget ( "halt\n"     );
    Main_Page->Serial->Send_And_Forget ( "GL N0 G2\n" );
    Main_Page->Serial->Send_And_Forget ( "halt\n"     );
+   Main_Page->Serial->Reopen_Log();
 }
 void Sender_Class::Reload_File(void)
 {
@@ -125,7 +130,11 @@ void Sender_Class::Rti(void)
       Main_Page->Serial->Send_And_Forget ( "K\n" );
       State=Next_State;
       switch(State) {
+         case STOPED:
+            break;
          case STOP:
+            if(Actual_Line==Exec_Line)
+               Next_State=STOPED;
             break;
          case PLAY:
             Send_Next_Line();

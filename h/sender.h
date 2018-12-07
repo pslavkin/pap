@@ -12,10 +12,12 @@ class Sender_Class:public Sheet {
       uint32_t Actual_Line=0;
       uint32_t Total_Lines=0;
       void File2Win  ( void );
+      bool  Is_Running(void);
    protected:
    private:
       enum Sender_State {
-         STOP=0,
+         STOPED=0,
+         STOP,
          PLAY,
          ONE_LINE,
          RESTART,

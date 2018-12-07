@@ -11,6 +11,8 @@ class TresD_Class {
       void Toogle_Last_Plot2 ( void );
       void Toogle_Last_Plot3 ( void );
    private:
+      void Calc_Plot_Limit(void);
+      uint32_t Begin,End;
       gnuplot_ctrl    *hPos2;
       gnuplot_ctrl    *h2      ,*h3     ;
       gnuplot_ctrl    *hLast_2 ,*hLast_3;
