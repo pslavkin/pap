@@ -3,9 +3,7 @@
 Coords_Class::Coords_Class(Sheet* Parent,Dim D) : Sheet(Parent,D)
 {
 //   S = new Sheet(Parent,D);
-   mvwprintw(Win ,1 ,16 ,"X           Y           Z        Speed    |   Accel      Decel");
-   mvwprintw(Win ,2 ,2 ,"Actual |");
-   mvwprintw(Win ,3 ,2 ,"Jog    |");
+   mvwprintw(Win ,1 , 4 ,"plot  |   Acc/Dec  |        X           Y           Z    |  Speed");
    X              = 0       ;
    Y              = 0       ;
    Z              = 0       ;
@@ -46,12 +44,13 @@ void Coords_Class::Rti(void)
 void Coords_Class::Write(void)
 {
    pthread_mutex_lock(&Main_Page->Print_Mutex);
+      mvwprintw(Win,2, 3,"%6d | %010.3f |",Plot_Limit,Acc);
       wattron(Win,A_BOLD);
-      mvwprintw(Win,2,11,"%+011.3f %+011.3f %+011.3f %010.3f | %010.3f %010.3f",
-                Actual_X,Actual_Y,Actual_Z,Actual_Speed,Acc,Dec);
+      mvwprintw(Win,2,25,"%+011.3f %+011.3f %+011.3f",Actual_X,Actual_Y,Actual_Z);
       wattroff(Win,A_BOLD);
-      mvwprintw(Win,3,11,"%+011.3f %+011.3f %+011.3f  %5d.000 | plot %6d/%6d",
-            Actual_Jog_X,Actual_Jog_Y,Actual_Jog_Z,Speed_Limit,Plot_Limit,Plot_Lines);
+      mvwprintw(Win,2,61,"| %08.3f", Actual_Speed*60);
+      mvwprintw(Win,3, 4,"%5d | %010.3f | %+011.3f %+011.3f %+011.3f | %4d.000",
+            Plot_Lines,Dec,Actual_Jog_X,Actual_Jog_Y,Actual_Jog_Z,Speed_Limit*60);
    pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
 
@@ -91,29 +90,21 @@ void Coords_Class::Send_Acc_Dec2Controller(float Acc, float Dec)
    sprintf(Buf,"ramps %d %d\n",(int)Acc,(int)Dec);
    Main_Page->Serial->Send_And_Forget(Buf);
 }
-void Coords_Class::Inc_Acc(void)
+void Coords_Class::Inc_Acc(void) 
 {
-   if((Acc+ACC_STEP)<=MAX_ACC) {
-      Send_Acc_Dec2Controller(Acc+ACC_STEP,Dec);
-   }
+   Send_Acc_Dec2Controller((Acc*1.5<MAX_ACC)?Acc*1.5:MAX_ACC,Dec);
 }
 void Coords_Class::Dec_Acc(void)
 {
-   if(Acc>=ACC_STEP) {
-      Send_Acc_Dec2Controller(Acc-ACC_STEP,Dec);
-   }
+   Send_Acc_Dec2Controller(((Acc/1.5)>2)?Acc/1.5:2,Dec);
 }
 void Coords_Class::Inc_Dec(void)
 {
-   if((Dec+ACC_STEP)<=MAX_DEC) {
-      Send_Acc_Dec2Controller(Acc,Dec+ACC_STEP);
-   }
+   Send_Acc_Dec2Controller(Acc,(Dec*1.5<MAX_DEC)?Dec*1.5:MAX_DEC);
 }
 void Coords_Class::Dec_Dec(void)
 {
-   if(Dec>=ACC_STEP) {
-      Send_Acc_Dec2Controller(Acc,Dec-ACC_STEP);
-   }
+   Send_Acc_Dec2Controller(Acc,((Dec/1.5)>2)?Dec/1.5:2);
 }
 void Coords_Class::Dec_Plot_Limit(void)
 {

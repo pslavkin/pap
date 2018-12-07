@@ -24,7 +24,7 @@ void Main_Page_Class::Init (WINDOW* w)
    Dim Dim_Serial ( 20, 0,  7, 40,"Serial" );
    Serial=new Serial_Manager_Class(Main,Dim_Serial);
 
-   Dim Dim_Coords ( 0,14,  5, 83,"Coords" );
+   Dim Dim_Coords ( 0,24,  5, 73,"Coords" );
    Coords=new Coords_Class(Main,Dim_Coords);
 
    TresD=new TresD_Class();

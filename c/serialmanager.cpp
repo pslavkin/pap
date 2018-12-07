@@ -41,9 +41,6 @@ int Serial_Manager_Class::Open(int pn,int baudrate)
    Port_Status = OpenComport(Port_Number,baudrate);
    wprintw(Sub_Win,"\n serial port %d status %s \n",Port_Number,(Port_Status?"error":"opened"));
    if(Port_Status==0){
-//      Send_And_Receive                               ( "halt\nrstpos\nhalt\n",Buf,sizeof(Buf ));
-//      Main_Page->Coords->Send_Speed_Limit2Controller (                                       ) ;
-//      Main_Page->Coords->Send_Acc_Dec2Controller     (                                       ) ;
    }
    else {
       if(Port_Number<MAX_SERIAL_PORTS)
@@ -100,7 +97,7 @@ void Serial_Manager_Class::Rti(void)
       Main_Page->Coords->Machine2Coords(X,Y,Z,Speed_X,Speed_Y,Speed_Z);
       Log();
       pthread_mutex_lock(&Main_Page->Print_Mutex);
-      wprintw(Sub_Win,"X%05d Y%05d Z%05d SX%06.2f SY%06.2f SZ%06.2f Q%d EN%d WN%d Acc%8.2f Dec=%8.2f SL=%d\n"
+      wprintw(Sub_Win,"X%05d Y%05d Z%05d SX%06.2f SY%06.2f SZ%06.2f Q%d EN%d WN%d Acc%8.2f Dec%8.2f SL%d\n"
             ,X,Y,Z,Speed_X,Speed_Y,Speed_Z,Space,
             Main_Page->Sender->Exec_Line,
             Main_Page->Sender->Actual_Line,

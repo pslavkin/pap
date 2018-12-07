@@ -171,9 +171,9 @@ void Gantry_Class::Goto_Jog(void)
       Main_Page->Serial->Send_And_Forget(Buf);
 
       sprintf(Buf,"dec %f %f %f\n",
-            (float)(Coords->Acc*X_SCALE)/MICROSTEP,
-            (float)(Coords->Acc*Y_SCALE)/MICROSTEP,
-            (float)(Coords->Acc*Z_SCALE)/MICROSTEP
+            (float)(Coords->Dec*X_SCALE)/MICROSTEP,
+            (float)(Coords->Dec*Y_SCALE)/MICROSTEP,
+            (float)(Coords->Dec*Z_SCALE)/MICROSTEP
             );
       Main_Page->Serial->Send_And_Forget(Buf);
 
