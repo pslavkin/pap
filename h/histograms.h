@@ -8,6 +8,7 @@ class Histo_Class : public Sheet {
       void Rti                       ( void                                                                   );
       void Set_Coords                ( Coords_Class* C                                                        );
       void Change_Center    ( int32_t New_Center_Z        );
+      float Pixel_Z_Distance(void);
 
    private:
       Coords_Class* Coords;
@@ -17,10 +18,10 @@ class Histo_Class : public Sheet {
       int32_t  View_Max_Z        ;
       int32_t  View_Min_Z        ;
       int32_t  View_H            ;
-      uint32_t Scale_Index=1     ;
+      uint32_t Scale_Index     ;
       int32_t  View_Z_Scale      ;
       int32_t  View_Center_Z =  0;
-      float Pixel_Z_Distance(void);
+      bool Auto_Center_Enabled=false;
       int32_t Absolute_Z2Histo(int32_t In_Z);
       int32_t Histo_2ZAbsolute(uint8_t Histo_Z);
       void Print_Scale(void);
@@ -30,6 +31,9 @@ class Histo_Class : public Sheet {
       void Jog2Up           ( void                        );
       void Jog2Down         ( void                        );
       void Print_Jog_Pixel(void);
+      void Auto_Center(int32_t New_Center_Z);
+      void Toogle_Auto_Center(void);
+      void Goto_Jog_Z(void);
       void Key              ( int K                       );
       struct timespec Rti_Delay= { 0,HISTOGRAMS_RTI }; //   5 milis
    protected:

@@ -15,7 +15,7 @@ void Histo_Class::Inc_Scale(void)
 }
 void Histo_Class::Dec_Scale(void)
 {
-   if(Scale_Index<MAX_SCALE_INDEX)
+   if(Scale_Index<MAX_Z_SCALE_INDEX)
       Scale_Index*=2;
    Change_Scale();
 }
@@ -29,6 +29,7 @@ void Histo_Class::Change_Scale(void)
    Change_Center ( View_Center_Z );
    wclear        ( Win           );
    Redraw_Box    ( Selected      );
+   Print_Scale();
 }
 void Histo_Class::Change_Center(int32_t New_Center_Z)
 {
@@ -57,14 +58,6 @@ int32_t Histo_Class::Absolute_Z2Histo(int32_t In_Z)
       if(In_Z<View_Min_Z) return Dims.H+1;
       else
          return -1;
-}
-void Histo_Class::Print_Scale(void)
-{
-   float StepsZ=Pixel_Z_Distance()/Z_SCALE;
-   pthread_mutex_lock(&Main_Page->Print_Mutex);
-      mvwprintw ( Win ,1 ,2 ,"Z%07.3f" ,StepsZ );
-      mvwprintw ( Win ,2 ,2 ,"mm/p");
-   pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
 void Histo_Class::Set_V_Inverted_Rule_Value(int32_t Value)
 {
@@ -97,17 +90,18 @@ void Histo_Class::Rti(void)
       nanosleep     ( &Rti_Delay,&Rti_Delay );
       Set_V_Inverted_Rule_Value(Coords->Z);
       Print_Jog_Pixel();
+      Auto_Center     ( Coords->Z);
    }
 }
 void Histo_Class::Set_Coords(Coords_Class* C)
 {
    this->Coords = C;
-   Scale_Index  = MAX_SCALE_INDEX/2;
+   Scale_Index  = MAX_Z_SCALE_INDEX;
    Change_Scale();
 }
 float Histo_Class::Pixel_Z_Distance(void)
 {
-  return (View_Max_Z-View_Min_Z)/(Dims.H-2);
+ return (View_Max_Z-View_Min_Z)/(Dims.H-2);
 }
 void Histo_Class::Jog2Up(void)
 {
@@ -134,16 +128,17 @@ void Histo_Class::Key(int K)
          break;
       case KEY_UP:
                Jog2Down();
+               Goto_Jog_Z();
          break;
       case KEY_DOWN:
                Jog2Up();
+               Goto_Jog_Z();
          break;
       case 'j':
                Change_Center(View_Center_Z+View_H/4);
          break;
       case 'k':
                Change_Center(View_Center_Z-View_H/4);
-         break;
          break;
       case 'i':
          Inc_Scale();
@@ -152,7 +147,16 @@ void Histo_Class::Key(int K)
          Dec_Scale();
          break;
       case ' ':
-              Main_Page->Gantry_XY->Goto_Jog();
+               Goto_Jog_Z();
+         break;
+      case 'p':
+         Change_Center(Coords->Z);
+         break;
+      case 'P':
+         Toogle_Auto_Center();
+         break;
+      case 'Z':
+         Main_Page->Gantry_XY->Jog2New_Zero();
          break;
       case 'u':
          Toogle_Full_Restore_Screen();
@@ -172,6 +176,59 @@ void Histo_Class::Print_Jog_Pixel(void)
       Zero_Histo_Z=Absolute_Z2Histo(0);
          for(w=1;w<Dims.W-1;w++)
             mvwaddch (Win ,Zero_Histo_Z ,w ,'+' | COLOR_PAIR(5));
+   pthread_mutex_unlock(&Main_Page->Print_Mutex);
+}
+void Histo_Class::Goto_Jog_Z(void)
+{
+   if(Main_Page->Sender->Is_Running()==false) {
+      char Buf[100];
+      sprintf(Buf,"maxv %f %f %f\n",
+            (float)(Coords->Speed_Limit*X_SCALE)/MICROSTEP,
+            (float)(Coords->Speed_Limit*Y_SCALE)/MICROSTEP,
+            (float)(Coords->Speed_Limit*Z_SCALE)/MICROSTEP
+            );
+      Main_Page->Serial->Send_And_Forget(Buf);
+
+      sprintf(Buf,"acc %f %f %f\n",
+            (float)(Coords->Acc*X_SCALE)/MICROSTEP,
+            (float)(Coords->Acc*Y_SCALE)/MICROSTEP,
+            (float)(Coords->Acc*Z_SCALE)/MICROSTEP
+            );
+      Main_Page->Serial->Send_And_Forget(Buf);
+
+      sprintf(Buf,"dec %f %f %f\n",
+            (float)(Coords->Dec*X_SCALE)/MICROSTEP,
+            (float)(Coords->Dec*Y_SCALE)/MICROSTEP,
+            (float)(Coords->Dec*Z_SCALE)/MICROSTEP
+            );
+      Main_Page->Serial->Send_And_Forget(Buf);
+
+      sprintf(Buf,"goto %d %d %d\n",Coords->X,Coords->Y,Coords->Jog_Z);
+      Main_Page->Serial->Send_And_Forget(Buf);
+  }
+
+}
+void Histo_Class::Auto_Center(int32_t New_Center_Z)
+{
+   static uint8_t Period=0;
+   if(Auto_Center_Enabled==true)
+      if(++Period>10) {
+         Period=0;
+         Change_Center(Coords->Z);
+      }
+}
+void Histo_Class::Toogle_Auto_Center(void)
+{
+   if(Auto_Center_Enabled==true)
+      Auto_Center_Enabled=false;
+   else
+      Auto_Center_Enabled=true;
+}
+void Histo_Class::Print_Scale(void)
+{
+   float StepsZ=Main_Page->Histo_Z->Pixel_Z_Distance()/Z_SCALE;
+   pthread_mutex_lock(&Main_Page->Print_Mutex);
+      mvwprintw ( Main_Page->Gantry_XY->Win ,3 ,2 ,"Z%07.3f [mm/pixel]" ,StepsZ );
    pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
 

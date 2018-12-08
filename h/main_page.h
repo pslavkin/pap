@@ -7,6 +7,8 @@ class Main_Page_Class {
       pthread_mutex_t Serial_Mutex;
       Main_Page_Class(void);
       void Init (WINDOW* W);
+      char GCode_File_Name[200]=DEFAULT_GCODE_FILE_NAME ;
+      void Set_GCode_File(char* F);
       Sheet*                Main         ;
       Gantry_Class*         Gantry_XY    ;
       Histo_Class*          Histo_Z      ;

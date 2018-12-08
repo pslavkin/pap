@@ -55,6 +55,15 @@ void Coords_Class::Write(void)
    pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
 
+void Coords_Class::Reset_Jog(void)
+{
+   Jog_Y=0;
+   Jog_X=0;
+   Jog_Z=0;
+   Actual_Jog_Y=0;
+   Actual_Jog_X=0;
+   Actual_Jog_Z=0;
+}
 void Coords_Class::Jog2Machine(void)
 {
    Jog_Y=Y;

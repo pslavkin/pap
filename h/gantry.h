@@ -26,7 +26,9 @@ class Gantry_Class : public Sheet{
       void Grid(int16_t G);
       uint8_t  Color4Hight       ( int32_t Z                              );
       void     Redraw_Path       ( void                                   );
-      void Goto_Jog(void);
+      void Goto_Jog_XY(void);
+      void Jog2New_Zero          ( void                                       );
+     void Print_Scale(void);
 
    protected:
    private:
@@ -38,7 +40,6 @@ class Gantry_Class : public Sheet{
       void     Toogle_Pixel      ( int32_t Y, int32_t X                       );
       void     Draw_Path         ( int32_t Y, int32_t X        ,int32_t Z     );
       void     Clear_Path        ( void                                       );
-      void Jog2New_Zero          ( void                                       );
       bool     Absolute_X2Gantry ( int32_t In_X,int32_t* Out_X                );
       bool     Absolute_Y2Gantry ( int32_t In_Y,int32_t* Out_Y                );
       void     Inc_Scale         ( void                                       );
@@ -50,7 +51,6 @@ class Gantry_Class : public Sheet{
       void     Jog2Down          ( void                                       );
       int32_t  Pixel_X_Distance  ( void                                       );
       int32_t  Pixel_Y_Distance  ( void                                       );
-     void Print_Scale(void);
 };
 
 #endif

@@ -5,7 +5,7 @@
 
 class Sender_Class:public Sheet {
    public:
-      Sender_Class ( Sheet* Parent,Dim D );
+      Sender_Class ( Sheet* Parent,Dim D);
       void Rti(void);
       uint32_t Exec_Line=0;
       std::string Lines[MAX_LINES];
@@ -21,7 +21,6 @@ class Sender_Class:public Sheet {
          PLAY,
          ONE_LINE,
          RESTART,
-         STOP_NOW,
       };
       Sender_State State      = STOP;
       Sender_State Next_State = STOP;
@@ -29,11 +28,16 @@ class Sender_Class:public Sheet {
       void Send_Next_Line(void);
       void Key(int K);
       std::ifstream GFile;
-      void Read_File ( void );
-      void Reload_File(void);
-      void Restart(void);
-      void Stop_Now(void);
-      void Hiz_Now(void);
+      void Read_File   ( void );
+      void Reload_File ( void );
+      void Restart     ( void );
+      void Pause       ( void );
+      void Resume       ( void );
+      void Hiz_Now     ( void );
+      void Print_Queue_State_Histo(void);
+      void Print_Play(void);
+      void Print_Pause(void);
+      void Print_Stop(void);
       struct timespec Rti_Delay= { 0, SENDER_RTI};
 };
 

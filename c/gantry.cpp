@@ -58,23 +58,27 @@ void Gantry_Class::Key(int K)
          break;
       case KEY_LEFT:
                Jog2Left();
+               Goto_Jog_XY();
          break;
       case KEY_RIGHT:
                Jog2Right();
+               Goto_Jog_XY();
          break;
 
       case KEY_UP:
                Jog2Up();
+               Goto_Jog_XY();
          break;
       case KEY_DOWN:
                Jog2Down();
+               Goto_Jog_XY();
          break;
       case 'u':
          Toogle_Full_Restore_Screen();
          Redraw_Path ( );
          break;
       case ' ':
-              Goto_Jog();
+              Goto_Jog_XY();
          break;
       case 'Z':
          Jog2New_Zero();
@@ -135,14 +139,14 @@ void Gantry_Class::Inc_Scale(void)
 }
 void Gantry_Class::Dec_Scale(void)
 {
-   if(Scale_Index<MAX_SCALE_INDEX)
+   if(Scale_Index<MAX_XY_SCALE_INDEX)
       Scale_Index*=2;
    Change_Scale();
 }
 void Gantry_Class::Set_Coords(Coords_Class* C)
 {
    this->Coords = C;
-   Scale_Index  = MAX_SCALE_INDEX/1000;
+   Scale_Index  = MAX_XY_SCALE_INDEX/1000;
    Change_Scale();
 }
 void Gantry_Class::Rti(void)
@@ -155,7 +159,7 @@ void Gantry_Class::Rti(void)
       Auto_Center     ( Coords->Y,Coords->X           );
    }
 }
-void Gantry_Class::Goto_Jog(void)
+void Gantry_Class::Goto_Jog_XY(void)
 {
    if(Main_Page->Sender->Is_Running()==false) {
       char Buf[100];
@@ -180,7 +184,7 @@ void Gantry_Class::Goto_Jog(void)
             );
       Main_Page->Serial->Send_And_Forget(Buf);
 
-      sprintf(Buf,"goto %d %d %d\n",Coords->Jog_X,Coords->Jog_Y,Coords->Jog_Z);
+      sprintf(Buf,"goto %d %d %d\n",Coords->Jog_X,Coords->Jog_Y,Coords->Z);
       Main_Page->Serial->Send_And_Forget(Buf);
   }
 
@@ -188,6 +192,8 @@ void Gantry_Class::Goto_Jog(void)
 void Gantry_Class::Jog2New_Zero(void)
 {
    Main_Page->Serial->Send_And_Forget("rstpos\n");
+   Coords->Reset_Jog();
+   Clear_Path();
 }
 
 
@@ -215,10 +221,8 @@ void Gantry_Class::Auto_Center(int32_t New_Center_Y, int32_t New_Center_X)
       if(++Period>10) {
          Period=0;
          Change_Center(New_Center_Y,New_Center_X);
-         Main_Page->Histo_Z->Change_Center(Coords->Z);
       }
 }
-
 void Gantry_Class::Toogle_Auto_Center(void)
 {
    if(Auto_Center_Enabled==true)
@@ -325,7 +329,9 @@ void Gantry_Class::Draw_Path ( int32_t Y, int32_t X, int32_t Z )
          if(Absolute_Y2Gantry(Path_Y[Path_Index],&Gantry_Y) &&
             Absolute_X2Gantry(Path_X[Path_Index],&Gantry_X))
             mvwaddch (Win, Gantry_Y, Gantry_X, '.' | COLOR_PAIR(Color4Hight(Z)));
-         Path_Index++;
+         if(Path_Index<Main_Page->Coords->Plot_Lines)
+            Path_Index++;
+
          Path_Y[Path_Index] = Y;
          Path_X[Path_Index] = X;
          Path_Z[Path_Index] = Z;

@@ -49,6 +49,7 @@ class Coords_Class : public Sheet {
       void Send_Acc_Dec2Controller(float Acc, float Dec);
       void Machine2Coords(int32_t X, int32_t Y,int32_t Z, float Speed_X, float Speed_Y, float Speed_Z);
       void Key(int K);
+      void Reset_Jog(void);
    protected:
    private:
       void Dec_Plot_Limit(void);

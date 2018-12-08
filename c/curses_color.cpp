@@ -7,16 +7,15 @@ Curses_Color_Class::Curses_Color_Class (void)
 }
 void Curses_Color_Class::Init_Curses (void)
 {
-   initscr              (               );
-   cbreak               (               );
-   noecho               (               );
-   keypad               ( stdscr, TRUE  );
-   nodelay              ( stdscr,true   );
-   start_color ();
-   Init_Full_Colors    (               );
-//   init_Basic_Colors    (               );
-//   Init_Gradient_Colors ( 1,0,0,  1,192 );
-   curs_set             ( 0             );
+   initscr            (              );
+   cbreak             (              );
+   noecho             (              );
+   keypad             ( stdscr, TRUE );
+   nodelay            ( stdscr,true  );
+   start_color        (              );
+   use_default_colors (              ); // mantiene los colores de la consola que lo llama genial!! agianta la tranparencia
+   Init_Full_Colors   (              );
+   curs_set           ( 0            );
 }
 
 void Curses_Color_Class::init_Basic_Colors (void)

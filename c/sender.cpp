@@ -3,11 +3,12 @@
 Sender_Class::Sender_Class(Sheet* Parent,Dim D):Sheet(Parent,D)
 {
    scrollok(Sub_Win,TRUE);
-   GFile.open("gcodes/route.nc");
+   GFile.open(Main_Page->GCode_File_Name);
    if(GFile.good()) {
          Read_File();
-   //      File2Win();
    }
+   else exit(1);
+   Print_Stop();
 }
 bool  Sender_Class::Is_Running(void)
 {
@@ -28,15 +29,20 @@ void Sender_Class::Key(int K)
          break;
       case 'p':
          Next_State=PLAY;
+         Resume();
+         Print_Play();
          break;
       case 'r':
          Next_State=RESTART;
          break;
-      case 'k':
-         Next_State=STOP_NOW;
+      case 't':
+         Next_State=STOP;
+         Resume();
+         Print_Stop();
          break;
       case ' ':
-         Next_State=STOP;
+         Pause();
+         Print_Pause();
          break;
       case 'R':
          Reload_File();
@@ -53,28 +59,26 @@ void Sender_Class::Key(int K)
 void Sender_Class::Hiz_Now(void)
 {
    Main_Page->Serial->Send_And_Forget("hiz\n");
-}
-void Sender_Class::Stop_Now(void)
-{
-   char Buf[10];
-   Actual_Line=0;
    Main_Page->Serial->Send_And_Forget("s\n"); //tengo que pedir status por si se chiflo
-   Main_Page->Serial->Send_And_Forget("halt\n");
+}
+void Sender_Class::Pause(void)
+{
+   Main_Page->Serial->Send_And_Forget("pause\n"); //tengo que pedir status por si se chiflo
+}
+void Sender_Class::Resume(void)
+{
+   Main_Page->Serial->Send_And_Forget("resume\n"); //tengo que pedir status por si se chiflo
 }
 void Sender_Class::Restart(void)
 {
-   char Buf[10];
-   Actual_Line=0;
-   Main_Page->Serial->Send_And_Forget("s\n"); //tengo que pedir status por si se chiflo
-   Main_Page->Serial->Send_And_Forget ( "halt\n"     );
-   Main_Page->Serial->Send_And_Forget ( "GL N0 G2\n" );
+   Main_Page->Serial->Send_And_Forget ( "s\n"        ); // tengo que pedir status por si se chiflo
    Main_Page->Serial->Send_And_Forget ( "halt\n"     );
    Main_Page->Serial->Reopen_Log();
 }
 void Sender_Class::Reload_File(void)
 {
    GFile.close();
-   GFile.open("gcodes/route.nc");
+   GFile.open(Main_Page->GCode_File_Name);
    Read_File();
    Next_State=RESTART;
 }
@@ -114,9 +118,69 @@ void Sender_Class::File2Win(void)
       if(i==EXEC_LINE_POS) wattroff(Sub_Win,A_BOLD);
       wcolor_set(Sub_Win, 0,NULL);
    }
+   Print_Queue_State_Histo();
    Touch_Win();
    pthread_mutex_unlock(&Main_Page->Print_Mutex);
    }
+}
+void Sender_Class::Print_Queue_State_Histo(void)
+{
+   uint8_t Length=(Dims.H-4)-((Actual_Line-Exec_Line)*(Dims.H-4)/MAX_SENDER_QUEUE);
+   uint8_t i;
+   for(i=0;i<Dims.H-4;i++)
+      mvwaddch(Win,i+2,0,'.'|COLOR_PAIR(i>=Length?4:0));
+}
+void Sender_Class::Print_Pause(void)
+{
+   WINDOW* W=Main_Page->Main->Win;
+   wclear(W);
+   Main_Page->Main->Redraw_Box(Main_Page->Main->Selected);
+   pthread_mutex_lock(&Main_Page->Print_Mutex);
+      mvwaddch(W ,1 ,8  ,' '|COLOR_PAIR(250));
+      mvwaddch(W ,2 ,8  ,' '|COLOR_PAIR(250));
+      mvwaddch(W ,3 ,8  ,' '|COLOR_PAIR(250));
+
+      mvwaddch(W ,1 ,11 ,' '|COLOR_PAIR(250));
+      mvwaddch(W ,2 ,11 ,' '|COLOR_PAIR(250));
+      mvwaddch(W ,3 ,11 ,' '|COLOR_PAIR(250));
+   pthread_mutex_unlock(&Main_Page->Print_Mutex);
+
+}
+void Sender_Class::Print_Play(void)
+{
+   WINDOW* W=Main_Page->Main->Win;
+   wclear(W);
+   Main_Page->Main->Redraw_Box(Main_Page->Main->Selected);
+   pthread_mutex_lock(&Main_Page->Print_Mutex);
+      mvwaddch ( W ,1 ,8  ,' '|COLOR_PAIR(180 ));
+      mvwaddch ( W ,1 ,9 ,' '|COLOR_PAIR(180 ));
+      mvwaddch ( W ,2 ,8  ,' '|COLOR_PAIR(180 ));
+      mvwaddch ( W ,2 ,9 ,' '|COLOR_PAIR(180 ));
+      mvwaddch ( W ,2 ,10 ,' '|COLOR_PAIR(180 ));
+      mvwaddch ( W ,3 ,8  ,' '|COLOR_PAIR(180 ));
+      mvwaddch ( W ,3 ,9 ,' '|COLOR_PAIR(180 ));
+   pthread_mutex_unlock(&Main_Page->Print_Mutex);
+
+}
+void Sender_Class::Print_Stop(void)
+{
+   WINDOW* W=Main_Page->Main->Win;
+   wclear(W);
+   Main_Page->Main->Redraw_Box(Main_Page->Main->Selected);
+   pthread_mutex_lock(&Main_Page->Print_Mutex);
+      mvwaddch(W ,1 ,8  ,' '|COLOR_PAIR(95));
+      mvwaddch(W ,2 ,8  ,' '|COLOR_PAIR(95));
+      mvwaddch(W ,3 ,8  ,' '|COLOR_PAIR(95));
+
+      mvwaddch(W ,1 ,9  ,' '|COLOR_PAIR(95));
+      mvwaddch(W ,2 ,9  ,' '|COLOR_PAIR(95));
+      mvwaddch(W ,3 ,9  ,' '|COLOR_PAIR(95));
+
+      mvwaddch(W ,1 ,10 ,' '|COLOR_PAIR(95));
+      mvwaddch(W ,2 ,10 ,' '|COLOR_PAIR(95));
+      mvwaddch(W ,3 ,10 ,' '|COLOR_PAIR(95));
+   pthread_mutex_unlock(&Main_Page->Print_Mutex);
+
 }
 
 void Sender_Class::Send_Next_Line(void)
@@ -155,10 +219,6 @@ void Sender_Class::Rti(void)
             break;
          case RESTART:
             Restart();
-            Next_State=STOP;
-            break;
-         case STOP_NOW:
-            Stop_Now();
             Next_State=STOP;
             break;
       }

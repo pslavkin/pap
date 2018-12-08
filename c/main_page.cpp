@@ -29,8 +29,8 @@ void Main_Page_Class::Init (WINDOW* w)
 
    TresD=new TresD_Class();
 
-   Gantry_XY->Set_Coords ( Coords );
    Histo_Z->Set_Coords   ( Coords );
+   Gantry_XY->Set_Coords ( Coords );
 
    Screen_Update=new Screen_Update_Class();
 
@@ -41,6 +41,10 @@ void Main_Page_Class::Init (WINDOW* w)
    T.Set_Screen_Update_Rti ( Screen_Update );
    T.Set_Serial_Manager_Rti( Serial        );
    T.Set_TresD_Rti         ( TresD         );
+}
+void Main_Page_Class::Set_GCode_File(char* F)
+{
+   strcpy(GCode_File_Name,F);
 }
 //----------------------------------------------------------------------------------------------------
 
