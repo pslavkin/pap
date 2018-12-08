@@ -3,7 +3,7 @@
 Coords_Class::Coords_Class(Sheet* Parent,Dim D) : Sheet(Parent,D)
 {
 //   S = new Sheet(Parent,D);
-   mvwprintw(Win ,1 , 4 ,"plot  |   Acc/Dec  |        X           Y           Z    |  Speed");
+   mvwprintw(Win ,1 , 2 ,"plot  |   Acc/Dec  |        X           Y           Z    |   Speed");
    X              = 0       ;
    Y              = 0       ;
    Z              = 0       ;
@@ -32,6 +32,7 @@ Coords_Class::Coords_Class(Sheet* Parent,Dim D) : Sheet(Parent,D)
    Acc      = 1000   ;
    Dec      = 1000   ;
    Speed_Limit  = 10 ;
+   Speed_Scale  = 1.0 ;
    Plot_Limit  = 100;
 }
 void Coords_Class::Rti(void)
@@ -44,13 +45,13 @@ void Coords_Class::Rti(void)
 void Coords_Class::Write(void)
 {
    pthread_mutex_lock(&Main_Page->Print_Mutex);
-      mvwprintw(Win,2, 3,"%6d | %010.3f |",Plot_Limit,Acc);
+      mvwprintw(Win,2, 1,"%6d | %010.3f |",Plot_Limit,Acc);
       wattron(Win,A_BOLD);
-      mvwprintw(Win,2,25,"%+011.3f %+011.3f %+011.3f",Actual_X,Actual_Y,Actual_Z);
+      mvwprintw(Win,2,23,"%+011.3f %+011.3f %+011.3f",Actual_X,Actual_Y,Actual_Z);
       wattroff(Win,A_BOLD);
-      mvwprintw(Win,2,61,"| %08.3f", Actual_Speed*60);
-      mvwprintw(Win,3, 4,"%5d | %010.3f | %+011.3f %+011.3f %+011.3f | %4d.000",
-            Plot_Lines,Dec,Actual_Jog_X,Actual_Jog_Y,Actual_Jog_Z,Speed_Limit*60);
+      mvwprintw(Win,2,59,"| %08.3f", Actual_Speed*60);
+      mvwprintw(Win,3, 2,"%5d | %010.3f | %+011.3f %+011.3f %+011.3f | %4d/%3.1f",
+            Plot_Lines,Dec,Actual_Jog_X,Actual_Jog_Y,Actual_Jog_Z,Speed_Limit*60,(float)Speed_Scale/10);
    pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
 
@@ -136,6 +137,24 @@ void Coords_Class::Dec_Speed_Limit(void)
       Send_Speed_Limit2Controller(Speed_Limit-1);
    }
 }
+void Coords_Class::Send_Speed_Scale2Controller(uint8_t Scale)
+{
+   char Buf[100];
+   sprintf(Buf,"ss %d\n",Scale);
+   Main_Page->Serial->Send_And_Forget(Buf);
+}
+void Coords_Class::Inc_Speed_Scale(void)
+{
+   if(Speed_Scale<MAX_SPEED_SCALE) {
+      Send_Speed_Scale2Controller(Speed_Scale+1);
+   }
+}
+void Coords_Class::Dec_Speed_Scale(void)
+{
+   if(Speed_Scale>1) {
+      Send_Speed_Scale2Controller(Speed_Scale-1);
+   }
+}
 
 void Coords_Class::Key(int K)
 {
@@ -159,8 +178,10 @@ void Coords_Class::Key(int K)
          Dec_Plot_Limit();
          break;
       case KEY_LEFT:
+         Dec_Speed_Scale();
          break;
       case KEY_RIGHT:
+         Inc_Speed_Scale();
          break;
       case KEY_UP:
          Inc_Speed_Limit();

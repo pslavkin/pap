@@ -86,24 +86,26 @@ void Serial_Manager_Class::Rti(void)
 
    while ( 1 ) {
       Serial_Bloked_Get_Line(Buf,sizeof(Buf));
-      sscanf(Buf,"%d %d %d %f %f %f %d %d %d %f %f %d"
+      sscanf(Buf,"%d %d %d %f %f %f %d %d %d %f %f %d %d"
             ,&X,&Y,&Z,&Speed_X,&Speed_Y,&Speed_Z,&Space,
             &Main_Page->Sender->Exec_Line,
             &Main_Page->Sender->Actual_Line,
             &Main_Page->Coords->Acc,
             &Main_Page->Coords->Dec,
-            &Main_Page->Coords->Speed_Limit
+            &Main_Page->Coords->Speed_Limit,
+            &Main_Page->Coords->Speed_Scale
             );
       Main_Page->Coords->Machine2Coords(X,Y,Z,Speed_X,Speed_Y,Speed_Z);
       Log();
       pthread_mutex_lock(&Main_Page->Print_Mutex);
-      wprintw(Sub_Win,"X%05d Y%05d Z%05d SX%06.2f SY%06.2f SZ%06.2f Q%d EN%d WN%d Acc%8.2f Dec%8.2f SL%d\n"
+      wprintw(Sub_Win,"X%05d Y%05d Z%05d SX%06.2f SY%06.2f SZ%06.2f Q%d EN%d WN%d Acc%8.2f Dec%8.2f SL%d SS%d\n"
             ,X,Y,Z,Speed_X,Speed_Y,Speed_Z,Space,
             Main_Page->Sender->Exec_Line,
             Main_Page->Sender->Actual_Line,
             Main_Page->Coords->Acc,
             Main_Page->Coords->Dec,
-            Main_Page->Coords->Speed_Limit
+            Main_Page->Coords->Speed_Limit,
+            Main_Page->Coords->Speed_Scale
             );
       pthread_mutex_unlock(&Main_Page->Print_Mutex);
       Touch_Win();

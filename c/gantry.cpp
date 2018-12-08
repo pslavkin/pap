@@ -76,6 +76,9 @@ void Gantry_Class::Key(int K)
       case ' ':
               Goto_Jog();
          break;
+      case 'Z':
+         Jog2New_Zero();
+         break;
    }
 }
 void Gantry_Class::Print_Scale(void)
@@ -146,9 +149,9 @@ void Gantry_Class::Rti(void)
 {
    while(1) {
       nanosleep       ( &Rti_Delay ,&Rti_Delay        );
+      Print_Jog_Pixel (                               );
       Draw_Path       ( Coords->Y,Coords->X,Coords->Z );
       Grid            ( 0                             );
-      Print_Jog_Pixel (                               );
       Auto_Center     ( Coords->Y,Coords->X           );
    }
 }
@@ -184,7 +187,7 @@ void Gantry_Class::Goto_Jog(void)
 }
 void Gantry_Class::Jog2New_Zero(void)
 {
-
+   Main_Page->Serial->Send_And_Forget("rstpos\n");
 }
 
 
@@ -345,14 +348,15 @@ void Gantry_Class::Print_Jog_Pixel(void)
 {
    static int32_t Gantry_X,Gantry_Y;
    pthread_mutex_lock(&Main_Page->Print_Mutex);
-      mvwaddch (Win ,Gantry_Y ,Gantry_X ,' ' | COLOR_PAIR(0));
-      Absolute_Y2Gantry(Coords->Jog_Y,&Gantry_Y);
-      Absolute_X2Gantry(Coords->Jog_X,&Gantry_X);
-      mvwaddch (Win ,Gantry_Y ,Gantry_X ,'X' | COLOR_PAIR(2));
    //   mvwaddch (Win ,Zero_Gantry_Y ,Zero_Gantry_X ,' ' | COLOR_PAIR(0));
       int32_t Zero_Gantry_X,Zero_Gantry_Y;
       Absolute_Y2Gantry(0,&Zero_Gantry_Y);
       Absolute_X2Gantry(0,&Zero_Gantry_X);
       mvwaddch (Win ,Zero_Gantry_Y ,Zero_Gantry_X ,'+' | COLOR_PAIR(5));
+
+      mvwaddch (Win ,Gantry_Y ,Gantry_X ,' ' | COLOR_PAIR(0));
+      Absolute_Y2Gantry(Coords->Jog_Y,&Gantry_Y);
+      Absolute_X2Gantry(Coords->Jog_X,&Gantry_X);
+      mvwaddch (Win ,Gantry_Y ,Gantry_X ,'X' | COLOR_PAIR(2));
    pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }

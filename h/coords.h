@@ -39,9 +39,13 @@ class Coords_Class : public Sheet {
       uint32_t   Plot_Lines;
       uint32_t   Plot_Limit;
       uint16_t Speed_Limit;
+      uint8_t  Speed_Scale;
       void Inc_Speed_Limit(void);
       void Dec_Speed_Limit(void);
       void Send_Speed_Limit2Controller(uint16_t Limit);
+      void Inc_Speed_Scale(void);
+      void Dec_Speed_Scale(void);
+      void Send_Speed_Scale2Controller(uint8_t Scale);
       void Send_Acc_Dec2Controller(float Acc, float Dec);
       void Machine2Coords(int32_t X, int32_t Y,int32_t Z, float Speed_X, float Speed_Y, float Speed_Z);
       void Key(int K);

@@ -44,18 +44,28 @@ void Sender_Class::Key(int K)
       case 'u':
          Toogle_Full_Restore_Screen();
          break;
+      case 'K':
+         Hiz_Now();
+         State=STOP;
+         break;
    }
+}
+void Sender_Class::Hiz_Now(void)
+{
+   Main_Page->Serial->Send_And_Forget("hiz\n");
 }
 void Sender_Class::Stop_Now(void)
 {
    char Buf[10];
    Actual_Line=0;
+   Main_Page->Serial->Send_And_Forget("s\n"); //tengo que pedir status por si se chiflo
    Main_Page->Serial->Send_And_Forget("halt\n");
 }
 void Sender_Class::Restart(void)
 {
    char Buf[10];
    Actual_Line=0;
+   Main_Page->Serial->Send_And_Forget("s\n"); //tengo que pedir status por si se chiflo
    Main_Page->Serial->Send_And_Forget ( "halt\n"     );
    Main_Page->Serial->Send_And_Forget ( "GL N0 G2\n" );
    Main_Page->Serial->Send_And_Forget ( "halt\n"     );
