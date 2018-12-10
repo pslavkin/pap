@@ -33,7 +33,7 @@ Coords_Class::Coords_Class(Sheet* Parent,Dim D) : Sheet(Parent,D)
    Dec      = 1000   ;
    Speed_Limit  = 10 ;
    Speed_Scale  = 1.0 ;
-   Plot_Limit  = 100;
+   Plot_Limit  = 500;
 }
 void Coords_Class::Rti(void)
 {
@@ -55,13 +55,16 @@ void Coords_Class::Write(void)
    pthread_mutex_unlock(&Main_Page->Print_Mutex);
 }
 
-void Coords_Class::Reset_Jog(void)
+void Coords_Class::Reset_Jog_XY(void)
 {
    Jog_Y=0;
    Jog_X=0;
-   Jog_Z=0;
    Actual_Jog_Y=0;
    Actual_Jog_X=0;
+}
+void Coords_Class::Reset_Jog_Z(void)
+{
+   Jog_Z=0;
    Actual_Jog_Z=0;
 }
 void Coords_Class::Jog2Machine(void)
@@ -120,12 +123,14 @@ void Coords_Class::Dec_Plot_Limit(void)
 {
    if(Plot_Limit>PLOT_STEP) {
       Plot_Limit-=PLOT_STEP;
+      Main_Page->Gantry_XY->Redraw_Path();
    }
 }
 void Coords_Class::Inc_Plot_Limit(void)
 {
    if((Plot_Limit+PLOT_STEP)<=PLOT_MAX) {
       Plot_Limit+=PLOT_STEP;
+      Main_Page->Gantry_XY->Redraw_Path();
    }
 }
 void Coords_Class::Send_Speed_Limit2Controller(uint16_t Limit)

@@ -49,7 +49,7 @@ DEP_DIR=./h
 DEP = $(patsubst %,$(DEP_DIR)/%,$(_DEP))
 
 
-sheet: ${OBJ}
+pap: ${OBJ}
 	${CC} -o ${EXE_DIR}/$@ $^ ${LIBS}
 
 ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c ${DEP}

@@ -21,7 +21,7 @@ class Histo_Class : public Sheet {
       uint32_t Scale_Index     ;
       int32_t  View_Z_Scale      ;
       int32_t  View_Center_Z =  0;
-      bool Auto_Center_Enabled=false;
+      bool Auto_Center_Enabled=true;
       int32_t Absolute_Z2Histo(int32_t In_Z);
       int32_t Histo_2ZAbsolute(uint8_t Histo_Z);
       void Print_Scale(void);
@@ -35,6 +35,7 @@ class Histo_Class : public Sheet {
       void Toogle_Auto_Center(void);
       void Goto_Jog_Z(void);
       void Key              ( int K                       );
+      void Jog2New_Z_Zero(void);
       struct timespec Rti_Delay= { 0,HISTOGRAMS_RTI }; //   5 milis
    protected:
 };

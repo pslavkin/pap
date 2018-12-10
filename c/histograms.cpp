@@ -33,18 +33,20 @@ void Histo_Class::Change_Scale(void)
 }
 void Histo_Class::Change_Center(int32_t New_Center_Z)
 {
-   if((New_Center_Z+View_H/2)>=Coords->Max_Z)
-      View_Center_Z = Coords->Max_Z-View_H/2;
-   else
-      if((New_Center_Z-View_H/2)<=Coords->Min_Z)
-         View_Center_Z = Coords->Min_Z+View_H/2;
+   int32_t Last_Center=View_Center_Z;
+      if((New_Center_Z+View_H/2)>=Coords->Max_Z)
+         View_Center_Z = Coords->Max_Z-View_H/2;
       else
-         View_Center_Z = New_Center_Z;
-   View_Max_Z    = View_Center_Z+View_H/2;
-   View_Min_Z    = View_Center_Z-View_H/2;
-
-   wclear      ( Win      );
-   Redraw_Box  ( Selected );
+         if((New_Center_Z-View_H/2)<=Coords->Min_Z)
+            View_Center_Z = Coords->Min_Z+View_H/2;
+         else
+            View_Center_Z = New_Center_Z;
+      if(Last_Center!=View_Center_Z) {
+         View_Max_Z    = View_Center_Z+View_H/2;
+         View_Min_Z    = View_Center_Z-View_H/2;
+         wclear      ( Win      );
+         Redraw_Box  ( Selected );
+      }
 }
 int32_t Histo_Class::Histo_2ZAbsolute(uint8_t Histo_Z)
 {
@@ -156,7 +158,7 @@ void Histo_Class::Key(int K)
          Toogle_Auto_Center();
          break;
       case 'Z':
-         Main_Page->Gantry_XY->Jog2New_Zero();
+         Jog2New_Z_Zero();
          break;
       case 'u':
          Toogle_Full_Restore_Screen();
@@ -182,10 +184,13 @@ void Histo_Class::Goto_Jog_Z(void)
 {
    if(Main_Page->Sender->Is_Running()==false) {
       char Buf[100];
+
+      float MaxvZ=(float)(Coords->Speed_Limit*Z_SCALE)/MICROSTEP;
+      if (MaxvZ>200) MaxvZ=200;
       sprintf(Buf,"maxv %f %f %f\n",
             (float)(Coords->Speed_Limit*X_SCALE)/MICROSTEP,
             (float)(Coords->Speed_Limit*Y_SCALE)/MICROSTEP,
-            (float)(Coords->Speed_Limit*Z_SCALE)/MICROSTEP
+            MaxvZ
             );
       Main_Page->Serial->Send_And_Forget(Buf);
 
@@ -230,5 +235,12 @@ void Histo_Class::Print_Scale(void)
    pthread_mutex_lock(&Main_Page->Print_Mutex);
       mvwprintw ( Main_Page->Gantry_XY->Win ,3 ,2 ,"Z%07.3f [mm/pixel]" ,StepsZ );
    pthread_mutex_unlock(&Main_Page->Print_Mutex);
+}
+void Histo_Class::Jog2New_Z_Zero(void)
+{
+   char Buf[100];
+   sprintf(Buf,"pos %d %d 0\n",Main_Page->Coords->Jog_X,Main_Page->Coords->Jog_Y); 
+   Main_Page->Serial->Send_And_Forget(Buf);
+   Coords->Reset_Jog_Z();
 }
 

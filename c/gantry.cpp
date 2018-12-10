@@ -81,7 +81,7 @@ void Gantry_Class::Key(int K)
               Goto_Jog_XY();
          break;
       case 'Z':
-         Jog2New_Zero();
+         Jog2New_XY_Zero();
          break;
    }
 }
@@ -146,7 +146,7 @@ void Gantry_Class::Dec_Scale(void)
 void Gantry_Class::Set_Coords(Coords_Class* C)
 {
    this->Coords = C;
-   Scale_Index  = MAX_XY_SCALE_INDEX/1000;
+   Scale_Index  = MAX_XY_SCALE_INDEX/100;
    Change_Scale();
 }
 void Gantry_Class::Rti(void)
@@ -189,10 +189,12 @@ void Gantry_Class::Goto_Jog_XY(void)
   }
 
 }
-void Gantry_Class::Jog2New_Zero(void)
+void Gantry_Class::Jog2New_XY_Zero(void)
 {
-   Main_Page->Serial->Send_And_Forget("rstpos\n");
-   Coords->Reset_Jog();
+   char Buf[100];
+   sprintf(Buf,"pos 0 0 %d\n",Coords->Jog_Z);
+   Main_Page->Serial->Send_And_Forget(Buf);
+   Coords->Reset_Jog_XY();
    Clear_Path();
 }
 
@@ -234,28 +236,31 @@ void Gantry_Class::Toogle_Auto_Center(void)
 
 void Gantry_Class::Change_Center(int32_t New_Center_Y, int32_t New_Center_X)
 {
-   if((New_Center_Y+View_H/2)>=Coords->Max_Y)
-      View_Center_Y = Coords->Max_Y-View_H/2;
-   else
-      if((New_Center_Y-View_H/2)<=Coords->Min_Y)
-         View_Center_Y = Coords->Min_Y+View_H/2;
+   int32_t Last_Center_X=View_Center_X, Last_Center_Y=View_Center_Y;
+      if((New_Center_Y+View_H/2)>=Coords->Max_Y)
+         View_Center_Y = Coords->Max_Y-View_H/2;
       else
-         View_Center_Y = New_Center_Y;
-   View_Max_Y    = View_Center_Y+View_H/2;
-   View_Min_Y    = View_Center_Y-View_H/2;
+         if((New_Center_Y-View_H/2)<=Coords->Min_Y)
+            View_Center_Y = Coords->Min_Y+View_H/2;
+         else
+            View_Center_Y = New_Center_Y;
 
-   if((New_Center_X+View_W/2)>=Coords->Max_X)
-      View_Center_X = Coords->Max_X-View_W/2;
-   else
-      if((New_Center_X-View_W/2)<=Coords->Min_X)
-         View_Center_X = Coords->Min_X+View_W/2;
+      if((New_Center_X+View_W/2)>=Coords->Max_X)
+         View_Center_X = Coords->Max_X-View_W/2;
       else
-         View_Center_X = New_Center_X;
-   View_Max_X    = View_Center_X+View_W/2;
-   View_Min_X    = View_Center_X-View_W/2;
-   wclear      ( Win      );
-   Redraw_Box  ( Selected );
-   Redraw_Path (          );
+         if((New_Center_X-View_W/2)<=Coords->Min_X)
+            View_Center_X = Coords->Min_X+View_W/2;
+         else
+            View_Center_X = New_Center_X;
+      if(Last_Center_X!=View_Center_X || Last_Center_Y!=View_Center_Y) {
+         View_Max_Y    = View_Center_Y+View_H/2;
+         View_Min_Y    = View_Center_Y-View_H/2;
+         View_Max_X    = View_Center_X+View_W/2;
+         View_Min_X    = View_Center_X-View_W/2;
+         wclear      ( Win      );
+         Redraw_Box  ( Selected );
+         Redraw_Path (          );
+      }
 }
 
 bool Gantry_Class::Absolute_X2Gantry(int32_t In_X,int32_t* Out_X)
