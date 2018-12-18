@@ -1,4 +1,4 @@
-CC=g++
+CC=g++ -std=c++11
 #LIBS= -lncurses -lpthread  -lpanel -lrt -L lib/ -lcdk_ps_64 -lX11 -lGL -lGLU -lglut
 LIBS= -lncurses -lpthread	-lpanel -lrt 
 #LIBS= -lGL -lGLU -lglut -lncurses -lpthread  -lpanel -lrt -L lib/ -lcdk_new 

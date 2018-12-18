@@ -1,10 +1,11 @@
 #include "inc_all.h"
 
 //----------------------------------------------------------------------------------------------------
-Main_Page_Class::Main_Page_Class (void)
+Main_Page_Class::Main_Page_Class(void)
 {
    pthread_mutex_init(&Print_Mutex,NULL);
    pthread_mutex_init(&Serial_Mutex,NULL); //ara repartir el acceso al puerto serie..
+   Set_GCode_File((char*)DEFAULT_GCODE_FILE_NAME);
 }
 
 void Main_Page_Class::Init (WINDOW* w)
