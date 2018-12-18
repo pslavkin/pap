@@ -27,7 +27,6 @@ class    Serial_Manager_Class:public Sheet {
       void     Key              ( int K               );
       void     serial_close ( void                );
       struct timespec Rti_Delay       = { 0 ,SERIAL_MANAGER_RTI}    ;
-      struct timespec Ans_Delay       = { 0 ,SERIAL_ANS_DELAY}      ;
       struct timespec Open_Port_Delay = { 0 ,SERIAL_OPEN_PORT_DELAY};
 };
 

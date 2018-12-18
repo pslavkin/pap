@@ -3,7 +3,6 @@
 Coords_Class::Coords_Class(Sheet* Parent,Dim D) : Sheet(Parent,D)
 {
 //   S = new Sheet(Parent,D);
-   mvwprintw(Win ,1 , 2 ,"plot  |   Acc/Dec  |        X           Y           Z    |   Speed");
    X              = 0       ;
    Y              = 0       ;
    Z              = 0       ;
@@ -45,6 +44,7 @@ void Coords_Class::Rti(void)
 void Coords_Class::Write(void)
 {
    pthread_mutex_lock(&Main_Page->Print_Mutex);
+      mvwprintw(Win ,1 , 2 ,"Plot  |   Acc/Dec  |        X           Y           Z    |   Speed");
       mvwprintw(Win,2, 1,"%6d | %010.3f |",Plot_Limit,Acc);
       wattron(Win,A_BOLD);
       mvwprintw(Win,2,23,"%+011.3f %+011.3f %+011.3f",Actual_X,Actual_Y,Actual_Z);

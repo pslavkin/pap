@@ -16,7 +16,7 @@ void Serial_Manager_Class::Serial_Bloked_Get_Line(char* Buf,uint8_t Size)
    unsigned char  Data;
    while(1) {
       while ( Get_Byte(Port_Number,&Data )!=1)
-         nanosleep ( &Ans_Delay,&Ans_Delay );
+         nanosleep ( &Rti_Delay,&Rti_Delay );
 
       if ( (Data == '\r' )|| (Data == '\n') || (Data == 0x1b)) {
          break;
