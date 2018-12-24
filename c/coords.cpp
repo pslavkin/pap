@@ -105,19 +105,19 @@ void Coords_Class::Send_Acc_Dec2Controller(float Acc, float Dec)
 }
 void Coords_Class::Inc_Acc(void) 
 {
-   Send_Acc_Dec2Controller((Acc*1.5<MAX_ACC)?Acc*1.5:MAX_ACC,Dec);
+   Send_Acc_Dec2Controller((Acc+ACC_STEP)<MAX_ACC?(Acc+ACC_STEP):MAX_ACC,Dec);
 }
 void Coords_Class::Dec_Acc(void)
 {
-   Send_Acc_Dec2Controller(((Acc/1.5)>2)?Acc/1.5:2,Dec);
+   Send_Acc_Dec2Controller((Acc-ACC_STEP)>MIN_ACC?(Acc-ACC_STEP):MIN_ACC,Dec);
 }
 void Coords_Class::Inc_Dec(void)
 {
-   Send_Acc_Dec2Controller(Acc,(Dec*1.5<MAX_DEC)?Dec*1.5:MAX_DEC);
+   Send_Acc_Dec2Controller(Acc,(Dec+ACC_STEP)<MAX_DEC?(Dec+ACC_STEP):MAX_DEC);
 }
 void Coords_Class::Dec_Dec(void)
 {
-   Send_Acc_Dec2Controller(Acc,((Dec/1.5)>2)?Dec/1.5:2);
+   Send_Acc_Dec2Controller(Acc,(Dec-ACC_STEP)>MIN_DEC?(Dec-ACC_STEP):MIN_DEC);
 }
 void Coords_Class::Dec_Plot_Limit(void)
 {

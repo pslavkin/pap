@@ -52,7 +52,7 @@ void Sender_Class::Key(int K)
          break;
       case 'K':
          Hiz_Now();
-         State=STOP;
+//         Next_State=STOP;
          break;
    }
 }

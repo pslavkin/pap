@@ -1,4 +1,4 @@
-#define SERIAL_MANAGER_RTI      50000000
+#define SERIAL_MANAGER_RTI      20000000
 #define SERIAL_OPEN_PORT_DELAY 900000000
 #define MAX_SERIAL_PORTS        2
 
@@ -32,9 +32,11 @@
 #define MICROSTEP     128
 
 
-#define MAX_ACC   50000
-#define MAX_DEC   50000
-#define ACC_STEP  10
+#define MAX_ACC   ((59000*MICROSTEP)/Z_SCALE)
+#define MAX_DEC   ((59000*MICROSTEP)/Z_SCALE)
+#define MIN_ACC   ((15*MICROSTEP)/X_SCALE)
+#define MIN_DEC   ((15*MICROSTEP)/X_SCALE)
+#define ACC_STEP  100
 
 #define PLOT_STEP 100
 #define PLOT_MAX  100000
