@@ -1,14 +1,14 @@
 #ifndef SENDER
 #define SENDER
 
-#define MAX_LINES       100000
+#define MAX_GCODE_LINES       100000
 
 class Sender_Class:public Sheet {
    public:
       Sender_Class ( Sheet* Parent,Dim D);
       void Rti(void);
       uint32_t Exec_Line=0;
-      std::string Lines[MAX_LINES];
+      std::string Lines[MAX_GCODE_LINES];
       uint32_t Actual_Line=0;
       uint32_t Total_Lines=0;
       void File2Win  ( void );

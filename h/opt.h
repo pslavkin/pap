@@ -44,3 +44,6 @@
 
 #define DEFAULT_GCODE_FILE_NAME "gcodes/route.nc"
 #define MAX_SENDER_QUEUE  200
+
+
+#define MAX_GCODE_LINES       100000

@@ -57,24 +57,33 @@ void Screen_Update_Class::Rti(void)
             Main_Page->Coords->Top           ( );
             break;
          case '2':
-               Main_Page->TresD->Toogle_Plot2();
+               Main_Page->TresD->Toogle_Plot_Speed();
             break;
          case '3':
                Main_Page->TresD->Toogle_Plot3();
             break;
          case '4':
-               Main_Page->TresD->Toogle_Plot_Pos2();
+               Main_Page->TresD->Toogle_Plot_Pos();
             break;
          case '5':
-               Main_Page->TresD->Toogle_Last_Plot2();
+               Main_Page->TresD->Toogle_Plot_Gcode();
             break;
          case '6':
-               Main_Page->TresD->Toogle_Last_Plot3();
+               Main_Page->TresD->Gcode2Matrix();
+            break;
+         case '7':
+               Main_Page->TresD->Translate();
+            break;
+         case '8':
+               Main_Page->TresD->Rotate();
+            break;
+         case '9':
+               Main_Page->TresD->Matrix2GCode();
             break;
          case 'C':
                Curses->Init_Full_Colors();
-               Main_Page->Gantry_XY->Redraw_Path();
-               Main_Page->Histo_Z->Touch_Win();
+               Main_Page->Gantry_XY->Redraw_Path ( );
+               Main_Page->Histo_Z->Touch_Win     ( );
             break;
          default:
             Sheet::Sheet4Top_Panel()->Key(Key);

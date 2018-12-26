@@ -85,8 +85,8 @@ void Sender_Class::Reload_File(void)
 
 void Sender_Class::Read_File(void)
 {
-   uint16_t i;
-   for(i=0;i<MAX_LINES && std::getline(GFile,Lines[i]);i++)
+   uint32_t i;
+   for(i=0;i<MAX_GCODE_LINES && std::getline(GFile,Lines[i]);i++)
 //      if (Lines[i][Lines[i].size() - 1] == '\r')
 //         Lines[i].resize(Lines[i].size() - 1);
       ;
