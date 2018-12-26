@@ -1,7 +1,6 @@
 #ifndef SENDER
 #define SENDER
 
-#define MAX_GCODE_LINES       100000
 
 class Sender_Class:public Sheet {
    public:
@@ -11,8 +10,9 @@ class Sender_Class:public Sheet {
       std::string Lines[MAX_GCODE_LINES];
       uint32_t Actual_Line=0;
       uint32_t Total_Lines=0;
-      void File2Win  ( void );
-      bool  Is_Running(void);
+      void File2Win    ( void );
+      bool  Is_Running ( void );
+      void Reload_File ( void );
    protected:
    private:
       enum Sender_State {
@@ -29,7 +29,6 @@ class Sender_Class:public Sheet {
       void Key(int K);
       std::ifstream GFile;
       void Read_File   ( void );
-      void Reload_File ( void );
       void Restart     ( void );
       void Pause       ( void );
       void Resume       ( void );

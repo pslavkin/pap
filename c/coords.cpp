@@ -121,17 +121,23 @@ void Coords_Class::Dec_Dec(void)
 }
 void Coords_Class::Dec_Plot_Limit(void)
 {
-   if(Plot_Limit>PLOT_STEP) {
+   uint32_t Last_Plot_Limit=Plot_Limit;
+   if(Plot_Limit>PLOT_STEP)
       Plot_Limit-=PLOT_STEP;
+   else Plot_Limit=1;
+   if(Plot_Limit!=Last_Plot_Limit)
       Main_Page->Gantry_XY->Redraw_Path();
-   }
 }
 void Coords_Class::Inc_Plot_Limit(void)
 {
-   if((Plot_Limit+PLOT_STEP)<=PLOT_MAX) {
-      Plot_Limit+=PLOT_STEP;
+   uint32_t Last_Plot_Limit=Plot_Limit;
+   if(Plot_Limit==1) 
+      Plot_Limit=PLOT_STEP;
+   else
+      if((Plot_Limit+PLOT_STEP)<=PLOT_MAX) 
+         Plot_Limit+=PLOT_STEP;
+   if(Plot_Limit!=Last_Plot_Limit)
       Main_Page->Gantry_XY->Redraw_Path();
-   }
 }
 void Coords_Class::Send_Speed_Limit2Controller(uint16_t Limit)
 {

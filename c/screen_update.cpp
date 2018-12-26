@@ -56,8 +56,14 @@ void Screen_Update_Class::Rti(void)
             Main_Page->Coords->Toogle_Select ( );
             Main_Page->Coords->Top           ( );
             break;
+         case '0':
+               Main_Page->TresD->Set_Fiducial(0);
+            break;
+         case '1':
+               Main_Page->TresD->Set_Fiducial(1);
+            break;
          case '2':
-               Main_Page->TresD->Toogle_Plot_Speed();
+               Main_Page->TresD->Set_Fiducial(2);
             break;
          case '3':
                Main_Page->TresD->Toogle_Plot3();
@@ -66,16 +72,7 @@ void Screen_Update_Class::Rti(void)
                Main_Page->TresD->Toogle_Plot_Pos();
             break;
          case '5':
-               Main_Page->TresD->Toogle_Plot_Gcode();
-            break;
-         case '6':
-               Main_Page->TresD->Gcode2Matrix();
-            break;
-         case '7':
-               Main_Page->TresD->Translate();
-            break;
-         case '8':
-               Main_Page->TresD->Rotate();
+               Main_Page->TresD->Toogle_Plot_Speed();
             break;
          case '9':
                Main_Page->TresD->Matrix2GCode();

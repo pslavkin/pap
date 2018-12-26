@@ -3,11 +3,7 @@
 Sender_Class::Sender_Class(Sheet* Parent,Dim D):Sheet(Parent,D)
 {
    scrollok(Sub_Win,TRUE);
-   GFile.open(Main_Page->GCode_File_Name);
-   if(GFile.good()) {
-         Read_File();
-   }
-   else exit(1);
+   Read_File();
    Print_Stop();
 }
 bool  Sender_Class::Is_Running(void)
@@ -77,8 +73,6 @@ void Sender_Class::Restart(void)
 }
 void Sender_Class::Reload_File(void)
 {
-   GFile.close();
-   GFile.open(Main_Page->GCode_File_Name);
    Read_File();
    Next_State=RESTART;
 }
@@ -86,10 +80,14 @@ void Sender_Class::Reload_File(void)
 void Sender_Class::Read_File(void)
 {
    uint32_t i;
+   GFile.open(Main_Page->GCode_File_Name);
+   if(!GFile.good())
+      exit(1);
    for(i=0;i<MAX_GCODE_LINES && std::getline(GFile,Lines[i]);i++)
 //      if (Lines[i][Lines[i].size() - 1] == '\r')
 //         Lines[i].resize(Lines[i].size() - 1);
       ;
+   GFile.close();
    Actual_Line=0;
    Total_Lines=i;
 }
@@ -207,8 +205,10 @@ void Sender_Class::Rti(void)
          case STOPED:
             break;
          case STOP:
-            if(Actual_Line==Exec_Line)
+            if(Actual_Line==Exec_Line) {
                Next_State=STOPED;
+               Print_Stop();
+            }
             break;
          case PLAY:
             Send_Next_Line();

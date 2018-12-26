@@ -2,12 +2,15 @@
 
 TresD_Class::TresD_Class ( void)
 {
+   Gcode2Matrix();
 };
 
 void TresD_Class::Calc_Plot_Limit(void)
 {
-   End   = Main_Page->Coords->Plot_Lines;
-   Begin = End>Main_Page->Coords->Plot_Limit?(End-Main_Page->Coords->Plot_Limit):0;
+   End            = Main_Page->Coords->Plot_Lines;
+   Begin          = End>Main_Page->Coords->Plot_Limit?(End-Main_Page->Coords->Plot_Limit):0;
+   Original_Begin = Main_Page->Sender->Exec_Line-2;
+   Original_End   = Main_Page->Sender->Exec_Line+Main_Page->Coords->Plot_Limit;
 }
 
 
@@ -60,12 +63,12 @@ void TresD_Class::View_Plot_Speed (void)
 {
    if(Plot_Speed_Enable==false) {
       hSpeed           = gnuplot_init ( );
-      gnuplot_cmd ( hSpeed ,"set style line 1 lt 1 lw 1 pt 1 linecolor rgb 'red'"                          );
-      gnuplot_cmd ( hSpeed ,"set style line 2 lt 1 lw 1 pt 1 linecolor rgb 'green'"                         );
-      gnuplot_cmd ( hSpeed ,"set style line 3 lt 1 lw 1 pt 1 linecolor rgb 'blue'"                          );
-      gnuplot_cmd ( hSpeed ,"set xlabel 't [seg]'"                                   );
-      gnuplot_cmd ( hSpeed ,"set ylabel 'Speed [mm/seg]'"                                   );
-      Plot_Speed_Enable = true            ;
+      gnuplot_cmd ( hSpeed ,"set style line 1 lt 1 lw 1 pt 1 linecolor rgb 'red'"   );
+      gnuplot_cmd ( hSpeed ,"set style line 2 lt 1 lw 1 pt 1 linecolor rgb 'green'" );
+      gnuplot_cmd ( hSpeed ,"set style line 3 lt 1 lw 1 pt 1 linecolor rgb 'blue'"  );
+      gnuplot_cmd ( hSpeed ,"set xlabel 't [seg]'"                                  );
+      gnuplot_cmd ( hSpeed ,"set ylabel 'Speed [mm/seg]'"                           );
+      Plot_Speed_Enable = true                                                       ;
    }
 }
 void TresD_Class::Plot_Speed (void)
@@ -100,11 +103,13 @@ void TresD_Class::View_Plot3 (void)
 {
    if(Plot3_Enable==false) {
       h3           = gnuplot_init ( );
-      gnuplot_cmd ( h3 ,"set style line 1 lt palette frac 0.3 lw 2 pt 1 "                          );
-      gnuplot_cmd ( h3 ,"set xlabel 'X [mm]'"                                   );
-      gnuplot_cmd ( h3 ,"set ylabel 'Y [mm]'"                                   );
-      gnuplot_cmd ( h3 ,"set zlabel 'Z [mm]'"                                   );
-      Plot3_Enable = true            ;
+      gnuplot_cmd ( h3 ,"set style line 1 lt palette frac 0.3 lw 4 pt 1 "     );
+      gnuplot_cmd ( h3 ,"set style line 2 lt 1 lw 0.1 pt 1 linecolor rgb 'gray'" );
+      gnuplot_cmd ( h3 ,"set style line 3 lt 1 lw 0.1 pt 1 linecolor rgb 'blue'" );
+      gnuplot_cmd ( h3 ,"set xlabel 'X [mm]'"                                 );
+      gnuplot_cmd ( h3 ,"set ylabel 'Y [mm]'"                                 );
+      gnuplot_cmd ( h3 ,"set zlabel 'Z [mm]'"                                 );
+      Plot3_Enable = true                                                      ;
    }
 }
 
@@ -112,10 +117,15 @@ void TresD_Class::Plot3 (void)
 {
    if(Plot3_Enable) {
       Calc_Plot_Limit();
-      gnuplot_cmd ( h3 ,"splot 'octave/log.txt' every ::%d::%d u 1:2:3 with lines ls 1 title 'Recorrido'",
+      gnuplot_cmd ( h3 ,"splot 'octave/log.txt'             every ::%d::%d u 1:2:3 with lines ls 1 title 'Path',\
+                               'gcodes/matrix.txt'          every ::%d::%d u 1:2:3 with lines ls 2 title 'Original',\
+                               'gcodes/matrix_modified.txt' every ::%d::%d u 1:2:3 with lines ls 3 title 'Modified'",
             Begin,
-            End
-            );
+            End,
+            Original_Begin,
+            Original_End,
+            Original_Begin,
+            Original_End);
    }
 }
 void TresD_Class::Toogle_Plot3 (void)
@@ -170,13 +180,10 @@ void TresD_Class::Rti(void)
    gnuplot_close ( hGcode );
 }
 
-void TresD_Class::Translate(void)
+void TresD_Class::Translate(Trilogy Trans)
 {
    uint32_t i;
-   GMatrix_File.open("gcodes/matrix.txt");
-   Trans.X=10;
-   Trans.Y=10;
-   Trans.Z=0.5;
+   GMatrix_File.open("gcodes/matrix_modified.txt");
    for(i=0;i<Total_Lines;i++) {
       Xyz[i].X+=Trans.X;
       Xyz[i].Y+=Trans.Y;
@@ -185,12 +192,13 @@ void TresD_Class::Translate(void)
    }
    GMatrix_File.close();
 }
-void TresD_Class::Rotate(void)
+void TresD_Class::Rotate(float Angle)
 {
    uint32_t i;
    float X,Y;
-   GMatrix_File.open("gcodes/matrix.txt");
-   Angle=0.5;
+   GMatrix_File.open("gcodes/matrix_modified.txt");
+   if(!GMatrix_File.good())
+      exit(1);
    for(i=0;i<Total_Lines;i++) {
       X=Xyz[i].X*cos(Angle) - Xyz[i].Y*sin(Angle);
       Y=Xyz[i].X*sin(Angle) + Xyz[i].Y*cos(Angle);
@@ -207,7 +215,8 @@ void TresD_Class::Decode_File(void)
    uint32_t i;
    std::string Line;
 
-   for(i=0;i<MAX_GCODE_LINES && std::getline(GFile,Line);i++) {
+   for(i=0;i<Main_Page->Sender->Total_Lines;i++) {
+      Line=Main_Page->Sender->Lines[i];
       Pos=Line.find('X');
       if(Pos<std::string::npos) sscanf(Line.c_str()+Pos,"X%f", &Xyz[i].X);
       Pos=Line.find('Y');
@@ -222,18 +231,16 @@ void TresD_Class::Decode_File(void)
 }
 void TresD_Class::Gcode2Matrix(void)
 {
-   GFile.open(Main_Page->GCode_File_Name);
    GMatrix_File.open("gcodes/matrix.txt");
-   if(GFile.good() && GMatrix_File.good()) {
+   if(GMatrix_File.good()) {
          Decode_File        ( );
          GMatrix_File.close ( );
-         GFile.close        ( );
    }
    else exit(1);
+   GMatrix_File.open("gcodes/matrix_modified.txt");
+   GMatrix_File.close();
 }
 //-------------------------------------------
-
-//N1 G1 X10 Y20
 bool TresD_Class::Is_Coord_Line(std::string Line)
 {
    size_t X,Y,Z;
@@ -269,7 +276,8 @@ void TresD_Class::Encode_File(void)
    uint32_t i;
    std::string Line;
 
-   for(i=0;i<MAX_GCODE_LINES && std::getline(GFile,Line);i++) {
+   for(i=0;i<Main_Page->Sender->Total_Lines;i++) {
+      Line=Main_Page->Sender->Lines[i];
       if (Line[Line.size()-1] == '\r')
          Line.resize(Line.size()-1);
       if(Is_Coord_Line(Line)==true) {
@@ -277,19 +285,44 @@ void TresD_Class::Encode_File(void)
          Line=Replace_Coord('Y',Xyz[i].Y,Line);
          Line=Replace_Coord('Z',Xyz[i].Z,Line);
       }
-      GMatrix_File << Line << std::endl;
+      Main_Page->Sender->Lines[i]= Line + "\n";
    }
 }
 void TresD_Class::Matrix2GCode(void)
 {
-   GFile.open(Main_Page->GCode_File_Name);
-   GMatrix_File.open("gcodes/gcode.txt");
-   if(GFile.good() && GMatrix_File.good()) {
-         Encode_File();
-         GMatrix_File.close();
-   }
-   else exit(1);
-   GMatrix_File.close();
-
+   Encode_File  ( );
+   Gcode2Matrix ( );
 }
+
+
+void TresD_Class::Set_Fiducial(uint8_t F)
+{
+   switch(F) {
+      case 1:
+         Main_Page->Gantry_XY->Jog2New_XY_Zero();
+         Trans.X=0-Xyz[0].X;
+         Trans.Y=0-Xyz[0].Y;
+         Trans.Z=0;//Main_Page->Coords->Actual_Jog_Z-Xyz[0].Z;
+         Translate(Trans);
+         break;
+      case 2:
+         Delta_Original.X = Xyz[1].X-Xyz[0].X;
+         Delta_Original.Y = Xyz[1].Y-Xyz[0].Y;
+         Delta_New.X      = Main_Page->Coords->Actual_Jog_X-Xyz[0].X;
+         Delta_New.Y      = Main_Page->Coords->Actual_Jog_Y-Xyz[0].Y;
+
+         Angle_Original   = atan(Delta_Original.Y/Delta_Original.X);
+         Angle_New        = atan(Delta_New.Y/Delta_New.X);
+
+         Angle_Diff       = Angle_New-Angle_Original;
+         Rotate(Angle_Diff);
+         break;
+      case 0:
+         Gcode2Matrix();
+         break;
+   }
+}
+
+
+
 

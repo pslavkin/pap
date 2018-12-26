@@ -3,7 +3,7 @@
 #define MAX_SERIAL_PORTS        2
 
 
-#define TRESD_RTI              200000000
+#define TRESD_RTI              300000000
 #define GANTRY_RTI              50000000
 #define MAX_XY_SCALE_INDEX       1000000
 #define MAX_Z_SCALE_INDEX          10000
@@ -38,7 +38,7 @@
 #define MIN_DEC   ((15*MICROSTEP)/X_SCALE)
 #define ACC_STEP  100
 
-#define PLOT_STEP 100
+#define PLOT_STEP 10
 #define PLOT_MAX  100000
 
 

@@ -56,7 +56,10 @@ void Gantry_Class::Key(int K)
       case 'L':
                Clear_Path();
          break;
-      case KEY_LEFT:
+      case 'm':
+         Coords->Jog2Machine();
+         break;
+       case KEY_LEFT:
                Jog2Left();
                Goto_Jog_XY();
          break;
@@ -163,28 +166,7 @@ void Gantry_Class::Goto_Jog_XY(void)
 {
    if(Main_Page->Sender->Is_Running()==false) {
       char Buf[100];
-      sprintf(Buf,"maxv %f %f %f\n",
-            (float)(Coords->Speed_Limit*X_SCALE)/MICROSTEP,
-            (float)(Coords->Speed_Limit*Y_SCALE)/MICROSTEP,
-            (float)(Coords->Speed_Limit*Z_SCALE)/MICROSTEP
-            );
-      Main_Page->Serial->Send_And_Forget(Buf);
-
-      sprintf(Buf,"acc %f %f %f\n",
-            (float)(Coords->Acc*X_SCALE)/MICROSTEP,
-            (float)(Coords->Acc*Y_SCALE)/MICROSTEP,
-            (float)(Coords->Acc*Z_SCALE)/MICROSTEP
-            );
-      Main_Page->Serial->Send_And_Forget(Buf);
-
-      sprintf(Buf,"dec %f %f %f\n",
-            (float)(Coords->Dec*X_SCALE)/MICROSTEP,
-            (float)(Coords->Dec*Y_SCALE)/MICROSTEP,
-            (float)(Coords->Dec*Z_SCALE)/MICROSTEP
-            );
-      Main_Page->Serial->Send_And_Forget(Buf);
-
-      sprintf(Buf,"goto %d %d %d\n",Coords->Jog_X,Coords->Jog_Y,Coords->Z);
+      sprintf(Buf,"GL A G1 X%f Y%f Z%f F%d\n",Coords->Actual_Jog_X,Coords->Actual_Jog_Y,Coords->Actual_Z,Coords->Speed_Limit*60);
       Main_Page->Serial->Send_And_Forget(Buf);
   }
 

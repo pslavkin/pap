@@ -4,6 +4,9 @@
 class TresD_Class {
    public:
       TresD_Class            ( void );
+      struct Trilogy {
+         float X,Y,Z;
+      };
       void Rti               ( void );
       void Toogle_Plot_Pos   ( void );
       void Toogle_Plot_Speed ( void );
@@ -11,11 +14,13 @@ class TresD_Class {
       void Toogle_Plot_Gcode ( void );
       void Gcode2Matrix ( void );
       void Matrix2GCode ( void );
-      void Translate    ( void );
-      void Rotate       ( void );
+      void Translate    ( Trilogy Trans );
+      void Rotate       ( float Angle );
+      void Set_Fiducial(uint8_t F);
    private:
       void Calc_Plot_Limit(void);
       uint32_t Begin,End;
+      uint32_t Original_Begin,Original_End;
       gnuplot_ctrl    *hSpeed;
       gnuplot_ctrl    *hPos;
       gnuplot_ctrl    *h3;
@@ -43,12 +48,10 @@ class TresD_Class {
       uint32_t Total_Lines=0;
       void Decode_File  ( void );
       void Encode_File  ( void );
-      struct Trilogy {
-         float X,Y,Z;
-      };
       Trilogy Xyz[MAX_GCODE_LINES];
       Trilogy Trans;
-      float Angle;
+      Trilogy Delta_Original,Delta_New;
+      float Angle_Original,Angle_New,Angle_Diff;
       std::string Replace_Coord(char C,float New_Coord,std::string Line);
       bool Is_Coord_Line(std::string Line);
 };

@@ -36,7 +36,7 @@ class Coords_Class : public Sheet {
       float   Speed;
       float   Acc;
       float   Dec;
-      uint32_t   Plot_Lines;
+      uint32_t   Plot_Lines=0;
       uint32_t   Plot_Limit;
       uint16_t Speed_Limit;
       uint8_t  Speed_Scale;
