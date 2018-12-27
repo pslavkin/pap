@@ -104,8 +104,8 @@ void TresD_Class::View_Plot3 (void)
    if(Plot3_Enable==false) {
       h3           = gnuplot_init ( );
       gnuplot_cmd ( h3 ,"set style line 1 lt palette frac 0.3 lw 4 pt 1 "     );
-      gnuplot_cmd ( h3 ,"set style line 2 lt 1 lw 0.1 pt 1 linecolor rgb 'gray'" );
-      gnuplot_cmd ( h3 ,"set style line 3 lt 1 lw 0.1 pt 1 linecolor rgb 'blue'" );
+      gnuplot_cmd ( h3 ,"set style line 2 lt 2 lw 1 pt 1 linecolor rgb 'green'" );
+      gnuplot_cmd ( h3 ,"set style line 3 lt 2 lw 1 pt 1 linecolor rgb 'blue'" );
       gnuplot_cmd ( h3 ,"set style line 4 lt 2 lw 2 pt 11 linecolor rgb 'black'" );
       gnuplot_cmd ( h3 ,"set xlabel 'X [mm]'"                                 );
       gnuplot_cmd ( h3 ,"set ylabel 'Y [mm]'"                                 );
