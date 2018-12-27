@@ -66,12 +66,12 @@ void Serial_Manager_Class::Log(void)
    high_resolution_clock::time_point Time;
    Time                       = high_resolution_clock::now();
    duration<double> time_span = duration_cast<duration<double>>(Time-t1);
-   if(Log_File.good() && Main_Page->Sender->Is_Running()) {
+//   if(Log_File.good() && Main_Page->Sender->Is_Running()) {
       C->Plot_Lines++;
       Log_File << C->Actual_X       << ' ' << C->Actual_Y       << ' ' << C->Actual_Z       << ' ' <<
                   C->Actual_Speed_X << ' ' << C->Actual_Speed_Y << ' ' << C->Actual_Speed_Z << ' ' << 
                   time_span.count() << std::endl;
-   }
+ //  }
 }
 
 void Serial_Manager_Class::Rti(void)

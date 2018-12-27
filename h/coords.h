@@ -5,8 +5,9 @@ class Coords_Class : public Sheet {
    public:
       Coords_Class ( Sheet* Parent,Dim D );
 //      Sheet* S;
-      void Rti(void);
-      void Jog2Machine(void);
+      void Rti            ( void );
+      void Jog_Z2Machine  ( void );
+      void Jog_XY2Machine ( void );
       int32_t X;
       int32_t Y;
       int32_t Z;

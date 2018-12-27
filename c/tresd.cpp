@@ -106,6 +106,7 @@ void TresD_Class::View_Plot3 (void)
       gnuplot_cmd ( h3 ,"set style line 1 lt palette frac 0.3 lw 4 pt 1 "     );
       gnuplot_cmd ( h3 ,"set style line 2 lt 1 lw 0.1 pt 1 linecolor rgb 'gray'" );
       gnuplot_cmd ( h3 ,"set style line 3 lt 1 lw 0.1 pt 1 linecolor rgb 'blue'" );
+      gnuplot_cmd ( h3 ,"set style line 4 lt 2 lw 2 pt 11 linecolor rgb 'black'" );
       gnuplot_cmd ( h3 ,"set xlabel 'X [mm]'"                                 );
       gnuplot_cmd ( h3 ,"set ylabel 'Y [mm]'"                                 );
       gnuplot_cmd ( h3 ,"set zlabel 'Z [mm]'"                                 );
@@ -119,13 +120,16 @@ void TresD_Class::Plot3 (void)
       Calc_Plot_Limit();
       gnuplot_cmd ( h3 ,"splot 'octave/log.txt'             every ::%d::%d u 1:2:3 with lines ls 1 title 'Path',\
                                'gcodes/matrix.txt'          every ::%d::%d u 1:2:3 with lines ls 2 title 'Original',\
-                               'gcodes/matrix_modified.txt' every ::%d::%d u 1:2:3 with lines ls 3 title 'Modified'",
+                               'gcodes/matrix_modified.txt' every ::%d::%d u 1:2:3 with lines ls 3 title 'Modified',\
+                               'octave/log.txt'             every ::%d::%d u 1:2:3 with points ls 4 title 'dwell'",
             Begin,
             End,
             Original_Begin,
             Original_End,
             Original_Begin,
-            Original_End);
+            Original_End,
+            End-1,
+            End-1);
    }
 }
 void TresD_Class::Toogle_Plot3 (void)
@@ -304,6 +308,7 @@ void TresD_Class::Set_Fiducial(uint8_t F)
          Trans.Y=0-Xyz[0].Y;
          Trans.Z=0;//Main_Page->Coords->Actual_Jog_Z-Xyz[0].Z;
          Translate(Trans);
+         Matrix2GCode();
          break;
       case 2:
          Delta_Original.X = Xyz[1].X-Xyz[0].X;
@@ -317,7 +322,7 @@ void TresD_Class::Set_Fiducial(uint8_t F)
          Angle_Diff       = Angle_New-Angle_Original;
          Rotate(Angle_Diff);
          break;
-      case 0:
+      case 8:
          Gcode2Matrix();
          break;
    }

@@ -57,7 +57,7 @@ void Gantry_Class::Key(int K)
                Clear_Path();
          break;
       case 'm':
-         Coords->Jog2Machine();
+         Coords->Jog_XY2Machine();
          break;
        case KEY_LEFT:
                Jog2Left();
@@ -166,7 +166,7 @@ void Gantry_Class::Goto_Jog_XY(void)
 {
    if(Main_Page->Sender->Is_Running()==false) {
       char Buf[100];
-      sprintf(Buf,"GL A G1 X%f Y%f Z%f F%d\n",Coords->Actual_Jog_X,Coords->Actual_Jog_Y,Coords->Actual_Z,Coords->Speed_Limit*60);
+      sprintf(Buf,"GL A G1 X%f Y%f F%d\n",Coords->Actual_Jog_X,Coords->Actual_Jog_Y,Coords->Speed_Limit*60);
       Main_Page->Serial->Send_And_Forget(Buf);
   }
 
@@ -174,10 +174,12 @@ void Gantry_Class::Goto_Jog_XY(void)
 void Gantry_Class::Jog2New_XY_Zero(void)
 {
    char Buf[100];
-   sprintf(Buf,"pos 0 0 %d\n",Coords->Jog_Z);
+   sprintf(Buf,"pos 0 0 %d\n",Coords->Z);
    Main_Page->Serial->Send_And_Forget(Buf);
    Coords->Reset_Jog_XY();
    Clear_Path();
+   sprintf(Buf,"rstxy\n");
+   Main_Page->Serial->Send_And_Forget(Buf);
 }
 
 

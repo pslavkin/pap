@@ -67,14 +67,17 @@ void Coords_Class::Reset_Jog_Z(void)
    Jog_Z=0;
    Actual_Jog_Z=0;
 }
-void Coords_Class::Jog2Machine(void)
+void Coords_Class::Jog_Z2Machine(void)
+{
+   Jog_Z=Z;
+   Actual_Jog_Z=Actual_Z;
+}
+void Coords_Class::Jog_XY2Machine(void)
 {
    Jog_Y=Y;
    Jog_X=X;
-   Jog_Z=Z;
    Actual_Jog_Y=Actual_Y;
    Actual_Jog_X=Actual_X;
-   Actual_Jog_Z=Actual_Z;
 }
 void Coords_Class::Machine2Coords(int32_t X, int32_t Y,int32_t Z,
                                   float Speed_X, float Speed_Y, float Speed_Z)

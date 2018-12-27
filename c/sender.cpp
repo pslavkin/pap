@@ -42,6 +42,7 @@ void Sender_Class::Key(int K)
          break;
       case 'R':
          Reload_File();
+         Main_Page->TresD->Gcode2Matrix();
          break;
       case 'u':
          Toogle_Full_Restore_Screen();
