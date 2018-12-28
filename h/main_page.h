@@ -17,6 +17,7 @@ class Main_Page_Class {
       Sender_Class*         Sender       ;
       Screen_Update_Class*  Screen_Update;
       TresD_Class*          TresD        ;
+      Openmv_Class*         Openmv       ;
       Timer_Class T;
    protected:
    private:

@@ -56,6 +56,12 @@ void Screen_Update_Class::Rti(void)
             Main_Page->Coords->Toogle_Select ( );
             Main_Page->Coords->Top           ( );
             break;
+         case 'v':
+            if(Sheet::Sheet4Top_Panel()!=Main_Page->Openmv)
+               Sheet::Sheet4Top_Panel()->Deselect();
+            Main_Page->Openmv->Toogle_Select ( );
+            Main_Page->Openmv->Top           ( );
+            break;
          case '8':
                Main_Page->TresD->Set_Fiducial(0);
             break;

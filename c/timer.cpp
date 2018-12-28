@@ -32,5 +32,8 @@ void Timer_Class::Set_Screen_Update_Rti( Screen_Update_Class* SUpdate  )
 {
    SUpdate_Rti = std::thread (&Screen_Update_Class::Rti,SUpdate);
 }
-
+void Timer_Class::Set_Openmv_Rti  ( Openmv_Class* Openmv  )
+{
+   Openmv_Rti = std::thread (&Openmv_Class::Rti,Openmv);
+}
 

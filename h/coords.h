@@ -30,10 +30,10 @@ class Coords_Class : public Sheet {
       float   Speed_X;
       float   Speed_Y;
       float   Speed_Z;
-      float   Actual_Speed_X;
-      float   Actual_Speed_Y;
-      float   Actual_Speed_Z;
-      float   Actual_Speed;
+      float   Actual_Speed_X=0;
+      float   Actual_Speed_Y=0;
+      float   Actual_Speed_Z=0;
+      float   Actual_Speed=0;
       float   Speed;
       float   Acc;
       float   Dec;

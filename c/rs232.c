@@ -6,7 +6,7 @@ static int Cport[ 3],
 static struct termios   new_port_settings,
                         old_port_settings[1];
 
-static char comports[][13]={"/dev/ttyACM0","/dev/ttyACM1","/dev/ttyACM1"};
+static char comports[][13]={"/dev/ttyACM0","/dev/ttyACM1","/dev/ttyACM2"};
 
 
 int OpenComport(int comport_number, int baudrate)

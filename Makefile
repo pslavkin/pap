@@ -20,6 +20,7 @@ _OBJ= \
 		curses_color.o\
 		main_page.o\
 		tresd.o\
+		openmv.o\
 		sender.o\
 		dim.o\
 		gnuplot_i.o\
@@ -41,6 +42,7 @@ _DEP = \
 		 curses_color.h\
 		 main_page.h\
 		 tresd.h\
+		 openmv.h\
 		 sender.h\
 		 dim.h\
 		 gnuplot_i.h\

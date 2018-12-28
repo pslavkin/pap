@@ -104,8 +104,8 @@ char* Sender_Class::Get_Line(int32_t Pos)
 void Sender_Class::File2Win(void)
 {
    uint16_t i;
-   wclear(Sub_Win);
    pthread_mutex_lock(&Main_Page->Print_Mutex);
+   wclear(Sub_Win);
    {
    for(i=0;i<Dims.H-4;i++) {
       if(i==EXEC_LINE_POS) {

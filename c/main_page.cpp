@@ -22,13 +22,17 @@ void Main_Page_Class::Init (WINDOW* w)
    Dim Dim_Sender ( 5, 0, 15, 40,"Sender" );
    Sender=new Sender_Class(Main,Dim_Sender);
 
-   Dim Dim_Serial ( 20, 0,  7, 40,"Serial" );
+   Dim Dim_Serial ( 20, 0,  7, 20,"Serial" );
    Serial=new Serial_Manager_Class(Main,Dim_Serial);
+
+   Dim Openmv_Coords ( 20,20,7,20,"cam" );
+   Openmv=new Openmv_Class(Main,Openmv_Coords);
 
    Dim Dim_Coords ( 0,24,  5, 73,"Coords" );
    Coords=new Coords_Class(Main,Dim_Coords);
 
    TresD=new TresD_Class();
+
 
    Histo_Z->Set_Coords   ( Coords );
    Gantry_XY->Set_Coords ( Coords );
@@ -42,6 +46,7 @@ void Main_Page_Class::Init (WINDOW* w)
    T.Set_Screen_Update_Rti ( Screen_Update );
    T.Set_Serial_Manager_Rti( Serial        );
    T.Set_TresD_Rti         ( TresD         );
+   T.Set_Openmv_Rti        ( Openmv        );
 }
 void Main_Page_Class::Set_GCode_File(char* F)
 {

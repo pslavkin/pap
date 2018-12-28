@@ -1,9 +1,12 @@
 #define SERIAL_MANAGER_RTI      20000000
 #define SERIAL_OPEN_PORT_DELAY 900000000
-#define MAX_SERIAL_PORTS        2
-
+#define SERIAL_MANAGER_PORT 1
+#define OPENMV_PORT         2
+#define OPENMV_CAMERA_MAX_X 160
+#define OPENMV_CAMERA_MAX_Y 120
 
 #define TRESD_RTI              300000000
+#define OPENMV_RTI              50000000
 #define GANTRY_RTI              50000000
 #define MAX_XY_SCALE_INDEX       1000000
 #define MAX_Z_SCALE_INDEX          10000

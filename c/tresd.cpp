@@ -188,6 +188,8 @@ void TresD_Class::Translate(Trilogy Trans)
 {
    uint32_t i;
    GMatrix_File.open("gcodes/matrix_modified.txt");
+   if(!GMatrix_File.good())
+      exit(1);
    for(i=0;i<Total_Lines;i++) {
       Xyz[i].X+=Trans.X;
       Xyz[i].Y+=Trans.Y;
@@ -218,6 +220,9 @@ void TresD_Class::Decode_File(void)
    size_t Pos;
    uint32_t i;
    std::string Line;
+   GMatrix_File.open("gcodes/matrix.txt");
+   if(!GMatrix_File.good())
+      exit(1);
 
    for(i=0;i<Main_Page->Sender->Total_Lines;i++) {
       Line=Main_Page->Sender->Lines[i];
@@ -230,17 +235,13 @@ void TresD_Class::Decode_File(void)
       GMatrix_File << Xyz[i].X << ' ' << Xyz[i].Y << ' ' << Xyz[i].Z << std::endl;
       Xyz[i+1]=Xyz[i];
    }
+   GMatrix_File.close ( );
    Total_Lines=i;
    Actual_Line=0;
 }
 void TresD_Class::Gcode2Matrix(void)
 {
-   GMatrix_File.open("gcodes/matrix.txt");
-   if(GMatrix_File.good()) {
-         Decode_File        ( );
-         GMatrix_File.close ( );
-   }
-   else exit(1);
+   Decode_File        ( );
    GMatrix_File.open("gcodes/matrix_modified.txt");
    GMatrix_File.close();
 }
@@ -313,12 +314,11 @@ void TresD_Class::Set_Fiducial(uint8_t F)
       case 2:
          Delta_Original.X = Xyz[1].X-Xyz[0].X;
          Delta_Original.Y = Xyz[1].Y-Xyz[0].Y;
-         Delta_New.X      = Main_Page->Coords->Actual_Jog_X-Xyz[0].X;
-         Delta_New.Y      = Main_Page->Coords->Actual_Jog_Y-Xyz[0].Y;
+         Delta_New.X      = Main_Page->Coords->Actual_X-Xyz[0].X;
+         Delta_New.Y      = Main_Page->Coords->Actual_Y-Xyz[0].Y;
 
          Angle_Original   = atan(Delta_Original.Y/Delta_Original.X);
          Angle_New        = atan(Delta_New.Y/Delta_New.X);
-
          Angle_Diff       = Angle_New-Angle_Original;
          Rotate(Angle_Diff);
          break;

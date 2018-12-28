@@ -39,15 +39,10 @@ int Serial_Manager_Class::Open(int pn,int baudrate)
 {
    char Buf[MAX_ANS_SIZE];
    Port_Status = OpenComport(Port_Number,baudrate);
-   wprintw(Sub_Win,"\n serial port %d status %s \n",Port_Number,(Port_Status?"error":"opened"));
-   if(Port_Status==0){
-   }
-   else {
-      if(Port_Number<MAX_SERIAL_PORTS)
-         Port_Number++;
-      else
-         Port_Number=0;
-   }
+   pthread_mutex_lock(&Main_Page->Print_Mutex);
+      wprintw(Sub_Win,"serial port %d status %s\n",Port_Number,(Port_Status?"error":"opened"));
+      Touch_Win();
+   pthread_mutex_unlock(&Main_Page->Print_Mutex);
    return Port_Status;
 }
 
@@ -115,7 +110,7 @@ Serial_Manager_Class::Serial_Manager_Class( Sheet* Parent,Dim D ):Sheet(Parent,D
 {
    scrollok ( Sub_Win, TRUE );
    Port_Status = 1;
-   Port_Number = 0;
+   Port_Number = 0;//SERIAL_MANAGER_PORT;
    Log_File.open("octave/log.txt");
 
 //   Log_File_Lines=0;
