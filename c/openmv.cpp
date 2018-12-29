@@ -41,8 +41,8 @@ void Openmv_Class::Rti(void)
       sscanf(Buf,"%hhu %hhu %f %hhu",&Camera_X,&Camera_Y,&Rotation,&Id);
       Diff_X=Camera_X-(Camera_Max_X/2);
       Diff_Y=Camera_Y-(Camera_Max_Y/2);
-      Next_Move_X=Main_Page->Coords->Actual_X+Diff_X/2;
-      Next_Move_Y=Main_Page->Coords->Actual_Y-Diff_Y/2;
+      Next_Move_X=Main_Page->Coords->Actual_X+(float)Diff_X/5;
+      Next_Move_Y=Main_Page->Coords->Actual_Y-(float)Diff_Y/5;
       Print_Camera_Pixel();
       Touch_Win();
    }
@@ -59,27 +59,48 @@ void Openmv_Class::Key(int K)
          break;
       case KEY_DOWN:
          break;
-      case 'a':
+      case 'f':
+         Main_Page->Fiducial->Fiducial_State=1;
+//         Main_Page->Coords->Actual_Jog_X=Main_Page->Coords->Actual_X+OPENMV_CAMERA_OFFSET_X;
+//         Main_Page->Coords->Actual_Jog_Y=Main_Page->Coords->Actual_Y+OPENMV_CAMERA_OFFSET_Y;
+//         Main_Page->Gantry_XY->Goto_Jog_XY();
+         break;
+      case 'g':
          Move2Center();
          break;
+      case 'h':
+         Main_Page->Coords->Actual_Jog_X=Main_Page->Coords->Actual_X-OPENMV_CAMERA_OFFSET_X;
+         Main_Page->Coords->Actual_Jog_Y=Main_Page->Coords->Actual_Y-OPENMV_CAMERA_OFFSET_Y;
+         Main_Page->Gantry_XY->Goto_Jog_XY();
+         break;
+      case 'e':
+         Main_Page->Fiducial->Fiducial_State=3;
+         break;
       case 'b':
-            Main_Page->TresD->Gcode2Matrix();
-            Main_Page->TresD->Rotate(Rotation);
+         Main_Page->TresD->Gcode2Matrix();
+         Main_Page->TresD->Rotate(Rotation_Snapshot);
+         //Main_Page->Coords->Actual_Jog_X=-sin(Rotation)*OPENMV_CAMERA_OFFSET_Y;
+         //Main_Page->Coords->Actual_Jog_Y=OPENMV_CAMERA_OFFSET_Y*(cos(Rotation)-1);
+         //Main_Page->Gantry_XY->Goto_Jog_XY();
          break;
       case 'u':
          Toogle_Full_Restore_Screen();
          break;
    }
 }
+bool Openmv_Class::Is_Centered(void)
+{
+   return Main_Page->Coords->Actual_X>(Next_Move_X-FIDUCIAL_MARGIN_X) &&
+          Main_Page->Coords->Actual_X<(Next_Move_X+FIDUCIAL_MARGIN_X) &&
+          Main_Page->Coords->Actual_Y>(Next_Move_Y-FIDUCIAL_MARGIN_Y) &&
+          Main_Page->Coords->Actual_Y<(Next_Move_Y+FIDUCIAL_MARGIN_Y);
+}
 void Openmv_Class::Move2Center(void)
 {
    char Buf[100];
-    if(Main_Page->Coords->Speed==0) {
-      if(Diff_X!=0 || Diff_Y!=0) {
-         sprintf(Buf,"GL A G1 X%f Y%f F%d\n",Next_Move_X,Next_Move_Y,Main_Page->Coords->Speed_Limit*60);
-         Main_Page->Serial->Send_And_Forget(Buf);
-      }
-   }
+   sprintf(Buf,"GL A G1 X%f Y%f F%d\n",Next_Move_X,Next_Move_Y,Main_Page->Coords->Speed_Limit*60);
+   Main_Page->Serial->Send_And_Forget(Buf);
+   Rotation_Snapshot=Rotation;
 }
 uint32_t Openmv_Class::Absolute_Y2Gantry(uint8_t Y)
 {

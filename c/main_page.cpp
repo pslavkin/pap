@@ -33,6 +33,8 @@ void Main_Page_Class::Init (WINDOW* w)
 
    TresD=new TresD_Class();
 
+   Dim Fiducial_Coords ( 0,0,7,20,"Fidu" );
+   Fiducial=new Fiducial_Class(Main,Fiducial_Coords);
 
    Histo_Z->Set_Coords   ( Coords );
    Gantry_XY->Set_Coords ( Coords );
@@ -47,6 +49,7 @@ void Main_Page_Class::Init (WINDOW* w)
    T.Set_Serial_Manager_Rti( Serial        );
    T.Set_TresD_Rti         ( TresD         );
    T.Set_Openmv_Rti        ( Openmv        );
+   T.Set_Fiducial_Rti      ( Fiducial      );
 }
 void Main_Page_Class::Set_GCode_File(char* F)
 {

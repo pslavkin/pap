@@ -36,4 +36,8 @@ void Timer_Class::Set_Openmv_Rti  ( Openmv_Class* Openmv  )
 {
    Openmv_Rti = std::thread (&Openmv_Class::Rti,Openmv);
 }
+void Timer_Class::Set_Fiducial_Rti  ( Fiducial_Class* Fiducial  )
+{
+   Fiducial_Rti = std::thread (&Fiducial_Class::Rti,Fiducial);
+}
 

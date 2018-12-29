@@ -304,9 +304,9 @@ void TresD_Class::Set_Fiducial(uint8_t F)
 {
    switch(F) {
       case 1:
-         Main_Page->Gantry_XY->Jog2New_XY_Zero();
-         Trans.X=0-Xyz[0].X;
-         Trans.Y=0-Xyz[0].Y;
+//         Main_Page->Gantry_XY->Jog2New_XY_Zero();
+         Trans.X=Main_Page->Coords->Actual_X-Xyz[0].X;
+         Trans.Y=Main_Page->Coords->Actual_Y-Xyz[0].Y;
          Trans.Z=0;//Main_Page->Coords->Actual_Jog_Z-Xyz[0].Z;
          Translate(Trans);
          Matrix2GCode();

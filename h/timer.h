@@ -12,6 +12,7 @@ class Timer_Class {
       void Set_Sender_Rti         ( Sender_Class* Sender         );
       void Set_TresD_Rti          ( TresD_Class* TresD           );
       void Set_Openmv_Rti         ( Openmv_Class* Openmv         );
+      void Set_Fiducial_Rti       ( Fiducial_Class* Fiducial     );
       void Set_Serial_Manager_Rti ( Serial_Manager_Class* S      );
       void Set_Screen_Update_Rti  ( Screen_Update_Class* SUpdate );
    protected:
@@ -24,6 +25,7 @@ class Timer_Class {
       std::thread Serial_Rti;
       std::thread TresD_Rti;
       std::thread Openmv_Rti;
+      std::thread Fiducial_Rti;
       std::thread SUpdate_Rti;
 };
 

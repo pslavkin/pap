@@ -24,9 +24,7 @@ void Sender_Class::Key(int K)
          Next_State=ONE_LINE;
          break;
       case 'p':
-         Next_State=PLAY;
-         Resume();
-         Print_Play();
+         Play();
          break;
       case 'r':
          Next_State=RESTART;
@@ -52,6 +50,12 @@ void Sender_Class::Key(int K)
 //         Next_State=STOP;
          break;
    }
+}
+void Sender_Class::Play(void)
+{
+   Next_State=PLAY;
+   Resume();
+   Print_Play();
 }
 void Sender_Class::Hiz_Now(void)
 {

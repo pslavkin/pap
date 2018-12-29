@@ -18,6 +18,7 @@ class Main_Page_Class {
       Screen_Update_Class*  Screen_Update;
       TresD_Class*          TresD        ;
       Openmv_Class*         Openmv       ;
+      Fiducial_Class*       Fiducial   ;
       Timer_Class T;
    protected:
    private:

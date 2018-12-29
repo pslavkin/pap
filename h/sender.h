@@ -13,6 +13,8 @@ class Sender_Class:public Sheet {
       void File2Win    ( void );
       bool  Is_Running ( void );
       void Reload_File ( void );
+      void Send_Next_Line(void);
+      void Play(void);
    protected:
    private:
       enum Sender_State {
@@ -25,7 +27,6 @@ class Sender_Class:public Sheet {
       Sender_State State      = STOP;
       Sender_State Next_State = STOP;
       char* Get_Line(int32_t Pos);
-      void Send_Next_Line(void);
       void Key(int K);
       std::ifstream GFile;
       void Read_File   ( void );

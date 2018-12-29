@@ -31,6 +31,7 @@
 #include "histograms.h"
 #include "screen_update.h"
 #include "curses_color.h"
+#include "fiducial.h"
 #include "openmv.h"
 #include "sender.h"
 #include "timer.h"

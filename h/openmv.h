@@ -6,6 +6,9 @@ class Openmv_Class : public Sheet{
       Openmv_Class(Sheet* Parent,Dim D);
       void Rti     ( void );
       void Key(int K);
+      void Move2Center(void);
+      float Rotation_Snapshot;
+      bool Is_Centered(void);
    private:
       uint8_t Camera_X=OPENMV_CAMERA_MAX_X/2;
       uint8_t Camera_Y=OPENMV_CAMERA_MAX_Y/2;
@@ -22,7 +25,6 @@ class Openmv_Class : public Sheet{
       uint32_t Absolute_Y2Gantry(uint8_t Y);
       uint32_t Absolute_X2Gantry(uint8_t X);
       void Print_Camera_Pixel(void);
-      void Move2Center(void);
 };
 
 

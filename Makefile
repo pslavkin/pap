@@ -21,6 +21,7 @@ _OBJ= \
 		main_page.o\
 		tresd.o\
 		openmv.o\
+		fiducial.o\
 		sender.o\
 		dim.o\
 		gnuplot_i.o\
@@ -43,6 +44,7 @@ _DEP = \
 		 main_page.h\
 		 tresd.h\
 		 openmv.h\
+		 fiducial.h\
 		 sender.h\
 		 dim.h\
 		 gnuplot_i.h\
